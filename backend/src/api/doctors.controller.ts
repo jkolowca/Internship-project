@@ -1,23 +1,23 @@
-import { Request, Response, NextFunction } from "express";
-import { DoctorsDAO } from "../dao/doctorsDAO";
+import { Request, Response, NextFunction } from 'express';
+import { DoctorsDAO } from '../dao/doctorsDAO';
 
 export class DoctorsCtrl {
-   static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-      const { doctorsList } = await DoctorsDAO.getAll();
-      res.json(doctorsList);
-   }
+	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
+		const { doctorsList } = await DoctorsDAO.getAll();
+		res.json(doctorsList);
+	}
 
-   static async apiAdd(req: Request, res: Response, next: NextFunction) {
-      try {
-         const { name, surname, specialties, clinics } = req.body;
+	static async apiAdd(req: Request, res: Response, next: NextFunction) {
+		try {
+			const { name, surname, specialties, clinics } = req.body;
 
-         await DoctorsDAO.add(name, surname, specialties, clinics);
+			await DoctorsDAO.add(name, surname, specialties, clinics);
 
-         const updated = await DoctorsDAO.getAll();
+			const updated = await DoctorsDAO.getAll();
 
-         res.json({ status: "success", doctors: updated });
-      } catch (e) {
-         res.status(500).json({ e });
-      }
-   }
+			res.json({ status: 'success', doctors: updated });
+		} catch (e) {
+			res.status(500).json({ e });
+		}
+	}
 }

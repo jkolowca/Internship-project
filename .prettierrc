@@ -1,0 +1,16 @@
+{
+	"endOfLine": "lf",
+	"useTabs": true,
+	"tabWidth": 4,
+	"singleQuote": true,
+	"arrowParens": "avoid",
+	"overrides": [
+		{
+			"files": ["*.yml", "*.yaml"],
+			"options": {
+				"useTabs": false,
+				"tabWidth": 2
+			}
+		}
+	]
+}

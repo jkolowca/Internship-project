@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { DoctorsCtrl } from "./doctors.controller";
+import { Router } from 'express';
+import { DoctorsCtrl } from './doctors.controller';
 
 const router = Router();
 
-router.route("/").get(DoctorsCtrl.apiGetAll).post(DoctorsCtrl.apiAdd);
+router.route('/').get(DoctorsCtrl.apiGetAll).post(DoctorsCtrl.apiAdd);
 
 export default router;
