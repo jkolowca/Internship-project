@@ -1,0 +1,6 @@
+{
+   "scripts": {
+      "ss": "cd ./backend && npm start",
+      "sf": "cd ./frontend && npm start"
+   }
+}
