@@ -1,4 +1,4 @@
-import { Collection, MongoClient, Cursor } from "mongodb";
+import { Collection, MongoClient, Cursor, ObjectId } from "mongodb";
 let visits: Collection<any>;
 
 export class VisitsDAO {
@@ -9,7 +9,7 @@ export class VisitsDAO {
       try {
          visits = conn.db("registration").collection("visits");
       } catch (e) {
-         console.error(`Unable to establish a collection handle in tasksDAO: ${e}`);
+         console.error(`Unable to establish a collection handle in VisitsDAO: ${e}`);
       }
    }
 
@@ -32,9 +32,9 @@ export class VisitsDAO {
       }
    }
 
-   static async add(name: string) {
+   static async add(startDate: Date, endDate: Date, clinic: ObjectId, doctor: ObjectId) {
       try {
-         const listDoc = { name };
+         const listDoc = { startDate, endDate, clinic, doctor };
 
          return await visits.insertOne(listDoc);
       } catch (e) {
@@ -43,3 +43,13 @@ export class VisitsDAO {
       }
    }
 }
+
+/**
+ * A Visit
+ * @typedef Visit
+ * @property {ObjectId} _id
+ * @property {Date} startDate
+ * @property {Date} endDate
+ * @property {ObjectId} clinic
+ * @property {ObjectId} doctor
+ */

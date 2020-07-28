@@ -1,19 +1,19 @@
 import { Request, Response, NextFunction } from "express";
-import { VisitsDAO } from "../dao/visitsDAO";
+import { ClinicsDAO } from "../dao/clinicsDAO";
 
-export class VisitsCtrl {
+export class ClinicsCtrl {
    static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-      const { visitsList } = await VisitsDAO.getAll();
-      res.json(visitsList);
+      const { clinicsList } = await ClinicsDAO.getAll();
+      res.json(clinicsList);
    }
 
    static async apiAdd(req: Request, res: Response, next: NextFunction) {
       try {
-         const { startDate, endDate, clinic, doctor } = req.body;
+         const { name, city, street, streetNo } = req.body;
 
-         await VisitsDAO.add(startDate, endDate, clinic, doctor);
+         await ClinicsDAO.add(name, city, street, streetNo);
 
-         const updated = await VisitsDAO.getAll();
+         const updated = await ClinicsDAO.getAll();
 
          res.json({ status: "success", visits: updated });
       } catch (e) {

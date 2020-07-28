@@ -1,4 +1,4 @@
-import { Collection, MongoClient, Cursor } from "mongodb";
+import { Collection, MongoClient, Cursor, ObjectId } from "mongodb";
 let doctors: Collection<any>;
 
 export class DoctorsDAO {
@@ -32,9 +32,9 @@ export class DoctorsDAO {
       }
    }
 
-   static async add(name: string) {
+   static async add(name: string, surname: string, specialties: ObjectId[], clinics: string[]) {
       try {
-         const listDoc = { name };
+         const listDoc = { name, surname, specialties, clinics };
 
          return await doctors.insertOne(listDoc);
       } catch (e) {
@@ -43,3 +43,13 @@ export class DoctorsDAO {
       }
    }
 }
+
+/**
+ * A Doctor
+ * @typedef Doctor
+ * @property {ObjectId} _id
+ * @property {string} startDate
+ * @property {string} endDate
+ * @property {string[]} specialties
+ * @property {ObjectId[]} clinics
+ */

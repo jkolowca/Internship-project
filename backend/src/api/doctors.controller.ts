@@ -9,9 +9,9 @@ export class DoctorsCtrl {
 
    static async apiAdd(req: Request, res: Response, next: NextFunction) {
       try {
-         const { name } = req.body;
+         const { name, surname, specialties, clinics } = req.body;
 
-         await DoctorsDAO.add(name);
+         await DoctorsDAO.add(name, surname, specialties, clinics);
 
          const updated = await DoctorsDAO.getAll();
 
