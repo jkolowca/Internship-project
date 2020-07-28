@@ -4,6 +4,7 @@
    "description": "",
    "main": "./build/index.js",
    "scripts": {
+      "prestart": "tsc",
       "start": "mongod & nodemon ./build/index.js"
    },
    "author": "",
