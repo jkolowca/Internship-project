@@ -37,4 +37,7 @@ $dark-app-theme: mat-dark-theme(
 
 body {
 	margin: 0px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
