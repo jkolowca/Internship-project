@@ -2,6 +2,6 @@ export interface Doctor {
 	_id: string;
 	name: string;
 	surname: string;
-	specialities: string[];
+	specialties: string[];
 	clinics: string[];
 }
