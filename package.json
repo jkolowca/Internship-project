@@ -1,6 +1,7 @@
 {
    "scripts": {
-      "ss": "cd ./backend && npm start",
-      "sf": "cd ./frontend && npm start"
+      "one": "cd ./backend && npm run tsc",
+      "two": "cd ./backend && npm start",
+      "three": "cd ./frontend && npm start"
    }
 }
