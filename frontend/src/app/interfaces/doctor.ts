@@ -1,7 +1,7 @@
 export interface Doctor {
-    _id: string;
-    name: string;
-    surname: string;
-    specialities: string[];
-    clinics: string[];
+	_id: string;
+	name: string;
+	surname: string;
+	specialties: string[];
+	clinics: string[];
 }

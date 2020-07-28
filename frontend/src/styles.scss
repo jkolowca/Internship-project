@@ -1,38 +1,40 @@
-
-// Custom Theming for Angular Material
-// For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
-// Plus imports for other components in your app.
-
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
 @include mat-core();
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$registration-primary: mat-palette($mat-indigo);
-$registration-accent: mat-palette($mat-pink, A200, A100, A400);
+$light-app-primary: mat-palette($mat-teal);
+$light-app-accent: mat-palette($mat-blue-grey);
+$light-app-warn: mat-palette($mat-pink, 700);
+$light-no-bg-app-theme: mat-light-theme(
+	$light-app-primary,
+	$light-app-accent,
+	$light-app-warn
+);
 
-// The warn palette is optional (defaults to red).
-$registration-warn: mat-palette($mat-red);
+$custom-background-color: map_get($mat-blue-grey, 50);
+$background: map-get($light-no-bg-app-theme, background);
+$background: map_merge(
+	$background,
+	(
+		background: $custom-background-color,
+	)
+);
+$light-app-theme: map_merge(
+	$light-no-bg-app-theme,
+	(
+		background: $background,
+	)
+);
 
-// Create the theme object. A theme consists of configurations for individual
-// theming systems such as "color" or "typography".
-$registration-theme: mat-light-theme((
-  color: (
-    primary: $registration-primary,
-    accent: $registration-accent,
-    warn: $registration-warn,
-  )
-));
+$dark-app-primary: mat-palette($mat-teal);
+$dark-app-accent: mat-palette($mat-blue-grey);
+$dark-app-warn: mat-palette($mat-pink, 500);
+$dark-app-theme: mat-dark-theme(
+	$dark-app-primary,
+	$dark-app-accent,
+	$dark-app-warn
+);
+@include angular-material-theme($dark-app-theme);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($registration-theme);
-
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+	margin: 0px;
+}

@@ -1,6 +1,7 @@
 export interface Visit {
-    startDate: Date;
-    endDate: Date;
-    clinic: string;
-    doctor: string;
+	_id: string;
+	startDate: Date;
+	endDate: Date;
+	clinic: string;
+	doctor: string;
 }
