@@ -4,4 +4,10 @@ export interface Visit {
 	endDate: Date;
 	clinic: string;
 	doctor: string;
+	appointment?: {
+		name: string;
+		surname: string;
+		email: string;
+		reason?: string;
+	};
 }
