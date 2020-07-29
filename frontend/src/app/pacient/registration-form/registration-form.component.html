@@ -1,30 +1,30 @@
 <mat-card>
-    <div class="form-container">
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput [formControl]="name">
-          <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Surname</mat-label>
-            <input matInput [formControl]="surname">
-            <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>E-mail</mat-label>
-            <input matInput [formControl]="email">
-          <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-            <mat-label>Reason</mat-label>
-            <textarea matInput></textarea>
-          </mat-form-field>
-      </div>
-      <div class="buttons">
-          <button mat-button>Submit</button>
-          <button mat-button>Back</button>
-      </div>
-    </mat-card>      
+  <div class="form-container">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [formControl]="name">
+      <mat-error *ngIf="name.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Surname</mat-label>
+      <input matInput [formControl]="surname">
+      <mat-error *ngIf="surname.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>E-mail</mat-label>
+      <input matInput [formControl]="email">
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Reason</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
+  <div class="buttons">
+    <button mat-button>Submit</button>
+    <button mat-button>Back</button>
+  </div>
+</mat-card>
