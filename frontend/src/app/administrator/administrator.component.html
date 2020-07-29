@@ -1,0 +1,22 @@
+<mat-toolbar><span>Administrator Panel</span></mat-toolbar>
+<div class="main-container">
+	<div>
+		<mat-accordion>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>Add new Doctor</mat-panel-title>
+				</mat-expansion-panel-header>
+				<app-doctor-form></app-doctor-form>
+			</mat-expansion-panel>
+			<mat-expansion-panel>
+				<mat-expansion-panel-header>
+					<mat-panel-title>Add new Clinic</mat-panel-title>
+				</mat-expansion-panel-header>
+				<app-clinic-form></app-clinic-form>
+			</mat-expansion-panel>
+		</mat-accordion>
+	</div>
+	<div>
+		<app-doctors-list></app-doctors-list>
+	</div>
+</div>

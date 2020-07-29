@@ -1,50 +1,52 @@
-<mat-expansion-panel>
-	<mat-expansion-panel-header>
-		<mat-panel-title>Add new Doctor</mat-panel-title>
-	</mat-expansion-panel-header>
-	<form [formGroup]="doctor" (ngSubmit)="addDoctor()">
-		<mat-form-field appearance="legacy">
-			<mat-label>Name</mat-label>
-			<input matInput type="text" formControlName="name" />
-		</mat-form-field>
-		<mat-form-field appearance="legacy">
-			<mat-label>Surname</mat-label>
-			<input matInput type="text" formControlName="surname" />
-		</mat-form-field>
-		<mat-form-field
-			appearance="legacy"
-			*ngFor="let _ of specialties.controls; index as i"
-		>
-			<input
-				matInput
-				type="text"
-				placeholder="Specialtie"
-				[formControl]="specialties.controls[i]"
-			/>
-			<button
-				mat-icon-button
-				matSuffix
-				type="button"
-				(click)="addSpecialtie(i)"
-			>
-				<mat-icon>add</mat-icon>
-			</button>
-			<button
-				mat-icon-button
-				matSuffix
-				type="button"
-				(click)="removeSpecialtie(i)"
-			>
-				<mat-icon>remove</mat-icon>
-			</button>
-		</mat-form-field>
+<form [formGroup]="doctor" (ngSubmit)="addDoctor()">
+	<mat-form-field appearance="legacy">
+		<mat-label>Name</mat-label>
+		<input matInput type="text" formControlName="name" />
+	</mat-form-field>
+	<mat-form-field appearance="legacy">
+		<mat-label>Surname</mat-label>
+		<input matInput type="text" formControlName="surname" />
+	</mat-form-field>
+	<mat-form-field
+		appearance="legacy"
+		*ngFor="let _ of specialties.controls; index as i"
+	>
+		<input
+			matInput
+			type="text"
+			placeholder="Specialtie"
+			[formControl]="specialties.controls[i]"
+		/>
 		<button
-			mat-raised-button
-			type="submit"
-			color="primary"
-			[disabled]="!doctor.valid"
+			mat-icon-button
+			matSuffix
+			type="button"
+			(click)="addSpecialtie(i)"
 		>
-			Save
+			<mat-icon>add</mat-icon>
 		</button>
-	</form>
-</mat-expansion-panel>
+		<button
+			mat-icon-button
+			matSuffix
+			type="button"
+			(click)="removeSpecialtie(i)"
+		>
+			<mat-icon>remove</mat-icon>
+		</button>
+	</mat-form-field>
+	<div class="break"></div>
+	<mat-label>Clinics:</mat-label>
+	<button class="thin-button" mat-raised-button type="button" color="primary">
+		Add Clinic
+	</button>
+	<div class="break"></div>
+	<div class="break"></div>
+	<button
+		mat-raised-button
+		type="submit"
+		color="primary"
+		[disabled]="!doctor.valid"
+	>
+		Save
+	</button>
+</form>

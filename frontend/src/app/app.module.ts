@@ -5,7 +5,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './shared/material.module';
 import { AppComponent } from './app.component';
-import { MainComponent as AdministratorComponent } from './administrator/main/main.component';
+import { AdministratorComponent } from './administrator/administrator.component';
 import { DoctorsListComponent } from './administrator/doctors-list/doctors-list.component';
 import { MainComponent as DoctorComponent } from './doctor/main/main.component';
 import { MainComponent as PacientComponent } from './pacient/main/main.component';
@@ -13,6 +13,7 @@ import { SearchBarComponent } from './pacient/search-bar/search-bar.component';
 import { VisitListComponent } from './pacient/visit-list/visit-list.component';
 import { DoctorFormComponent } from './administrator/doctor-form/doctor-form.component';
 import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
+import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.component';
 
 @NgModule({
 	declarations: [
@@ -25,13 +26,14 @@ import { RegistrationFormComponent } from './pacient/registration-form/registrat
 		VisitListComponent,
 		DoctorFormComponent,
 		RegistrationFormComponent,
+		ClinicFormComponent,
 	],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
 		BrowserAnimationsModule,
 		HttpClientModule,
-		MaterialModule
+		MaterialModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],
