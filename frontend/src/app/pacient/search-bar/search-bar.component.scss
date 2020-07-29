@@ -1,0 +1,8 @@
+.main-container {
+	display: flex;
+	flex-direction: row;
+}
+
+.main-container * {
+	padding: 20px;
+}

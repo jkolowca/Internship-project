@@ -10,8 +10,14 @@ import { SearchBarComponent } from './pacient/search-bar/search-bar.component';
 import { VisitListComponent } from './pacient/visit-list/visit-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
 
 @NgModule({
 	declarations: [
@@ -22,6 +28,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		PacientComponent,
 		SearchBarComponent,
 		VisitListComponent,
+		RegistrationFormComponent,
 	],
 	imports: [
 		BrowserModule,
@@ -29,6 +36,13 @@ import { MatExpansionModule } from '@angular/material/expansion';
 		AppRoutingModule,
 		MatExpansionModule,
 		HttpClientModule,
+		MatCardModule,
+		MatFormFieldModule,
+		MatSelectModule,
+		MatInputModule,
+		MatButtonModule,
+		FormsModule,
+		ReactiveFormsModule
 	],
 	providers: [],
 	bootstrap: [AppComponent],
