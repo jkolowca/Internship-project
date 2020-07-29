@@ -1,1 +1,30 @@
-<p>search-bar works!</p>
+<mat-card>
+  <div class="main-container">
+    <mat-form-field appearance="fill">
+      <mat-label>City</mat-label>
+      <mat-select multiple>
+        <mat-option value="option">Kraków</mat-option>
+        <!--ngIf po dostępnych city -->
+        <mat-option value="option">Wrocław</mat-option>
+        <mat-option value="option">Gdańsk</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Specialties</mat-label>
+      <mat-select>
+        <mat-option value="option">kargiolog</mat-option>
+        <!--ngIf po dostępnych spec -->
+        <mat-option value="option">laryngolog</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="datetime-local" placeholder="start date">
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput type="datetime-local" placeholder="end date">
+    </mat-form-field>
+  </div>
+</mat-card>

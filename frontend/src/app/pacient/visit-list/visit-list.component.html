@@ -1,1 +1,23 @@
-<p>visit-list works!</p>
+<div class="main-container">
+  <mat-accordion>
+    <mat-expansion-panel hideToggle *ngFor="let visit of visitsList">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <p> Clinic: {{visit.clinic}} </p>
+        </mat-panel-title>
+        <mat-panel-description>
+          <p>Start Date: {{visit.startDate}} </p>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="expansion">
+        <div class="info">
+          <p>Doctor: {{visit.doctor}}</p>
+          <p>Specialty: </p>
+        </div>
+        <button mat-button>
+          make an appointment
+        </button>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

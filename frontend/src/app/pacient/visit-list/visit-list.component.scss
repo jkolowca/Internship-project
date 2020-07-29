@@ -1,0 +1,19 @@
+button {
+	background-color: rgb(104, 102, 102);
+}
+
+.expansion {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.main-container * {
+    margin: 2px;
+}
