@@ -14,7 +14,7 @@
           <p>Doctor: {{visit.doctor}}</p>
           <p>Specialty: </p>
         </div>
-        <a routerLink="/pac/registration"> <button mat-button>
+        <a [routerLink]="['/pac/registration/', visit._id]"> <button mat-button>
             Make an appointment
           </button></a>
       </div>

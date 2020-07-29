@@ -19,6 +19,12 @@ export class PacientsService {
 			.pipe(catchError(this.handleError<Visit[]>('getAll', [])));
   }
 
+  register(visit: Visit): Observable<any> {
+    return this.http
+      .put(`${this.visitsUrl}/${visit._id}`, visit)
+      .pipe(catchError(this.handleError<Visit>('editVisit')));
+  }
+
   private handleError<T>(
 		operation?: string,
 		result?: T
