@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { DoctorsService } from '../../services/doctors.service';
+import { AdministratorsService } from '../../services/administrators.service';
 
 @Component({
 	selector: 'app-doctor-form',
@@ -14,12 +14,13 @@ export class DoctorFormComponent implements OnInit {
 		specialties: new FormArray([]),
 	});
 	specialties = this.doctor.get('specialties') as FormArray;
-
-	constructor(private doctorsService: DoctorsService) {}
+	showClinicForm = false;
+	constructor(private administratorsService: AdministratorsService) {}
 
 	ngOnInit(): void {
 		this.addSpecialtie(0);
 	}
+
 	addSpecialtie(i: number): void {
 		this.specialties.insert(
 			i + 1,
@@ -38,10 +39,15 @@ export class DoctorFormComponent implements OnInit {
 	}
 
 	addDoctor(): void {
-		console.log(`add Doctor`);
 		const { name, surname, specialties } = this.doctor.value;
-		this.doctorsService.add(name, surname, specialties, []).subscribe();
+		this.administratorsService
+			.addDoctor(name, surname, specialties, [])
+			.subscribe();
 
 		window.location.reload();
+	}
+
+	showNewClinicForm(): void {
+		this.showClinicForm = true;
 	}
 }

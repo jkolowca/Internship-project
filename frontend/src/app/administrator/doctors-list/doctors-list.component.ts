@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DoctorsService } from '../../services/doctors.service';
+import { AdministratorsService } from '../../services/administrators.service';
 import { Doctor } from '../../interfaces/doctor';
 
 @Component({
@@ -8,12 +8,12 @@ import { Doctor } from '../../interfaces/doctor';
 	styleUrls: ['./doctors-list.component.scss'],
 })
 export class DoctorsListComponent implements OnInit {
-	constructor(private doctorsService: DoctorsService) {}
+	constructor(private administratorsService: AdministratorsService) {}
 	doctorsList: Doctor[];
 
 	ngOnInit(): void {
-		this.doctorsService
-			.getAll()
+		this.administratorsService
+			.getAllDoctors()
 			.subscribe(list => (this.doctorsList = list));
 	}
 }
