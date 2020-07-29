@@ -6,10 +6,23 @@ import { DoctorsListComponent } from './administrator/doctors-list/doctors-list.
 import { MainComponent } from './administrator/main/main.component';
 import { SearchBarComponent } from './pacient/search-bar/search-bar.component';
 import { VisitListComponent } from './pacient/visit-list/visit-list.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
-	declarations: [AppComponent, DoctorsListComponent, MainComponent, SearchBarComponent, VisitListComponent],
-	imports: [BrowserModule, AppRoutingModule],
+	declarations: [
+		AppComponent,
+		DoctorsListComponent,
+		MainComponent,
+		SearchBarComponent,
+		VisitListComponent,
+	],
+	imports: [
+		BrowserModule,
+		BrowserAnimationsModule,
+		AppRoutingModule,
+		MatExpansionModule,
+	],
 	providers: [],
 	bootstrap: [AppComponent],
 })
