@@ -1,11 +1,8 @@
 {
-   "scripts": {
-      "initial-setup": "cd ./backend && npm install && cd ../frontend && npm install",
-      "one": "cd ./backend && npm run tsc",
-      "two": "cd ./backend && npm start",
-      "three": "cd ./frontend && npm start"
-   },
-   "dependencies": {
-      "@angular/material": "^10.1.1"
-   }
+	"scripts": {
+		"initial-setup": "cd ./backend && npm install && cd ../frontend && npm install",
+		"one": "cd ./backend && npm run tsc",
+		"two": "cd ./backend && npm start",
+		"three": "cd ./frontend && npm start"
+	}
 }

@@ -8,7 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
 	providedIn: 'root',
 })
 export class DoctorsService {
-	private doctorsUrl = 'http://localhost:5000/doctors';
+	private doctorsUrl = 'http://localhost:5000/doctors/';
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 	};
