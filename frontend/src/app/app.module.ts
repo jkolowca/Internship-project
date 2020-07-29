@@ -3,7 +3,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DoctorsListComponent } from './administrator/doctors-list/doctors-list.component';
-import { MainComponent } from './administrator/main/main.component';
+import { MainComponent as AdministratorComponent } from './administrator/main/main.component';
+import { MainComponent as DoctorComponent } from './doctor/main/main.component';
+import { MainComponent as PacientComponent } from './pacient/main/main.component';
 import { SearchBarComponent } from './pacient/search-bar/search-bar.component';
 import { VisitListComponent } from './pacient/visit-list/visit-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,7 +17,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 	declarations: [
 		AppComponent,
 		DoctorsListComponent,
-		MainComponent,
+		AdministratorComponent,
+		DoctorComponent,
+		PacientComponent,
 		SearchBarComponent,
 		VisitListComponent,
 	],
