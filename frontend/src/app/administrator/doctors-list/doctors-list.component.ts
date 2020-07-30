@@ -14,6 +14,24 @@ export class DoctorsListComponent implements OnInit {
 	ngOnInit(): void {
 		this.administratorsService
 			.getAllDoctors()
-			.subscribe(list => (this.doctorsList = list));
+			.subscribe(list => (this.doctorsList = list.sort(compare)));
 	}
+
+	editDoctor(doctor: Doctor): void {}
+}
+
+function compare(a: Doctor, b: Doctor): number {
+	if (a.surname < b.surname) {
+		return -1;
+	}
+	if (a.surname > b.surname) {
+		return 1;
+	}
+	if (a.name < b.name) {
+		return -1;
+	}
+	if (a.name > b.name) {
+		return 1;
+	}
+	return 0;
 }

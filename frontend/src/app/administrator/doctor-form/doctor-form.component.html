@@ -7,21 +7,20 @@
 		<mat-label>Surname</mat-label>
 		<input matInput type="text" formControlName="surname" />
 	</mat-form-field>
+	<div class="break"></div>
+
+	<mat-label>Specialties:</mat-label>
+	<br />
 	<mat-form-field
 		appearance="legacy"
 		*ngFor="let _ of specialties.controls; index as i"
 	>
-		<input
-			matInput
-			type="text"
-			placeholder="Specialtie"
-			[formControl]="specialties.controls[i]"
-		/>
+		<input matInput type="text" [formControl]="specialties.controls[i]" />
 		<button
 			mat-icon-button
 			matSuffix
 			type="button"
-			(click)="addSpecialtie(i)"
+			(click)="addSpecialtie(i + 1)"
 		>
 			<mat-icon>add</mat-icon>
 		</button>
@@ -35,10 +34,36 @@
 		</button>
 	</mat-form-field>
 	<div class="break"></div>
+
 	<mat-label>Clinics:</mat-label>
-	<button class="thin-button" mat-raised-button type="button" color="primary">
-		Add Clinic
-	</button>
+	<mat-form-field
+		appearance="legacy"
+		*ngFor="let _ of clinics.controls; index as i"
+	>
+		<mat-select [formControl]="clinics.controls[i]">
+			<mat-option
+				*ngFor="let clinic of availableClinics"
+				[value]="clinic._id"
+				>{{ clinic.name }}</mat-option
+			>
+		</mat-select>
+		<button
+			mat-icon-button
+			matSuffix
+			type="button"
+			(click)="addClinic(i + 1)"
+		>
+			<mat-icon>add</mat-icon>
+		</button>
+		<button
+			mat-icon-button
+			matSuffix
+			type="button"
+			(click)="removeClinic(i)"
+		>
+			<mat-icon>remove</mat-icon>
+		</button>
+	</mat-form-field>
 	<div class="break"></div>
 	<div class="break"></div>
 	<button
