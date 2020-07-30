@@ -1,11 +1,16 @@
 <form [formGroup]="doctor" (ngSubmit)="save()">
 	<mat-form-field appearance="legacy">
 		<mat-label>Name</mat-label>
-		<input matInput type="text" formControlName="name" />
+		<input matInput type="text" formControlName="name" autocomplete="off" />
 	</mat-form-field>
 	<mat-form-field appearance="legacy">
 		<mat-label>Surname</mat-label>
-		<input matInput type="text" formControlName="surname" />
+		<input
+			matInput
+			type="text"
+			formControlName="surname"
+			autocomplete="off"
+		/>
 	</mat-form-field>
 	<div class="break"></div>
 
@@ -15,7 +20,22 @@
 		appearance="legacy"
 		*ngFor="let _ of specialties.controls; index as i"
 	>
-		<input matInput type="text" [formControl]="specialties.controls[i]" />
+		<input
+			matInput
+			type="text"
+			[formControl]="specialties.controls[i]"
+			[matAutocomplete]="auto"
+		/>
+		<mat-autocomplete #auto="matAutocomplete">
+			<mat-option>immunology</mat-option>
+			<mat-option>cardiology</mat-option>
+			<mat-option>psychiatry</mat-option>
+			<mat-option>dermatology</mat-option>
+			<mat-option>pediatrics</mat-option>
+			<mat-option>endocrinology</mat-option>
+			<mat-option>geriatrics</mat-option>
+			<mat-option>hematology</mat-option>
+		</mat-autocomplete>
 		<button
 			mat-icon-button
 			matSuffix

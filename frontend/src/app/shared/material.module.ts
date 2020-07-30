@@ -8,7 +8,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
@@ -25,6 +26,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 		MatToolbarModule,
 		MatSnackBarModule,
 		MatTabsModule,
+		MatAutocompleteModule,
 	],
 })
 export class MaterialModule {}
