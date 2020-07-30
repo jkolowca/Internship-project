@@ -3,6 +3,7 @@ import { MongoClient } from 'mongodb';
 import { DoctorsDAO } from './dao/doctorsDAO';
 import { VisitsDAO } from './dao/visitsDAO';
 import { ClinicsDAO } from './dao/clinicsDAO';
+import { UsersDAO } from './dao/usersDAO';
 
 const port = 5000 || 8000;
 
@@ -20,6 +21,7 @@ MongoClient.connect('mongodb://localhost:27017', {
 		await DoctorsDAO.injectDB(client);
 		await VisitsDAO.injectDB(client);
 		await ClinicsDAO.injectDB(client);
+		await UsersDAO.injectDB(client);
 		app.listen(port, () => {
 			console.log(`listening on port ${port}`);
 		});
