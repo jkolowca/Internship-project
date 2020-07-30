@@ -64,6 +64,16 @@ export class VisitsDAO {
 			return { error: e };
 		}
 	}
+
+	static async update(visitId: ObjectId, appointment: Object) {
+		try {
+			await visits.updateOne({ _id: visitId }, { $set: appointment });
+			return { success: true };
+		} catch (e) {
+			console.error(`Error occurred while logging in user, ${e}`);
+			return { error: e };
+		}
+	}
 }
 
 /**
@@ -74,4 +84,5 @@ export class VisitsDAO {
  * @property {Date} endDate
  * @property {ObjectId} clinic
  * @property {ObjectId} doctor
+ * @property {Object} appointment
  */

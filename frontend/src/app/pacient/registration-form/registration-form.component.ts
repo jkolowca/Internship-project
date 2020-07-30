@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { Visit } from 'src/app/interfaces/visit';
+import { PacientsService } from '../../services/pacients.service';
+import {ActivatedRoute} from '@angular/router';
 
 
 @Component({
@@ -12,22 +13,30 @@ export class RegistrationFormComponent implements OnInit {
   name = new FormControl('', [Validators.required]);
   surname = new FormControl('', [Validators.required]);
   email = new FormControl('', [Validators.required, Validators.email]);
-  id: string;
+  reason = new FormControl('');
+  id = this.route.snapshot.paramMap.get('id');
 
-  constructor() { }
+  constructor(private pacientsService: PacientsService, private route: ActivatedRoute ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  getErrorMessage() {
-    if (this.name.hasError('required')) {
+
+  getErrorMessage(prop): string {
+    if (prop.hasError('required')) {
       return 'You must enter a value';
     }
-
-    return this.name.hasError('email') ? 'Not a valid email' : '';
+    return prop.hasError('email') ? 'Not a valid email' : '';
   }
 
-  public register(): void {
-  }
+   register(): void {
+    const pacient = {
+      name: this.name.value,
+      surname: this.surname.value,
+      email: this.email.value,
+      reason: this.reason.value
+  };
+    this.pacientsService.register(this.id, pacient).subscribe();
+    console.log(pacient);
+   }
 
 }
