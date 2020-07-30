@@ -19,15 +19,16 @@ export class RegistrationFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  getErrorMessage() {
-    if (this.name.hasError('required')) {
+  getErrorMessage(): string {
+    if (this.email.hasError('required')) {
       return 'You must enter a value';
     }
 
-    return this.name.hasError('email') ? 'Not a valid email' : '';
+    return this.email.hasError('email') ? 'Not a valid email' : '';
   }
 
   public register(): void {
+    console.log("register");
   }
 
 }

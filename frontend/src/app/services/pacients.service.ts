@@ -21,7 +21,7 @@ export class PacientsService {
 
   register(visit: Visit): Observable<any> {
     return this.http
-      .put(`${this.visitsUrl}/${visit._id}`, visit)
+      .patch(`${this.visitsUrl}/${visit._id}`, visit)
       .pipe(catchError(this.handleError<Visit>('editVisit')));
   }
 
