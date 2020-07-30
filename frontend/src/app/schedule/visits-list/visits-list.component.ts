@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Visit } from 'src/app/interfaces/visit';
+import { Component, OnInit } from '@angular/core';
+import { VisitsService } from '../../services/visits.service';
+import { Visit } from '../../interfaces/visit';
 
 @Component({
 	selector: 'app-visits-list',
@@ -7,11 +8,10 @@ import { Visit } from 'src/app/interfaces/visit';
 	styleUrls: ['./visits-list.component.scss'],
 })
 export class VisitsListComponent implements OnInit {
-	@Input() type: string;
-	now = new Date();
-	visits: Visit[];
+	constructor(private visitService: VisitsService) {}
+	visitsList: Visit[];
 
-	constructor() {}
-
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.visitService.getAll().subscribe(list => (this.visitsList = list));
+	}
 }
