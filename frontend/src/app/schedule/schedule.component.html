@@ -1,6 +1,12 @@
-<mat-toolbar><span>Administrator Panel</span></mat-toolbar>
 <div class="main-container">
 	<div>
-		<app-doctors-list></app-doctors-list>
+		<mat-tab-group mat-stretch-tabs class="example-stretched-tabs">
+			<mat-tab label="Active">
+				<app-visits-list type="active"></app-visits-list>
+			</mat-tab>
+			<mat-tab label="Archived">
+				<app-visits-list type="archived"></app-visits-list>
+			</mat-tab>
+		</mat-tab-group>
 	</div>
 </div>
