@@ -23,7 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 		FormsModule,
 		ReactiveFormsModule,
 		MatToolbarModule,
-		MatSnackBarModule
+		MatSnackBarModule,
 		MatTabsModule,
 	],
 })
