@@ -22,6 +22,8 @@ export class DoctorFormComponent implements OnInit {
 	clinics = this.doctor.get('clinics') as FormArray;
 	availableClinics: Clinic[] = [];
 
+	mySubscription: any;
+
 	constructor(
 		private administratorsService: AdministratorsService,
 		private location: Location
@@ -111,8 +113,7 @@ export class DoctorFormComponent implements OnInit {
 		this.administratorsService
 			.addDoctor(name, surname, specialties, clinics)
 			.subscribe();
-
-		window.location.reload();
+		location.reload();
 	}
 
 	deleteDoctor(): void {
