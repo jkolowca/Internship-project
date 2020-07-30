@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AdministratorsService } from '../../services/administrators.service';
+import { DoctorsService } from '../../services/doctors.service';
 import { Doctor } from '../../interfaces/doctor';
 
 @Component({
@@ -8,11 +8,11 @@ import { Doctor } from '../../interfaces/doctor';
 	styleUrls: ['./doctors-list.component.scss'],
 })
 export class DoctorsListComponent implements OnInit {
-	constructor(private administratorsService: AdministratorsService) {}
+	constructor(private doctorsService: DoctorsService) {}
 	doctorsList: Doctor[];
 
 	ngOnInit(): void {
-		this.administratorsService
+		this.doctorsService
 			.getAllDoctors()
 			.subscribe(list => (this.doctorsList = list.sort(compare)));
 	}

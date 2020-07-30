@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { AdministratorsService } from '../../services/administrators.service';
+import { DoctorsService } from '../../services/doctors.service';
+import { ClinicsService } from '../../services/clinics.service';
 import { Clinic } from '../../interfaces/clinic';
 import { Location } from '@angular/common';
 
@@ -25,7 +26,8 @@ export class DoctorFormComponent implements OnInit {
 	mySubscription: any;
 
 	constructor(
-		private administratorsService: AdministratorsService,
+		private doctorsService: DoctorsService,
+		private clinicsService: ClinicsService,
 		private location: Location
 	) {}
 
@@ -40,22 +42,20 @@ export class DoctorFormComponent implements OnInit {
 	}
 
 	setupDoctorEdit(): void {
-		this.administratorsService
-			.getDoctorById(this.doctorId)
-			.subscribe(doctor => {
-				doctor.specialties.forEach((_, idx) => {
-					this.addSpecialtie(idx);
-				});
-				doctor.clinics.forEach((_, idx) => {
-					this.addClinic(idx);
-				});
-				const { _id, ...values } = doctor;
-				this.doctor.setValue(values);
+		this.doctorsService.getDoctorById(this.doctorId).subscribe(doctor => {
+			doctor.specialties.forEach((_, idx) => {
+				this.addSpecialtie(idx);
 			});
+			doctor.clinics.forEach((_, idx) => {
+				this.addClinic(idx);
+			});
+			const { _id, ...values } = doctor;
+			this.doctor.setValue(values);
+		});
 	}
 
 	getAvailableClinics(): void {
-		this.administratorsService
+		this.clinicsService
 			.getAllClinics()
 			.subscribe(l => (this.availableClinics = l));
 	}
@@ -97,7 +97,7 @@ export class DoctorFormComponent implements OnInit {
 	save(): void {
 		const { name, surname, specialties, clinics } = this.doctor.value;
 		if (this.doctorId) {
-			this.administratorsService
+			this.doctorsService
 				.updateDoctor({
 					_id: this.doctorId,
 					name,
@@ -110,14 +110,14 @@ export class DoctorFormComponent implements OnInit {
 			this.location.back();
 			return;
 		}
-		this.administratorsService
+		this.doctorsService
 			.addDoctor(name, surname, specialties, clinics)
 			.subscribe();
 		location.reload();
 	}
 
 	deleteDoctor(): void {
-		this.administratorsService.deleteDoctor(this.doctorId).subscribe();
+		this.doctorsService.deleteDoctor(this.doctorId).subscribe();
 		this.location.back();
 	}
 }

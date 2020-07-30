@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { AdministratorsService } from '../../services/administrators.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ClinicsService } from '../../services/clinics.service';
 
 @Component({
 	selector: 'app-clinic-form',
@@ -18,15 +18,13 @@ export class ClinicFormComponent implements OnInit {
 		]),
 	});
 
-	constructor(private administratorsService: AdministratorsService) {}
+	constructor(private clinicsService: ClinicsService) {}
 
 	ngOnInit(): void {}
 
 	addClinic(): void {
 		const { name, city, street, streetNo } = this.clinic.value;
-		this.administratorsService
-			.addClinic(name, city, street, streetNo)
-			.subscribe();
+		this.clinicsService.addClinic(name, city, street, streetNo).subscribe();
 
 		window.location.reload();
 	}
