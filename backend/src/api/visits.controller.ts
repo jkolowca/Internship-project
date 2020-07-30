@@ -35,4 +35,13 @@ export class VisitsCtrl {
 			res.status(500).json({ e });
 		}
 	}
+
+	static async apiGetDoctorName(req: Request, res: Response, next: NextFunction){
+		try {
+			
+			
+		} catch (e) {
+			
+		}
+	}
 }

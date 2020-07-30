@@ -18,6 +18,7 @@ import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.com
 import { ScheduleComponent } from './schedule/schedule.component';
 import { AdmScheduleEditComponent } from './administrator/adm-schedule-edit/adm-schedule-edit.component';
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
+import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
 
 @NgModule({
 	declarations: [
@@ -35,6 +36,7 @@ import { VisitsListComponent } from './schedule/visits-list/visits-list.componen
 		ScheduleComponent,
 		AdmScheduleEditComponent,
 		VisitsListComponent,
+		RegisteredVisitsListComponent,
 	],
 	imports: [
 		AppRoutingModule,

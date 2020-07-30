@@ -6,6 +6,7 @@ import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.com
 import { DoctorComponent } from './doctor/doctor.component';
 import { PacientComponent } from './pacient/pacient.component';
 import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
+import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
 
 const routes: Routes = [
 	{ path: 'adm', component: AdministratorComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
 	{ path: 'doc', component: DoctorComponent },
 	{ path: 'pac', component: PacientComponent },
 	{ path: 'pac/registration/:id', component: RegistrationFormComponent },
+	{ path: 'pac/registeredVisits', component: RegisteredVisitsListComponent}
 ];
 
 @NgModule({
