@@ -19,9 +19,9 @@ export class PacientsService {
 			.pipe(catchError(this.handleError<Visit[]>('getAll', [])));
   }
 
-  register(visit: Visit): Observable<any> {
+  register(id: string, pacient: object): Observable<any> {
     return this.http
-      .patch(`${this.visitsUrl}/${visit._id}`, visit)
+      .patch(`${this.visitsUrl}/${id}`, pacient)
       .pipe(catchError(this.handleError<Visit>('editVisit')));
   }
 
