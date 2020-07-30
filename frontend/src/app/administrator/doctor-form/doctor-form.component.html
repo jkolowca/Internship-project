@@ -65,8 +65,19 @@
 		</button>
 	</mat-form-field>
 	<div class="break"></div>
-	<div class="break"></div>
+
 	<div *ngIf="doctorId">
+		<button
+			style="width: 100%;"
+			mat-raised-button
+			type="button"
+			color="primary"
+			target="_blank"
+			(click)="openSchedule()"
+		>
+			Open Schedule
+		</button>
+		<div class="break"></div>
 		<button
 			style="width: 100%;"
 			mat-raised-button
@@ -76,8 +87,8 @@
 		>
 			Delete
 		</button>
-		<div class="break"></div>
 	</div>
+	<br />
 	<button
 		mat-raised-button
 		type="submit"

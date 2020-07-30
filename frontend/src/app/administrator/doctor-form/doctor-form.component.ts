@@ -120,4 +120,8 @@ export class DoctorFormComponent implements OnInit {
 		this.doctorsService.deleteDoctor(this.doctorId).subscribe();
 		this.location.back();
 	}
+
+	openSchedule() {
+		window.open(location.href + `/schedule`);
+	}
 }
