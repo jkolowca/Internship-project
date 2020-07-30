@@ -14,6 +14,7 @@ import { VisitListComponent } from './pacient/visit-list/visit-list.component';
 import { DoctorFormComponent } from './administrator/doctor-form/doctor-form.component';
 import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
 import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.component';
+import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.component';
 
 @NgModule({
 	declarations: [
@@ -27,6 +28,7 @@ import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.com
 		DoctorFormComponent,
 		RegistrationFormComponent,
 		ClinicFormComponent,
+		DoctorEditComponent,
 	],
 	imports: [
 		AppRoutingModule,

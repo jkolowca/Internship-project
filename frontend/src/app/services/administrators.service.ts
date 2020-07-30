@@ -23,6 +23,12 @@ export class AdministratorsService {
 			.pipe(catchError(this.handleError<Doctor[]>('getAll', [])));
 	}
 
+	getDoctorById(id: string): Observable<Doctor> {
+		return this.http
+			.get<Doctor>(`${this.doctorsUrl}${id}`, this.httpOptions)
+			.pipe(catchError(this.handleError<Doctor>('getAll')));
+	}
+
 	addDoctor(
 		name: string,
 		surname: string,
@@ -38,6 +44,21 @@ export class AdministratorsService {
 			.pipe(
 				tap((newDoctor: Doctor) =>
 					console.log(`added doctor id=${newDoctor._id}`)
+				),
+				catchError(this.handleError<Doctor>('add'))
+			);
+	}
+
+	updateDoctor(doctor: Doctor): Observable<any> {
+		return this.http
+			.put<Doctor>(
+				`${this.doctorsUrl}${doctor._id}`,
+				doctor,
+				this.httpOptions
+			)
+			.pipe(
+				tap((newDoctor: Doctor) =>
+					console.log(`updated doctor id=${newDoctor._id}`)
 				),
 				catchError(this.handleError<Doctor>('add'))
 			);
@@ -67,6 +88,13 @@ export class AdministratorsService {
 				),
 				catchError(this.handleError<Doctor>('add'))
 			);
+	}
+
+	deleteDoctor(id: string): Observable<Doctor[]> {
+		const url = `${this.doctorsUrl}${id}`;
+		return this.http
+			.delete<Doctor[]>(url, this.httpOptions)
+			.pipe(catchError(this.handleError<Doctor[]>('deleteList')));
 	}
 
 	private handleError<T>(

@@ -1,0 +1,17 @@
+.main-container {
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	max-width: 100%;
+}
+
+.main-container div {
+	padding: 60px 20px;
+}
+
+.mat-toolbar {
+	padding: 0px;
+}
+span {
+	margin: 0px 20px;
+}
