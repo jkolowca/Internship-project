@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import { PacientsService } from '../../services/pacients.service';
+import { VisitsService } from '../../services/visits.service';
 import {ActivatedRoute} from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -15,8 +16,11 @@ export class RegistrationFormComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   reason = new FormControl('');
   id = this.route.snapshot.paramMap.get('id');
+  massage = 'Umówiono wizytę';
 
-  constructor(private pacientsService: PacientsService, private route: ActivatedRoute ) { }
+  constructor(private visitsService: VisitsService,
+              private route: ActivatedRoute,
+              private snackBar: MatSnackBar ) { }
 
   ngOnInit(): void {}
 
@@ -28,15 +32,17 @@ export class RegistrationFormComponent implements OnInit {
     return prop.hasError('email') ? 'Not a valid email' : '';
   }
 
-   register(): void {
+  register(): void {
     const pacient = {
-      name: this.name.value,
-      surname: this.surname.value,
-      email: this.email.value,
-      reason: this.reason.value
-  };
-    this.pacientsService.register(this.id, pacient).subscribe();
-    console.log(pacient);
-   }
-
-}
+      appointment: {
+        name: this.name.value,
+        surname: this.surname.value,
+        email: this.email.value,
+        reason: this.reason.value
+      }
+    };
+    this.visitsService.register(this.id, pacient).subscribe();
+    this.snackBar.open('Umówiono wizytę', 'Koniec', {
+      duration: 2000 });
+  }
+  }

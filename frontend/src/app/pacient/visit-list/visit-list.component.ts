@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { PacientsService } from '../../services/pacients.service';
+import { VisitsService } from '../../services/visits.service';
 import { Visit } from '../../interfaces/visit';
 
 
@@ -10,11 +10,11 @@ import { Visit } from '../../interfaces/visit';
 })
 export class VisitListComponent implements OnInit {
 
-  constructor(private pacientService: PacientsService) { }
+  constructor(private visitService: VisitsService) { }
   visitsList: Visit[];
 
   ngOnInit(): void {
-    this.pacientService
+    this.visitService
         .getAll()
         .subscribe(list => (this.visitsList = list));
   }

@@ -8,6 +8,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
 	exports: [
@@ -21,6 +22,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 		FormsModule,
 		ReactiveFormsModule,
 		MatToolbarModule,
+		MatSnackBarModule
 	],
 })
 export class MaterialModule {}
