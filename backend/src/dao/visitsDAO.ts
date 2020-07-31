@@ -75,23 +75,6 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getMoreData(visitId: ObjectId) {
-		try{
-			return await visits.aggregate([
-				{
-				$lookup: {
-					from: "doctors",
-					localField: "doctor",
-					foreignField: "_id",
-					as: "doctors_name"
-				}
-			}])
-
-		}catch (e) {
-			console.error(`Error occurred while logging in user, ${e}`);
-			return { error: e };
-		}
-	}
 }
 
 /**
