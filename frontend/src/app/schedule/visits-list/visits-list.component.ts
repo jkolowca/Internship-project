@@ -11,5 +11,7 @@ export class VisitsListComponent implements OnInit {
 	visits: Visit[];
 	constructor(private visitService: VisitsService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.visitService.getAll().subscribe(list => (this.visits = list));
+	}
 }

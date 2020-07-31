@@ -10,7 +10,6 @@ import { DoctorsListComponent } from './administrator/doctors-list/doctors-list.
 import { DoctorComponent } from './doctor/doctor.component';
 import { PacientComponent } from './pacient/pacient.component';
 import { SearchBarComponent } from './pacient/search-bar/search-bar.component';
-import { VisitListComponent } from './pacient/visit-list/visit-list.component';
 import { DoctorFormComponent } from './administrator/doctor-form/doctor-form.component';
 import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
 import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.component';
@@ -28,7 +27,6 @@ import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/
 		DoctorComponent,
 		PacientComponent,
 		SearchBarComponent,
-		VisitListComponent,
 		DoctorFormComponent,
 		RegistrationFormComponent,
 		ClinicFormComponent,
