@@ -21,6 +21,12 @@ export class DoctorsService {
 			.pipe(catchError(this.handleError<Doctor[]>('getAll', [])));
 	}
 
+	getSpecialties(): Observable<string[]> {
+		return this.http
+			.get<string[]>(`${this.doctorsUrl}spec`, this.httpOptions)
+			.pipe(catchError(this.handleError<string[]>('getSpec')));
+	}
+
 	getDoctorById(id: string): Observable<Doctor> {
 		return this.http
 			.get<Doctor>(`${this.doctorsUrl}${id}`, this.httpOptions)

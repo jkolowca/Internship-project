@@ -3,17 +3,14 @@
     <mat-form-field appearance="fill">
       <mat-label>City</mat-label>
       <mat-select multiple>
-        <mat-option value="Kraków">Kraków</mat-option>
-        <!--ngIf po dostępnych city -->
-        <mat-option value="Wrocław">Wrocław</mat-option>
-        <mat-option value="Gdańsk">Gdańsk</mat-option>
+        <mat-option *ngFor="let clinic of availableClinics" value='{{clinic.city}}'>{{clinic.city}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Specialties</mat-label>
       <mat-select>
-        <mat-option value="kargiolog">kargiolog</mat-option>
+        <mat-option *ngFor="let spec of specialties" value=''>{{specialties}}</mat-option>
         <!--ngIf po dostępnych spec -->
         <mat-option value="laryngolog">laryngolog</mat-option>
       </mat-select>

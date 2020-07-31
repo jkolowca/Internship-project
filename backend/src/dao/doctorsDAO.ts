@@ -93,6 +93,15 @@ export class DoctorsDAO {
 			return { error: e };
 		}
 	}
+
+	static async getSpecialties(){
+		try {
+			return await doctors.distinct('ghf');
+		} catch (e) {
+			console.error(`Unable to post list: ${e}`);
+			return { error: e };
+		}
+	}
 }
 
 /**
