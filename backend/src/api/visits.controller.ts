@@ -12,7 +12,12 @@ export class VisitsCtrl {
 		try {
 			const { startDate, endDate, clinic, doctor } = req.body;
 
-			await VisitsDAO.add(startDate, endDate, clinic, doctor);
+			await VisitsDAO.add(
+				startDate,
+				endDate,
+				new ObjectId(clinic),
+				new ObjectId(doctor)
+			);
 
 			const updated = await VisitsDAO.getAll();
 
@@ -27,7 +32,7 @@ export class VisitsCtrl {
 			const appointment = req.body;
 			const id = new ObjectId(req.params.id);
 
-			 await VisitsDAO.update( id, appointment );
+			await VisitsDAO.update(id, appointment);
 			const updated = await VisitsDAO.getAll();
 			console.log(req.params.id);
 			res.json({ status: 'success', visits: updated });
