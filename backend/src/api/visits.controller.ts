@@ -13,8 +13,8 @@ export class VisitsCtrl {
 			const { startDate, endDate, clinic, doctor } = req.body;
 
 			await VisitsDAO.add(
-				startDate,
-				endDate,
+				new Date(startDate),
+				new Date(endDate),
 				new ObjectId(clinic),
 				new ObjectId(doctor)
 			);
@@ -23,6 +23,7 @@ export class VisitsCtrl {
 
 			res.json({ status: 'success', visits: updated });
 		} catch (e) {
+			console.log(e);
 			res.status(500).json({ e });
 		}
 	}
@@ -36,6 +37,15 @@ export class VisitsCtrl {
 			const updated = await VisitsDAO.getAll();
 			console.log(req.params.id);
 			res.json({ status: 'success', visits: updated });
+		} catch (e) {
+			res.status(500).json({ e });
+		}
+	}
+
+	static async apiGetDates(req: Request, res: Response, next: NextFunction) {
+		try {
+			let { visitsList } = await VisitsDAO.getDistinctDates();
+			res.json(visitsList);
 		} catch (e) {
 			res.status(500).json({ e });
 		}

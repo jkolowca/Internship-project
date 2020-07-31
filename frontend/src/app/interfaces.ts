@@ -36,3 +36,8 @@ export interface Visit {
 		reason?: string;
 	};
 }
+
+export interface VisitCount {
+	_id: string;
+	count: number;
+}

@@ -1,0 +1,39 @@
+.content {
+	margin: 0px 30px;
+	display: flex;
+	flex-flow: column;
+}
+
+.data {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.data div {
+	width: 50%;
+}
+
+mat-panel-title {
+	flex-grow: 2;
+	align-items: center;
+}
+
+mat-panel-description {
+	flex-grow: 1;
+	justify-self: flex-end;
+	justify-content: flex-end;
+	margin-right: 0px;
+}
+
+mat-expansion-panel:not(.mat-expanded) {
+	margin: 2px 0;
+}
+.vertical-space {
+	width: 40px;
+	max-width: 10%;
+}
+
+button {
+	width: 80%;
+	align-self: center;
+}
