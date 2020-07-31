@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Doctor } from 'src/app/interfaces/doctor';
+import { Doctor } from 'src/app/interfaces';
 import { DoctorsService } from '../../services/doctors.service';
 
 @Component({

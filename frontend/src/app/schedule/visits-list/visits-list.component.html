@@ -1,5 +1,5 @@
 <mat-accordion>
-	<mat-expansion-panel hideToggle *ngFor="let visit of visitsList">
+	<mat-expansion-panel hideToggle *ngFor="let visit of visits">
 		<mat-expansion-panel-header>
 			<mat-panel-title
 				><p>
@@ -8,12 +8,14 @@
 				</p>
 			</mat-panel-title>
 			<mat-panel-description>
-				<p>Clinic: {{ visit.clinic }}</p>
+				<p>Clinic: {{ visit.clinic.name }}</p>
 			</mat-panel-description>
 		</mat-expansion-panel-header>
 		<div class="expansion">
 			<div class="info">
-				<p>Doctor: {{ visit.doctor }}</p>
+				<p>
+					Doctor: {{ visit.doctor.surname }} {{ visit.doctor.name }}
+				</p>
 				<p>Specialty:</p>
 			</div>
 			<a [routerLink]="['/pac/registration/', visit._id]">
