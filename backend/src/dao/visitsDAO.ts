@@ -1,4 +1,10 @@
-import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
+import {
+	Collection,
+	MongoClient,
+	Cursor,
+	ObjectId,
+	AggregationCursor,
+} from 'mongodb';
 let visits: Collection<any>;
 
 export class VisitsDAO {
@@ -16,9 +22,36 @@ export class VisitsDAO {
 	}
 
 	static async getAll() {
-		let cursor: Cursor;
+		let cursor: AggregationCursor;
 		try {
-			cursor = visits.find();
+			cursor = visits.aggregate([
+				{
+					$lookup: {
+						from: 'doctors',
+						localField: 'doctor',
+						foreignField: '_id',
+						as: 'doctor',
+					},
+				},
+				{
+					$lookup: {
+						from: 'clinics',
+						localField: 'clinic',
+						foreignField: '_id',
+						as: 'clinic',
+					},
+				},
+				{
+					$unwind: {
+						path: '$clinic',
+					},
+				},
+				{
+					$unwind: {
+						path: '$doctor',
+					},
+				},
+			]);
 		} catch (e) {
 			console.error(`Unable to issue find command, ${e}`);
 			return { visitsList: [] };
@@ -74,7 +107,6 @@ export class VisitsDAO {
 			return { error: e };
 		}
 	}
-
 }
 
 /**
