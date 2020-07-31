@@ -1,18 +1,18 @@
 <mat-toolbar>
-    <button mat-button routerLink="../">Pacient Panel</button>	
+	<button mat-button routerLink="../">Pacient Panel</button>
 </mat-toolbar>
 <mat-tab-group mat-align-tabs="start">
 	<mat-tab label="Active">
 		<div class="main-container">
 			<div>
-				<app-visit-list type="active"></app-visit-list>
+				<app-visits-list type="active"></app-visits-list>
 			</div>
 		</div>
 	</mat-tab>
 	<mat-tab label="Archived">
 		<div class="main-container">
 			<div>
-				<app-visit-list type="archived"></app-visit-list>
+				<app-visits-list type="archived"></app-visits-list>
 			</div>
 		</div>
 	</mat-tab>
