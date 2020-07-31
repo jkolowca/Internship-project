@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { VisitsService } from '../../services/visits.service';
 import { Visit } from '../../interfaces/visit';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -10,13 +11,14 @@ import { Visit } from '../../interfaces/visit';
 })
 export class VisitListComponent implements OnInit {
 
-  constructor(private visitService: VisitsService) { }
+  constructor(private visitService: VisitsService, public router: Router) {}
   visitsList: Visit[];
 
   ngOnInit(): void {
     this.visitService
         .getAll()
         .subscribe(list => (this.visitsList = list));
+
   }
 
 }
