@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Visit } from '../interfaces';
+import { Visit, VisitCount } from '../interfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -18,9 +18,31 @@ export class VisitsService {
 			.pipe(catchError(this.handleError<Visit[]>('getAll', [])));
 	}
 
+	addVisit(
+		startDate: Date,
+		endDate: Date,
+		clinic: string,
+		doctor: string
+	): Observable<any> {
+		return this.http
+			.post<Visit>(`${this.visitsUrl}`, {
+				startDate,
+				endDate,
+				clinic,
+				doctor,
+			})
+			.pipe(catchError(this.handleError<Visit>('editVisit')));
+	}
+
+	getVisitDates(): Observable<any> {
+		return this.http
+			.get<VisitCount[]>(`${this.visitsUrl}/date`)
+			.pipe(catchError(this.handleError<any>('editVisit')));
+	}
+
 	register(id: string, pacient: object): Observable<any> {
 		return this.http
-			.patch(`${this.visitsUrl}/${id}`, pacient)
+			.patch(`${this.visitsUrl}/visit/${id}`, pacient)
 			.pipe(catchError(this.handleError<Visit>('editVisit')));
 	}
 

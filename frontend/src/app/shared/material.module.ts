@@ -10,7 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-
+import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
 @NgModule({
 	exports: [
@@ -27,6 +27,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 		MatSnackBarModule,
 		MatTabsModule,
 		MatAutocompleteModule,
+		MatDividerModule,
 	],
 })
 export class MaterialModule {}

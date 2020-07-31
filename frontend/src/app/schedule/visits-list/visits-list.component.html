@@ -1,49 +1,12 @@
 <div class="main-container">
-	<mat-accordion>
-		<mat-expansion-panel hideToggle *ngFor="let visit of visits">
-			<mat-expansion-panel-header>
-				<mat-panel-title>
-					<p>
-						{{ visit.startDate | date: 'H:mm' }} -
-						{{ visit.endDate | date: 'H:mm' }}
-					</p>
-					<div class="vertical-space"></div>
-					<p>Dr {{ visit.doctor.surname }} {{ visit.doctor.name }}</p>
-				</mat-panel-title>
-				<mat-panel-description>
-					<p>{{ visit.clinic.name }}</p>
-				</mat-panel-description>
-			</mat-expansion-panel-header>
-			<div class="content">
-				<div class="data">
-					<div class="doctor">
-						<p>
-							Dr {{ visit.doctor.surname }}
-							{{ visit.doctor.name }}
-						</p>
-						<p *ngFor="let specialtie of visit.doctor.specialties">
-							{{ specialtie }}
-						</p>
-					</div>
-					<div class="clinic">
-						<p>{{ visit.clinic.name }}</p>
-						<p>
-							{{ visit.clinic.streetNo }}
-							{{ visit.clinic.street }}
-						</p>
-						<p>{{ visit.clinic.city }}</p>
-					</div>
-				</div>
-				<br />
-				<button
-					mat-raised-button
-					type="button"
-					color="primary"
-					[routerLink]="['/pac/registration/', visit._id]"
-				>
-					Make an appointment
-				</button>
-			</div>
-		</mat-expansion-panel>
+	<mat-accordion *ngFor="let day of dailyVisitCount; let i = index">
+		<br />
+		{{ day._id }}
+		<mat-divider></mat-divider>
+		<br />
+		<app-visit-panel
+			*ngFor="let visit of getDailyVisits(i)"
+			[visit]="visit"
+		></app-visit-panel>
 	</mat-accordion>
 </div>

@@ -1,10 +1,4 @@
-import {
-	Collection,
-	MongoClient,
-	Cursor,
-	ObjectId,
-	AggregationCursor,
-} from 'mongodb';
+import { Collection, MongoClient, ObjectId, AggregationCursor } from 'mongodb';
 let visits: Collection<any>;
 
 export class VisitsDAO {
@@ -51,6 +45,11 @@ export class VisitsDAO {
 						path: '$doctor',
 					},
 				},
+				{
+					$sort: {
+						startDate: 1,
+					},
+				},
 			]);
 		} catch (e) {
 			console.error(`Unable to issue find command, ${e}`);
@@ -76,7 +75,12 @@ export class VisitsDAO {
 		doctor: ObjectId
 	) {
 		try {
-			const listDoc = { startDate, endDate, clinic, doctor };
+			const listDoc = {
+				startDate,
+				endDate,
+				clinic,
+				doctor,
+			};
 
 			return await visits.insertOne(listDoc);
 		} catch (e) {
@@ -105,6 +109,43 @@ export class VisitsDAO {
 		} catch (e) {
 			console.error(`Error occurred while logging in user, ${e}`);
 			return { error: e };
+		}
+	}
+
+	static async getDistinctDates(query?: any) {
+		let cursor: AggregationCursor;
+		try {
+			cursor = visits.aggregate([
+				{
+					$group: {
+						_id: {
+							$substr: ['$startDate', 0, 10],
+						},
+						count: {
+							$sum: 1,
+						},
+					},
+				},
+				{
+					$sort: {
+						_id: 1,
+					},
+				},
+			]);
+		} catch (e) {
+			console.error(`Unable to issue find command, ${e}`);
+			return { visitsList: [] };
+		}
+
+		try {
+			const visitsList = await cursor.toArray();
+
+			return { visitsList };
+		} catch (e) {
+			console.error(
+				`Unable to convert cursor to array or problem counting documents, ${e}`
+			);
+			return { visitsList: [] };
 		}
 	}
 }

@@ -9,7 +9,7 @@ import { DoctorsService } from '../../services/doctors.service';
 	styleUrls: ['./adm-schedule-edit.component.scss'],
 })
 export class AdmScheduleEditComponent implements OnInit {
-	doctor: Doctor;
+	doctor = {};
 	constructor(
 		private route: ActivatedRoute,
 		private doctorsService: DoctorsService
