@@ -37,6 +37,10 @@ mat-panel-description {
 mat-expansion-panel:not(.mat-expanded) {
 	margin: 2px 0;
 }
+
+.mat-expansion-panel-spacing {
+	margin: 16px 0 !important;
+}
 .vertical-space {
 	width: 40px;
 	max-width: 10%;

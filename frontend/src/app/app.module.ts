@@ -20,6 +20,7 @@ import { VisitsListComponent } from './schedule/visits-list/visits-list.componen
 import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
 import { PanelPacientComponent } from './schedule/panel-pacient/panel-pacient.component';
 import { PanelAdminComponent } from './schedule/panel-admin/panel-admin.component';
+import { PanelAddComponent } from './schedule/panel-add/panel-add.component';
 
 @NgModule({
 	declarations: [
@@ -39,6 +40,7 @@ import { PanelAdminComponent } from './schedule/panel-admin/panel-admin.componen
 		RegisteredVisitsListComponent,
 		PanelPacientComponent,
 		PanelAdminComponent,
+		PanelAddComponent,
 	],
 	imports: [
 		AppRoutingModule,

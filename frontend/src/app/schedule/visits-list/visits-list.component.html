@@ -12,6 +12,7 @@
 		</div>
 	</mat-accordion>
 	<ng-template #elseBlock>
+		<app-panel-add (newVisit)="ngOnInit()"></app-panel-add>
 		<mat-accordion>
 			<div *ngFor="let day of dailyVisitCount; let i = index">
 				<br />
