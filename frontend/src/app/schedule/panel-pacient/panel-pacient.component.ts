@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Visit } from 'src/app/interfaces';
 
 @Component({
-	selector: 'app-visit-panel',
-	templateUrl: './visit-panel.component.html',
-	styleUrls: ['./visit-panel.component.scss'],
+	selector: 'app-panel-pacient',
+	templateUrl: './panel-pacient.component.html',
+	styleUrls: ['./panel-pacient.component.scss'],
 })
-export class VisitPanelComponent implements OnInit {
+export class PanelPacientComponent implements OnInit {
 	@Input() visit: Visit;
 	constructor() {}
 

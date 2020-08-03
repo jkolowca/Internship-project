@@ -104,7 +104,10 @@ export class VisitsDAO {
 
 	static async updateAppointment(visitId: ObjectId, appointment: Object) {
 		try {
-			await visits.updateOne({ _id: visitId }, { $set: appointment });
+			await visits.updateOne(
+				{ _id: visitId },
+				{ $set: { appointment: appointment } }
+			);
 			return { success: true };
 		} catch (e) {
 			console.error(`Error occurred while logging in user, ${e}`);

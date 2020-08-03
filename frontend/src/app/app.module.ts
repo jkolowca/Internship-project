@@ -18,8 +18,8 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { AdmScheduleComponent } from './administrator/adm-schedule/adm-schedule.component';
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
 import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
-import { VisitPanelComponent } from './schedule/visit-panel/visit-panel.component';
-import { EditPanelComponent } from './schedule/edit-panel/edit-panel.component';
+import { PanelPacientComponent } from './schedule/panel-pacient/panel-pacient.component';
+import { PanelAdminComponent } from './schedule/panel-admin/panel-admin.component';
 
 @NgModule({
 	declarations: [
@@ -37,8 +37,8 @@ import { EditPanelComponent } from './schedule/edit-panel/edit-panel.component';
 		AdmScheduleComponent,
 		VisitsListComponent,
 		RegisteredVisitsListComponent,
-		VisitPanelComponent,
-		EditPanelComponent,
+		PanelPacientComponent,
+		PanelAdminComponent,
 	],
 	imports: [
 		AppRoutingModule,

@@ -5,13 +5,14 @@ import { DoctorsService } from 'src/app/services/doctors.service';
 import { VisitsService } from 'src/app/services/visits.service';
 
 @Component({
-	selector: 'app-edit-panel',
-	templateUrl: './edit-panel.component.html',
-	styleUrls: ['./edit-panel.component.scss'],
+	selector: 'app-panel-admin',
+	templateUrl: './panel-admin.component.html',
+	styleUrls: ['./panel-admin.component.scss'],
 })
-export class EditPanelComponent implements OnInit {
+export class PanelAdminComponent implements OnInit {
 	@Input() visit: Visit;
 	availableClinics: Clinic[];
+	state = 'display';
 
 	form = new FormGroup({
 		startDate: new FormControl(),
@@ -48,5 +49,6 @@ export class EditPanelComponent implements OnInit {
 		this.visit.clinic = this.form.controls.clinic.value;
 
 		this.visitsService.editVisit(this.visit).subscribe();
+		this.state = 'display';
 	}
 }
