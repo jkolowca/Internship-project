@@ -1,12 +1,14 @@
 .content {
-	margin: 0px 30px;
+	margin: 0px auto;
+	width: 500px;
+	max-width: 90%;
 	display: flex;
 	flex-flow: column;
 }
 
 .data {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: start;
 }
 
 .data div {
@@ -22,18 +24,33 @@ mat-panel-description {
 	flex-grow: 1;
 	justify-self: flex-end;
 	justify-content: flex-end;
+	align-items: center;
 	margin-right: 0px;
+	button {
+		margin-left: 20px;
+		.mat-icon {
+			font-size: 20px;
+		}
+	}
 }
 
 mat-expansion-panel:not(.mat-expanded) {
 	margin: 2px 0;
+}
+
+.mat-expansion-panel-spacing {
+	margin: 16px 0 !important;
 }
 .vertical-space {
 	width: 40px;
 	max-width: 10%;
 }
 
-button {
-	width: 80%;
-	align-self: center;
+form {
+	margin: 0px auto;
+	width: 400px;
+	max-width: 90%;
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
 }

@@ -1,12 +1,28 @@
 <div class="main-container">
-	<mat-accordion *ngFor="let day of dailyVisitCount; let i = index">
-		<br />
-		{{ day._id }}
-		<mat-divider></mat-divider>
-		<br />
-		<app-visit-panel
-			*ngFor="let visit of getDailyVisits(i)"
-			[visit]="visit"
-		></app-visit-panel>
+	<mat-accordion *ngIf="type === 'pacient'; else elseBlock">
+		<div *ngFor="let day of dailyVisitCount; let i = index">
+			<br />
+			{{ day._id }}
+			<mat-divider></mat-divider>
+			<br />
+			<app-panel-pacient
+				*ngFor="let visit of getDailyVisits(i)"
+				[visit]="visit"
+			></app-panel-pacient>
+		</div>
 	</mat-accordion>
+	<ng-template #elseBlock>
+		<app-panel-add (newVisit)="ngOnInit()"></app-panel-add>
+		<mat-accordion>
+			<div *ngFor="let day of dailyVisitCount; let i = index">
+				<br />
+				{{ day._id }}
+				<mat-divider></mat-divider>
+				<br />
+				<app-panel-admin
+					*ngFor="let visit of getDailyVisits(i)"
+					[visit]="visit"
+				></app-panel-admin>
+			</div> </mat-accordion
+	></ng-template>
 </div>

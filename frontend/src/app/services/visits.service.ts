@@ -9,6 +9,9 @@ import { catchError } from 'rxjs/operators';
 })
 export class VisitsService {
 	private visitsUrl = 'http://localhost:5000/visits';
+	httpOptions = {
+		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+	};
 
 	constructor(private http: HttpClient) {}
 
@@ -30,6 +33,16 @@ export class VisitsService {
 				endDate,
 				clinic,
 				doctor,
+			})
+			.pipe(catchError(this.handleError<Visit>('editVisit')));
+	}
+
+	editVisit(visit: Visit): Observable<any> {
+		return this.http
+			.patch(`${this.visitsUrl}/visit/${visit._id}`, {
+				startDate: visit.startDate,
+				endDate: visit.endDate,
+				clinic: visit.clinic._id,
 			})
 			.pipe(catchError(this.handleError<Visit>('editVisit')));
 	}

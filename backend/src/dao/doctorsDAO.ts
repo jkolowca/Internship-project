@@ -1,4 +1,10 @@
-import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
+import {
+	Collection,
+	MongoClient,
+	Cursor,
+	ObjectId,
+	AggregationCursor,
+} from 'mongodb';
 let doctors: Collection<any>;
 
 export class DoctorsDAO {
@@ -82,11 +88,11 @@ export class DoctorsDAO {
 		name: string,
 		surname: string,
 		specialties: string[],
-		clinics: ObjectId[]
+		clinics: string[]
 	) {
 		try {
-			const listDoc = { name, surname, specialties, clinics };
-
+			let objClinics = clinics.map(string => new ObjectId(string));
+			const listDoc = { name, surname, specialties, clinics: objClinics };
 			return await doctors.insertOne(listDoc);
 		} catch (e) {
 			console.error(`Unable to post list: ${e}`);
@@ -94,12 +100,50 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getSpecialties(){
+	static async getSpecialties() {
 		try {
 			return await doctors.distinct("specialties");
 		} catch (e) {
 			console.error(`Unable to post list: ${e}`);
 			return { error: e };
+		}
+	}
+
+	static async getClinics(id: ObjectId) {
+		let cursor: AggregationCursor;
+		try {
+			cursor = doctors.aggregate([
+				{
+					$match: {
+						_id: id,
+					},
+				},
+				{
+					$lookup: {
+						from: 'clinics',
+						localField: 'clinics',
+						foreignField: '_id',
+						as: 'clinics',
+					},
+				},
+				{
+					$project: {
+						clinics: 1,
+					},
+				},
+			]);
+		} catch (e) {
+			console.error(`Unable to issue find command, ${e}`);
+			return { clinics: [] };
+		}
+
+		try {
+			const clinics = await (await cursor.toArray()).pop().clinics;
+
+			return { clinics };
+		} catch (e) {
+			console.error(`Something went wrong in doctorsDAO getById: ${e}`);
+			return { doctorsList: [] };
 		}
 	}
 }

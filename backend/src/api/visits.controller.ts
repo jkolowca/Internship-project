@@ -4,7 +4,9 @@ import { ObjectId } from 'mongodb';
 
 export class VisitsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-		const { visitsList } = await VisitsDAO.getAll();
+		const { visitsList } = await VisitsDAO.getAll({
+			startDate: { $gte: new Date() },
+		});
 		res.json(visitsList);
 	}
 
@@ -30,10 +32,14 @@ export class VisitsCtrl {
 
 	static async apiUpdate(req: Request, res: Response, next: NextFunction) {
 		try {
-			const appointment = req.body;
+			console.log('update');
+			const { appointment, startDate, endDate, clinic } = req.body;
 			const id = new ObjectId(req.params.id);
-
-			await VisitsDAO.update(id, appointment);
+			if (!startDate) {
+				await VisitsDAO.updateAppointment(id, appointment);
+			} else {
+				await VisitsDAO.updateVisit(id, startDate, endDate, clinic);
+			}
 			const updated = await VisitsDAO.getAll();
 			console.log(req.params.id);
 			res.json({ status: 'success', visits: updated });
@@ -41,10 +47,11 @@ export class VisitsCtrl {
 			res.status(500).json({ e });
 		}
 	}
-
 	static async apiGetDates(req: Request, res: Response, next: NextFunction) {
 		try {
-			let { visitsList } = await VisitsDAO.getDistinctDates();
+			let { visitsList } = await VisitsDAO.getDistinctDates({
+				startDate: { $gte: new Date() },
+			});
 			res.json(visitsList);
 		} catch (e) {
 			res.status(500).json({ e });

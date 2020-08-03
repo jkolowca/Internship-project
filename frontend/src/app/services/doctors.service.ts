@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Doctor } from '../interfaces';
+import { Doctor, Clinic } from '../interfaces';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
@@ -31,6 +31,12 @@ export class DoctorsService {
 		return this.http
 			.get<Doctor>(`${this.doctorsUrl}${id}`, this.httpOptions)
 			.pipe(catchError(this.handleError<Doctor>('getAll')));
+	}
+
+	getDoctorClinics(id: string): Observable<Clinic[]> {
+		return this.http
+			.get<Clinic[]>(`${this.doctorsUrl}${id}/clinics`, this.httpOptions)
+			.pipe(catchError(this.handleError<Clinic[]>('getAll')));
 	}
 
 	addDoctor(

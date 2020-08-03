@@ -15,10 +15,13 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getAll() {
+	static async getAll(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visits.aggregate([
+				{
+					$match: query,
+				},
 				{
 					$lookup: {
 						from: 'doctors',
@@ -102,9 +105,12 @@ export class VisitsDAO {
 		}
 	}
 
-	static async update(visitId: ObjectId, appointment: Object) {
+	static async updateAppointment(visitId: ObjectId, appointment: Object) {
 		try {
-			await visits.updateOne({ _id: visitId }, { $set: appointment });
+			await visits.updateOne(
+				{ _id: visitId },
+				{ $set: { appointment: appointment } }
+			);
 			return { success: true };
 		} catch (e) {
 			console.error(`Error occurred while logging in user, ${e}`);
@@ -112,10 +118,13 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getDistinctDates(query?: any) {
+	static async getDistinctDates(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visits.aggregate([
+				{
+					$match: query,
+				},
 				{
 					$group: {
 						_id: {
@@ -146,6 +155,31 @@ export class VisitsDAO {
 				`Unable to convert cursor to array or problem counting documents, ${e}`
 			);
 			return { visitsList: [] };
+		}
+	}
+
+	static async updateVisit(
+		visitId: ObjectId,
+		startDate: Date,
+		endDate: Date,
+		clinic: string
+	) {
+		try {
+			const updateResponse = await visits.updateOne(
+				{ _id: new ObjectId(visitId) },
+				{
+					$set: {
+						startDate: new Date(startDate),
+						endDate: new Date(endDate),
+						clinic: new ObjectId(clinic),
+					},
+				}
+			);
+
+			return updateResponse;
+		} catch (e) {
+			console.error(`Unable to update comment: ${e}`);
+			return { error: e };
 		}
 	}
 }

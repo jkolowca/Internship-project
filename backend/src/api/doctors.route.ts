@@ -9,5 +9,6 @@ router
 	.get(DoctorsCtrl.apiGetById)
 	.put(DoctorsCtrl.apiUpdate)
 	.delete(DoctorsCtrl.apiDelete);
-
+router.route('/:id/clinics').get(DoctorsCtrl.apiGetClinics);
+router.route('/spec').get(DoctorsCtrl.getSpecialties);
 export default router;

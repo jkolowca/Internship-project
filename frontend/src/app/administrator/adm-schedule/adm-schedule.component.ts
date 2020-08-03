@@ -5,11 +5,11 @@ import { DoctorsService } from '../../services/doctors.service';
 
 @Component({
 	selector: 'app-adm-schedule-edit',
-	templateUrl: './adm-schedule-edit.component.html',
-	styleUrls: ['./adm-schedule-edit.component.scss'],
+	templateUrl: './adm-schedule.component.html',
+	styleUrls: ['./adm-schedule.component.scss'],
 })
-export class AdmScheduleEditComponent implements OnInit {
-	doctor = {};
+export class AdmScheduleComponent implements OnInit {
+	doctor = <Doctor>{};
 	constructor(
 		private route: ActivatedRoute,
 		private doctorsService: DoctorsService
