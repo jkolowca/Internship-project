@@ -41,3 +41,12 @@ export interface VisitCount {
 	_id: string;
 	count: number;
 }
+
+export interface User {
+	_id: string;
+	name: string;
+	surname: string;
+	email: string;
+	password: string;
+	accountType?: string;
+}

@@ -2,8 +2,9 @@ import { Router } from 'express';
 import { UsersCtrl } from './users.controller';
 
 const router = Router();
-
-router.route('/').get(UsersCtrl.apiGetAll).post(UsersCtrl.apiAdd);
+router.route('/signin').post(UsersCtrl.apiLogin);
+router.route('/register-user').post(UsersCtrl.apiAddClient);
+router.route('/').get(UsersCtrl.apiGetAll);
 router
 	.route('/:id')
 	.get(UsersCtrl.apiGetById)

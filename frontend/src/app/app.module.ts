@@ -19,6 +19,9 @@ import { AdmScheduleEditComponent } from './administrator/adm-schedule-edit/adm-
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
 import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
 import { VisitPanelComponent } from './schedule/visit-panel/visit-panel.component';
+import { RegisterComponent } from './authentication/register/register.component';
+import { LoginComponent } from './authentication/login/login.component';
+import { AuthenticationComponent } from './authentication/authentication.component';
 
 @NgModule({
 	declarations: [
@@ -37,6 +40,9 @@ import { VisitPanelComponent } from './schedule/visit-panel/visit-panel.componen
 		VisitsListComponent,
 		RegisteredVisitsListComponent,
 		VisitPanelComponent,
+		RegisterComponent,
+		LoginComponent,
+		AuthenticationComponent,
 	],
 	imports: [
 		AppRoutingModule,

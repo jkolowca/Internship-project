@@ -1,0 +1,40 @@
+<mat-toolbar>
+	<button mat-button>New account</button>	
+</mat-toolbar>
+<div class="main-container">
+  <mat-card>
+    <div class="form-container">
+        <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+            
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Surname</mat-label>
+            <input matInput formControlName="surname">
+           
+          </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email">
+       
+      </mat-form-field>
+      <br>
+      <mat-form-field appearance="fill">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+       
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+      </mat-form-field>
+      <br>
+    <div class="buttons">
+      <button type="submit" mat-button >Sign up</button>
+    </div>
+</form>
+</div>
+
+</mat-card>
+</div>

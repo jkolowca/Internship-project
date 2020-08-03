@@ -4,5 +4,8 @@
 		"one": "cd ./backend && npm run tsc",
 		"two": "cd ./backend && npm start",
 		"three": "cd ./frontend && npm start"
+	},
+	"dependencies": {
+		"bcryptjs": "^2.4.3"
 	}
 }
