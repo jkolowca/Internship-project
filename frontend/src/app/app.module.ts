@@ -15,10 +15,11 @@ import { RegistrationFormComponent } from './pacient/registration-form/registrat
 import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.component';
 import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.component';
 import { ScheduleComponent } from './schedule/schedule.component';
-import { AdmScheduleEditComponent } from './administrator/adm-schedule-edit/adm-schedule-edit.component';
+import { AdmScheduleComponent } from './administrator/adm-schedule/adm-schedule.component';
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
 import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
 import { VisitPanelComponent } from './schedule/visit-panel/visit-panel.component';
+import { EditPanelComponent } from './schedule/edit-panel/edit-panel.component';
 
 @NgModule({
 	declarations: [
@@ -33,10 +34,11 @@ import { VisitPanelComponent } from './schedule/visit-panel/visit-panel.componen
 		ClinicFormComponent,
 		DoctorEditComponent,
 		ScheduleComponent,
-		AdmScheduleEditComponent,
+		AdmScheduleComponent,
 		VisitsListComponent,
 		RegisteredVisitsListComponent,
 		VisitPanelComponent,
+		EditPanelComponent,
 	],
 	imports: [
 		AppRoutingModule,

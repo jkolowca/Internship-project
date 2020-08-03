@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdministratorComponent } from './administrator/administrator.component';
-import { AdmScheduleEditComponent } from './administrator/adm-schedule-edit/adm-schedule-edit.component';
+import { AdmScheduleComponent } from './administrator/adm-schedule/adm-schedule.component';
 import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { PacientComponent } from './pacient/pacient.component';
@@ -11,11 +11,11 @@ import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/
 const routes: Routes = [
 	{ path: 'adm', component: AdministratorComponent },
 	{ path: 'adm/:id', component: DoctorEditComponent },
-	{ path: 'adm/:id/schedule', component: AdmScheduleEditComponent },
+	{ path: 'adm/:id/schedule', component: AdmScheduleComponent },
 	{ path: 'doc', component: DoctorComponent },
 	{ path: 'pac', component: PacientComponent },
 	{ path: 'pac/registration/:id', component: RegistrationFormComponent },
-	{ path: 'pac/registeredVisits', component: RegisteredVisitsListComponent}
+	{ path: 'pac/registeredVisits', component: RegisteredVisitsListComponent },
 ];
 
 @NgModule({

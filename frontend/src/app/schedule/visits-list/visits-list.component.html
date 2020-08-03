@@ -4,9 +4,9 @@
 		{{ day._id }}
 		<mat-divider></mat-divider>
 		<br />
-		<app-visit-panel
+		<app-edit-panel
 			*ngFor="let visit of getDailyVisits(i)"
 			[visit]="visit"
-		></app-visit-panel>
+		></app-edit-panel>
 	</mat-accordion>
 </div>

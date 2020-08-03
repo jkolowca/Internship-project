@@ -3,6 +3,7 @@ import { ClinicsDAO } from '../dao/clinicsDAO';
 
 export class ClinicsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
+		const { query } = req.body;
 		const { clinicsList } = await ClinicsDAO.getAll();
 		res.json(clinicsList);
 	}

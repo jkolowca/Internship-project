@@ -12,6 +12,13 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatTabsModule } from '@angular/material/tabs';
+import {
+	NgxMatDatetimePickerModule,
+	NgxMatTimepickerModule,
+	NgxMatNativeDateModule,
+} from '@angular-material-components/datetime-picker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 @NgModule({
 	exports: [
 		MatExpansionModule,
@@ -28,6 +35,10 @@ import { MatTabsModule } from '@angular/material/tabs';
 		MatTabsModule,
 		MatAutocompleteModule,
 		MatDividerModule,
+		MatDatepickerModule,
+		NgxMatDatetimePickerModule,
+		NgxMatTimepickerModule,
+		NgxMatNativeDateModule,
 	],
 })
 export class MaterialModule {}

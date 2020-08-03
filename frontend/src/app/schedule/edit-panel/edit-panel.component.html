@@ -1,0 +1,74 @@
+<mat-expansion-panel hideToggle>
+	<mat-expansion-panel-header>
+		<mat-panel-title>
+			<p>
+				{{ visit.startDate | date: 'H:mm' }} -
+				{{ visit.endDate | date: 'H:mm' }}
+			</p>
+		</mat-panel-title>
+		<mat-panel-description>
+			<p>{{ visit.clinic.name }}</p>
+		</mat-panel-description>
+	</mat-expansion-panel-header>
+	<form [formGroup]="form" (ngSubmit)="save()">
+		<mat-form-field appearance="legacy">
+			<mat-label>Visit start</mat-label>
+			<input
+				matInput
+				formControlName="startDate"
+				autocomplete="off"
+				[ngxMatDatetimePicker]="picker"
+			/>
+			<mat-datepicker-toggle
+				matSuffix
+				[for]="picker"
+			></mat-datepicker-toggle>
+			<ngx-mat-datetime-picker
+				#picker
+				[disabled]="false"
+				[defaultTime]="[12, 0, 0]"
+				[showSpinners]="true"
+				[showSeconds]="false"
+				[stepMinute]="5"
+			></ngx-mat-datetime-picker>
+		</mat-form-field>
+		<mat-form-field appearance="legacy">
+			<mat-label>Visit end</mat-label>
+			<input
+				matInput
+				formControlName="endDate"
+				autocomplete="off"
+				[ngxMatDatetimePicker]="pickerStart"
+			/>
+			<mat-datepicker-toggle
+				matSuffix
+				[for]="pickerStart"
+			></mat-datepicker-toggle>
+			<ngx-mat-datetime-picker
+				#pickerStart
+				[disabled]="false"
+				[defaultTime]="[12, 0, 0]"
+				[showSpinners]="true"
+				[showSeconds]="false"
+				[stepMinute]="5"
+			></ngx-mat-datetime-picker>
+		</mat-form-field>
+		<mat-form-field>
+			<mat-select formControlName="clinic">
+				<mat-option
+					*ngFor="let clinic of availableClinics"
+					[value]="clinic._id"
+					>{{ clinic.name }}</mat-option
+				>
+			</mat-select>
+		</mat-form-field>
+		<button
+			mat-raised-button
+			type="submit"
+			color="primary"
+			[disabled]="!form.valid"
+		>
+			Save
+		</button>
+	</form>
+</mat-expansion-panel>

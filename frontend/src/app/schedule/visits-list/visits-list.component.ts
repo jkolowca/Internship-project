@@ -19,7 +19,6 @@ export class VisitsListComponent implements OnInit {
 		});
 		this.visitService.getVisitDates().subscribe(list => {
 			this.dailyVisitCount = list;
-			console.log(list);
 		});
 	}
 

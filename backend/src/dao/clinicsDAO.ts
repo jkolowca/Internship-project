@@ -1,4 +1,4 @@
-import { Collection, MongoClient, Cursor } from 'mongodb';
+import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
 let clinics: Collection<any>;
 
 export class ClinicsDAO {
