@@ -76,5 +76,8 @@ export class UsersCtrl {
 					message: "Authentication failed"
 				});
 			});
-		});
+		}catch (e) {
+			res.status(500).json({ e });
+		}
+	}
 } 

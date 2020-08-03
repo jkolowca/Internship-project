@@ -82,7 +82,6 @@ export class UsersDAO {
 	    }
 	}
 
-	static async login()
 }
 
 /**
