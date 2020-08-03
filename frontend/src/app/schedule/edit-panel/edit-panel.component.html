@@ -57,7 +57,7 @@
 			<mat-select formControlName="clinic">
 				<mat-option
 					*ngFor="let clinic of availableClinics"
-					[value]="clinic._id"
+					[value]="clinic"
 					>{{ clinic.name }}</mat-option
 				>
 			</mat-select>

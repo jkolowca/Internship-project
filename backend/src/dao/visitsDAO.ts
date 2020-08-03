@@ -102,7 +102,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async update(visitId: ObjectId, appointment: Object) {
+	static async updateAppointment(visitId: ObjectId, appointment: Object) {
 		try {
 			await visits.updateOne({ _id: visitId }, { $set: appointment });
 			return { success: true };
@@ -146,6 +146,31 @@ export class VisitsDAO {
 				`Unable to convert cursor to array or problem counting documents, ${e}`
 			);
 			return { visitsList: [] };
+		}
+	}
+
+	static async updateVisit(
+		visitId: ObjectId,
+		startDate: Date,
+		endDate: Date,
+		clinic: string
+	) {
+		try {
+			const updateResponse = await visits.updateOne(
+				{ _id: new ObjectId(visitId) },
+				{
+					$set: {
+						startDate: new Date(startDate),
+						endDate: new Date(endDate),
+						clinic: new ObjectId(clinic),
+					},
+				}
+			);
+
+			return updateResponse;
+		} catch (e) {
+			console.error(`Unable to update comment: ${e}`);
+			return { error: e };
 		}
 	}
 }
