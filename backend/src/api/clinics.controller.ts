@@ -21,4 +21,13 @@ export class ClinicsCtrl {
 			res.status(500).json({ e });
 		}
 	}
+
+	static async getCities(req: Request, res: Response, next: NextFunction) {
+		try {
+		const  specialtiesList = await ClinicsDAO.getCities();
+		res.json(specialtiesList);	
+		} catch (e) {
+			res.status(500).json({ e });
+		}
+	}
 }

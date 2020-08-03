@@ -102,7 +102,7 @@ export class DoctorsDAO {
 
 	static async getSpecialties() {
 		try {
-			return await doctors.distinct('ghf');
+			return await doctors.distinct("specialties");
 		} catch (e) {
 			console.error(`Unable to post list: ${e}`);
 			return { error: e };

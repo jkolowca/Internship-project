@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { DoctorsCtrl } from './doctors.controller';
 
 const router = Router();
-
+router.route('/spec').get(DoctorsCtrl.getSpecialties);
 router.route('/').get(DoctorsCtrl.apiGetAll).post(DoctorsCtrl.apiAdd);
 router
 	.route('/:id')

@@ -51,6 +51,15 @@ export class ClinicsDAO {
 			return { error: e };
 		}
 	}
+
+	static async getCities(){
+		try {
+			return await clinics.distinct("city");
+		} catch (e) {
+			console.error(`Unable to post list: ${e}`);
+			return { error: e };
+		}
+	}
 }
 
 /**
