@@ -82,9 +82,9 @@ export class DoctorsCtrl {
 
 	static async getSpecialties(req: Request, res: Response, next: NextFunction) {
 		try {
-		const specialtiesList = await DoctorsDAO.getSpecialties();
+		const  specialtiesList = await DoctorsDAO.getSpecialties();
 		res.json(specialtiesList);
-			
+	
 		} catch (e) {
 			res.status(500).json({ e });
 		}

@@ -21,6 +21,12 @@ export class ClinicsService {
 			.pipe(catchError(this.handleError<Clinic[]>('getAll', [])));
 	}
 
+	getCities(): Observable<string[]> {
+		return this.http
+			.get<string[]>(`${this.clinicsUrl}cities`, this.httpOptions)
+			.pipe(catchError(this.handleError<string[]>('getCities')));
+	}
+
 	addClinic(
 		name: string,
 		city: string,
