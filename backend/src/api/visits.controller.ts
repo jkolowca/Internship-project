@@ -4,7 +4,9 @@ import { ObjectId } from 'mongodb';
 
 export class VisitsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-		const { visitsList } = await VisitsDAO.getAll();
+		const { visitsList } = await VisitsDAO.getAll({
+			startDate: { $gte: new Date() },
+		});
 		res.json(visitsList);
 	}
 
@@ -47,7 +49,9 @@ export class VisitsCtrl {
 	}
 	static async apiGetDates(req: Request, res: Response, next: NextFunction) {
 		try {
-			let { visitsList } = await VisitsDAO.getDistinctDates();
+			let { visitsList } = await VisitsDAO.getDistinctDates({
+				startDate: { $gte: new Date() },
+			});
 			res.json(visitsList);
 		} catch (e) {
 			res.status(500).json({ e });

@@ -15,10 +15,13 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getAll() {
+	static async getAll(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visits.aggregate([
+				{
+					$match: query,
+				},
 				{
 					$lookup: {
 						from: 'doctors',
@@ -115,10 +118,13 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getDistinctDates(query?: any) {
+	static async getDistinctDates(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visits.aggregate([
+				{
+					$match: query,
+				},
 				{
 					$group: {
 						_id: {
