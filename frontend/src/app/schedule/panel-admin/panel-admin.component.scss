@@ -1,6 +1,6 @@
 .content {
 	margin: 0px auto;
-	width: 400px;
+	width: 500px;
 	max-width: 90%;
 	display: flex;
 	flex-flow: column;
@@ -8,7 +8,7 @@
 
 .data {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: start;
 }
 
 .data div {

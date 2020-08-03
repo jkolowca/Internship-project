@@ -1,12 +1,14 @@
 .content {
-	margin: 0px 30px;
+	margin: 0px auto;
+	width: 500px;
+	max-width: 90%;
 	display: flex;
 	flex-flow: column;
 }
 
 .data {
 	display: flex;
-	justify-content: space-evenly;
+	justify-content: start;
 }
 
 .data div {
