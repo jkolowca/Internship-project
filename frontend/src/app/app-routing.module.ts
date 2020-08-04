@@ -11,15 +11,21 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { RegisterComponent } from './authentication/register/register.component';
 
 const routes: Routes = [
-	{ path: '', component: AuthenticationComponent},
-	{ path: 'register', component: RegisterComponent},
+	{ path: '', component: AuthenticationComponent },
+	{ path: 'register', component: RegisterComponent },
 	{ path: 'adm', component: AdministratorComponent },
 	{ path: 'adm/:id', component: DoctorEditComponent },
 	{ path: 'adm/:id/schedule', component: AdmScheduleComponent },
 	{ path: 'doc', component: DoctorComponent },
 	{ path: 'pac/:idUser', component: PacientComponent },
-	{ path: 'pac/:idUser/registration/:id', component: RegistrationFormComponent },
-	{ path: 'pac/:idUser/registeredVisits', component: RegisteredVisitsListComponent}
+	{
+		path: 'pac/:idUser/registration/:id',
+		component: RegistrationFormComponent,
+	},
+	{
+		path: 'pac/:idUser/registeredVisits',
+		component: RegisteredVisitsListComponent,
+	},
 	{ path: 'pac', component: PacientComponent },
 	{ path: 'pac/registration/:id', component: RegistrationFormComponent },
 	{ path: 'pac/registeredVisits', component: RegisteredVisitsListComponent },
