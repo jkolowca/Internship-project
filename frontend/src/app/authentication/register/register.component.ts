@@ -20,7 +20,6 @@ export class RegisterComponent implements OnInit {
 
   constructor( public fb: FormBuilder,
     public authService: AuthService,
-    
     public router: Router) { }
 
   ngOnInit(): void {
@@ -31,10 +30,4 @@ export class RegisterComponent implements OnInit {
     this.signupForm.reset();
     this.router.navigate(['']);
   }
-  // getErrorMessage(prop): string {
-  //   if (prop.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-  //   return prop.hasError('email') ? 'Not a valid email' : '';
-  // }
 }

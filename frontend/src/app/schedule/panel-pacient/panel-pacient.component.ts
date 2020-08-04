@@ -15,5 +15,4 @@ export class PanelPacientComponent implements OnInit {
 
 	idUser = this.route.snapshot.paramMap.get('idUser');
 
-	addvisit() {}
 }

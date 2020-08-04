@@ -17,7 +17,6 @@ signinForm = new FormGroup({
   hide = true;
   constructor(public fb: FormBuilder,
     public authService: AuthService,
-    
     public router: Router) { }
 
   ngOnInit(): void {
@@ -26,10 +25,4 @@ signinForm = new FormGroup({
   loginUser() {
     this.authService.signIn(this.signinForm.value)
   }
-  // getErrorMessage(prop): string {
-  //   if (prop.hasError('required')) {
-  //     return 'You must enter a value';
-  //   }
-  //   return prop.hasError('email') ? 'Not a valid email' : '';
-  // }
 }
