@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { DoctorsService } from '../../_services/doctors.service';
-import { ClinicsService } from '../../_services/clinics.service';
+import { DoctorsService, ClinicsService } from '../../_services';
 import { Clinic } from '../../_models/interfaces';
 import { Location } from '@angular/common';
 

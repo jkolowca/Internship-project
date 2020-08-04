@@ -1,8 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Visit, Clinic } from '../../_models/interfaces';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { DoctorsService } from 'src/app/_services/doctors.service';
-import { VisitsService } from 'src/app/_services/visits.service';
+import { DoctorsService, VisitsService } from 'src/app/_services';
 
 @Component({
 	selector: 'app-panel-admin',

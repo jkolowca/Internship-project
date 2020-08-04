@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VisitsService } from '../../_services/visits.service';
+import { VisitsService } from '../../_services';
 import { Visit, VisitCount } from '../../_models/interfaces';
 
 @Component({

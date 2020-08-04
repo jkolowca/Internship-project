@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DoctorsService } from 'src/app/_services/doctors.service';
 import { Clinic } from 'src/app/_models/interfaces';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { VisitsService } from 'src/app/_services/visits.service';
+import { VisitsService } from 'src/app/_services';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
