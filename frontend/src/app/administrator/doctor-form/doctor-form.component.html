@@ -13,77 +13,48 @@
 		/>
 	</mat-form-field>
 	<div class="break"></div>
-
-	<mat-label>Specialties:</mat-label>
-	<br />
-	<mat-form-field
-		appearance="legacy"
-		*ngFor="let _ of specialties.controls; index as i"
-	>
-		<input
-			matInput
-			type="text"
-			[formControl]="specialties.controls[i]"
-			[matAutocomplete]="auto"
-		/>
-		<mat-autocomplete #auto="matAutocomplete">
-			<mat-option>immunology</mat-option>
-			<mat-option>cardiology</mat-option>
-			<mat-option>psychiatry</mat-option>
-			<mat-option>dermatology</mat-option>
-			<mat-option>pediatrics</mat-option>
-			<mat-option>endocrinology</mat-option>
-			<mat-option>geriatrics</mat-option>
-			<mat-option>hematology</mat-option>
-		</mat-autocomplete>
-		<button
-			mat-icon-button
-			matSuffix
-			type="button"
-			(click)="addSpecialtie(i + 1)"
-		>
+	<div class="control">
+		<mat-label>Specialties:</mat-label>
+		<button mat-icon-button type="button" (click)="addSpecialtie()">
 			<mat-icon>add</mat-icon>
 		</button>
-		<button
-			mat-icon-button
-			matSuffix
-			type="button"
-			(click)="removeSpecialtie(i)"
-		>
+	</div>
+	<br />
+	<div class="control" *ngFor="let _ of specialties.controls; index as i">
+		<mat-form-field appearance="legacy">
+			<input
+				matInput
+				type="text"
+				[formControl]="specialties.controls[i]"
+			/>
+		</mat-form-field>
+		<button mat-icon-button type="button" (click)="removeSpecialtie(i)">
 			<mat-icon>remove</mat-icon>
 		</button>
-	</mat-form-field>
+	</div>
 	<div class="break"></div>
 
-	<mat-label>Clinics:</mat-label>
-	<mat-form-field
-		appearance="legacy"
-		*ngFor="let _ of clinics.controls; index as i"
-	>
-		<mat-select [formControl]="clinics.controls[i]">
-			<mat-option
-				*ngFor="let clinic of availableClinics"
-				[value]="clinic._id"
-				>{{ clinic.name }}</mat-option
-			>
-		</mat-select>
-		<button
-			mat-icon-button
-			matSuffix
-			type="button"
-			(click)="addClinic(i + 1)"
-		>
+	<div class="control">
+		<mat-label>Clinics:</mat-label>
+		<button mat-icon-button type="button" (click)="addClinic()">
 			<mat-icon>add</mat-icon>
 		</button>
-		<button
-			mat-icon-button
-			matSuffix
-			type="button"
-			(click)="removeClinic(i)"
-		>
+	</div>
+	<br />
+	<div class="control" *ngFor="let _ of clinics.controls; index as i">
+		<mat-form-field appearance="legacy">
+			<mat-select [formControl]="clinics.controls[i]">
+				<mat-option
+					*ngFor="let clinic of availableClinics"
+					[value]="clinic._id"
+					>{{ clinic.name }}</mat-option
+				>
+			</mat-select>
+		</mat-form-field>
+		<button mat-icon-button type="button" (click)="removeClinic(i)">
 			<mat-icon>remove</mat-icon>
 		</button>
-	</mat-form-field>
+	</div>
 	<div class="break"></div>
 
 	<div *ngIf="doctorId">

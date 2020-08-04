@@ -13,22 +13,25 @@ import { RegisterComponent } from './authentication/register/register.component'
 const routes: Routes = [
 	{ path: '', component: AuthenticationComponent },
 	{ path: 'register', component: RegisterComponent },
-	{ path: 'adm', component: AdministratorComponent },
-	{ path: 'adm/:id', component: DoctorEditComponent },
-	{ path: 'adm/:id/schedule', component: AdmScheduleComponent },
-	{ path: 'doc', component: DoctorComponent },
-	{ path: 'pac/:idUser', component: PacientComponent },
+	{ path: 'admin', component: AdministratorComponent },
+	{ path: 'admin/:id', component: DoctorEditComponent },
+	{ path: 'admin/:id/schedule', component: AdmScheduleComponent },
+	{ path: 'doctor', component: DoctorComponent },
+	{ path: 'patient/:idUser', component: PacientComponent },
 	{
-		path: 'pac/:idUser/registration/:id',
+		path: 'patient/:idUser/registration/:id',
 		component: RegistrationFormComponent,
 	},
 	{
-		path: 'pac/:idUser/registeredVisits',
+		path: 'patient/:idUser/registeredVisits',
 		component: RegisteredVisitsListComponent,
 	},
-	{ path: 'pac', component: PacientComponent },
-	{ path: 'pac/registration/:id', component: RegistrationFormComponent },
-	{ path: 'pac/registeredVisits', component: RegisteredVisitsListComponent },
+	{ path: 'patient', component: PacientComponent },
+	{ path: 'patient/registration/:id', component: RegistrationFormComponent },
+	{
+		path: 'patient/registeredVisits',
+		component: RegisteredVisitsListComponent,
+	},
 ];
 
 @NgModule({

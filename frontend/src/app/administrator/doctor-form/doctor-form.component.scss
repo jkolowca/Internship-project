@@ -10,3 +10,29 @@ form {
 .break {
 	height: 40px;
 }
+
+button.mat-raised-button {
+	width: 100%;
+}
+
+.control {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	mat-form-field {
+		flex-grow: 1;
+	}
+	button {
+		align-self: center;
+	}
+}
+
+::ng-deep .mat-icon {
+	height: 18x !important;
+	width: 18px !important;
+	font-size: 18px !important;
+}
+
+.mat-icon-button {
+	align-self: flex-end;
+}

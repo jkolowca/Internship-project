@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { DoctorsService, ClinicsService } from '../../_services';
 import { Clinic } from '../../_models/interfaces';
 import { Location } from '@angular/common';
@@ -11,20 +11,19 @@ import { Location } from '@angular/common';
 })
 export class DoctorFormComponent implements OnInit {
 	@Input() doctorId: string;
-	doctor = new FormGroup({
-		name: new FormControl('', [Validators.required, Validators.max(15)]),
-		surname: new FormControl('', [Validators.required, Validators.max(15)]),
-		specialties: new FormArray([]),
-		clinics: new FormArray([]),
+	doctor = this.fb.group({
+		name: ['', [Validators.required]],
+		surname: ['', [Validators.required]],
+		specialties: this.fb.array([]),
+		clinics: this.fb.array([]),
 	});
 
 	specialties = this.doctor.get('specialties') as FormArray;
 	clinics = this.doctor.get('clinics') as FormArray;
 	availableClinics: Clinic[] = [];
 
-	mySubscription: any;
-
 	constructor(
+		private fb: FormBuilder,
 		private doctorsService: DoctorsService,
 		private clinicsService: ClinicsService,
 		private location: Location
@@ -32,25 +31,24 @@ export class DoctorFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.getAvailableClinics();
-		if (this.doctorId) {
-			this.setupDoctorEdit();
-		} else {
-			this.addSpecialtie(0);
-			this.addClinic(0);
-		}
+		this.fillEditForm();
 	}
 
-	setupDoctorEdit(): void {
-		this.doctorsService.getDoctorById(this.doctorId).subscribe(doctor => {
-			doctor.specialties.forEach((_, idx) => {
-				this.addSpecialtie(idx);
-			});
-			doctor.clinics.forEach((_, idx) => {
-				this.addClinic(idx);
-			});
-			const { _id, ...values } = doctor;
-			this.doctor.setValue(values);
-		});
+	fillEditForm(): void {
+		if (this.doctorId) {
+			this.doctorsService
+				.getDoctorById(this.doctorId)
+				.subscribe(doctor => {
+					doctor.clinics.forEach(() => this.addClinic());
+					doctor.specialties.forEach(() => this.addSpecialtie());
+					const { _id, ...values } = doctor;
+					this.doctor.setValue(values);
+					console.log(this.doctor.controls.values);
+				});
+			return;
+		}
+		this.addSpecialtie();
+		this.addClinic();
 	}
 
 	getAvailableClinics(): void {
@@ -59,37 +57,25 @@ export class DoctorFormComponent implements OnInit {
 			.subscribe(l => (this.availableClinics = l));
 	}
 
-	addSpecialtie(i: number): void {
-		this.specialties.insert(
-			i,
-			new FormControl('', {
-				updateOn: 'change',
-				validators: [Validators.required],
-			})
-		);
+	addSpecialtie(): void {
+		this.specialties.push(this.fb.control('', Validators.required));
 	}
 
 	removeSpecialtie(i: number): void {
 		this.specialties.removeAt(i);
 		if (!this.specialties.length) {
-			this.addSpecialtie(-1);
+			this.addSpecialtie();
 		}
 	}
 
-	addClinic(i: number): void {
-		this.clinics.insert(
-			i,
-			new FormControl('', {
-				updateOn: 'change',
-				validators: [Validators.required],
-			})
-		);
+	addClinic(): void {
+		this.clinics.push(this.fb.control('', Validators.required));
 	}
 
 	removeClinic(i: number): void {
 		this.clinics.removeAt(i);
 		if (!this.clinics.length) {
-			this.addClinic(-1);
+			this.addClinic();
 		}
 	}
 
