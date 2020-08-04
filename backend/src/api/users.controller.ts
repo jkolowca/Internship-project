@@ -53,8 +53,7 @@ export class UsersCtrl {
 					});
 				}
 				getUser = user;
-				return bcrypt.compare(req.body.password, user.password);
-			}).then(response => {
+				return bcrypt.compare(req.body.password, user.password).then(response => {
 				if (!response) {
 					return res.status(401).json({
 						message: "Authentication failed"
@@ -76,8 +75,7 @@ export class UsersCtrl {
 					message: "Authentication failed"
 				});
 			});
-		}catch (e) {
-			res.status(500).json({ e });
-		}
+		}).catch((err)=>console.error(err))
+		} finally { }
 	}
 } 

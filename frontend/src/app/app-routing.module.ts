@@ -19,7 +19,7 @@ const routes: Routes = [
 	{ path: 'doc', component: DoctorComponent },
 	{ path: 'pac/:idUser', component: PacientComponent },
 	{ path: 'pac/:idUser/registration/:id', component: RegistrationFormComponent },
-	{ path: 'pac/:idUser/registeredVisits', component: RegisteredVisitsListComponent}
+	{ path: 'pac/:idUser/registeredVisits', component: RegisteredVisitsListComponent},
 	{ path: 'pac', component: PacientComponent },
 	{ path: 'pac/registration/:id', component: RegistrationFormComponent },
 	{ path: 'pac/registeredVisits', component: RegisteredVisitsListComponent },

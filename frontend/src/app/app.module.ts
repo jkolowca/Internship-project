@@ -18,7 +18,7 @@ import { ScheduleComponent } from './schedule/schedule.component';
 import { AdmScheduleComponent } from './administrator/adm-schedule/adm-schedule.component';
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
 import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
-import { VisitPanelComponent } from './schedule/visit-panel/visit-panel.component';
+
 import { RegisterComponent } from './authentication/register/register.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
@@ -42,7 +42,7 @@ import { PanelAddComponent } from './schedule/panel-add/panel-add.component';
 		AdmScheduleComponent,
 		VisitsListComponent,
 		RegisteredVisitsListComponent,
-		VisitPanelComponent,
+		
 		RegisterComponent,
 		LoginComponent,
 		AuthenticationComponent,
