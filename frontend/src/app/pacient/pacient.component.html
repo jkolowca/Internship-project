@@ -1,5 +1,10 @@
 <mat-toolbar>
-	<button mat-button routerLink="/pac">Pacient Panel</button>
+	<div class="buttons">
+	<button mat-button routerLink="/pac">Pacient Panel </button>
+	<button mat-button routerLink="registeredVisits">
+	 {{ pacient.name }} {{ pacient.surname }}
+	</button>
+</div>
 	<button mat-button routerLink="registeredVisits">Your visits</button>
 </mat-toolbar>
 <app-search-bar></app-search-bar>

@@ -1,5 +1,8 @@
 <mat-toolbar>
 	<button mat-button routerLink="../">Pacient Panel</button>
+	<button mat-button routerLink="../">
+		{{ pacient.name }} {{ pacient.surname }}
+	   </button>
 </mat-toolbar>
 <mat-tab-group mat-align-tabs="start">
 	<mat-tab label="Active">
