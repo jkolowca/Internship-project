@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Visit } from 'src/app/interfaces';
+import { Visit } from 'src/app/_models/interfaces';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

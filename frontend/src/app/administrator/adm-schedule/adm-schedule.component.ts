@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Doctor } from 'src/app/interfaces';
-import { DoctorsService } from '../../services/doctors.service';
+import { Doctor } from 'src/app/_models/interfaces';
+import { DoctorsService } from '../../_services';
 
 @Component({
 	selector: 'app-adm-schedule-edit',

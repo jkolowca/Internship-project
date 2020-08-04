@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Visit, VisitCount } from '../interfaces';
+import { Visit, VisitCount } from '../_models/interfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({

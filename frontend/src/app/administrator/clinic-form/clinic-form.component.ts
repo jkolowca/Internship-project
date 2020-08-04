@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ClinicsService } from '../../services/clinics.service';
+import { ClinicsService } from '../../_services';
 
 @Component({
 	selector: 'app-clinic-form',

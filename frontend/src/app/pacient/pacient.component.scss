@@ -1,5 +1,5 @@
 .mat-toolbar {
-    padding: 0px;
+	padding: 0px;
 }
 
 button {
@@ -8,5 +8,16 @@ button {
 }
 
 app-search-bar {
-    margin: 20px 0;
+	margin: 20px 0;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	max-width: 100%;
+}
+
+.main-container div {
+	padding: 20px;
 }

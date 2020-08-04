@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, Validators} from '@angular/forms';
-import { VisitsService } from '../../services/visits.service';
-import {ActivatedRoute} from '@angular/router';
+import { FormControl, Validators } from '@angular/forms';
+import { VisitsService } from '../../_services';
+import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-
 @Component({
-  selector: 'app-registration-form',
-  templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.scss']
+	selector: 'app-registration-form',
+	templateUrl: './registration-form.component.html',
+	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
   name = new FormControl('', [Validators.required]);
@@ -17,12 +16,13 @@ export class RegistrationFormComponent implements OnInit {
   id = this.route.snapshot.paramMap.get('id');
   idUser = this.route.snapshot.paramMap.get('idUser');
 
-  constructor(private visitsService: VisitsService,
-              private route: ActivatedRoute,
-              private snackBar: MatSnackBar ) { }
+	constructor(
+		private visitsService: VisitsService,
+		private route: ActivatedRoute,
+		private snackBar: MatSnackBar
+	) {}
 
-  ngOnInit(): void {}
-
+	ngOnInit(): void {}
 
   getErrorMessage(prop): string {
     if (prop.hasError('required')) {
