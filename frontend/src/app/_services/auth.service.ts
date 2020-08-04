@@ -31,14 +31,14 @@ export class AuthService {
 				localStorage.setItem('access_token', res.token);
 				this.getUserProfile(res._id).subscribe(res => {
 					this.currentUser = res;
-					this.router.navigate(['/pac/' + res._id]);
+					this.router.navigate(['/patient/' + res._id]);
 				});
 			});
 	}
 
 	getUserById(id: string): Observable<User> {
 		return this.http
-			.get<User>(`${this.endpoint}/${id}`,{ headers: this.headers })
+			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers })
 			.pipe(catchError(this.handleError));
 	}
 
