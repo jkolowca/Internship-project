@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { DoctorsService } from 'src/app/services/doctors.service';
-import { Clinic } from 'src/app/interfaces';
+import { DoctorsService } from 'src/app/_services/doctors.service';
+import { Clinic } from 'src/app/_models/interfaces';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { VisitsService } from 'src/app/services/visits.service';
+import { VisitsService } from 'src/app/_services/visits.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

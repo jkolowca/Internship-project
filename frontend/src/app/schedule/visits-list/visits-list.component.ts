@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VisitsService } from '../../services/visits.service';
-import { Visit, VisitCount } from '../../interfaces';
+import { VisitsService } from '../../_services/visits.service';
+import { Visit, VisitCount } from '../../_models/interfaces';
 
 @Component({
 	selector: 'app-visits-list',
