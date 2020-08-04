@@ -19,8 +19,12 @@ constructor(
   ngOnInit(): void {
     const pacientId = this.route.snapshot.paramMap.get('idUser');
 		this.authService
-			.getUserById(pacientId)
+			.getUserProfile(pacientId)
 			.subscribe(d => (this.pacient = d));
+  }
+
+  logout() {
+    this.authService.doLogout();
   }
 
 }

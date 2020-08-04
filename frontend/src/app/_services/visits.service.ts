@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { Visit, VisitCount } from '../_models/interfaces';
 import { catchError } from 'rxjs/operators';
 
@@ -18,7 +18,7 @@ export class VisitsService {
 	getAll(): Observable<Visit[]> {
 		return this.http
 			.get<Visit[]>(this.visitsUrl)
-			.pipe(catchError(this.handleError<Visit[]>('getAll', [])));
+			.pipe(catchError(this.handleError));
 	}
 
 	addVisit(
@@ -34,7 +34,7 @@ export class VisitsService {
 				clinic,
 				doctor,
 			})
-			.pipe(catchError(this.handleError<Visit>('editVisit')));
+			.pipe(catchError(this.handleError));
 	}
 
 	editVisit(visit: Visit): Observable<any> {
@@ -44,28 +44,28 @@ export class VisitsService {
 				endDate: visit.endDate,
 				clinic: visit.clinic._id,
 			})
-			.pipe(catchError(this.handleError<Visit>('editVisit')));
+			.pipe(catchError(this.handleError));
 	}
 
 	getVisitDates(): Observable<any> {
 		return this.http
 			.get<VisitCount[]>(`${this.visitsUrl}/date`)
-			.pipe(catchError(this.handleError<any>('editVisit')));
+			.pipe(catchError(this.handleError));
 	}
 
 	register(id: string, pacient: object): Observable<any> {
 		return this.http
 			.patch(`${this.visitsUrl}/visit/${id}`, pacient)
-			.pipe(catchError(this.handleError<Visit>('editVisit')));
+			.pipe(catchError(this.handleError));
 	}
 
-	private handleError<T>(
-		operation?: string,
-		result?: T
-	): (a: any) => Observable<T> {
-		return (error: any): Observable<T> => {
-			console.error(`${error} at: ${operation}`);
-			return of(result as T);
-		};
+	handleError(error: HttpErrorResponse) {
+		let msg = '';
+		if (error.error instanceof ErrorEvent) {
+			msg = `Error: ${error.error.message}`;
+		} else {
+			msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+		}
+		return throwError(msg);
 	}
 }

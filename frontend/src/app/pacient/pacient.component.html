@@ -1,11 +1,9 @@
 <mat-toolbar>
 	<div class="buttons">
-	<button mat-button routerLink="/pac">Pacient Panel </button>
-	<button mat-button routerLink="registeredVisits">
-	 {{ pacient.name }} {{ pacient.surname }}
-	</button>
-</div>
+	<button mat-button >Pacient Panel : {{ pacient.name }} {{ pacient.surname }} </button>
 	<button mat-button routerLink="registeredVisits">Your visits</button>
+</div>
+	<button mat-button (click)=logout() >Logout</button>
 </mat-toolbar>
 <app-search-bar></app-search-bar>
 <div class="main-container">
