@@ -58,10 +58,11 @@ export class DoctorsDAO {
 		specialties: string[],
 		clinics: ObjectId[]
 	) {
+		let objClinics = clinics.map(string => new ObjectId(string));
 		try {
 			const updateResponse = await doctors.updateOne(
 				{ _id: doctorId },
-				{ $set: { name, surname, specialties, clinics } }
+				{ $set: { name, surname, specialties, clinics: objClinics } }
 			);
 
 			return updateResponse;
@@ -102,7 +103,7 @@ export class DoctorsDAO {
 
 	static async getSpecialties() {
 		try {
-			return await doctors.distinct("specialties");
+			return await doctors.distinct('specialties');
 		} catch (e) {
 			console.error(`Unable to post list: ${e}`);
 			return { error: e };
