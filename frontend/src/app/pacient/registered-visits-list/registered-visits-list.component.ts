@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { User } from 'src/app/_models/interfaces';
+import { AuthService } from 'src/app/_services';
+
+
 
 @Component({
   selector: 'app-registered-visits-list',
@@ -6,10 +11,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./registered-visits-list.component.scss']
 })
 export class RegisteredVisitsListComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  pacient = <User>{};
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService
+  ) {}
+  
+  
+    ngOnInit(): void {
+      const pacientId = this.route.snapshot.paramMap.get('idUser');
+      this.authService
+        .getUserById(pacientId)
+        .subscribe(d => (this.pacient = d));
+    }
+  
   }
-
-}

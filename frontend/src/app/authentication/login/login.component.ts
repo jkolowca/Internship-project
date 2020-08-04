@@ -14,27 +14,19 @@ import { AuthService } from '../../_services';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-	signinForm = new FormGroup({
-		password: new FormControl('', [Validators.required, Validators.min(8)]),
-		email: new FormControl('', [Validators.required, Validators.email]),
-	});
-	hide = true;
-	constructor(
-		public fb: FormBuilder,
-		public authService: AuthService,
+signinForm = new FormGroup({
+  password: new FormControl('', [Validators.required,Validators.min(8)]),
+  email: new FormControl('', [Validators.required, Validators.email]),
+})
+  hide = true;
+  constructor(public fb: FormBuilder,
+    public authService: AuthService,
+    public router: Router) { }
 
-		public router: Router
-	) {}
-
-	ngOnInit(): void {}
-
-	loginUser() {
-		this.authService.signIn(this.signinForm.value);
-	}
-	// getErrorMessage(prop): string {
-	//   if (prop.hasError('required')) {
-	//     return 'You must enter a value';
-	//   }
-	//   return prop.hasError('email') ? 'Not a valid email' : '';
-	// }
+  ngOnInit(): void {
+  }
+     
+  loginUser() {
+    this.authService.signIn(this.signinForm.value)
+  }
 }

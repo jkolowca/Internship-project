@@ -36,6 +36,12 @@ export class AuthService {
 			});
 	}
 
+	getUserById(id: string): Observable<User> {
+		return this.http
+			.get<User>(`${this.endpoint}/${id}`,{ headers: this.headers })
+			.pipe(catchError(this.handleError));
+	}
+
 	getUserProfile(id: any): Observable<any> {
 		let api = `${this.endpoint}/${id}`;
 		return this.http.get(api, { headers: this.headers }).pipe(

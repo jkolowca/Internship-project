@@ -10,12 +10,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
-	name = new FormControl('', [Validators.required]);
-	surname = new FormControl('', [Validators.required]);
-	email = new FormControl('', [Validators.required, Validators.email]);
-	reason = new FormControl('');
-	id = this.route.snapshot.paramMap.get('id');
-	massage = 'Umówiono wizytę';
+  name = new FormControl('', [Validators.required]);
+  surname = new FormControl('', [Validators.required]);
+  reason = new FormControl('');
+  id = this.route.snapshot.paramMap.get('id');
+  idUser = this.route.snapshot.paramMap.get('idUser');
 
 	constructor(
 		private visitsService: VisitsService,
@@ -25,25 +24,23 @@ export class RegistrationFormComponent implements OnInit {
 
 	ngOnInit(): void {}
 
-	getErrorMessage(prop): string {
-		if (prop.hasError('required')) {
-			return 'You must enter a value';
-		}
-		return prop.hasError('email') ? 'Not a valid email' : '';
-	}
+  getErrorMessage(prop): string {
+    if (prop.hasError('required')) {
+      return 'You must enter a value';
+    }
+  }
 
-	register(): void {
-		const pacient = {
-			appointment: {
-				name: this.name.value,
-				surname: this.surname.value,
-				email: this.email.value,
-				reason: this.reason.value,
-			},
-		};
-		this.visitsService.register(this.id, pacient).subscribe();
-		this.snackBar.open('Umówiono wizytę', 'Koniec', {
-			duration: 2000,
-		});
-	}
-}
+  register(): void {
+    const pacient = {
+      appointment: {
+        _id: this.idUser,
+        name: this.name.value,
+        surname: this.surname.value,
+        reason: this.reason.value
+      }
+    };
+    this.visitsService.register(this.id, pacient).subscribe();
+    this.snackBar.open('Umówiono wizytę', 'Koniec', {
+      duration: 2000 });
+  }
+  }
