@@ -17,8 +17,6 @@ export class AdmScheduleComponent implements OnInit {
 
 	ngOnInit(): void {
 		const doctorId = this.route.snapshot.paramMap.get('id');
-		this.doctorsService
-			.getDoctorById(doctorId)
-			.subscribe(d => (this.doctor = d));
+		this.doctorsService.getById(doctorId).subscribe(d => (this.doctor = d));
 	}
 }

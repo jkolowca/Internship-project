@@ -1,5 +1,7 @@
-import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
-let clinics: Collection<any>;
+import { Collection, MongoClient, Cursor } from 'mongodb';
+import { Clinic } from '../models';
+
+let clinics: Collection<Clinic>;
 
 export class ClinicsDAO {
 	static async injectDB(conn: MongoClient) {
@@ -10,64 +12,47 @@ export class ClinicsDAO {
 			clinics = conn.db('registration').collection('clinics');
 		} catch (e) {
 			console.error(
-				`Unable to establish a collection handle in clinicsDAO: ${e}`
+				`ClinicsDAO: Unable to establish a collection handle: ${e}`
 			);
 		}
 	}
 
 	static async getAll() {
-		let cursor: Cursor;
+		let cursor: Cursor<Clinic>;
 		try {
 			cursor = clinics.find();
 		} catch (e) {
-			console.error(`Unable to issue find command, ${e}`);
-			return { clinicsList: [] };
+			console.error(`ClinicsDAO: Unable to issue find command: ${e}`);
+			return [];
 		}
 
 		try {
-			const clinicsList = await cursor.toArray();
+			const clinics = await cursor.toArray();
 
-			return { clinicsList };
+			return clinics;
 		} catch (e) {
 			console.error(
-				`Unable to convert cursor to array or problem counting documents, ${e}`
+				`ClinicsDAO: Unable to convert cursor to array or problem counting documents: ${e}`
 			);
-			return { clinicsList: [] };
+			return [];
 		}
 	}
 
-	static async add(
-		name: string,
-		city: string,
-		street: string,
-		streetNo: string
-	) {
+	static async add(clinic: Clinic) {
 		try {
-			const listDoc = { name, city, street, streetNo };
-
-			return await clinics.insertOne(listDoc);
+			return await clinics.insertOne(clinic);
 		} catch (e) {
-			console.error(`Unable to post list: ${e}`);
+			console.error(`ClinicsDAO: Unable to post clinic: ${e}`);
 			return { error: e };
 		}
 	}
 
-	static async getCities(){
+	static async getCities() {
 		try {
-			return await clinics.distinct("city");
+			return await clinics.distinct('city');
 		} catch (e) {
-			console.error(`Unable to post list: ${e}`);
+			console.error(`ClinicsDAO: Unable to get distinct values: ${e}`);
 			return { error: e };
 		}
 	}
 }
-
-/**
- * A Clinic
- * @typedef Clinic
- * @property {ObjectId} _id
- * @property {string} name
- * @property {string} city
- * @property {string} street
- * @property {string} streetNo
- */

@@ -18,6 +18,6 @@ export class ScheduleComponent implements OnInit {
 
 	ngOnInit(): void {
 		const doctorId = this.route.snapshot.paramMap.get('id');
-		this.doctorsService.getDoctorById(doctorId);
+		this.doctorsService.getById(doctorId);
 	}
 }

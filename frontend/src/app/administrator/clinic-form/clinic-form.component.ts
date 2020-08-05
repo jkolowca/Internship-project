@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ClinicsService } from '../../_services';
 
 @Component({
@@ -8,17 +8,17 @@ import { ClinicsService } from '../../_services';
 	styleUrls: ['./clinic-form.component.scss'],
 })
 export class ClinicFormComponent implements OnInit {
-	clinic = new FormGroup({
-		name: new FormControl('', [Validators.required, Validators.max(15)]),
-		city: new FormControl('', [Validators.required, Validators.max(15)]),
-		street: new FormControl('', [Validators.required, Validators.max(15)]),
-		streetNo: new FormControl('', [
-			Validators.required,
-			Validators.max(15),
-		]),
+	clinic = this.fb.group({
+		name: ['', [Validators.required]],
+		city: ['', [Validators.required, Validators.maxLength(30)]],
+		streetAddress: ['', [Validators.required, Validators.maxLength(30)]],
+		apartment: ['', [Validators.required, Validators.maxLength(10)]],
 	});
 
-	constructor(private clinicsService: ClinicsService) {}
+	constructor(
+		private fb: FormBuilder,
+		private clinicsService: ClinicsService
+	) {}
 
 	ngOnInit(): void {}
 
