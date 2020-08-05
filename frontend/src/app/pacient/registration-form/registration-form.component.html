@@ -4,22 +4,22 @@
 <div class="main-container">
   <mat-card>
     <div class="form-container">
+      <form [formGroup]="registrationForm">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
-        <input matInput [formControl]="name">
-        <mat-error *ngIf="name.invalid">{{getErrorMessage(name)}}</mat-error>
+        <input matInput formControlName="name">
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill">
         <mat-label>Surname</mat-label>
-        <input matInput [formControl]="surname">
-        <mat-error *ngIf="surname.invalid">{{getErrorMessage(surname)}}</mat-error>
+        <input matInput formControlName="surname">
       </mat-form-field>
       <br>
       <mat-form-field appearance="fill">
         <mat-label>Reason</mat-label>
-        <textarea matInput [formControl] = "reason"></textarea>
+        <textarea matInput formControlName = "reason"></textarea>
       </mat-form-field>
+    </form>
     </div>
     <div class="buttons">
       <a routerLink="../../"> <button mat-button>Back</button></a>

@@ -21,7 +21,7 @@ export class RegisteredVisitsListComponent implements OnInit {
     ngOnInit(): void {
       const pacientId = this.route.snapshot.paramMap.get('idUser');
       this.authService
-        .getUserById(pacientId)
+        .getUserProfile(pacientId)
         .subscribe(d => (this.pacient = d));
     }
   

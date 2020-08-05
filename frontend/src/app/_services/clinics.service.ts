@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { Clinic } from '../_models/interfaces';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -18,13 +18,13 @@ export class ClinicsService {
 	getAllClinics(): Observable<Clinic[]> {
 		return this.http
 			.get<Clinic[]>(this.clinicsUrl, this.httpOptions)
-			.pipe(catchError(this.handleError<Clinic[]>('getAll', [])));
+			.pipe(catchError(this.handleError));
 	}
 
 	getCities(): Observable<string[]> {
 		return this.http
 			.get<string[]>(`${this.clinicsUrl}cities`, this.httpOptions)
-			.pipe(catchError(this.handleError<string[]>('getCities')));
+			.pipe(catchError(this.handleError));
 	}
 
 	addClinic(
@@ -43,17 +43,17 @@ export class ClinicsService {
 				tap((newClinic: Clinic) =>
 					console.log(`added clinic id=${newClinic._id}`)
 				),
-				catchError(this.handleError<Clinic>('add'))
+				catchError(this.handleError)
 			);
 	}
 
-	private handleError<T>(
-		operation?: string,
-		result?: T
-	): (a: any) => Observable<T> {
-		return (error: any): Observable<T> => {
-			console.error(`${error} at: ${operation}`);
-			return of(result as T);
-		};
+	handleError(error: HttpErrorResponse) {
+		let msg = '';
+		if (error.error instanceof ErrorEvent) {
+			msg = `Error: ${error.error.message}`;
+		} else {
+			msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+		}
+		return throwError(msg);
 	}
 }

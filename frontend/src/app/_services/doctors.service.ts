@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import {
+	HttpClient,
+	HttpHeaders,
+	HttpErrorResponse,
+} from '@angular/common/http';
+import { Observable, of, throwError } from 'rxjs';
 import { Doctor, Clinic } from '../_models/interfaces';
 import { catchError, tap } from 'rxjs/operators';
 
@@ -18,7 +22,7 @@ export class DoctorsService {
 	getAllDoctors(): Observable<Doctor[]> {
 		return this.http
 			.get<Doctor[]>(this.doctorsUrl, this.httpOptions)
-			.pipe(catchError(this.handleError<Doctor[]>('getAll', [])));
+			.pipe(catchError(this.handleError));
 	}
 
 	addDoctor(
@@ -35,27 +39,27 @@ export class DoctorsService {
 			)
 			.pipe(
 				tap(res => console.log(`Doctor addition status ${res.status}`)),
-				catchError(this.handleError<Doctor>('add'))
+				catchError(this.handleError)
 			);
 	}
 
 	updateDoctor(doctor: Doctor): Observable<any> {
 		return this.http
 			.put<Doctor[]>(this.doctorsUrl, doctor, this.httpOptions)
-			.pipe(catchError(this.handleError<Doctor>('add')));
+			.pipe(catchError(this.handleError));
 	}
 
 	getById(id: string): Observable<Doctor> {
 		return this.http
 			.get<Doctor>(`${this.doctorsUrl}/doctor/${id}`, this.httpOptions)
-			.pipe(catchError(this.handleError<Doctor>('getAll')));
+			.pipe(catchError(this.handleError));
 	}
 
 	deleteDoctor(id: string): Observable<Doctor[]> {
 		const url = `${this.doctorsUrl}/doctor/${id}`;
 		return this.http
 			.delete<Doctor[]>(url, this.httpOptions)
-			.pipe(catchError(this.handleError<Doctor[]>('deleteList')));
+			.pipe(catchError(this.handleError));
 	}
 
 	getClinics(id: string): Observable<Clinic[]> {
@@ -64,22 +68,22 @@ export class DoctorsService {
 				`${this.doctorsUrl}/doctor/${id}/clinics`,
 				this.httpOptions
 			)
-			.pipe(catchError(this.handleError<Clinic[]>('getAll')));
+			.pipe(catchError(this.handleError));
 	}
 
 	getSpecialties(): Observable<string[]> {
 		return this.http
 			.get<string[]>(`${this.doctorsUrl}/specialties`, this.httpOptions)
-			.pipe(catchError(this.handleError<string[]>('getSpec')));
+			.pipe(catchError(this.handleError));
 	}
 
-	private handleError<T>(
-		operation?: string,
-		result?: T
-	): (a: any) => Observable<T> {
-		return (error: any): Observable<T> => {
-			console.error(`${error} at: ${operation}`);
-			return of(result as T);
-		};
+	handleError(error: HttpErrorResponse) {
+		let msg = '';
+		if (error.error instanceof ErrorEvent) {
+			msg = `Error: ${error.error.message}`;
+		} else {
+			msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+		}
+		return throwError(msg);
 	}
 }

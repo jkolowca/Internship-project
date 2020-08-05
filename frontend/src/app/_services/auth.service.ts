@@ -26,20 +26,7 @@ export class AuthService {
 
 	signIn(user: User) {
 		return this.http
-			.post<any>(`${this.endpoint}/signin`, user)
-			.subscribe((res: any) => {
-				localStorage.setItem('access_token', res.token);
-				this.getUserProfile(res._id).subscribe(res => {
-					this.currentUser = res;
-					this.router.navigate(['/patient/' + res._id]);
-				});
-			});
-	}
-
-	getUserById(id: string): Observable<User> {
-		return this.http
-			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers })
-			.pipe(catchError(this.handleError));
+			.post<any>(`${this.endpoint}/signin`, user).pipe(catchError(this.handleError));		
 	}
 
 	getUserProfile(id: any): Observable<any> {
@@ -52,13 +39,18 @@ export class AuthService {
 		);
 	}
 
+	doLogout() {
+		let removeToken = localStorage.removeItem('access_token');
+		if (removeToken == null) {
+		  this.router.navigate(['']);
+		}
+	  }
+
 	handleError(error: HttpErrorResponse) {
 		let msg = '';
 		if (error.error instanceof ErrorEvent) {
-			// client-side error
-			msg = error.error.message;
+			msg = `Error: ${error.error.message}`;
 		} else {
-			// server-side error
 			msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
 		}
 		return throwError(msg);

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from '../../_services';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,17 +10,22 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
-  name = new FormControl('', [Validators.required]);
-  surname = new FormControl('', [Validators.required]);
-  reason = new FormControl('');
+  registrationForm: any;
   id = this.route.snapshot.paramMap.get('id');
   idUser = this.route.snapshot.paramMap.get('idUser');
 
 	constructor(
 		private visitsService: VisitsService,
 		private route: ActivatedRoute,
-		private snackBar: MatSnackBar
-	) {}
+    private snackBar: MatSnackBar,
+    public fb: FormBuilder,
+	) {
+    this.registrationForm = this.fb.group({
+      name : new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required]),
+      reason: new FormControl(''),
+  })
+}
 
 	ngOnInit(): void {}
 
@@ -34,9 +39,9 @@ export class RegistrationFormComponent implements OnInit {
     const pacient = {
       appointment: {
         _id: this.idUser,
-        name: this.name.value,
-        surname: this.surname.value,
-        reason: this.reason.value
+        name: this.registrationForm.controls['name'].value,
+        surname: this.registrationForm.controls['surname'].value,
+        reason: this.registrationForm.controls['reason'].value
       }
     };
     this.visitsService.register(this.id, pacient).subscribe();
