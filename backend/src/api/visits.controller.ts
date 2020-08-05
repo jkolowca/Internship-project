@@ -4,8 +4,8 @@ import { ObjectId } from 'mongodb';
 import { Visit } from '../models';
 
 export class VisitsCtrl {
-	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-		const visits = await VisitsDAO.getAll({
+	static async apiFind(req: Request, res: Response, next: NextFunction) {
+		const visits = await VisitsDAO.find({
 			startDate: { $gte: new Date() },
 		});
 		res.json(visits);
@@ -31,10 +31,16 @@ export class VisitsCtrl {
 		try {
 			const { appointment, startDate, endDate, clinic } = req.body;
 			const id = new ObjectId(req.params.id);
+
 			if (!startDate && appointment) {
 				await VisitsDAO.updateAppointment(id, appointment);
 			} else {
-				await VisitsDAO.updateVisit(id, startDate, endDate, clinic._id);
+				await VisitsDAO.updateVisit(
+					id,
+					new Date(startDate),
+					new Date(endDate),
+					new ObjectId(clinic._id)
+				);
 			}
 			console.log(req.params.id);
 			res.json({ status: 'success' });

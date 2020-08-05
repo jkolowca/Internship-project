@@ -16,7 +16,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getAll(query?: Object) {
+	static async find(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visitsCollection.aggregate([
@@ -95,7 +95,10 @@ export class VisitsDAO {
 		appointment: Appointment
 	) {
 		try {
-			await visitsCollection.updateOne({ _id: visitId }, { $set: { appointment } });
+			await visitsCollection.updateOne(
+				{ _id: visitId },
+				{ $set: { appointment } }
+			);
 			return { success: true };
 		} catch (e) {
 			console.error(`Error occurred while logging in user, ${e}`);
@@ -142,21 +145,15 @@ export class VisitsDAO {
 	}
 
 	static async updateVisit(
-		visitId: ObjectId,
+		_id: ObjectId,
 		startDate: Date,
 		endDate: Date,
-		clinic: string
+		clinic: ObjectId
 	) {
 		try {
 			const updateResponse = await visitsCollection.updateOne(
-				{ _id: new ObjectId(visitId) },
-				{
-					$set: {
-						startDate: new Date(startDate),
-						endDate: new Date(endDate),
-						clinic: new ObjectId(clinic),
-					},
-				}
+				{ _id },
+				{ $set: { startDate, endDate, clinic } }
 			);
 
 			return updateResponse;

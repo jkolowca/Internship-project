@@ -43,9 +43,9 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getById(id: ObjectId) {
+	static async getById(_id: ObjectId) {
 		try {
-			return await doctorsCollection.findOne({ _id: id });
+			return await doctorsCollection.findOne({ _id });
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to issue find command: ${e}`);
 			return undefined;
@@ -53,9 +53,8 @@ export class DoctorsDAO {
 	}
 
 	static async update(_id: ObjectId, doctor: Doctor) {
-		doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
 		try {
-			return await doctorsCollection.updateOne({ _id: _id }, { $set: doctor });
+			return await doctorsCollection.updateOne({ _id }, { $set: doctor });
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to update doctor: ${e}`);
 			return { error: e };
@@ -73,7 +72,6 @@ export class DoctorsDAO {
 
 	static async add(doctor: Doctor) {
 		try {
-			doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
 			return await doctorsCollection.insertOne(doctor);
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to post doctor: ${e}`);
@@ -90,13 +88,13 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getClinics(id: ObjectId) {
+	static async getClinics(_id: ObjectId) {
 		let cursor: AggregationCursor<{ _id: ObjectId; clinics: Clinic[] }>;
 		try {
 			cursor = doctorsCollection.aggregate([
 				{
 					$match: {
-						_id: id,
+						_id,
 					},
 				},
 				{

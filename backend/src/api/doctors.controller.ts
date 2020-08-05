@@ -12,8 +12,8 @@ export class DoctorsCtrl {
 
 	static async apiGetById(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = req.params.id;
-			let doctor = await DoctorsDAO.getById(new ObjectId(id));
+			let id = new ObjectId(req.params.id);
+			let doctor = await DoctorsDAO.getById(id);
 			if (!doctor) {
 				res.status(404).json({ error: 'Not found' });
 				return;
@@ -32,8 +32,8 @@ export class DoctorsCtrl {
 		next: NextFunction
 	) {
 		try {
-			let id = req.params.id;
-			let clinics = await DoctorsDAO.getClinics(new ObjectId(id));
+			let id = new ObjectId(req.params.id);
+			let clinics = await DoctorsDAO.getClinics(id);
 			if (!clinics) {
 				res.status(404).json({ error: 'Not found' });
 				return;
@@ -47,6 +47,7 @@ export class DoctorsCtrl {
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
 			const doctor: Doctor = req.body;
+			doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
 
 			await DoctorsDAO.add(doctor);
 
@@ -59,7 +60,9 @@ export class DoctorsCtrl {
 	static async apiUpdate(req: Request, res: Response, next: NextFunction) {
 		try {
 			const doctor: Doctor = req.body;
+			doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
 			const { _id, ...values } = doctor;
+
 			const updateResponse = await DoctorsDAO.update(
 				new ObjectId(_id),
 				values
@@ -83,9 +86,9 @@ export class DoctorsCtrl {
 
 	static async apiDelete(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = req.params.id;
-			await VisitsDAO.deleteVisitsByDoctorId(new ObjectId(id));
-			await DoctorsDAO.delete(new ObjectId(id));
+			let id = new ObjectId(req.params.id);
+			await VisitsDAO.deleteVisitsByDoctorId(id);
+			await DoctorsDAO.delete(id);
 			const doctors = await DoctorsDAO.getAll();
 			res.json(doctors);
 		} catch (e) {

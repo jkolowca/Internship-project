@@ -1,6 +1,6 @@
 import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
 import { User } from '../models';
-let usersCollection: Collection<any>;
+let usersCollection: Collection<User>;
 
 export class UsersDAO {
 	static async injectDB(conn: MongoClient) {
@@ -37,21 +37,21 @@ export class UsersDAO {
 		}
 	}
 
-	static async getById(id: ObjectId) {
+	static async getById(_id: ObjectId) {
 		try {
-			return await usersCollection.findOne({ _id: id });
+			return await usersCollection.findOne({ _id });
 		} catch (e) {
 			console.error(`Something went wrong in usersDAO getById: ${e}`);
-			return { usersList: [] };
+			return undefined;
 		}
 	}
 
-	static async getByEmail(email: String) {
+	static async getByEmail(email: string) {
 		try {
-			return await usersCollection.findOne({ email: email });
+			return await usersCollection.findOne({ email });
 		} catch (e) {
 			console.error(`Something went wrong in usersDAO getById: ${e}`);
-			return { usersList: [] };
+			return undefined;
 		}
 	}
 
