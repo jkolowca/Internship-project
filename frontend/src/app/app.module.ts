@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 
 import { AdministratorComponent } from './administrator/administrator.component';
 import { DoctorsListComponent } from './administrator/doctors-list/doctors-list.component';
+import { ClinicsListComponent } from './administrator/clinics-list/clinics-list.component';
 import { DoctorFormComponent } from './administrator/doctor-form/doctor-form.component';
 import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.component';
 import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.component';
@@ -55,6 +56,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 		PanelPacientComponent,
 		PanelAdminComponent,
 		PanelAddComponent,
+		ClinicsListComponent,
 	],
 	imports: [
 		AppRoutingModule,

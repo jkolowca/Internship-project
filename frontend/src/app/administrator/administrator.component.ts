@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 	styleUrls: ['./administrator.component.scss'],
 })
 export class AdministratorComponent implements OnInit {
+	display = 'doctors';
 	constructor() {}
 
 	ngOnInit(): void {}

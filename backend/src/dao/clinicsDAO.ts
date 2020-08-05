@@ -1,4 +1,4 @@
-import { Collection, MongoClient, Cursor } from 'mongodb';
+import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
 import { Clinic } from '../models';
 
 let clinicsCollection: Collection<Clinic>;
@@ -52,6 +52,15 @@ export class ClinicsDAO {
 			return await clinicsCollection.distinct('city');
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to get distinct values: ${e}`);
+			return { error: e };
+		}
+	}
+
+	static async delete(_id: ObjectId) {
+		try {
+			return await clinicsCollection.deleteOne({ _id });
+		} catch (e) {
+			console.error(`ClinicsDAO: Unable to delete clinic: ${e}`);
 			return { error: e };
 		}
 	}

@@ -3,7 +3,7 @@ export interface Clinic {
 	name: string;
 	city: string;
 	streetAddress: string;
-	apartment: string;
+	apartment?: string;
 }
 
 export interface Doctor {

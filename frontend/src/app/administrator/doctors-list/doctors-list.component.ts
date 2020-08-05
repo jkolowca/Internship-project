@@ -16,8 +16,6 @@ export class DoctorsListComponent implements OnInit {
 			.getAllDoctors()
 			.subscribe(list => (this.doctorsList = list.sort(compare)));
 	}
-
-	editDoctor(doctor: Doctor): void {}
 }
 
 function compare(a: Doctor, b: Doctor): number {

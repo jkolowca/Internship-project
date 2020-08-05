@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {
+	HttpClient,
+	HttpHeaders,
+	HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { Clinic } from '../models/interfaces';
 import { catchError, tap } from 'rxjs/operators';
@@ -45,6 +49,13 @@ export class ClinicsService {
 				),
 				catchError(this.handleError)
 			);
+	}
+
+	deleteClinic(id: string): Observable<Clinic[]> {
+		const url = `${this.clinicsUrl}/clinic/${id}`;
+		return this.http
+			.delete<Clinic[]>(url, this.httpOptions)
+			.pipe(catchError(this.handleError));
 	}
 
 	handleError(error: HttpErrorResponse) {

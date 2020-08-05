@@ -12,7 +12,7 @@ export class ClinicFormComponent implements OnInit {
 		name: ['', [Validators.required]],
 		city: ['', [Validators.required, Validators.maxLength(30)]],
 		streetAddress: ['', [Validators.required, Validators.maxLength(30)]],
-		apartment: ['', [Validators.required, Validators.maxLength(10)]],
+		apartment: ['', [Validators.maxLength(10)]],
 	});
 
 	constructor(
