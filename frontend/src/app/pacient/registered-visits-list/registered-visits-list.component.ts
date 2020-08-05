@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/models/interfaces';
 import { AuthService } from 'src/app/services';
 
@@ -9,16 +8,18 @@ import { AuthService } from 'src/app/services';
 	styleUrls: ['./registered-visits-list.component.scss'],
 })
 export class RegisteredVisitsListComponent implements OnInit {
-	pacient = <User>{};
-	constructor(
-		private route: ActivatedRoute,
-		private authService: AuthService
-	) {}
+  pacient: User;
+  constructor(
+    private authService: AuthService
+  ) {}
+  
+  
+    ngOnInit(): void {
+      this.pacient = this.authService.currentUser;
+    }
 
-	ngOnInit(): void {
-		const pacientId = this.route.snapshot.paramMap.get('idUser');
-		this.authService
-			.getUserProfile(pacientId)
-			.subscribe(d => (this.pacient = d));
-	}
-}
+    logout() {
+      this.authService.doLogout();
+    }
+  
+  }

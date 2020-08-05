@@ -4,7 +4,7 @@
 <div class="main-container">
   <mat-card>
     <div class="form-container">
-      <form [formGroup]="registrationForm">
+      <form [formGroup]="registrationForm" (ngSubmit)="register()">
       <mat-form-field appearance="fill">
         <mat-label>Name</mat-label>
         <input matInput formControlName="name">
@@ -23,7 +23,7 @@
     </div>
     <div class="buttons">
       <a routerLink="../../"> <button mat-button>Back</button></a>
-      <button mat-button (click) = "register()">Submit</button>
+      <button type="submit" mat-button>Submit</button>
     </div>
   </mat-card>
 </div>

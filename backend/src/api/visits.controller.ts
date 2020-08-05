@@ -11,6 +11,14 @@ export class VisitsCtrl {
 		res.json(visits);
 	}
 
+	static async apiGetRegistered(req: Request, res: Response, next: NextFunction){
+		let id = req.params.id;
+		const  visitsList = await VisitsDAO.find({
+			"appointment._id": id
+		});
+		res.json(visitsList);
+	}
+
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
 			const visit: Visit = req.body;
@@ -59,4 +67,5 @@ export class VisitsCtrl {
 			res.status(500).json({ e });
 		}
 	}
+
 }

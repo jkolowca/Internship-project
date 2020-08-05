@@ -23,13 +23,7 @@ const routes: Routes = [
 		component: RegistrationFormComponent,
 	},
 	{
-		path: 'patient/:idUser/registeredVisits',
-		component: RegisteredVisitsListComponent,
-	},
-	{ path: 'patient', component: PacientComponent },
-	{ path: 'patient/registration/:id', component: RegistrationFormComponent },
-	{
-		path: 'patient/registeredVisits',
+		path: 'patient/:idUser/registered-visits',
 		component: RegisteredVisitsListComponent,
 	},
 ];

@@ -3,6 +3,8 @@ import {
 	ClinicsService,
 	DoctorsService,
 } from 'src/app/services';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
+
 
 @Component({
 	selector: 'app-search-bar',
@@ -10,10 +12,20 @@ import {
 	styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-	constructor(
+
+	searchForm: any;
+	constructor( public fb: FormBuilder,
 		private clinicsService: ClinicsService,
 		private doctorsService: DoctorsService
-	) {}
+	) {
+		this.searchForm = this.fb.group({
+			city: new FormControl('', [Validators.required]),
+			specialty: new FormControl('', [Validators.required]),
+			startDate: new FormControl('', [Validators.required]),
+			endDate: new FormControl('', [Validators.required]),
+			
+			})
+	}
 
 	availableClinics: string[];
 	availableSpec: string[];

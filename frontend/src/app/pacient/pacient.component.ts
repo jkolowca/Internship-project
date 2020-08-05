@@ -9,19 +9,16 @@ import { User } from '../models/interfaces';
 	styleUrls: ['./pacient.component.scss'],
 })
 export class PacientComponent implements OnInit {
-	pacient = <User>{};
-	constructor(
-		private route: ActivatedRoute,
-		private authService: AuthService
-	) {}
+pacient : User;
+constructor(
+  private route: ActivatedRoute,
+  private authService: AuthService
+) {}
 
-	ngOnInit(): void {
-		const pacientId = this.route.snapshot.paramMap.get('idUser');
-		this.authService
-			.getUserProfile(pacientId)
-			.subscribe(d => (this.pacient = d));
-	}
 
+  ngOnInit(): void {
+    this.pacient = this.authService.currentUser;
+  }
 	logout() {
 		this.authService.doLogout();
 	}

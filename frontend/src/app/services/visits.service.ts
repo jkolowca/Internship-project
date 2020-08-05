@@ -53,6 +53,12 @@ export class VisitsService {
 			.pipe(catchError(this.handleError));
 	}
 
+	getRegisteredVisits(id: string): Observable<any> {
+		return this.http
+			.get<VisitCount[]>(`${this.visitsUrl}/register/${id}`)
+			.pipe(catchError(this.handleError));
+	}
+
 	register(id: string, appointment: Appointment): Observable<any> {
 		return this.http
 			.patch(`${this.visitsUrl}/visit/${id}`, { appointment })
