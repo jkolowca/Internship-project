@@ -6,15 +6,15 @@ import {
 	AggregationCursor,
 } from 'mongodb';
 import { Doctor, Clinic } from '../models';
-let doctors: Collection<Doctor>;
+let doctorsCollection: Collection<Doctor>;
 
 export class DoctorsDAO {
 	static async injectDB(conn: MongoClient) {
-		if (doctors) {
+		if (doctorsCollection) {
 			return;
 		}
 		try {
-			doctors = conn.db('registration').collection('doctors');
+			doctorsCollection = conn.db('registration').collection('doctors');
 		} catch (e) {
 			console.error(
 				`DoctorsDAO: Unable to establish a collection handle: ${e}`
@@ -25,7 +25,7 @@ export class DoctorsDAO {
 	static async getAll() {
 		let cursor: Cursor<Doctor>;
 		try {
-			cursor = doctors.find();
+			cursor = doctorsCollection.find();
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to issue find command: ${e}`);
 			return [];
@@ -45,7 +45,7 @@ export class DoctorsDAO {
 
 	static async getById(id: ObjectId) {
 		try {
-			return await doctors.findOne({ _id: id });
+			return await doctorsCollection.findOne({ _id: id });
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to issue find command: ${e}`);
 			return undefined;
@@ -55,7 +55,7 @@ export class DoctorsDAO {
 	static async update(_id: ObjectId, doctor: Doctor) {
 		doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
 		try {
-			return await doctors.updateOne({ _id: _id }, { $set: doctor });
+			return await doctorsCollection.updateOne({ _id: _id }, { $set: doctor });
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to update doctor: ${e}`);
 			return { error: e };
@@ -64,7 +64,7 @@ export class DoctorsDAO {
 
 	static async delete(_id: ObjectId) {
 		try {
-			return await doctors.deleteOne({ _id });
+			return await doctorsCollection.deleteOne({ _id });
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to delete doctor: ${e}`);
 			return { error: e };
@@ -74,7 +74,7 @@ export class DoctorsDAO {
 	static async add(doctor: Doctor) {
 		try {
 			doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
-			return await doctors.insertOne(doctor);
+			return await doctorsCollection.insertOne(doctor);
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to post doctor: ${e}`);
 			return { error: e };
@@ -83,7 +83,7 @@ export class DoctorsDAO {
 
 	static async getSpecialties() {
 		try {
-			return await doctors.distinct('specialties');
+			return await doctorsCollection.distinct('specialties');
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to get distinct values: ${e}`);
 			return { error: e };
@@ -93,7 +93,7 @@ export class DoctorsDAO {
 	static async getClinics(id: ObjectId) {
 		let cursor: AggregationCursor<{ _id: ObjectId; clinics: Clinic[] }>;
 		try {
-			cursor = doctors.aggregate([
+			cursor = doctorsCollection.aggregate([
 				{
 					$match: {
 						_id: id,

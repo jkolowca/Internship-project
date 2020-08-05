@@ -1,15 +1,15 @@
 import { Collection, MongoClient, Cursor } from 'mongodb';
 import { Clinic } from '../models';
 
-let clinics: Collection<Clinic>;
+let clinicsCollection: Collection<Clinic>;
 
 export class ClinicsDAO {
 	static async injectDB(conn: MongoClient) {
-		if (clinics) {
+		if (clinicsCollection) {
 			return;
 		}
 		try {
-			clinics = conn.db('registration').collection('clinics');
+			clinicsCollection = conn.db('registration').collection('clinics');
 		} catch (e) {
 			console.error(
 				`ClinicsDAO: Unable to establish a collection handle: ${e}`
@@ -20,7 +20,7 @@ export class ClinicsDAO {
 	static async getAll() {
 		let cursor: Cursor<Clinic>;
 		try {
-			cursor = clinics.find();
+			cursor = clinicsCollection.find();
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to issue find command: ${e}`);
 			return [];
@@ -40,7 +40,7 @@ export class ClinicsDAO {
 
 	static async add(clinic: Clinic) {
 		try {
-			return await clinics.insertOne(clinic);
+			return await clinicsCollection.insertOne(clinic);
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to post clinic: ${e}`);
 			return { error: e };
@@ -49,7 +49,7 @@ export class ClinicsDAO {
 
 	static async getCities() {
 		try {
-			return await clinics.distinct('city');
+			return await clinicsCollection.distinct('city');
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to get distinct values: ${e}`);
 			return { error: e };

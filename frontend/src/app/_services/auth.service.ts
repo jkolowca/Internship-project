@@ -20,31 +20,34 @@ export class AuthService {
 	constructor(private http: HttpClient, public router: Router) {}
 
 	signUp(user: User): Observable<any> {
-		let api = `${this.endpoint}/register-user`;
-		return this.http.post(api, user).pipe(catchError(this.handleError));
+		return this.http
+			.post<{ status: string }>(`${this.endpoint}/register-user`, user)
+			.pipe(catchError(this.handleError));
 	}
 
-	signIn(user: User) {
+	signIn(user: { email: string; password: string }) {
 		return this.http
-			.post<any>(`${this.endpoint}/signin`, user).pipe(catchError(this.handleError));		
+			.post<any>(`${this.endpoint}/signin`, user)
+			.pipe(catchError(this.handleError));
 	}
 
 	getUserProfile(id: any): Observable<any> {
-		let api = `${this.endpoint}/${id}`;
-		return this.http.get(api, { headers: this.headers }).pipe(
-			map((res: Response) => {
-				return res || {};
-			}),
-			catchError(this.handleError)
-		);
+		return this.http
+			.get(`${this.endpoint}/${id}`, { headers: this.headers })
+			.pipe(
+				map((res: Response) => {
+					return res || {};
+				}),
+				catchError(this.handleError)
+			);
 	}
 
 	doLogout() {
 		let removeToken = localStorage.removeItem('access_token');
 		if (removeToken == null) {
-		  this.router.navigate(['']);
+			this.router.navigate(['']);
 		}
-	  }
+	}
 
 	handleError(error: HttpErrorResponse) {
 		let msg = '';
