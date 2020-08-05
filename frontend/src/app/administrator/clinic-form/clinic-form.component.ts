@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ClinicsService } from '../../_services';
+import { ClinicsService } from '../../services';
 
 @Component({
 	selector: 'app-clinic-form',

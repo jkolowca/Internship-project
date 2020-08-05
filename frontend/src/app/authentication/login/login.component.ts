@@ -6,7 +6,7 @@ import {
 	FormBuilder,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from '../../_services';
+import { AuthService } from '../../services';
 
 @Component({
 	selector: 'app-login',

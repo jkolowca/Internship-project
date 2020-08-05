@@ -5,7 +5,7 @@ import {
 	HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Visit, VisitCount, Appointment } from '../_models/interfaces';
+import { Visit, VisitCount, Appointment } from '../models/interfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({

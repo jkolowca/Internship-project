@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Visit } from 'src/app/_models/interfaces';
+import { Visit } from 'src/app/models/interfaces';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -14,5 +14,4 @@ export class PanelPacientComponent implements OnInit {
 	ngOnInit(): void {}
 
 	idUser = this.route.snapshot.paramMap.get('idUser');
-
 }

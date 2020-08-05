@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { User } from '../_models/interfaces';
+import { User } from '../models/interfaces';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import {

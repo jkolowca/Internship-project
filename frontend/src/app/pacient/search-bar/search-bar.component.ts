@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Visit, Clinic } from '../../_models/interfaces';
 import {
-	VisitsService,
 	ClinicsService,
 	DoctorsService,
-} from 'src/app/_services';
+} from 'src/app/services';
 
 @Component({
 	selector: 'app-search-bar',
