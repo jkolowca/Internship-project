@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from 'src/app/_models/interfaces';
 import { AuthService } from 'src/app/_services';
 
@@ -11,9 +10,8 @@ import { AuthService } from 'src/app/_services';
   styleUrls: ['./registered-visits-list.component.scss']
 })
 export class RegisteredVisitsListComponent implements OnInit {
-  pacient = {};
+  pacient: User;
   constructor(
-    private route: ActivatedRoute,
     private authService: AuthService
   ) {}
   

@@ -9,7 +9,7 @@ import { User } from '../_models/interfaces';
   styleUrls: ['./pacient.component.scss']
 })
 export class PacientComponent implements OnInit {
-pacient = {};
+pacient : User;
 constructor(
   private route: ActivatedRoute,
   private authService: AuthService

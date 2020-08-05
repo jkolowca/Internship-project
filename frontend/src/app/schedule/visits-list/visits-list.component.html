@@ -1,5 +1,5 @@
-<div class="main-container">
-	<mat-accordion *ngIf="type === 'pacient'; else elseBlock">
+<div class="main-container" [ngSwitch]="type">
+	<mat-accordion *ngSwitchCase="'pacient'">
 		<div *ngFor="let day of dailyVisitCount; let i = index">
 			<br />
 			{{ day._id }}
@@ -11,7 +11,20 @@
 			></app-panel-pacient>
 		</div>
 	</mat-accordion>
-	<ng-template #elseBlock>
+	<mat-accordion *ngSwitchCase="'pacientRes'">
+		<div *ngFor="let day of dailyVisitCount; let i = index">
+			<br />
+			{{ day._id }}
+			<mat-divider></mat-divider>
+			<br />
+			<app-panel-pacient
+				*ngFor="let visit of registeredVisits"
+				[visit]="visit"
+			></app-panel-pacient>
+		</div>
+	</mat-accordion>
+
+	<div *ngSwitchDefault>
 		<app-panel-add (newVisit)="ngOnInit()"></app-panel-add>
 		<mat-accordion>
 			<div *ngFor="let day of dailyVisitCount; let i = index">
@@ -24,5 +37,5 @@
 					[visit]="visit"
 				></app-panel-admin>
 			</div> </mat-accordion
-	></ng-template>
+	></div>
 </div>

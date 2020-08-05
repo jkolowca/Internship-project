@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { VisitsService } from '../../_services';
 import { Visit, VisitCount } from '../../_models/interfaces';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-visits-list',
@@ -10,8 +11,13 @@ import { Visit, VisitCount } from '../../_models/interfaces';
 export class VisitsListComponent implements OnInit {
 	@Input() type: string;
 	visits: Visit[];
+	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];
-	constructor(private visitService: VisitsService) {}
+	patientId: string;
+	constructor(private visitService: VisitsService,
+		private route: ActivatedRoute) {
+			 this.patientId = this.route.snapshot.queryParamMap.get("idUser");
+		}
 
 	ngOnInit(): void {
 		this.visitService.getAll().subscribe(list => {
@@ -20,6 +26,14 @@ export class VisitsListComponent implements OnInit {
 		this.visitService.getVisitDates().subscribe(list => {
 			this.dailyVisitCount = list;
 		});
+		
+		this.patientId = this.route.snapshot.paramMap.get('idUser');
+
+		this.visitService.getRegisteredVisits(this.patientId).subscribe(list => {
+			this.registeredVisits = list;
+			
+		});
+		
 	}
 
 	getDailyVisits(day: number): Visit[] {
