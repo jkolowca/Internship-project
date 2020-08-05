@@ -17,7 +17,7 @@ npm run tsc
 Run server rebuilding on changes
 
 ```
-npm run two
+npm run backend
 ```
 
 Builds and serves angular app, rebuilding on changes
