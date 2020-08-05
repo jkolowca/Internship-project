@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/_models/interfaces';
-import { AuthService } from 'src/app/_services';
-
-
+import { User } from 'src/app/models/interfaces';
+import { AuthService } from 'src/app/services';
 
 @Component({
-  selector: 'app-registered-visits-list',
-  templateUrl: './registered-visits-list.component.html',
-  styleUrls: ['./registered-visits-list.component.scss']
+	selector: 'app-registered-visits-list',
+	templateUrl: './registered-visits-list.component.html',
+	styleUrls: ['./registered-visits-list.component.scss'],
 })
 export class RegisteredVisitsListComponent implements OnInit {
   pacient: User;

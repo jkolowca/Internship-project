@@ -13,7 +13,7 @@ export class VisitsCtrl {
 
 	static async apiGetRegistered(req: Request, res: Response, next: NextFunction){
 		let id = req.params.id;
-		const { visitsList } = await VisitsDAO.getAll({
+		const  visitsList = await VisitsDAO.find({
 			"appointment._id": id
 		});
 		res.json(visitsList);

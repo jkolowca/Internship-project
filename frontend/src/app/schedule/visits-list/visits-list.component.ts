@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { VisitsService } from '../../_services';
-import { Visit, VisitCount } from '../../_models/interfaces';
 import { ActivatedRoute } from '@angular/router';
+import { VisitsService } from '../../services';
+import { Visit, VisitCount } from '../../models/interfaces';
 
 @Component({
 	selector: 'app-visits-list',

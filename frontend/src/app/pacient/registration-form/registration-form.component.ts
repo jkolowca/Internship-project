@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-import { VisitsService } from '../../_services';
+import { VisitsService } from '../../services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Appointment } from 'src/app/_models/interfaces';
+import { Appointment } from 'src/app/models/interfaces';
 
 @Component({
 	selector: 'app-registration-form',
