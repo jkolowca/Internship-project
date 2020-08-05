@@ -30,13 +30,13 @@ export class ClinicsService {
 	addClinic(
 		name: string,
 		city: string,
-		street: string,
-		streetNo: string
+		streetAddress: string,
+		apartment: string
 	): Observable<any> {
 		return this.http
 			.post<Clinic>(
 				this.clinicsUrl,
-				{ name, city, street, streetNo },
+				{ name, city, streetAddress, apartment },
 				this.httpOptions
 			)
 			.pipe(

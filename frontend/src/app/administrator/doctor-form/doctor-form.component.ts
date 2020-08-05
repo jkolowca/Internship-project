@@ -36,15 +36,13 @@ export class DoctorFormComponent implements OnInit {
 
 	fillEditForm(): void {
 		if (this.doctorId) {
-			this.doctorsService
-				.getDoctorById(this.doctorId)
-				.subscribe(doctor => {
-					doctor.clinics.forEach(() => this.addClinic());
-					doctor.specialties.forEach(() => this.addSpecialtie());
-					const { _id, ...values } = doctor;
-					this.doctor.setValue(values);
-					console.log(this.doctor.controls.values);
-				});
+			this.doctorsService.getById(this.doctorId).subscribe(doctor => {
+				doctor.clinics.forEach(() => this.addClinic());
+				doctor.specialties.forEach(() => this.addSpecialtie());
+				const { _id, ...values } = doctor;
+				this.doctor.setValue(values);
+				console.log(this.doctor.controls.values);
+			});
 			return;
 		}
 		this.addSpecialtie();

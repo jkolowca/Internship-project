@@ -8,26 +8,24 @@
 		<mat-label>City</mat-label>
 		<input matInput type="text" formControlName="city" autocomplete="off" />
 	</mat-form-field>
-	<div class="field-row">
-		<mat-form-field appearance="legacy">
-			<mat-label>Street</mat-label>
-			<input
-				matInput
-				type="text"
-				formControlName="street"
-				autocomplete="off"
-			/>
-		</mat-form-field>
-		<mat-form-field appearance="legacy">
-			<mat-label>Street No</mat-label>
-			<input
-				matInput
-				type="text"
-				formControlName="streetNo"
-				autocomplete="off"
-			/>
-		</mat-form-field>
-	</div>
+	<mat-form-field appearance="legacy">
+		<mat-label>Street Address</mat-label>
+		<input
+			matInput
+			type="text"
+			formControlName="streetAddress"
+			autocomplete="off"
+		/>
+	</mat-form-field>
+	<mat-form-field appearance="legacy">
+		<mat-label>Apartment, suite, unit etc.</mat-label>
+		<input
+			matInput
+			type="text"
+			formControlName="apartment"
+			autocomplete="off"
+		/>
+	</mat-form-field>
 	<div class="break"></div>
 	<button
 		mat-raised-button

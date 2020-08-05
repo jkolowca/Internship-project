@@ -32,13 +32,11 @@ export class PanelAddComponent implements OnInit {
 		this.doctorId = this.route.snapshot.paramMap.get('id');
 		this.form.controls.startDate.setValue('', [Validators.required]);
 		this.form.controls.endDate.setValue('', [Validators.required]);
-		this.doctorsService
-			.getDoctorClinics(this.doctorId)
-			.subscribe(clinics => {
-				this.availableClinics = clinics;
-				const toSelect = this.availableClinics[0];
-				this.form.controls.clinic.setValue(toSelect);
-			});
+		this.doctorsService.getClinics(this.doctorId).subscribe(clinics => {
+			this.availableClinics = clinics;
+			const toSelect = this.availableClinics[0];
+			this.form.controls.clinic.setValue(toSelect);
+		});
 	}
 
 	save() {

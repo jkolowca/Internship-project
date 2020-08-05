@@ -1,5 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {
+	HttpClient,
+	HttpHeaders,
+	HttpErrorResponse,
+} from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
 import { Doctor, Clinic } from '../_models/interfaces';
 import { catchError, tap } from 'rxjs/operators';
@@ -8,7 +12,7 @@ import { catchError, tap } from 'rxjs/operators';
 	providedIn: 'root',
 })
 export class DoctorsService {
-	private doctorsUrl = 'http://localhost:5000/doctors/';
+	private doctorsUrl = 'http://localhost:5000/doctors';
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 	};
@@ -21,24 +25,6 @@ export class DoctorsService {
 			.pipe(catchError(this.handleError));
 	}
 
-	getSpecialties(): Observable<string[]> {
-		return this.http
-			.get<string[]>(`${this.doctorsUrl}spec`, this.httpOptions)
-			.pipe(catchError(this.handleError));
-	}
-
-	getDoctorById(id: string): Observable<Doctor> {
-		return this.http
-			.get<Doctor>(`${this.doctorsUrl}${id}`, this.httpOptions)
-			.pipe(catchError(this.handleError));
-	}
-
-	getDoctorClinics(id: string): Observable<Clinic[]> {
-		return this.http
-			.get<Clinic[]>(`${this.doctorsUrl}${id}/clinics`, this.httpOptions)
-			.pipe(catchError(this.handleError));
-	}
-
 	addDoctor(
 		name: string,
 		surname: string,
@@ -46,38 +32,48 @@ export class DoctorsService {
 		clinics: string[]
 	): Observable<any> {
 		return this.http
-			.post<Doctor>(
+			.post<{ status: string }>(
 				this.doctorsUrl,
 				{ name, surname, specialties, clinics },
 				this.httpOptions
 			)
 			.pipe(
-				tap((newDoctor: Doctor) =>
-					console.log(`added doctor id=${newDoctor._id}`)
-				),
+				tap(res => console.log(`Doctor addition status ${res.status}`)),
 				catchError(this.handleError)
 			);
 	}
 
 	updateDoctor(doctor: Doctor): Observable<any> {
 		return this.http
-			.put<Doctor>(
-				`${this.doctorsUrl}${doctor._id}`,
-				doctor,
-				this.httpOptions
-			)
-			.pipe(
-				tap((newDoctor: Doctor) =>
-					console.log(`updated doctor id=${newDoctor._id}`)
-				),
-				catchError(this.handleError)
-			);
+			.put<Doctor[]>(this.doctorsUrl, doctor, this.httpOptions)
+			.pipe(catchError(this.handleError));
+	}
+
+	getById(id: string): Observable<Doctor> {
+		return this.http
+			.get<Doctor>(`${this.doctorsUrl}/doctor/${id}`, this.httpOptions)
+			.pipe(catchError(this.handleError));
 	}
 
 	deleteDoctor(id: string): Observable<Doctor[]> {
-		const url = `${this.doctorsUrl}${id}`;
+		const url = `${this.doctorsUrl}/doctor/${id}`;
 		return this.http
 			.delete<Doctor[]>(url, this.httpOptions)
+			.pipe(catchError(this.handleError));
+	}
+
+	getClinics(id: string): Observable<Clinic[]> {
+		return this.http
+			.get<Clinic[]>(
+				`${this.doctorsUrl}/doctor/${id}/clinics`,
+				this.httpOptions
+			)
+			.pipe(catchError(this.handleError));
+	}
+
+	getSpecialties(): Observable<string[]> {
+		return this.http
+			.get<string[]>(`${this.doctorsUrl}/specialties`, this.httpOptions)
 			.pipe(catchError(this.handleError));
 	}
 

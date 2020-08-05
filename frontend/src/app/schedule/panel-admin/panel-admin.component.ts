@@ -32,7 +32,7 @@ export class PanelAdminComponent implements OnInit {
 			Validators.required,
 		]);
 		this.doctorsService
-			.getDoctorClinics(this.visit.doctor._id)
+			.getClinics(this.visit.doctor._id)
 			.subscribe(clinics => {
 				this.availableClinics = clinics;
 				const toSelect = this.availableClinics.find(

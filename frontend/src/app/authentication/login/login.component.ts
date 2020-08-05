@@ -14,19 +14,19 @@ import { AuthService } from '../../_services';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  signinForm :any;
+  signinForm: any;
   hide = true;
   constructor(public fb: FormBuilder,
     public authService: AuthService,
-    public router: Router) { 
-    }
+    public router: Router) {}
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
-      password: new FormControl('', [Validators.required,Validators.min(8)]),
-      email: new FormControl('', [Validators.required, Validators.email]),})
+      password: new FormControl('', [Validators.required, Validators.min(8)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+    })
   }
-     
+
   loginUser() {
     this.authService.signIn(this.signinForm.value).subscribe((res: any) => {
       localStorage.setItem('access_token', res.token);

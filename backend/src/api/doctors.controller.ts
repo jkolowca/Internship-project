@@ -2,18 +2,18 @@ import { Request, Response, NextFunction } from 'express';
 import { DoctorsDAO } from '../dao/doctorsDAO';
 import { VisitsDAO } from '../dao/visitsDAO';
 import { ObjectId, UpdateWriteOpResult } from 'mongodb';
-import { ClinicsDAO } from '../dao/clinicsDAO';
+import { Doctor } from '../models';
 
 export class DoctorsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-		const { doctorsList } = await DoctorsDAO.getAll();
-		res.json(doctorsList);
+		const doctors = await DoctorsDAO.getAll();
+		res.json(doctors);
 	}
 
 	static async apiGetById(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = req.params.id;
-			let doctor = await DoctorsDAO.getById(new ObjectId(id));
+			let id = new ObjectId(req.params.id);
+			let doctor = await DoctorsDAO.getById(id);
 			if (!doctor) {
 				res.status(404).json({ error: 'Not found' });
 				return;
@@ -32,8 +32,8 @@ export class DoctorsCtrl {
 		next: NextFunction
 	) {
 		try {
-			let id = req.params.id;
-			let { clinics } = await DoctorsDAO.getClinics(new ObjectId(id));
+			let id = new ObjectId(req.params.id);
+			let clinics = await DoctorsDAO.getClinics(id);
 			if (!clinics) {
 				res.status(404).json({ error: 'Not found' });
 				return;
@@ -46,13 +46,12 @@ export class DoctorsCtrl {
 	}
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { name, surname, specialties, clinics } = req.body;
+			const doctor: Doctor = req.body;
+			doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
 
-			await DoctorsDAO.add(name, surname, specialties, clinics);
+			await DoctorsDAO.add(doctor);
 
-			const updated = await DoctorsDAO.getAll();
-
-			res.json({ status: 'success', doctors: updated });
+			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
 		}
@@ -60,15 +59,13 @@ export class DoctorsCtrl {
 
 	static async apiUpdate(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = req.params.id;
-			const { name, surname, specialties, clinics } = req.body;
+			const doctor: Doctor = req.body;
+			doctor.clinics = doctor.clinics.map(string => new ObjectId(string));
+			const { _id, ...values } = doctor;
 
 			const updateResponse = await DoctorsDAO.update(
-				new ObjectId(id),
-				name,
-				surname,
-				specialties,
-				clinics
+				new ObjectId(_id),
+				values
 			);
 
 			if (updateResponse.hasOwnProperty('error')) {
@@ -76,12 +73,12 @@ export class DoctorsCtrl {
 			}
 
 			if ((updateResponse as UpdateWriteOpResult).modifiedCount === 0) {
-				throw new Error('unable to update task');
+				throw new Error('unable to update doctor');
 			}
 
 			const doctors = await DoctorsDAO.getAll();
 
-			res.json({ doctors });
+			res.json(doctors);
 		} catch (e) {
 			res.status(500).json({ e });
 		}
@@ -89,9 +86,9 @@ export class DoctorsCtrl {
 
 	static async apiDelete(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = req.params.id;
-			await VisitsDAO.deleteVisitsByDoctorId(new ObjectId(id));
-			await DoctorsDAO.delete(new ObjectId(id));
+			let id = new ObjectId(req.params.id);
+			await VisitsDAO.deleteVisitsByDoctorId(id);
+			await DoctorsDAO.delete(id);
 			const doctors = await DoctorsDAO.getAll();
 			res.json(doctors);
 		} catch (e) {
@@ -105,8 +102,8 @@ export class DoctorsCtrl {
 		next: NextFunction
 	) {
 		try {
-			const specialtiesList = await DoctorsDAO.getSpecialties();
-			res.json(specialtiesList);
+			const specialties = await DoctorsDAO.getSpecialties();
+			res.json(specialties);
 		} catch (e) {
 			res.status(500).json({ e });
 		}

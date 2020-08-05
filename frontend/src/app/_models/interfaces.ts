@@ -2,8 +2,8 @@ export interface Clinic {
 	_id: string;
 	name: string;
 	city: string;
-	street: string;
-	streetNo: string;
+	streetAddress: string;
+	apartment: string;
 }
 
 export interface Doctor {
@@ -23,18 +23,20 @@ export interface Pacient {
 	password: string;
 }
 
+export interface Appointment {
+	name: string;
+	surname: string;
+	email: string;
+	reason?: string;
+}
+
 export interface Visit {
 	_id: string;
 	startDate: Date;
 	endDate: Date;
 	clinic: Clinic;
 	doctor: Doctor;
-	appointment?: {
-		name: string;
-		surname: string;
-		email: string;
-		reason?: string;
-	};
+	appointment?: Appointment;
 }
 
 export interface VisitCount {

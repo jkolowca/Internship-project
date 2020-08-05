@@ -1,22 +1,23 @@
 import { Request, Response, NextFunction } from 'express';
 import { ClinicsDAO } from '../dao/clinicsDAO';
+import { Clinic } from '../models';
 
 export class ClinicsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
 		const { query } = req.body;
-		const { clinicsList } = await ClinicsDAO.getAll();
-		res.json(clinicsList);
+		const clinics = await ClinicsDAO.getAll();
+		res.json(clinics);
 	}
 
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
-			const { name, city, street, streetNo } = req.body;
+			const clinic: Clinic = req.body;
 
-			await ClinicsDAO.add(name, city, street, streetNo);
+			await ClinicsDAO.add(clinic);
 
-			const updated = await ClinicsDAO.getAll();
+			const clinics = await ClinicsDAO.getAll();
 
-			res.json({ status: 'success', visits: updated });
+			res.json({ status: 'success', clinics });
 		} catch (e) {
 			res.status(500).json({ e });
 		}
@@ -24,8 +25,8 @@ export class ClinicsCtrl {
 
 	static async getCities(req: Request, res: Response, next: NextFunction) {
 		try {
-		const  specialtiesList = await ClinicsDAO.getCities();
-		res.json(specialtiesList);	
+			const cities = await ClinicsDAO.getCities();
+			res.json(cities);
 		} catch (e) {
 			res.status(500).json({ e });
 		}
