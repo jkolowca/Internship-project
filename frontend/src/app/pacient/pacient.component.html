@@ -1,7 +1,7 @@
 <mat-toolbar>
 	<div class="buttons">
-	<button mat-button >Pacient Panel : {{ pacient.name }} {{ pacient.surname }} </button>
-	<button mat-button routerLink="registeredVisits">Your visits</button>
+	<button mat-button *ngIf="pacient" >Pacient Panel : {{ pacient.name }} {{ pacient.surname }} </button>
+	<button mat-button routerLink="registered-visits">Your visits</button>
 </div>
 	<button mat-button (click)=logout() >Logout</button>
 </mat-toolbar>

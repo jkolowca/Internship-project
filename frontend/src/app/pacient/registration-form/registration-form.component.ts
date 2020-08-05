@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from '../../_services';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -19,6 +19,7 @@ export class RegistrationFormComponent implements OnInit {
 		private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     public fb: FormBuilder,
+    public router: Router,
 	) {
 }
 
@@ -48,5 +49,6 @@ export class RegistrationFormComponent implements OnInit {
     this.visitsService.register(this.id, pacient).subscribe();
     this.snackBar.open('Umówiono wizytę', 'Koniec', {
       duration: 2000 });
+      this.router.navigate(['../../registered-visits'], { relativeTo: this.route });
   }
   }
