@@ -3,6 +3,7 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from '../../_services';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Appointment } from 'src/app/_models/interfaces';
 
 @Component({
 	selector: 'app-registration-form',
@@ -10,42 +11,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
-  registrationForm: any;
-  id = this.route.snapshot.paramMap.get('id');
-  idUser = this.route.snapshot.paramMap.get('idUser');
+	registrationForm: any;
+	id = this.route.snapshot.paramMap.get('id');
+	idUser = this.route.snapshot.paramMap.get('idUser');
 
 	constructor(
 		private visitsService: VisitsService,
 		private route: ActivatedRoute,
-    private snackBar: MatSnackBar,
-    public fb: FormBuilder,
+		private snackBar: MatSnackBar,
+		public fb: FormBuilder
 	) {
-    this.registrationForm = this.fb.group({
-      name : new FormControl('', [Validators.required]),
-      surname: new FormControl('', [Validators.required]),
-      reason: new FormControl(''),
-  })
-}
+		this.registrationForm = this.fb.group({
+			name: new FormControl('', [Validators.required]),
+			surname: new FormControl('', [Validators.required]),
+			reason: new FormControl(''),
+		});
+	}
 
 	ngOnInit(): void {}
 
-  getErrorMessage(prop): string {
-    if (prop.hasError('required')) {
-      return 'You must enter a value';
-    }
-  }
+	getErrorMessage(prop): string {
+		if (prop.hasError('required')) {
+			return 'You must enter a value';
+		}
+	}
 
-  register(): void {
-    const pacient = {
-      appointment: {
-        _id: this.idUser,
-        name: this.registrationForm.controls['name'].value,
-        surname: this.registrationForm.controls['surname'].value,
-        reason: this.registrationForm.controls['reason'].value
-      }
-    };
-    this.visitsService.register(this.id, pacient).subscribe();
-    this.snackBar.open('Umówiono wizytę', 'Koniec', {
-      duration: 2000 });
-  }
-  }
+	register(): void {
+		const patient: Appointment = this.registrationForm.value;
+
+		this.visitsService.register(this.id, patient).subscribe();
+		this.snackBar.open('Umówiono wizytę', 'Koniec', {
+			duration: 2000,
+		});
+	}
+}

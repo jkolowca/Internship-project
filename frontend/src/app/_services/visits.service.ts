@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { Visit, VisitCount } from '../_models/interfaces';
+import {
+	HttpClient,
+	HttpHeaders,
+	HttpErrorResponse,
+} from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { Visit, VisitCount, Appointment } from '../_models/interfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -28,7 +32,7 @@ export class VisitsService {
 		doctor: string
 	): Observable<any> {
 		return this.http
-			.post<Visit>(`${this.visitsUrl}`, {
+			.post<{ status: string }>(`${this.visitsUrl}`, {
 				startDate,
 				endDate,
 				clinic,
@@ -39,11 +43,7 @@ export class VisitsService {
 
 	editVisit(visit: Visit): Observable<any> {
 		return this.http
-			.patch(`${this.visitsUrl}/visit/${visit._id}`, {
-				startDate: visit.startDate,
-				endDate: visit.endDate,
-				clinic: visit.clinic._id,
-			})
+			.patch(`${this.visitsUrl}/visit/${visit._id}`, visit)
 			.pipe(catchError(this.handleError));
 	}
 
@@ -53,9 +53,9 @@ export class VisitsService {
 			.pipe(catchError(this.handleError));
 	}
 
-	register(id: string, pacient: object): Observable<any> {
+	register(id: string, appointment: Appointment): Observable<any> {
 		return this.http
-			.patch(`${this.visitsUrl}/visit/${id}`, pacient)
+			.patch(`${this.visitsUrl}/visit/${id}`, { appointment })
 			.pipe(catchError(this.handleError));
 	}
 

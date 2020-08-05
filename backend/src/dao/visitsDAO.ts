@@ -1,13 +1,14 @@
 import { Collection, MongoClient, ObjectId, AggregationCursor } from 'mongodb';
-let visits: Collection<any>;
+import { Appointment, Visit } from '../models';
+let visitsCollection: Collection<Visit>;
 
 export class VisitsDAO {
 	static async injectDB(conn: MongoClient) {
-		if (visits) {
+		if (visitsCollection) {
 			return;
 		}
 		try {
-			visits = conn.db('registration').collection('visits');
+			visitsCollection = conn.db('registration').collection('visits');
 		} catch (e) {
 			console.error(
 				`Unable to establish a collection handle in VisitsDAO: ${e}`
@@ -18,7 +19,7 @@ export class VisitsDAO {
 	static async getAll(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
-			cursor = visits.aggregate([
+			cursor = visitsCollection.aggregate([
 				{
 					$match: query,
 				},
@@ -56,36 +57,22 @@ export class VisitsDAO {
 			]);
 		} catch (e) {
 			console.error(`Unable to issue find command, ${e}`);
-			return { visitsList: [] };
+			return [];
 		}
 
 		try {
-			const visitsList = await cursor.toArray();
-
-			return { visitsList };
+			return await cursor.toArray();
 		} catch (e) {
 			console.error(
 				`Unable to convert cursor to array or problem counting documents, ${e}`
 			);
-			return { visitsList: [] };
+			return [];
 		}
 	}
 
-	static async add(
-		startDate: Date,
-		endDate: Date,
-		clinic: ObjectId,
-		doctor: ObjectId
-	) {
+	static async add(visit: Visit) {
 		try {
-			const listDoc = {
-				startDate,
-				endDate,
-				clinic,
-				doctor,
-			};
-
-			return await visits.insertOne(listDoc);
+			return await visitsCollection.insertOne(visit);
 		} catch (e) {
 			console.error(`Unable to post list: ${e}`);
 			return { error: e };
@@ -94,23 +81,21 @@ export class VisitsDAO {
 
 	static async deleteVisitsByDoctorId(doctorId: ObjectId) {
 		try {
-			const deleteResponse = await visits.deleteMany({
+			return await visitsCollection.deleteMany({
 				doctor: doctorId,
 			});
-
-			return deleteResponse;
 		} catch (e) {
 			console.error(`Unable to delete visit: ${e}`);
 			return { error: e };
 		}
 	}
 
-	static async updateAppointment(visitId: ObjectId, appointment: Object) {
+	static async updateAppointment(
+		visitId: ObjectId,
+		appointment: Appointment
+	) {
 		try {
-			await visits.updateOne(
-				{ _id: visitId },
-				{ $set: { appointment: appointment } }
-			);
+			await visitsCollection.updateOne({ _id: visitId }, { $set: { appointment } });
 			return { success: true };
 		} catch (e) {
 			console.error(`Error occurred while logging in user, ${e}`);
@@ -121,7 +106,7 @@ export class VisitsDAO {
 	static async getDistinctDates(query?: Object) {
 		let cursor: AggregationCursor;
 		try {
-			cursor = visits.aggregate([
+			cursor = visitsCollection.aggregate([
 				{
 					$match: query,
 				},
@@ -143,18 +128,16 @@ export class VisitsDAO {
 			]);
 		} catch (e) {
 			console.error(`Unable to issue find command, ${e}`);
-			return { visitsList: [] };
+			return [];
 		}
 
 		try {
-			const visitsList = await cursor.toArray();
-
-			return { visitsList };
+			return await cursor.toArray();
 		} catch (e) {
 			console.error(
 				`Unable to convert cursor to array or problem counting documents, ${e}`
 			);
-			return { visitsList: [] };
+			return [];
 		}
 	}
 
@@ -165,7 +148,7 @@ export class VisitsDAO {
 		clinic: string
 	) {
 		try {
-			const updateResponse = await visits.updateOne(
+			const updateResponse = await visitsCollection.updateOne(
 				{ _id: new ObjectId(visitId) },
 				{
 					$set: {
@@ -178,19 +161,8 @@ export class VisitsDAO {
 
 			return updateResponse;
 		} catch (e) {
-			console.error(`Unable to update comment: ${e}`);
+			console.error(`Unable to update visit: ${e}`);
 			return { error: e };
 		}
 	}
 }
-
-/**
- * A Visit
- * @typedef Visit
- * @property {ObjectId} _id
- * @property {Date} startDate
- * @property {Date} endDate
- * @property {ObjectId} clinic
- * @property {ObjectId} doctor
- * @property {Object} appointment
- */
