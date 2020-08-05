@@ -16,7 +16,7 @@ export class VisitsCtrl {
 		res: Response,
 		next: NextFunction
 	) {
-		let id = req.params.id;
+		let id = new ObjectId(req.params.id);
 		const visitsList = await VisitsDAO.find({
 			'appointment._id': id,
 		});
