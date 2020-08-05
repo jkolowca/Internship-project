@@ -3,13 +3,25 @@
 To setup project run:
 
 ```
-npm run initial-setup
+npm install
 ```
 
-To run project run in separate terminals:
+To run project:
+
+Server compilation in watch mode
 
 ```
-npm run one
+npm run tsc
+```
+
+Run server rebuilding on changes
+
+```
 npm run two
-npm run three
+```
+
+Builds and serves angular app, rebuilding on changes
+
+```
+npm run frontend
 ```
