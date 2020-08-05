@@ -19,13 +19,12 @@ export class LoginComponent implements OnInit {
   constructor(public fb: FormBuilder,
     public authService: AuthService,
     public router: Router) { 
-      this.signinForm = this.fb.group({
-        password: new FormControl('', [Validators.required,Validators.min(8)]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-})
     }
 
   ngOnInit(): void {
+    this.signinForm = this.fb.group({
+      password: new FormControl('', [Validators.required,Validators.min(8)]),
+      email: new FormControl('', [Validators.required, Validators.email]),})
   }
      
   loginUser() {
@@ -33,7 +32,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('access_token', res.token);
       this.authService.getUserProfile(res._id).subscribe(res => {
         this.authService.currentUser = res;
-        this.router.navigate(['/pac/' + res._id]);
+        this.router.navigate(['/patient/' + res._id]);
       });
     });
   }

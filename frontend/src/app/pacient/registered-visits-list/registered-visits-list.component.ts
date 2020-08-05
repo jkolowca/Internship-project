@@ -24,5 +24,8 @@ export class RegisteredVisitsListComponent implements OnInit {
         .getUserProfile(pacientId)
         .subscribe(d => (this.pacient = d));
     }
+    logout() {
+      this.authService.doLogout();
+    }
   
   }

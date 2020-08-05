@@ -20,14 +20,15 @@ export class RegistrationFormComponent implements OnInit {
     private snackBar: MatSnackBar,
     public fb: FormBuilder,
 	) {
+}
+
+	ngOnInit(): void {
     this.registrationForm = this.fb.group({
       name : new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
       reason: new FormControl(''),
   })
-}
-
-	ngOnInit(): void {}
+  }
 
   getErrorMessage(prop): string {
     if (prop.hasError('required')) {

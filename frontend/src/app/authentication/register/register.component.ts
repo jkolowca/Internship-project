@@ -13,16 +13,16 @@ export class RegisterComponent implements OnInit {
   hide = true;
 
   constructor( public fb: FormBuilder, public authService: AuthService, public router: Router) {
-      this.signupForm = this.fb.group({
-        name: new FormControl('', [Validators.required]),
-        surname: new FormControl('', [Validators.required]),
-        password: new FormControl('', [Validators.required]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        
-        })
      }
 
   ngOnInit(): void {
+    this.signupForm = this.fb.group({
+      name: new FormControl('', [Validators.required]),
+      surname: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      
+      })
   }
 
   registerUser() {
