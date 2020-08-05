@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { DoctorsService, ClinicsService } from '../../services';
 import { Clinic } from '../../models/interfaces';
@@ -11,6 +11,8 @@ import { Location } from '@angular/common';
 })
 export class DoctorFormComponent implements OnInit {
 	@Input() doctorId: string;
+	@Output() doctorAdded = new EventEmitter();
+
 	doctor = this.fb.group({
 		name: ['', [Validators.required]],
 		surname: ['', [Validators.required]],
@@ -96,7 +98,7 @@ export class DoctorFormComponent implements OnInit {
 		this.doctorsService
 			.addDoctor(name, surname, specialties, clinics)
 			.subscribe();
-		location.reload();
+		this.doctorAdded.emit();
 	}
 
 	deleteDoctor(): void {

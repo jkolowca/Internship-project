@@ -19,11 +19,11 @@ export interface Pacient {
 	name: string;
 	surname: string;
 	email: string;
-	visits: string[];
 	password: string;
 }
 
 export interface Appointment {
+	_id: string;
 	name: string;
 	surname: string;
 	email: string;

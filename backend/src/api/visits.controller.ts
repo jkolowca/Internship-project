@@ -11,10 +11,14 @@ export class VisitsCtrl {
 		res.json(visits);
 	}
 
-	static async apiGetRegistered(req: Request, res: Response, next: NextFunction){
+	static async apiGetRegistered(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) {
 		let id = req.params.id;
-		const  visitsList = await VisitsDAO.find({
-			"appointment._id": id
+		const visitsList = await VisitsDAO.find({
+			'appointment._id': id,
 		});
 		res.json(visitsList);
 	}
@@ -41,6 +45,7 @@ export class VisitsCtrl {
 			const id = new ObjectId(req.params.id);
 
 			if (!startDate && appointment) {
+				appointment._id = new ObjectId(appointment._id);
 				await VisitsDAO.updateAppointment(id, appointment);
 			} else {
 				await VisitsDAO.updateVisit(
@@ -67,5 +72,4 @@ export class VisitsCtrl {
 			res.status(500).json({ e });
 		}
 	}
-
 }

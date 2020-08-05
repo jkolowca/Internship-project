@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClinicsService } from '../../services';
 
@@ -8,6 +8,8 @@ import { ClinicsService } from '../../services';
 	styleUrls: ['./clinic-form.component.scss'],
 })
 export class ClinicFormComponent implements OnInit {
+	@Output() clinicAdded = new EventEmitter();
+
 	clinic = this.fb.group({
 		name: ['', [Validators.required]],
 		city: ['', [Validators.required, Validators.maxLength(30)]],
@@ -25,7 +27,7 @@ export class ClinicFormComponent implements OnInit {
 	addClinic(): void {
 		const { name, city, street, streetNo } = this.clinic.value;
 		this.clinicsService.addClinic(name, city, street, streetNo).subscribe();
-
-		window.location.reload();
+		this.clinic.reset();
+		this.clinicAdded.emit();
 	}
 }

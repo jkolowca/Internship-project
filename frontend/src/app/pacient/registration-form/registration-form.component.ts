@@ -39,9 +39,10 @@ export class RegistrationFormComponent implements OnInit {
 	}
 
 	register(): void {
-		const patient: Appointment = this.registrationForm.value;
+    const appointment: Appointment = this.registrationForm.value;
+    appointment._id = this.idUser;
 
-		this.visitsService.register(this.id, patient).subscribe();
+		this.visitsService.register(this.id, appointment).subscribe();
 		this.snackBar.open('Umówiono wizytę', 'Koniec', {
 			duration: 2000,
 		});
