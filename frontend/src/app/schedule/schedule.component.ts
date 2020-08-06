@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { Doctor } from '../models/interfaces';
+import { Component, Input } from '@angular/core';
 
 @Component({
 	selector: 'app-schedule',
@@ -7,5 +6,5 @@ import { Doctor } from '../models/interfaces';
 	styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent {
-	@Input() doctor: Doctor;
+	@Input() doctorId: string;
 }

@@ -2,14 +2,20 @@
 	<mat-tab label="Active">
 		<div class="main-container">
 			<div>
-				<app-visits-list type="active"></app-visits-list>
+				<app-visits-list
+					[doctorId]="doctorId"
+					type="active"
+				></app-visits-list>
 			</div>
 		</div>
 	</mat-tab>
 	<mat-tab label="Archived">
 		<div class="main-container">
 			<div>
-				<app-visits-list type="archived"></app-visits-list>
+				<app-visits-list
+					[doctorId]="doctorId"
+					type="archived"
+				></app-visits-list>
 			</div>
 		</div>
 	</mat-tab>

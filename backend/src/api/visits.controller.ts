@@ -6,6 +6,7 @@ import { Visit } from '../models';
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
 		const visits = await VisitsDAO.find(parseQuery(req.query));
+		console.log(visits);
 		res.json(visits);
 	}
 
@@ -101,11 +102,13 @@ export class VisitsCtrl {
 	}
 }
 function parseQuery(query: any): Object {
-	let startDate;
+	let parsed: { [k: string]: any } = {};
 	if (query.type)
-		startDate =
+		parsed.startDate =
 			query.type === 'active'
 				? { $gte: new Date() }
 				: { $lte: new Date() };
-	return { startDate };
+	if (query.doctor) parsed.doctor = new ObjectId(query.doctor);
+	console.log(parsed);
+	return parsed;
 }

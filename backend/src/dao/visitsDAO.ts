@@ -16,10 +16,13 @@ export class VisitsDAO {
 		}
 	}
 
-	static async find(query?: Object) {
+	static async find(query: Object = {}, lateQuery: Object = {}) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visitsCollection.aggregate([
+				{
+					$match: query,
+				},
 				{
 					$lookup: {
 						from: 'doctors',
@@ -47,7 +50,7 @@ export class VisitsDAO {
 					},
 				},
 				{
-					$match: query,
+					$match: lateQuery,
 				},
 				{
 					$sort: {
@@ -119,7 +122,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async getDistinctDates(query?: Object) {
+	static async getDistinctDates(query: Object = {}) {
 		let cursor: AggregationCursor;
 		try {
 			cursor = visitsCollection.aggregate([

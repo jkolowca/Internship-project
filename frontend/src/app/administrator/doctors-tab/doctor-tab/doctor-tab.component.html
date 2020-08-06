@@ -13,6 +13,6 @@
 		</mat-card>
 	</div>
 	<div *ngIf="activeTab === 'schedule'">
-		<app-schedule></app-schedule>
+		<app-schedule [doctorId]="doctor._id"></app-schedule>
 	</div>
 </div>

@@ -10,6 +10,8 @@ import { Visit, VisitCount } from '../../models/interfaces';
 })
 export class VisitsListComponent implements OnInit {
 	@Input() type: string;
+	@Input() doctorId: string;
+
 	visits: Visit[];
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];
@@ -24,7 +26,7 @@ export class VisitsListComponent implements OnInit {
 	ngOnInit(): void {
 		let query: { [k: string]: any } = {};
 		query.type = this.type;
-
+		if (this.doctorId) query.doctor = this.doctorId;
 		this.visitService.findVisits(query).subscribe(list => {
 			this.visits = list;
 		});
