@@ -23,6 +23,21 @@ export class VisitsCtrl {
 		res.json(visitsList);
 	}
 
+	static async apiGetFiltered(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) {
+		//let id = new ObjectId(req.params.id);
+		const visitsList = await VisitsDAO.find({
+			 "clinic.city" : "lublin",
+  			"doctor.specialties" : { $in: ["test"]},
+  			"startDate" : { $gte: new Date('2020-08-19T10:00:00.000+00:00')},
+  			"endDate" : { $lte: new Date('2020-08-20T12:00:00.000+00:00')}
+		});
+		res.json(visitsList);
+	}
+
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
 			const visit: Visit = req.body;
@@ -56,6 +71,16 @@ export class VisitsCtrl {
 				);
 			}
 			console.log(req.params.id);
+			res.json({ status: 'success' });
+		} catch (e) {
+			res.status(500).json({ e });
+		}
+	}
+
+	static async apiDeleteAppointment(req: Request, res: Response, next: NextFunction) {
+		try {
+			const id = new ObjectId(req.params.id);
+				await VisitsDAO.deleteAppointment(id);
 			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
