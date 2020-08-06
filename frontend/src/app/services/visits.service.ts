@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {
 	HttpClient,
-	HttpHeaders,
+	HttpParams,
 	HttpErrorResponse,
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -13,15 +13,22 @@ import { catchError } from 'rxjs/operators';
 })
 export class VisitsService {
 	private visitsUrl = 'http://localhost:5000/visits';
-	httpOptions = {
-		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-	};
 
 	constructor(private http: HttpClient) {}
 
 	getAll(): Observable<Visit[]> {
 		return this.http
 			.get<Visit[]>(this.visitsUrl)
+			.pipe(catchError(this.handleError));
+	}
+
+	findVisits(query: Object): Observable<Visit[]> {
+		let params: HttpParams = new HttpParams();
+		for (let key in query) {
+			params = params.append(key.toString(), query[key]);
+		}
+		return this.http
+			.get<Visit[]>(this.visitsUrl, { params: params })
 			.pipe(catchError(this.handleError));
 	}
 
@@ -47,9 +54,13 @@ export class VisitsService {
 			.pipe(catchError(this.handleError));
 	}
 
-	getVisitDates(): Observable<any> {
+	getVisitDates(query: Object): Observable<any> {
+		let params: HttpParams = new HttpParams();
+		for (let key in query) {
+			params = params.append(key.toString(), query[key]);
+		}
 		return this.http
-			.get<VisitCount[]>(`${this.visitsUrl}/date`)
+			.get<VisitCount[]>(`${this.visitsUrl}/date`, { params: params })
 			.pipe(catchError(this.handleError));
 	}
 

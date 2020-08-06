@@ -5,9 +5,7 @@ import { Visit } from '../models';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
-		const visits = await VisitsDAO.find({
-			startDate: { $gte: new Date() },
-		});
+		const visits = await VisitsDAO.find(parseQuery(req.query));
 		res.json(visits);
 	}
 
@@ -30,10 +28,10 @@ export class VisitsCtrl {
 	) {
 		//let id = new ObjectId(req.params.id);
 		const visitsList = await VisitsDAO.find({
-			 "clinic.city" : "lublin",
-  			"doctor.specialties" : { $in: ["test"]},
-  			"startDate" : { $gte: new Date('2020-08-19T10:00:00.000+00:00')},
-  			"endDate" : { $lte: new Date('2020-08-20T12:00:00.000+00:00')}
+			'clinic.city': 'lublin',
+			'doctor.specialties': { $in: ['test'] },
+			startDate: { $gte: new Date('2020-08-19T10:00:00.000+00:00') },
+			endDate: { $lte: new Date('2020-08-20T12:00:00.000+00:00') },
 		});
 		res.json(visitsList);
 	}
@@ -77,10 +75,14 @@ export class VisitsCtrl {
 		}
 	}
 
-	static async apiDeleteAppointment(req: Request, res: Response, next: NextFunction) {
+	static async apiDeleteAppointment(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) {
 		try {
 			const id = new ObjectId(req.params.id);
-				await VisitsDAO.deleteAppointment(id);
+			await VisitsDAO.deleteAppointment(id);
 			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
@@ -89,12 +91,21 @@ export class VisitsCtrl {
 
 	static async apiGetDates(req: Request, res: Response, next: NextFunction) {
 		try {
-			let visits = await VisitsDAO.getDistinctDates({
-				startDate: { $gte: new Date() },
-			});
+			let visits = await VisitsDAO.getDistinctDates(
+				parseQuery(req.query)
+			);
 			res.json(visits);
 		} catch (e) {
 			res.status(500).json({ e });
 		}
 	}
+}
+function parseQuery(query: any): Object {
+	let startDate;
+	if (query.type)
+		startDate =
+			query.type === 'active'
+				? { $gte: new Date() }
+				: { $lte: new Date() };
+	return { startDate };
 }

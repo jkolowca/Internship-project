@@ -14,26 +14,31 @@ export class VisitsListComponent implements OnInit {
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];
 	patientId: string;
-	constructor(private visitService: VisitsService,
-		private route: ActivatedRoute) {
-			 this.patientId = this.route.snapshot.queryParamMap.get("idUser");
-		}
+	constructor(
+		private visitService: VisitsService,
+		private route: ActivatedRoute
+	) {
+		this.patientId = this.route.snapshot.queryParamMap.get('idUser');
+	}
 
 	ngOnInit(): void {
-		this.visitService.getAll().subscribe(list => {
+		let query: { [k: string]: any } = {};
+		query.type = this.type;
+
+		this.visitService.findVisits(query).subscribe(list => {
 			this.visits = list;
 		});
-		this.visitService.getVisitDates().subscribe(list => {
+		this.visitService.getVisitDates(query).subscribe(list => {
 			this.dailyVisitCount = list;
 		});
-		
+
 		this.patientId = this.route.snapshot.paramMap.get('idUser');
 
-		this.visitService.getRegisteredVisits(this.patientId).subscribe(list => {
-			this.registeredVisits = list;
-			
-		});
-		
+		this.visitService
+			.getRegisteredVisits(this.patientId)
+			.subscribe(list => {
+				this.registeredVisits = list;
+			});
 	}
 
 	getDailyVisits(day: number, visits: Visit[]): Visit[] {
@@ -41,9 +46,6 @@ export class VisitsListComponent implements OnInit {
 			.slice(0, day)
 			.map(i => i.count)
 			.reduce((a, b) => a + b, 0);
-		return visits.slice(
-			offset,
-			offset + this.dailyVisitCount[day].count
-		);
+		return visits.slice(offset, offset + this.dailyVisitCount[day].count);
 	}
 }
