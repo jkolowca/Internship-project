@@ -106,6 +106,21 @@ export class VisitsDAO {
 		}
 	}
 
+	static async deleteAppointment(
+		visitId: ObjectId,
+	) {
+		try {
+			await visitsCollection.updateOne(
+				{ _id: visitId },
+				{ $unset: { 'appointment': '' } }
+			);
+			return { success: true };
+		} catch (e) {
+			console.error(`Error occurred while delete appointment, ${e}`);
+			return { error: e };
+		}
+	}
+
 	static async getDistinctDates(query?: Object) {
 		let cursor: AggregationCursor;
 		try {

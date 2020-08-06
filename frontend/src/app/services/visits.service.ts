@@ -65,6 +65,12 @@ export class VisitsService {
 			.pipe(catchError(this.handleError));
 	}
 
+	deleteAppointment(id: string): Observable<any> {
+		return this.http
+			.patch(`${this.visitsUrl}/visit/${id}/delete`, id)
+			.pipe(catchError(this.handleError));
+	}
+
 	handleError(error: HttpErrorResponse) {
 		let msg = '';
 		if (error.error instanceof ErrorEvent) {

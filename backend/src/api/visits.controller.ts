@@ -62,6 +62,16 @@ export class VisitsCtrl {
 		}
 	}
 
+	static async apiDeleteAppointment(req: Request, res: Response, next: NextFunction) {
+		try {
+			const id = new ObjectId(req.params.id);
+				await VisitsDAO.deleteAppointment(id);
+			res.json({ status: 'success' });
+		} catch (e) {
+			res.status(500).json({ e });
+		}
+	}
+
 	static async apiGetDates(req: Request, res: Response, next: NextFunction) {
 		try {
 			let visits = await VisitsDAO.getDistinctDates({
