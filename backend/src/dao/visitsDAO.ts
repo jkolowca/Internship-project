@@ -21,9 +21,6 @@ export class VisitsDAO {
 		try {
 			cursor = visitsCollection.aggregate([
 				{
-					$match: query,
-				},
-				{
 					$lookup: {
 						from: 'doctors',
 						localField: 'doctor',
@@ -48,6 +45,9 @@ export class VisitsDAO {
 					$unwind: {
 						path: '$doctor',
 					},
+				},
+				{
+					$match: query,
 				},
 				{
 					$sort: {
@@ -106,13 +106,11 @@ export class VisitsDAO {
 		}
 	}
 
-	static async deleteAppointment(
-		visitId: ObjectId,
-	) {
+	static async deleteAppointment(visitId: ObjectId) {
 		try {
 			await visitsCollection.updateOne(
 				{ _id: visitId },
-				{ $unset: { 'appointment': '' } }
+				{ $unset: { appointment: '' } }
 			);
 			return { success: true };
 		} catch (e) {
