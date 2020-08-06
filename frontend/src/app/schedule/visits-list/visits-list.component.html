@@ -5,18 +5,18 @@
       {{ day._id }}
       <mat-divider></mat-divider>
       <br />
-      <app-panel-pacient *ngFor="let visit of getDailyVisits(i)" [visit]="visit"></app-panel-pacient>
+      <app-panel-pacient *ngFor="let visit of getDailyVisits(i, this.visits)" [visit]="visit"></app-panel-pacient>
     </div>
   </mat-accordion>
   <mat-accordion *ngSwitchCase="'pacientRes'">
     <div *ngFor="let day of dailyVisitCount; let i = index">
       <br />
-      <ng-container *ngIf="getDailyRegVisits(i).length != 0">
+      <ng-container *ngIf="getDailyVisits(i, this.registeredVisits).length != 0">
         {{ day._id }}
         <mat-divider></mat-divider>
       </ng-container>
       <br />
-      <app-panel-pacient *ngFor="let visit of getDailyRegVisits(i)" [visit]="visit"></app-panel-pacient>
+      <app-panel-pacient *ngFor="let visit of getDailyVisits(i, this.registeredVisits)" [visit]="visit"></app-panel-pacient>
 
     </div>
   </mat-accordion>
@@ -29,7 +29,7 @@
         {{ day._id }}
         <mat-divider></mat-divider>
         <br />
-        <app-panel-admin *ngFor="let visit of getDailyVisits(i)" [visit]="visit"></app-panel-admin>
+        <app-panel-admin *ngFor="let visit of getDailyVisits(i, this.visits)" [visit]="visit"></app-panel-admin>
       </div>
     </mat-accordion>
   </div>
