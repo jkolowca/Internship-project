@@ -46,4 +46,15 @@ export class VisitsListComponent implements OnInit {
 			offset + this.dailyVisitCount[day].count
 		);
 	}
+
+	getDailyRegVisits(day: number): Visit[] {
+		let offset = this.dailyVisitCount
+			.slice(0, day)
+			.map(i => i.count)
+			.reduce((a, b) => a + b, 0);
+		return this.registeredVisits.slice(
+			offset,
+			offset + this.dailyVisitCount[day].count
+		);
+	}
 }
