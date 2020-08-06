@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
-import { DoctorsService, ClinicsService } from '../../services';
-import { Clinic } from '../../models/interfaces';
 import { Location } from '@angular/common';
+import { Clinic } from 'src/app/models/interfaces';
+import { DoctorsService, ClinicsService } from 'src/app/services';
 
 @Component({
 	selector: 'app-doctor-form',
@@ -11,8 +11,7 @@ import { Location } from '@angular/common';
 })
 export class DoctorFormComponent implements OnInit {
 	@Input() doctorId: string;
-	@Output() doctorAdded = new EventEmitter();
-
+	@Output() doctorSaved = new EventEmitter();
 	doctor = this.fb.group({
 		name: ['', [Validators.required]],
 		surname: ['', [Validators.required]],
@@ -27,8 +26,7 @@ export class DoctorFormComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private doctorsService: DoctorsService,
-		private clinicsService: ClinicsService,
-		private location: Location
+		private clinicsService: ClinicsService
 	) {}
 
 	ngOnInit(): void {
@@ -92,18 +90,17 @@ export class DoctorFormComponent implements OnInit {
 				})
 				.subscribe();
 
-			this.location.back();
+			this.doctorSaved.emit();
 			return;
 		}
 		this.doctorsService
 			.addDoctor(name, surname, specialties, clinics)
 			.subscribe();
-		this.doctorAdded.emit();
+		this.doctorSaved.emit();
 	}
 
 	deleteDoctor(): void {
 		this.doctorsService.deleteDoctor(this.doctorId).subscribe();
-		this.location.back();
 	}
 
 	openSchedule() {

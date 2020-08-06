@@ -40,7 +40,9 @@ body {
 	font-family: 'Roboto';
 }
 
-app-administrator,
+app-doctors-tab,
+app-doctor-tab,
+app-clients-tab,
 app-doctor-edit,
 app-adm-schedule-edit,
 app-registered-visits-list,
@@ -51,4 +53,8 @@ app-register {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+app-administrator-top-panel {
+	width: 100%;
 }

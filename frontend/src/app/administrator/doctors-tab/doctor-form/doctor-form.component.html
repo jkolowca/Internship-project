@@ -57,28 +57,18 @@
 	</div>
 	<div class="break"></div>
 
-	<div *ngIf="doctorId">
-		<button
-			style="width: 100%;"
-			mat-raised-button
-			type="button"
-			color="primary"
-			target="_blank"
-			(click)="openSchedule()"
-		>
-			Open Schedule
-		</button>
-		<div class="break"></div>
-		<button
-			style="width: 100%;"
-			mat-raised-button
-			type="button"
-			color="primary"
-			(click)="deleteDoctor()"
-		>
-			Delete
-		</button>
-	</div>
+	<button
+		*ngIf="doctorId"
+		style="width: 100%;"
+		mat-raised-button
+		type="button"
+		color="primary"
+		(click)="deleteDoctor()"
+		[routerLink]="'/admin/doctors'"
+	>
+		Delete
+	</button>
+
 	<br />
 	<button
 		mat-raised-button

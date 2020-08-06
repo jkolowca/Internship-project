@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ClinicsService } from '../../services';
-import { Clinic } from '../../models/interfaces';
+import { ClinicsService } from '../../../services';
+import { Clinic } from '../../../models/interfaces';
 
 @Component({
 	selector: 'app-clinics-list',

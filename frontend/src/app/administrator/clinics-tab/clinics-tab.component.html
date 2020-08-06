@@ -1,0 +1,18 @@
+<app-administrator-top-panel></app-administrator-top-panel>
+
+<div class="main-container">
+	<div>
+		<mat-expansion-panel>
+			<mat-expansion-panel-header>
+				<mat-panel-title>Add new Clinic</mat-panel-title>
+			</mat-expansion-panel-header>
+			<app-clinic-form
+				*ngIf="showForm"
+				(clinicAdded)="onClinicAdded()"
+			></app-clinic-form>
+		</mat-expansion-panel>
+	</div>
+	<div>
+		<app-clinics-list></app-clinics-list>
+	</div>
+</div>

@@ -9,13 +9,14 @@ import { MaterialModule } from './shared/material.module';
 
 import { AppComponent } from './app.component';
 
-import { AdministratorComponent } from './administrator/administrator.component';
-import { DoctorsListComponent } from './administrator/doctors-list/doctors-list.component';
-import { ClinicsListComponent } from './administrator/clinics-list/clinics-list.component';
-import { DoctorFormComponent } from './administrator/doctor-form/doctor-form.component';
-import { ClinicFormComponent } from './administrator/clinic-form/clinic-form.component';
-import { DoctorEditComponent } from './administrator/doctor-edit/doctor-edit.component';
-import { AdmScheduleComponent } from './administrator/adm-schedule/adm-schedule.component';
+import { DoctorTabComponent } from './administrator/doctors-tab/doctor-tab/doctor-tab.component';
+import { DoctorsTabComponent } from './administrator/doctors-tab/doctors-tab.component';
+import { ClinicsTabComponent } from './administrator/clinics-tab/clinics-tab.component';
+import { DoctorsListComponent } from './administrator/doctors-tab/doctors-list/doctors-list.component';
+import { DoctorFormComponent } from './administrator/doctors-tab/doctor-form/doctor-form.component';
+import { ClinicFormComponent } from './administrator/clinics-tab/clinic-form/clinic-form.component';
+import { ClinicsListComponent } from './administrator/clinics-tab/clinics-list/clinics-list.component';
+import { AdministratorTopPanelComponent } from './administrator/administrator-top-panel/administrator-top-panel.component';
 
 import { DoctorComponent } from './doctor/doctor.component';
 
@@ -37,7 +38,6 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 @NgModule({
 	declarations: [
 		AppComponent,
-		AdministratorComponent,
 		DoctorsListComponent,
 		DoctorComponent,
 		PacientComponent,
@@ -45,9 +45,8 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 		DoctorFormComponent,
 		RegistrationFormComponent,
 		ClinicFormComponent,
-		DoctorEditComponent,
+		DoctorTabComponent,
 		ScheduleComponent,
-		AdmScheduleComponent,
 		VisitsListComponent,
 		RegisteredVisitsListComponent,
 		RegisterComponent,
@@ -57,6 +56,9 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 		PanelAdminComponent,
 		PanelAddComponent,
 		ClinicsListComponent,
+		DoctorsTabComponent,
+		ClinicsTabComponent,
+		AdministratorTopPanelComponent,
 	],
 	imports: [
 		AppRoutingModule,

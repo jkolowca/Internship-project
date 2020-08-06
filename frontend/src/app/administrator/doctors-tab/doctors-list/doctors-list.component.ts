@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { DoctorsService } from '../../services';
-import { Doctor } from '../../models/interfaces';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Doctor } from 'src/app/models/interfaces';
+import { DoctorsService } from 'src/app/services';
 
 @Component({
 	selector: 'app-doctors-list',
@@ -8,6 +8,7 @@ import { Doctor } from '../../models/interfaces';
 	styleUrls: ['./doctors-list.component.scss'],
 })
 export class DoctorsListComponent implements OnInit {
+	@Output() editDoctor = new EventEmitter<Doctor>();
 	constructor(private doctorsService: DoctorsService) {}
 	doctorsList: Doctor[];
 

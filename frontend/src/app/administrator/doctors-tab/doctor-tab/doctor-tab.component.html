@@ -1,0 +1,18 @@
+<app-administrator-top-panel></app-administrator-top-panel>
+<mat-toolbar>
+	<button mat-button (click)="openTab('doctor')">
+		Dr {{ doctor.surname }} {{ doctor.name }}
+	</button>
+	<button mat-button (click)="openTab('schedule')">Schedule</button>
+</mat-toolbar>
+
+<div class="main-container" *ngIf="doctor._id">
+	<div *ngIf="activeTab === 'doctor'">
+		<mat-card>
+			<app-doctor-form [doctorId]="doctor._id"></app-doctor-form>
+		</mat-card>
+	</div>
+	<div *ngIf="activeTab === 'schedule'">
+		<app-schedule></app-schedule>
+	</div>
+</div>
