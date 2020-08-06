@@ -16,6 +16,7 @@ export class VisitsListComponent implements OnInit {
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];
 	patientId: string;
+	visitsFiltered: Visit[];
 	constructor(
 		private visitService: VisitsService,
 		private route: ActivatedRoute
@@ -27,6 +28,7 @@ export class VisitsListComponent implements OnInit {
 		let query: { [k: string]: any } = {};
 		query.type = this.type;
 		if (this.doctorId) query.doctor = this.doctorId;
+
 		this.visitService.findVisits(query).subscribe(list => {
 			this.visits = list;
 		});
@@ -49,5 +51,12 @@ export class VisitsListComponent implements OnInit {
 			.map(i => i.count)
 			.reduce((a, b) => a + b, 0);
 		return visits.slice(offset, offset + this.dailyVisitCount[day].count);
+	}
+
+	getFiltered() {
+		this.visitService
+			.getFiltered()
+			.subscribe(l => (this.visitsFiltered = l));
+		console.log(this.visitsFiltered);
 	}
 }
