@@ -28,12 +28,15 @@ export class VisitsCtrl {
 		res: Response,
 		next: NextFunction
 	) {
-		//let id = new ObjectId(req.params.id);
+		let city = req.params.city;
+		let specialties = req.params.specialties;
+		let startDate = new Date(req.params.startDate);
+		let endDate = new Date(req.params.endDate);
 		const visitsList = await VisitsDAO.find({
-			 "clinic.city" : "lublin",
-  			"doctor.specialties" : { $in: ["test"]},
-  			"startDate" : { $gte: new Date('2020-08-19T10:00:00.000+00:00')},
-  			"endDate" : { $lte: new Date('2020-08-20T12:00:00.000+00:00')}
+			'clinic.city' : city,
+  			'doctor.specialties' : { $in: [specialties]},
+  			startDate : { $gte: startDate},
+  			endDate : { $lte: endDate}
 		});
 		res.json(visitsList);
 	}

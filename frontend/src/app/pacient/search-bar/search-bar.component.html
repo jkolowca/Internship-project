@@ -1,17 +1,17 @@
 <mat-card>
   <div class="main-container">
-    <form [formGroup]="searchForm">
+    <form [formGroup]="searchForm" (ngSubmit) = "onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>City</mat-label>
       <mat-select multiple formControlName="city">
-        <mat-option *ngFor="let clinic of availableClinics" value='{{clinic}}'>{{clinic}}</mat-option>
+        <mat-option *ngFor="let clinic of availableClinics" value={{clinic}}>{{clinic}}</mat-option>
       </mat-select>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Specialties</mat-label>
       <mat-select formControlName="specialty">
-        <mat-option *ngFor="let spec of availableSpec" value='spec'>{{spec}}</mat-option>
+        <mat-option *ngFor="let spec of availableSpec" value={{spec}}>{{spec}}</mat-option>
       </mat-select>
     </mat-form-field>
 

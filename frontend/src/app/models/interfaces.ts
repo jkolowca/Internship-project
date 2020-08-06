@@ -52,3 +52,10 @@ export interface User {
 	password: string;
 	accountType?: string;
 }
+
+export interface Query {
+	city: string[];
+	specialty: string;
+	startDate: string;
+	endDate: string;
+}

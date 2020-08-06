@@ -4,8 +4,8 @@ import {
 	HttpHeaders,
 	HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { Visit, VisitCount, Appointment } from '../models/interfaces';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Visit, VisitCount, Appointment, Query } from '../models/interfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -16,8 +16,16 @@ export class VisitsService {
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 	};
+	query: Query;
 
 	constructor(private http: HttpClient) {}
+
+	getFiltered(): Observable<Visit[]> {
+		return this.http
+		.get<Visit[]>(`${this.visitsUrl}/${this.query.city[0]}/${this.query.specialty}/${this.query.startDate}/${this.query.endDate}`)
+		.pipe(catchError(this.handleError));
+	}
+
 
 	getAll(): Observable<Visit[]> {
 		return this.http

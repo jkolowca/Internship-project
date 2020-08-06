@@ -14,6 +14,7 @@ export class VisitsListComponent implements OnInit {
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];
 	patientId: string;
+	visitsFiltered: Visit[];
 	constructor(private visitService: VisitsService,
 		private route: ActivatedRoute) {
 			 this.patientId = this.route.snapshot.queryParamMap.get("idUser");
@@ -33,7 +34,6 @@ export class VisitsListComponent implements OnInit {
 			this.registeredVisits = list;
 			
 		});
-		
 	}
 
 	getDailyVisits(day: number, visits: Visit[]): Visit[] {
@@ -45,5 +45,11 @@ export class VisitsListComponent implements OnInit {
 			offset,
 			offset + this.dailyVisitCount[day].count
 		);
+	}
+
+
+	getFiltered(){
+	 this.visitService.getFiltered().subscribe(l => this.visitsFiltered = l);
+	 console.log(this.visitsFiltered);
 	}
 }
