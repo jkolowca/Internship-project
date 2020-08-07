@@ -1,4 +1,8 @@
-<mat-expansion-panel hideToggle *ngIf="state === 'display'; else elseBlock">
+<mat-expansion-panel
+	[class.booked]="visit.appointment"
+	hideToggle
+	*ngIf="state === 'display'; else elseBlock"
+>
 	<mat-expansion-panel-header>
 		<mat-panel-title>
 			{{ visit.startDate | date: 'H:mm' }} -
@@ -20,8 +24,8 @@
 			<div class="clinic">
 				<p>{{ visit.clinic.name }}</p>
 				<p>
-					{{ visit.clinic.streetNo }}
-					{{ visit.clinic.street }}
+					{{ visit.clinic.streetAddress }}
+					{{ visit.clinic.apartment }}
 				</p>
 				<p>{{ visit.clinic.city }}</p>
 			</div>
@@ -61,18 +65,6 @@
 					formControlName="startDate"
 					autocomplete="off"
 				/>
-				<!-- <mat-datepicker-toggle
-					matSuffix
-					[for]="picker"
-				></mat-datepicker-toggle>
-				<ngx-mat-datetime-picker
-					#picker
-					[disabled]="false"
-					[defaultTime]="[12, 0, 0]"
-					[showSpinners]="true"
-					[showSeconds]="false"
-					[stepMinute]="5"
-				></ngx-mat-datetime-picker> -->
 			</mat-form-field>
 			<mat-form-field appearance="legacy">
 				<mat-label>Visit end</mat-label>
@@ -82,18 +74,6 @@
 					formControlName="endDate"
 					autocomplete="off"
 				/>
-				<!-- <mat-datepicker-toggle
-					matSuffix
-					[for]="pickerStart"
-				></mat-datepicker-toggle>
-				<ngx-mat-datetime-picker
-					#pickerStart
-					[disabled]="false"
-					[defaultTime]="[12, 0, 0]"
-					[showSpinners]="true"
-					[showSeconds]="false"
-					[stepMinute]="5"
-				></ngx-mat-datetime-picker> -->
 			</mat-form-field>
 			<mat-form-field>
 				<mat-select formControlName="clinic">
