@@ -12,7 +12,7 @@ import { Appointment, User } from 'src/app/models/interfaces';
 })
 export class RegistrationFormComponent implements OnInit {
 
-	patient: User;
+	patient: string;
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
 	idUser = this.route.snapshot.paramMap.get('idUser');
