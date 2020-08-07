@@ -25,13 +25,13 @@
         <mat-label>Password</mat-label>
         <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
        
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
         </button>
       </mat-form-field>
       <br>
     <div class="buttons">
-      <button routerLink="../" mat-button>Back to Sign in</button>
+      <button routerLink="../" type="button" mat-button>Back to Sign in</button>
       <button [disabled]="!signupForm.valid" type="submit" mat-button >Sign up</button>
     </div>
 </form>

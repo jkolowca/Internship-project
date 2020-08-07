@@ -6,3 +6,15 @@ mat-toolbar {
 		padding-right: 15px;
 	}
 }
+
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+.mat-toolbar {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}

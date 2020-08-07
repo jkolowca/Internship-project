@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { DoctorsTabComponent } from './administrator/doctors-tab/doctors-tab.component';
 import { DoctorComponent } from './doctor/doctor.component';
-import { PacientComponent } from './pacient/pacient.component';
-import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
-import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
+import { PatientComponent } from './patient/patient.component';
+import { RegistrationFormComponent } from './patient/registration-form/registration-form.component';
+import { RegisteredVisitsListComponent } from './patient/registered-visits-list/registered-visits-list.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ClinicsTabComponent } from './administrator/clinics-tab/clinics-tab.component';
@@ -50,7 +50,7 @@ const routes: Routes = [
 	},
 	{
 		path: 'patient/:idUser',
-		component: PacientComponent,
+		component: PatientComponent,
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['patient'] },
 	},

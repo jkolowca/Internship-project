@@ -20,14 +20,14 @@ import { AdministratorTopPanelComponent } from './administrator/administrator-to
 
 import { DoctorComponent } from './doctor/doctor.component';
 
-import { PacientComponent } from './pacient/pacient.component';
-import { SearchBarComponent } from './pacient/search-bar/search-bar.component';
-import { RegistrationFormComponent } from './pacient/registration-form/registration-form.component';
-import { RegisteredVisitsListComponent } from './pacient/registered-visits-list/registered-visits-list.component';
+import { PatientComponent } from './patient/patient.component';
+import { SearchBarComponent } from './patient/search-bar/search-bar.component';
+import { RegistrationFormComponent } from './patient/registration-form/registration-form.component';
+import { RegisteredVisitsListComponent } from './patient/registered-visits-list/registered-visits-list.component';
 
 import { ScheduleComponent } from './schedule/schedule.component';
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
-import { PanelPacientComponent } from './schedule/panel-pacient/panel-pacient.component';
+import { PanelPatientComponent } from './schedule/panel-patient/panel-patient.component';
 import { PanelAdminComponent } from './schedule/panel-admin/panel-admin.component';
 import { PanelAddComponent } from './schedule/panel-add/panel-add.component';
 
@@ -40,7 +40,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 		AppComponent,
 		DoctorsListComponent,
 		DoctorComponent,
-		PacientComponent,
+		PatientComponent,
 		SearchBarComponent,
 		DoctorFormComponent,
 		RegistrationFormComponent,
@@ -52,7 +52,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 		RegisterComponent,
 		LoginComponent,
 		AuthenticationComponent,
-		PanelPacientComponent,
+		PanelPatientComponent,
 		PanelAdminComponent,
 		PanelAddComponent,
 		ClinicsListComponent,

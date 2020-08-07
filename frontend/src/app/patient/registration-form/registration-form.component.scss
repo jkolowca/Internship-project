@@ -39,7 +39,8 @@ button {
 .mat-toolbar {
 	padding: 0px;
 	display: flex;
-	justify-content: space-between;
+    justify-content: space-between;
+    margin-bottom: 10px;
 }
 
 mat-tab-group {
