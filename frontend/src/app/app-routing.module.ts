@@ -64,7 +64,7 @@ const routes: Routes = [
 		path: 'patient/:idUser/registered-visits',
 		component: RegisteredVisitsListComponent,
 		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['[patient]'] },
+		data: { accountTypes: ['patient'] },
 	},
 ];
 
