@@ -11,6 +11,7 @@ import { VisitsListComponent } from '../schedule/visits-list/visits-list.compone
 export class PacientComponent implements OnInit {
 	@ViewChild(VisitsListComponent) visitList: VisitsListComponent;
 	patient: User;
+	appointment: any;
 	constructor(private authService: AuthService) {}
 
 	ngOnInit(): void {
@@ -20,6 +21,6 @@ export class PacientComponent implements OnInit {
 		this.authService.doLogout();
 	}
 	loadVisits(query: Object) {
-		this.visitList.loadVisits(query);
+		this.visitList.loadVisits({query, appointment: 'available'});
 	}
 }

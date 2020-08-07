@@ -26,6 +26,10 @@ export class VisitsCtrl {
 			beforeLookup['endDate'] = {
 				$lte: new Date(req.query.endDate as string),
 			};
+		if (req.query.appointment)
+			beforeLookup['appointment'] = 
+				req.query.appointment === 'available' ?
+				{ $exists: false } : { $exists: true };
 		if (req.query.city)
 			afterLookup['clinic.city'] = {
 				$in: (req.query.city as string).split(','),
