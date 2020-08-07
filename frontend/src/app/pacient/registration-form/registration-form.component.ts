@@ -43,14 +43,21 @@ export class RegistrationFormComponent implements OnInit {
 	}
 
 	register(): void {
-    const appointment: Appointment = this.registrationForm.value;
-    appointment._id = this.idUser;
+	  const appointment: Appointment = this.registrationForm.value;
+	  appointment._id = this.idUser;
 
-		this.visitsService.register(this.id, appointment).subscribe();
-		this.snackBar.open('Umówiono wizytę', 'Koniec', {
-			duration: 2000,
-		});
-		this.router.navigate(['../../registered-visits'], { relativeTo: this.route });
+	  this.visitsService.register(this.id, appointment).subscribe(() => {
+	    this.snackBar.open('A doctor visit was agreed', 'End', {
+	      duration: 2000,
+	    });
+	    this.router.navigate(['../../registered-visits'], {
+	      relativeTo: this.route
+	    });
+	  }, () => {
+		this.snackBar.open('An appointment could not be made. Try again', 'End', {
+			duration: 3000,
+		  });
+	  });
 	}
 
 	logout() {

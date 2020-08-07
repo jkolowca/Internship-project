@@ -8,8 +8,8 @@
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name">
-            
           </mat-form-field>
+         
           <mat-form-field appearance="fill">
             <mat-label>Surname</mat-label>
             <input matInput formControlName="surname">
@@ -32,7 +32,7 @@
       <br>
     <div class="buttons">
       <button routerLink="../" mat-button>Back to Sign in</button>
-      <button type="submit" mat-button >Sign up</button>
+      <button [disabled]="!signupForm.valid" type="submit" mat-button >Sign up</button>
     </div>
 </form>
 </div>

@@ -7,6 +7,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-login',
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
   hide = true;
   constructor(public fb: FormBuilder,
     public authService: AuthService,
-    public router: Router) {}
+    public router: Router,
+    private snackBar: MatSnackBar,) {}
 
   ngOnInit(): void {
     this.signinForm = this.fb.group({
@@ -28,12 +30,16 @@ export class LoginComponent implements OnInit {
   }
 
   loginUser() {
-    this.authService.signIn(this.signinForm.value).subscribe((res: any) => {
+    this.authService.signIn(this.signinForm.value).pipe().subscribe((res: any) => {
       localStorage.setItem('access_token', res.token);
       this.authService.getUserProfile(res._id).subscribe(res => {
         this.authService.currentUser = res;
         this.router.navigate(['/patient/' + res._id]);
       });
+    }, () => {
+      this.snackBar.open('Invalid username or password', 'End', {
+	      duration: 3000,
+	    });
     });
   }
 }

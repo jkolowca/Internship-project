@@ -28,7 +28,7 @@
     </div>
     <div class="buttons">
       <button routerLink="../../" mat-button>Back</button>
-      <button (click)="register()" type="submit" mat-button>Submit</button>
+      <button [disabled]="!registrationForm.valid" (click)="register()" type="submit" mat-button>Submit</button>
     </div>
   </mat-card>
 </div>
