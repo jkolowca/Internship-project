@@ -29,10 +29,10 @@ export class SearchBarComponent implements OnInit {
 		private doctorsService: DoctorsService
 	) {
 		this.searchForm = this.fb.group({
-			city: new FormControl('', [Validators.required]),
-			speciality: new FormControl('', [Validators.required]),
-			startDate: new FormControl('', [Validators.required]),
-			endDate: new FormControl('', [Validators.required]),
+			city: new FormControl(''),
+			speciality: new FormControl(''),
+			startDate: new FormControl(''),
+			endDate: new FormControl(''),
 		});
 	}
 

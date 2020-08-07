@@ -26,4 +26,7 @@
 			</div>
 		</mat-accordion>
 	</ng-template>
+	<div class="message" *ngIf="visits && !this.visits.length">
+		No visits found
+	</div>
 </div>
