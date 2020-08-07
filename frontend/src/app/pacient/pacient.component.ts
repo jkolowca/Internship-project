@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../services';
 import { User } from '../models/interfaces';
+import { VisitsListComponent } from '../schedule/visits-list/visits-list.component';
 
 @Component({
 	selector: 'app-pacient',
@@ -9,17 +9,17 @@ import { User } from '../models/interfaces';
 	styleUrls: ['./pacient.component.scss'],
 })
 export class PacientComponent implements OnInit {
-pacient : User;
-constructor(
-  private route: ActivatedRoute,
-  private authService: AuthService
-) {}
+	@ViewChild(VisitsListComponent) visitList: VisitsListComponent;
+	patient: User;
+	constructor(private authService: AuthService) {}
 
-
-  ngOnInit(): void {
-    this.pacient = this.authService.currentUser;
-  }
+	ngOnInit(): void {
+		this.patient = this.authService.currentUser;
+	}
 	logout() {
 		this.authService.doLogout();
+	}
+	loadVisits(query: Object) {
+		this.visitList.loadVisits(query);
 	}
 }

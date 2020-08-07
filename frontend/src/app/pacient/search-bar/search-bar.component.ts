@@ -1,12 +1,18 @@
-import { Component, OnInit } from '@angular/core';
 import {
-	ClinicsService,
-	DoctorsService,
-	VisitsService,
-} from 'src/app/services';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { EventEmitter, Output } from '@angular/core';
-
+	Component,
+	OnInit,
+	Output,
+	EventEmitter,
+	ViewChild,
+	AfterViewInit,
+} from '@angular/core';
+import { ClinicsService, DoctorsService } from 'src/app/services';
+import {
+	FormBuilder,
+	FormControl,
+	Validators,
+	AbstractControl,
+} from '@angular/forms';
 
 @Component({
 	selector: 'app-search-bar',
@@ -14,21 +20,20 @@ import { EventEmitter, Output } from '@angular/core';
 	styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
-
-	visits;
+	@Output() formSubmitted = new EventEmitter<Object>();
+	//@ViewChild('form') form: AbstractControl;
 	searchForm: any;
-	constructor( public fb: FormBuilder,
+	constructor(
+		public fb: FormBuilder,
 		private clinicsService: ClinicsService,
-		private doctorsService: DoctorsService,
-		private visitService: VisitsService
+		private doctorsService: DoctorsService
 	) {
 		this.searchForm = this.fb.group({
 			city: new FormControl('', [Validators.required]),
-			specialty: new FormControl('', [Validators.required]),
+			speciality: new FormControl('', [Validators.required]),
 			startDate: new FormControl('', [Validators.required]),
 			endDate: new FormControl('', [Validators.required]),
-			
-			})
+		});
 	}
 
 	availableClinics: string[];
@@ -43,14 +48,16 @@ export class SearchBarComponent implements OnInit {
 			.subscribe(l => (this.availableClinics = l));
 	}
 
-
+	//ngAfterViewInit() {
+	//	this.form.statusChanges.subscribe(status => {
+	//		if (status === 'VALID') this.onSubmit();
+	//	});
+	//}
 	onSubmit() {
-		
-			this.visitService.query=this.searchForm.value;
-			console.log(this.searchForm.value);
-
-			//this.visitService.getFiltered().subscribe(l => this.visits = l);
-			//console.log(this.visits);
-		
+		this.formSubmitted.emit(this.searchForm.value);
+		//this.visitService.query=this.searchForm.value;
+		//console.log(this.searchForm.value);
+		//this.visitService.getFiltered().subscribe(l => this.visits = l);
+		//console.log(this.visits);
 	}
 }

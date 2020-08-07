@@ -16,12 +16,13 @@ export class VisitsDAO {
 		}
 	}
 
-	static async find(query: Object = {}, lateQuery: Object = {}) {
+	static async find(beforeLookup?: {}, afterLookup?: {}) {
 		let cursor: AggregationCursor;
+		let visits, dates;
 		try {
 			cursor = visitsCollection.aggregate([
 				{
-					$match: query,
+					$match: beforeLookup,
 				},
 				{
 					$lookup: {
@@ -50,7 +51,7 @@ export class VisitsDAO {
 					},
 				},
 				{
-					$match: lateQuery,
+					$match: afterLookup,
 				},
 				{
 					$sort: {
@@ -60,16 +61,43 @@ export class VisitsDAO {
 			]);
 		} catch (e) {
 			console.error(`Unable to issue find command, ${e}`);
-			return [];
+			return { visits: [], dates: [] };
 		}
 
 		try {
-			return await cursor.toArray();
+			visits = await cursor.toArray();
 		} catch (e) {
 			console.error(
 				`Unable to convert cursor to array or problem counting documents, ${e}`
 			);
-			return [];
+			return { visits: [], dates: [] };
+		}
+		try {
+			cursor
+				.group({
+					_id: {
+						$substr: ['$startDate', 0, 10],
+					},
+					count: {
+						$sum: 1,
+					},
+				})
+				.sort({
+					_id: 1,
+				});
+		} catch (e) {
+			console.error(`Unable to issue find command, ${e}`);
+			return { visits, dates: [] };
+		}
+
+		try {
+			dates = await cursor.toArray();
+			return { visits, dates };
+		} catch (e) {
+			console.error(
+				`Unable to convert cursor to array or problem counting documents, ${e}`
+			);
+			return { visits, dates: [] };
 		}
 	}
 
@@ -119,44 +147,6 @@ export class VisitsDAO {
 		} catch (e) {
 			console.error(`Error occurred while delete appointment, ${e}`);
 			return { error: e };
-		}
-	}
-
-	static async getDistinctDates(query: Object = {}) {
-		let cursor: AggregationCursor;
-		try {
-			cursor = visitsCollection.aggregate([
-				{
-					$match: query,
-				},
-				{
-					$group: {
-						_id: {
-							$substr: ['$startDate', 0, 10],
-						},
-						count: {
-							$sum: 1,
-						},
-					},
-				},
-				{
-					$sort: {
-						_id: 1,
-					},
-				},
-			]);
-		} catch (e) {
-			console.error(`Unable to issue find command, ${e}`);
-			return [];
-		}
-
-		try {
-			return await cursor.toArray();
-		} catch (e) {
-			console.error(
-				`Unable to convert cursor to array or problem counting documents, ${e}`
-			);
-			return [];
 		}
 	}
 

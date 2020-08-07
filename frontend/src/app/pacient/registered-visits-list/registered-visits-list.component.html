@@ -2,23 +2,8 @@
 	<div class="buttons">
 		<p>Patient  <span *ngIf="pacient">{{pacient.name}} {{pacient.surname}}</span></p>
 		<button mat-button routerLink="../" >New visits</button>
-		<button mat-button>Your visits</button>
+		<button mat-button class="active">Your visits</button>
 	</div>
-	<button mat-button (click) = logout() >Logout</button>
+	<button mat-button (click) = "logout()" >Logout</button>
 </mat-toolbar>
-<mat-tab-group mat-align-tabs="start">
-	<mat-tab label="Active">
-		<div class="main-container">
-			<div>
-				<app-visits-list type="pacientRes" ></app-visits-list>
-			</div>
-		</div>
-	</mat-tab>
-	<mat-tab label="Archived">
-		<div class="main-container">
-			<div>
-				<app-visits-list type="pacientRes" ></app-visits-list>
-			</div>
-		</div>
-	</mat-tab>
-</mat-tab-group>
+<app-schedule></app-schedule>

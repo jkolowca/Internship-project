@@ -9,13 +9,13 @@
 			<mat-label>Visit start</mat-label>
 			<input
 				matInput
-				type="datetime"
+				type="datetime-local"
 				formControlName="startDate"
 				autocomplete="off"
-				[ngxMatDatetimePicker]="picker"
 			/>
-			<mat-datepicker-toggle
-				matSuffix
+			<!-- <mat-datepicker-toggle
+        [ngxMatDatetimePicker]="picker"
+        matSuffix
 				[for]="picker"
 			></mat-datepicker-toggle>
 			<ngx-mat-datetime-picker
@@ -25,20 +25,21 @@
 				[showSpinners]="true"
 				[showSeconds]="false"
 				[stepMinute]="5"
-			></ngx-mat-datetime-picker>
+			></ngx-mat-datetime-picker> -->
 		</mat-form-field>
 		<mat-form-field appearance="legacy">
 			<mat-label>Visit end</mat-label>
 			<input
 				matInput
+				type="datetime-local"
 				formControlName="endDate"
 				autocomplete="off"
-				[ngxMatDatetimePicker]="pickerStart"
 			/>
-			<mat-datepicker-toggle
+			<!-- <mat-datepicker-toggle
 				matSuffix
 				[for]="pickerStart"
 			></mat-datepicker-toggle>
+				[ngxMatDatetimePicker]="pickerStart"
 			<ngx-mat-datetime-picker
 				#pickerStart
 				[disabled]="false"
@@ -46,7 +47,7 @@
 				[showSpinners]="true"
 				[showSeconds]="false"
 				[stepMinute]="5"
-			></ngx-mat-datetime-picker>
+			></ngx-mat-datetime-picker> -->
 		</mat-form-field>
 		<mat-form-field>
 			<mat-select formControlName="clinic">

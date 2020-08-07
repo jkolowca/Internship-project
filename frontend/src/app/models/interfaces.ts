@@ -55,7 +55,7 @@ export interface User {
 
 export interface Query {
 	city: string[];
-	specialty: string;
+	speciality: string;
 	startDate: string;
 	endDate: string;
 }

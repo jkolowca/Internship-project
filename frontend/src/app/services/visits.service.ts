@@ -5,8 +5,8 @@ import {
 	HttpHeaders,
 	HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
-import { Visit, VisitCount, Appointment, Query } from '../models/interfaces';
+import { Observable, throwError } from 'rxjs';
+import { Visit, VisitCount, Appointment } from '../models/interfaces';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -17,31 +17,26 @@ export class VisitsService {
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 	};
-	query: Query;
 
 	constructor(private http: HttpClient) {}
 
-	getFiltered(): Observable<Visit[]> {
+	getAll(): Observable<{ visits: Visit[]; dates: VisitCount[] }> {
 		return this.http
-			.get<Visit[]>(
-				`${this.visitsUrl}/${this.query.city[0]}/${this.query.specialty}/${this.query.startDate}/${this.query.endDate}`
-			)
+			.get<{ visits: Visit[]; dates: VisitCount[] }>(this.visitsUrl)
 			.pipe(catchError(this.handleError));
 	}
 
-	getAll(): Observable<Visit[]> {
-		return this.http
-			.get<Visit[]>(this.visitsUrl)
-			.pipe(catchError(this.handleError));
-	}
-
-	findVisits(query: Object): Observable<Visit[]> {
+	findVisits(
+		query: Object
+	): Observable<{ visits: Visit[]; dates: VisitCount[] }> {
 		let params: HttpParams = new HttpParams();
 		for (let key in query) {
 			params = params.append(key.toString(), query[key]);
 		}
 		return this.http
-			.get<Visit[]>(this.visitsUrl, { params: params })
+			.get<{ visits: Visit[]; dates: VisitCount[] }>(this.visitsUrl, {
+				params: params,
+			})
 			.pipe(catchError(this.handleError));
 	}
 
@@ -64,22 +59,6 @@ export class VisitsService {
 	editVisit(visit: Visit): Observable<any> {
 		return this.http
 			.patch(`${this.visitsUrl}/visit/${visit._id}`, visit)
-			.pipe(catchError(this.handleError));
-	}
-
-	getVisitDates(query: Object): Observable<any> {
-		let params: HttpParams = new HttpParams();
-		for (let key in query) {
-			params = params.append(key.toString(), query[key]);
-		}
-		return this.http
-			.get<VisitCount[]>(`${this.visitsUrl}/date`, { params: params })
-			.pipe(catchError(this.handleError));
-	}
-
-	getRegisteredVisits(id: string): Observable<any> {
-		return this.http
-			.get<VisitCount[]>(`${this.visitsUrl}/register/${id}`)
 			.pipe(catchError(this.handleError));
 	}
 
