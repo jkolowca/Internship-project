@@ -21,6 +21,6 @@ export class PacientComponent implements OnInit {
 		this.authService.doLogout();
 	}
 	loadVisits(query: Object) {
-		this.visitList.loadVisits({query, appointment: 'available'});
+		this.visitList.loadVisits({query, appointment: 'available', type: 'active'});
 	}
 }
