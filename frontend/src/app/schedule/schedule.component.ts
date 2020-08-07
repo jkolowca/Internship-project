@@ -1,10 +1,39 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
+import { VisitsListComponent } from './visits-list/visits-list.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-schedule',
 	templateUrl: './schedule.component.html',
 	styleUrls: ['./schedule.component.scss'],
 })
-export class ScheduleComponent {
+export class ScheduleComponent implements AfterViewInit {
+	@ViewChild('active') activeVisits: VisitsListComponent;
+	@ViewChild('archived') archivedVisits: VisitsListComponent;
 	@Input() doctorId: string;
+
+	constructor(private route: ActivatedRoute) {}
+
+	ngAfterViewInit() {
+		if (this.doctorId) {
+			this.activeVisits.loadVisits({
+				type: 'active',
+				doctor: this.doctorId,
+			});
+			this.archivedVisits.loadVisits({
+				type: 'archived',
+				doctor: this.doctorId,
+			});
+		} else {
+			let patientId = this.route.snapshot.paramMap.get('idUser');
+			this.activeVisits.loadVisits({
+				type: 'active',
+				patient: patientId,
+			});
+			this.archivedVisits.loadVisits({
+				type: 'archived',
+				patient: patientId,
+			});
+		}
+	}
 }

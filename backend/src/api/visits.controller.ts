@@ -5,39 +5,39 @@ import { Visit } from '../models';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
-		const visits = await VisitsDAO.find(parseQuery(req.query));
-		console.log(visits);
-		res.json(visits);
-	}
+		let beforeLookup: { [k: string]: any } = {},
+			afterLookup: { [k: string]: any } = {};
+		if (req.query.type)
+			beforeLookup['startDate'] =
+				req.query.type === 'active'
+					? { $gte: new Date() }
+					: { $lte: new Date() };
+		if (req.query.doctor)
+			beforeLookup['doctor'] = new ObjectId(req.query.doctor as string);
+		if (req.query.patient)
+			beforeLookup['appointment._id'] = new ObjectId(
+				req.query.patient as string
+			);
+		if (req.query.startDate)
+			beforeLookup['startDate'] = {
+				$gte: new Date(req.query.startDate as string),
+			};
+		if (req.query.endDate)
+			beforeLookup['endDate'] = {
+				$lte: new Date(req.query.endDate as string),
+			};
+		if (req.query.city)
+			afterLookup['clinic.city'] = {
+				$in: (req.query.city as string).split(','),
+			};
+		if (req.query.speciality)
+			afterLookup['doctor.specialties'] = req.query.speciality;
 
-	static async apiGetRegistered(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
-		let id = new ObjectId(req.params.id);
-		const visitsList = await VisitsDAO.find({
-			'appointment._id': id,
-		});
-		res.json(visitsList);
-	}
-
-	static async apiGetFiltered(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
-		let city = req.params.city;
-		let specialties = req.params.specialties;
-		let startDate = new Date(req.params.startDate);
-		let endDate = new Date(req.params.endDate);
-		const visitsList = await VisitsDAO.find({
-			'clinic.city': city,
-			'doctor.specialties': { $in: [specialties] },
-			startDate: { $gte: startDate },
-			endDate: { $lte: endDate },
-		});
-		res.json(visitsList);
+		const { visits, dates } = await VisitsDAO.find(
+			beforeLookup,
+			afterLookup
+		);
+		res.json({ visits, dates });
 	}
 
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
@@ -92,26 +92,4 @@ export class VisitsCtrl {
 			res.status(500).json({ e });
 		}
 	}
-
-	static async apiGetDates(req: Request, res: Response, next: NextFunction) {
-		try {
-			let visits = await VisitsDAO.getDistinctDates(
-				parseQuery(req.query)
-			);
-			res.json(visits);
-		} catch (e) {
-			res.status(500).json({ e });
-		}
-	}
-}
-function parseQuery(query: any): Object {
-	let parsed: { [k: string]: any } = {};
-	if (query.type)
-		parsed.startDate =
-			query.type === 'active'
-				? { $gte: new Date() }
-				: { $lte: new Date() };
-	if (query.doctor) parsed.doctor = new ObjectId(query.doctor);
-	console.log(parsed);
-	return parsed;
 }
