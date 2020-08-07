@@ -28,18 +28,20 @@ export class LoginComponent implements OnInit {
 	}
 
 	async loginUser() {
-		await this.authService.signIn(this.signinForm.value);
-		let user = this.authService.currentUser;
-		switch (user.accountType) {
-			case 'patient':
-				this.router.navigate(['/patient/', user._id]);
-				break;
-			case 'admin':
-				this.router.navigate(['/admin']);
-				break;
-			case 'doctor':
-				this.router.navigate(['/doctor']);
-				break;
-		}
+		this.authService.signIn(this.signinForm.value).subscribe(_ => {
+			this.authService.getCurrentUserProfile().subscribe(user => {
+				switch (user.accountType) {
+					case 'patient':
+						this.router.navigate(['/patient/', user._id]);
+						break;
+					case 'admin':
+						this.router.navigate(['/admin']);
+						break;
+					case 'doctor':
+						this.router.navigate(['/doctor']);
+						break;
+				}
+			});
+		});
 	}
 }

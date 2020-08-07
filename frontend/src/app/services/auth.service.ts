@@ -15,18 +15,20 @@ import { Router } from '@angular/router';
 export class AuthService {
 	endpoint: string = 'http://localhost:5000/users';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
-	currentUser: User;
+	currentUser: string;
 	access: string;
 
 	constructor(private http: HttpClient, public router: Router) {
 		let token = localStorage.getItem('currentUser');
 		if (token) {
 			let userData = JSON.parse(token);
+			this.currentUser = userData._id;
 			this.access = userData.access;
-			this.getUserProfile(userData._id).subscribe(
-				user => (this.currentUser = user)
-			);
 		}
+	}
+
+	getCurrentUserProfile() {
+		return this.getUserProfile(this.currentUser);
 	}
 
 	signUp(user: User): Observable<any> {
@@ -35,18 +37,20 @@ export class AuthService {
 			.pipe(catchError(this.handleError));
 	}
 
-	async signIn(user: { email: string; password: string }) {
-		let res = await this.http
+	signIn(user: { email: string; password: string }) {
+		let request = this.http
 			.post<any>(`${this.endpoint}/signin`, user)
-			.pipe(catchError(this.handleError))
-			.toPromise();
-		this.access = res.access;
-		this.currentUser = await this.getUserProfile(res._id).toPromise();
-		localStorage.setItem('currentUser', JSON.stringify(res));
-		console.log(this.currentUser);
+			.pipe(catchError(this.handleError));
+		request.subscribe(res => {
+			this.access = res.access;
+			this.currentUser = res._id;
+			localStorage.setItem('currentUser', JSON.stringify(res));
+		});
+
+		return request;
 	}
 
-	getUserProfile(id: any): Observable<User> {
+	getUserProfile(id: string): Observable<User> {
 		return this.http
 			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers })
 			.pipe(catchError(this.handleError));
