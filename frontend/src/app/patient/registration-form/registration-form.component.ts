@@ -12,7 +12,7 @@ import { Appointment, User } from 'src/app/models/interfaces';
 })
 export class RegistrationFormComponent implements OnInit {
 
-	pacient: User;
+	patient: User;
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
 	idUser = this.route.snapshot.paramMap.get('idUser');
@@ -33,7 +33,7 @@ export class RegistrationFormComponent implements OnInit {
       surname: new FormControl('', [Validators.required]),
       reason: new FormControl(''),
   })
-  this.pacient = this.authService.currentUser;
+  this.patient = this.authService.currentUser;
   }
 
 	getErrorMessage(prop): string {

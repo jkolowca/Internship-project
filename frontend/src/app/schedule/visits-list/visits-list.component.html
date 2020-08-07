@@ -5,10 +5,10 @@
 			{{ day._id }}
 			<mat-divider></mat-divider>
 			<br />
-			<app-panel-pacient
+			<app-panel-patient
 				*ngFor="let visit of getVisitsForGivenDay(i, this.visits)"
 				[visit]="visit"
-			></app-panel-pacient>
+			></app-panel-patient>
 		</div>
 	</mat-accordion>
 

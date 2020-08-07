@@ -4,11 +4,11 @@ import { User } from '../models/interfaces';
 import { VisitsListComponent } from '../schedule/visits-list/visits-list.component';
 
 @Component({
-	selector: 'app-pacient',
-	templateUrl: './pacient.component.html',
-	styleUrls: ['./pacient.component.scss'],
+	selector: 'app-patient',
+	templateUrl: './patient.component.html',
+	styleUrls: ['./patient.component.scss'],
 })
-export class PacientComponent implements OnInit {
+export class PatientComponent implements OnInit {
 	@ViewChild(VisitsListComponent) visitList: VisitsListComponent;
 	patient: User;
 	appointment: any;

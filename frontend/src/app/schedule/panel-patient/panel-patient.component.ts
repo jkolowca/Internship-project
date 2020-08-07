@@ -5,11 +5,11 @@ import { VisitsService } from 'src/app/services';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-	selector: 'app-panel-pacient',
-	templateUrl: './panel-pacient.component.html',
-	styleUrls: ['./panel-pacient.component.scss'],
+	selector: 'app-panel-patient',
+	templateUrl: './panel-patient.component.html',
+	styleUrls: ['./panel-patient.component.scss'],
 })
-export class PanelPacientComponent implements OnInit {
+export class PanelPatientComponent implements OnInit {
 
 	@Input() visit: Visit;
 	constructor(private route: ActivatedRoute,
