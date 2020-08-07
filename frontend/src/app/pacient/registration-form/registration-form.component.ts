@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-import { VisitsService } from '../../services';
+import { VisitsService, AuthService } from '../../services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Appointment } from 'src/app/models/interfaces';
+import { Appointment, User } from 'src/app/models/interfaces';
 
 @Component({
 	selector: 'app-registration-form',
@@ -11,6 +11,8 @@ import { Appointment } from 'src/app/models/interfaces';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
+
+	pacient: User;
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
 	idUser = this.route.snapshot.paramMap.get('idUser');
@@ -20,7 +22,8 @@ export class RegistrationFormComponent implements OnInit {
 		private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     public fb: FormBuilder,
-    public router: Router,
+	public router: Router,
+	private authService: AuthService
 	) {
 }
 
@@ -30,6 +33,7 @@ export class RegistrationFormComponent implements OnInit {
       surname: new FormControl('', [Validators.required]),
       reason: new FormControl(''),
   })
+  this.pacient = this.authService.currentUser;
   }
 
 	getErrorMessage(prop): string {
@@ -48,4 +52,8 @@ export class RegistrationFormComponent implements OnInit {
 		});
 		this.router.navigate(['../../registered-visits'], { relativeTo: this.route });
 	}
+
+	logout() {
+		this.authService.doLogout();
+	  }
 }

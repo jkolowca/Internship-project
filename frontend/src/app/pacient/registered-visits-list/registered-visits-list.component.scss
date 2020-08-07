@@ -6,6 +6,13 @@
 	margin: 20px auto;
 }
 
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding-left: 10px;
+}
+
 .mat-toolbar {
 	padding: 0px;
 	display: flex;

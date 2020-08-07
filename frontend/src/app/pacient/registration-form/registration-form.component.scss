@@ -23,11 +23,25 @@ mat-form-field {
     margin: 10px;
 }
 
-.mat-toolbar {
-    padding: 0px;
-    margin-bottom: 20px;
-}
 button {
 	height: 100%;
 	font-size: 20px;
+}
+
+
+.buttons-bar {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding-left: 10px;
+}
+
+.mat-toolbar {
+	padding: 0px;
+	display: flex;
+	justify-content: space-between;
+}
+
+mat-tab-group {
+    width: 100%;
 }
