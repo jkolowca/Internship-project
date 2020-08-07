@@ -4,14 +4,14 @@
 }
 form {
 	width: 90%;
-	margin: 10px auto;
+	margin: 20px auto !important;
 }
 
 .buttons {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	margin: 15px 0;
+	margin: 10px 0;
 	* {
 		font-size: 16px;
 		padding: 0;
