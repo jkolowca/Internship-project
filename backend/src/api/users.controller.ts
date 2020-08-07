@@ -58,6 +58,7 @@ export class UsersCtrl {
 								token: jwtToken,
 								expiresIn: 3600,
 								_id: user._id,
+								access: user.accountType,
 							});
 						})
 						.catch(err => {
@@ -71,11 +72,11 @@ export class UsersCtrl {
 		}
 	}
 
-	static async apiAddClient(req: Request, res: Response, next: NextFunction) {
+	static async apiAddUser(req: Request, res: Response, next: NextFunction) {
 		try {
 			const user: User = req.body;
 			user.password = await bcrypt.hash(user.password, 10);
-			if (!user.accountType) user.accountType = 'client';
+			if (!user.accountType) user.accountType = 'patient';
 
 			await UsersDAO.add(user);
 

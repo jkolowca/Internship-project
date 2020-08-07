@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/interfaces';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import {
+	HttpClient,
+	HttpHeaders,
+	HttpErrorResponse,
+} from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -12,8 +16,18 @@ export class AuthService {
 	endpoint: string = 'http://localhost:5000/users';
 	headers = new HttpHeaders().set('Content-Type', 'application/json');
 	currentUser: User;
+	access: string;
 
-	constructor(private http: HttpClient, public router: Router) {}
+	constructor(private http: HttpClient, public router: Router) {
+		let token = localStorage.getItem('currentUser');
+		if (token) {
+			let userData = JSON.parse(token);
+			this.access = userData.access;
+			this.getUserProfile(userData._id).subscribe(
+				user => (this.currentUser = user)
+			);
+		}
+	}
 
 	signUp(user: User): Observable<any> {
 		return this.http
@@ -21,25 +35,25 @@ export class AuthService {
 			.pipe(catchError(this.handleError));
 	}
 
-	signIn(user: { email: string; password: string }) {
-		return this.http
+	async signIn(user: { email: string; password: string }) {
+		let res = await this.http
 			.post<any>(`${this.endpoint}/signin`, user)
+			.pipe(catchError(this.handleError))
+			.toPromise();
+		this.access = res.access;
+		this.currentUser = await this.getUserProfile(res._id).toPromise();
+		localStorage.setItem('currentUser', JSON.stringify(res));
+		console.log(this.currentUser);
+	}
+
+	getUserProfile(id: any): Observable<User> {
+		return this.http
+			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers })
 			.pipe(catchError(this.handleError));
 	}
 
-	getUserProfile(id: any): Observable<any> {
-		return this.http
-			.get(`${this.endpoint}/${id}`, { headers: this.headers })
-			.pipe(
-				map((res: Response) => {
-					return res || {};
-				}),
-				catchError(this.handleError)
-			);
-	}
-
 	doLogout() {
-		let removeToken = localStorage.removeItem('access_token');
+		let removeToken = localStorage.removeItem('currentUser');
 		if (removeToken == null) {
 			this.router.navigate(['']);
 		}

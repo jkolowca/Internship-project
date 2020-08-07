@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {
-	FormControl,
-	Validators,
-	FormGroup,
-	FormBuilder,
-} from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
@@ -15,31 +9,37 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  signinForm: any;
-  hide = true;
-  constructor(public fb: FormBuilder,
-    public authService: AuthService,
-    public router: Router,
-    private snackBar: MatSnackBar,) {}
+	signinForm: any;
+	hide = true;
+	constructor(
+		public fb: FormBuilder,
+		public authService: AuthService,
+		public router: Router
+	) {}
 
-  ngOnInit(): void {
-    this.signinForm = this.fb.group({
-      password: new FormControl('', [Validators.required, Validators.min(8)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-    })
-  }
+	ngOnInit(): void {
+		this.signinForm = this.fb.group({
+			password: new FormControl('', [
+				Validators.required,
+				Validators.min(8),
+			]),
+			email: new FormControl('', [Validators.required, Validators.email]),
+		});
+	}
 
-  loginUser() {
-    this.authService.signIn(this.signinForm.value).pipe().subscribe((res: any) => {
-      localStorage.setItem('access_token', res.token);
-      this.authService.getUserProfile(res._id).subscribe(res => {
-        this.authService.currentUser = res;
-        this.router.navigate(['/patient/' + res._id]);
-      });
-    }, () => {
-      this.snackBar.open('Invalid username or password', 'End', {
-	      duration: 3000,
-	    });
-    });
-  }
+	async loginUser() {
+		await this.authService.signIn(this.signinForm.value);
+		let user = this.authService.currentUser;
+		switch (user.accountType) {
+			case 'patient':
+				this.router.navigate(['/patient/', user._id]);
+				break;
+			case 'admin':
+				this.router.navigate(['/admin']);
+				break;
+			case 'doctor':
+				this.router.navigate(['/doctor']);
+				break;
+		}
+	}
 }
