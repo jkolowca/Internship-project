@@ -8,18 +8,16 @@ import { AuthService } from 'src/app/services';
 	styleUrls: ['./registered-visits-list.component.scss'],
 })
 export class RegisteredVisitsListComponent implements OnInit {
-  patient: User;
-  constructor(
-    private authService: AuthService
-  ) {}
-  
-  
-    ngOnInit(): void {
-      this.patient = this.authService.currentUser;
-    }
+	patient: User;
+	constructor(private authService: AuthService) {}
 
-    logout() {
-      this.authService.doLogout();
-    }
-  
-  }
+	ngOnInit(): void {
+		this.authService
+			.getCurrentUserProfile()
+			.subscribe(patient => (this.patient = patient));
+	}
+
+	logout() {
+		this.authService.doLogout();
+	}
+}

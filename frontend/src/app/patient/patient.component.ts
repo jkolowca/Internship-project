@@ -15,7 +15,7 @@ export class PatientComponent implements OnInit {
 	constructor(private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.patient = this.authService.currentUser;
+    this.authService.getCurrentUserProfile().subscribe(patient => this.patient = patient);
 	}
 	logout() {
 		this.authService.doLogout();
