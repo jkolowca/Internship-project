@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-register',
@@ -12,7 +13,8 @@ export class RegisterComponent implements OnInit {
 	signupForm: any;
 	hide = true;
 
-  constructor( public fb: FormBuilder, public authService: AuthService, public router: Router) {
+  constructor( public fb: FormBuilder,
+    private snackBar: MatSnackBar, public authService: AuthService, public router: Router) {
      }
 
   ngOnInit(): void {
@@ -28,6 +30,11 @@ export class RegisterComponent implements OnInit {
 	registerUser() {
 		this.authService.signUp(this.signupForm.value).subscribe(() => {
 			this.signupForm.reset(), this.router.navigate(['']);
-		});
+    },
+    () => {
+      this.snackBar.open('Failed to register. Try again', 'End', {
+        duration: 3000,
+        });
+    });
 	}
 }

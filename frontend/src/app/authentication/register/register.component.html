@@ -1,5 +1,5 @@
 <mat-toolbar>
-	<button mat-button>New account</button>	
+	<p>Create new account</p>	
 </mat-toolbar>
 <div class="main-container">
   <mat-card>
@@ -8,8 +8,8 @@
         <mat-form-field appearance="fill">
             <mat-label>Name</mat-label>
             <input matInput formControlName="name">
-            
           </mat-form-field>
+         
           <mat-form-field appearance="fill">
             <mat-label>Surname</mat-label>
             <input matInput formControlName="surname">
@@ -31,7 +31,8 @@
       </mat-form-field>
       <br>
     <div class="buttons">
-      <button type="submit" mat-button >Sign up</button>
+      <button routerLink="../" mat-button>Back to Sign in</button>
+      <button [disabled]="!signupForm.valid" type="submit" mat-button >Sign up</button>
     </div>
 </form>
 </div>

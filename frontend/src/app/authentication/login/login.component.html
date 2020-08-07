@@ -1,5 +1,5 @@
 <mat-toolbar>
-	<button mat-button routerLink="../../">Sign in</button>
+	<p>Sign in</p>
 </mat-toolbar>
 <div class="main-container">
 	<mat-card>
@@ -33,7 +33,7 @@
 				</mat-form-field>
 				<br />
 				<div class="buttons">
-					<button mat-button type="submit">Sign in</button>
+					<button mat-button [disabled]="!signinForm.valid" type="submit">Sign in</button>
 				</div>
 				<a [routerLink]="['register']">Register </a>
 			</form>

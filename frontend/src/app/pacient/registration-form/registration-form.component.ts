@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
-import { VisitsService } from '../../services';
+import { VisitsService, AuthService } from '../../services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Appointment } from 'src/app/models/interfaces';
+import { Appointment, User } from 'src/app/models/interfaces';
 
 @Component({
 	selector: 'app-registration-form',
@@ -11,6 +11,8 @@ import { Appointment } from 'src/app/models/interfaces';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
+
+	pacient: User;
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
 	idUser = this.route.snapshot.paramMap.get('idUser');
@@ -20,7 +22,8 @@ export class RegistrationFormComponent implements OnInit {
 		private route: ActivatedRoute,
     private snackBar: MatSnackBar,
     public fb: FormBuilder,
-    public router: Router,
+	public router: Router,
+	private authService: AuthService
 	) {
 }
 
@@ -30,6 +33,7 @@ export class RegistrationFormComponent implements OnInit {
       surname: new FormControl('', [Validators.required]),
       reason: new FormControl(''),
   })
+  this.pacient = this.authService.currentUser;
   }
 
 	getErrorMessage(prop): string {
@@ -39,13 +43,24 @@ export class RegistrationFormComponent implements OnInit {
 	}
 
 	register(): void {
-    const appointment: Appointment = this.registrationForm.value;
-    appointment._id = this.idUser;
+	  const appointment: Appointment = this.registrationForm.value;
+	  appointment._id = this.idUser;
 
-		this.visitsService.register(this.id, appointment).subscribe();
-		this.snackBar.open('Umówiono wizytę', 'Koniec', {
-			duration: 2000,
-		});
-		this.router.navigate(['../../registered-visits'], { relativeTo: this.route });
+	  this.visitsService.register(this.id, appointment).subscribe(() => {
+	    this.snackBar.open('A doctor visit was agreed', 'End', {
+	      duration: 2000,
+	    });
+	    this.router.navigate(['../../registered-visits'], {
+	      relativeTo: this.route
+	    });
+	  }, () => {
+		this.snackBar.open('An appointment could not be made. Try again', 'End', {
+			duration: 3000,
+		  });
+	  });
 	}
+
+	logout() {
+		this.authService.doLogout();
+	  }
 }

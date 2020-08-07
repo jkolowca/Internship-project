@@ -1,5 +1,10 @@
 <mat-toolbar>
-	<button mat-button routerLink="../../">Pacient Panel</button>	
+	<div class="buttons-bar">
+		<p>Patient  <span *ngIf="pacient">{{pacient.name}} {{pacient.surname}}</span></p>
+		<button mat-button routerLink="../../" >New visits</button>
+		<button mat-button routerLink="../../registered-visits">Your visits</button>
+	</div>
+	<button mat-button (click) = logout() >Logout</button>
 </mat-toolbar>
 <div class="main-container">
   <mat-card>
@@ -22,8 +27,8 @@
     </form>
     </div>
     <div class="buttons">
-      <a routerLink="../../"> <button mat-button>Back</button></a>
-      <button (click)="register()" type="submit" mat-button>Submit</button>
+      <button routerLink="../../" mat-button>Back</button>
+      <button [disabled]="!registrationForm.valid" (click)="register()" type="submit" mat-button>Submit</button>
     </div>
   </mat-card>
 </div>

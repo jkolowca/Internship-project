@@ -1,11 +1,10 @@
 <mat-toolbar>
 	<div class="buttons">
-		<button mat-button *ngIf="patient">
-			Pacient Panel : {{ patient.name }} {{ patient.surname }}
-		</button>
+		<p>Patient  <span *ngIf="patient">{{patient.name}} {{patient.surname}}</span></p>
+		<button mat-button >New visits</button>
 		<button mat-button routerLink="registered-visits">Your visits</button>
 	</div>
-	<button mat-button (click)="logout()">Logout</button>
+	<button mat-button (click) = logout() >Logout</button>
 </mat-toolbar>
 <app-search-bar (formSubmitted)="loadVisits($event)"></app-search-bar>
 <div class="main-container">
