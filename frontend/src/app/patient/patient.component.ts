@@ -15,12 +15,16 @@ export class PatientComponent implements OnInit {
 	constructor(private authService: AuthService) {}
 
 	ngOnInit(): void {
-    this.authService.getCurrentUserProfile().subscribe(patient => this.patient = patient);
+		this.authService
+			.getCurrentUserProfile()
+			.subscribe(patient => (this.patient = patient));
 	}
 	logout() {
 		this.authService.doLogout();
 	}
-	loadVisits(query: Object) {
-		this.visitList.loadVisits({query, appointment: 'available', type: 'active'});
+	loadVisits(query: any) {
+		query.appointment = 'available';
+		query.type = 'active';
+		this.visitList.loadVisits(query);
 	}
 }

@@ -48,16 +48,8 @@ export class SearchBarComponent implements OnInit {
 			.subscribe(l => (this.availableClinics = l));
 	}
 
-	//ngAfterViewInit() {
-	//	this.form.statusChanges.subscribe(status => {
-	//		if (status === 'VALID') this.onSubmit();
-	//	});
-	//}
 	onSubmit() {
+		console.log(this.searchForm.value);
 		this.formSubmitted.emit(this.searchForm.value);
-		//this.visitService.query=this.searchForm.value;
-		//console.log(this.searchForm.value);
-		//this.visitService.getFiltered().subscribe(l => this.visits = l);
-		//console.log(this.visits);
 	}
 }

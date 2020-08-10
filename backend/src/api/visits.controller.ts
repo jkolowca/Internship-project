@@ -5,6 +5,7 @@ import { Visit } from '../models';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
+		console.log(req.query);
 		let beforeLookup: { [k: string]: any } = {},
 			afterLookup: { [k: string]: any } = {};
 		if (req.query.type)
@@ -27,9 +28,10 @@ export class VisitsCtrl {
 				$lte: new Date(req.query.endDate as string),
 			};
 		if (req.query.appointment)
-			beforeLookup['appointment'] = 
-				req.query.appointment === 'available' ?
-				{ $exists: false } : { $exists: true };
+			beforeLookup['appointment'] =
+				req.query.appointment === 'available'
+					? { $exists: false }
+					: { $exists: true };
 		if (req.query.city)
 			afterLookup['clinic.city'] = {
 				$in: (req.query.city as string).split(','),
