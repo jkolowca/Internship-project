@@ -110,6 +110,15 @@ export class VisitsDAO {
 		}
 	}
 
+	static async addMany(visits: Visit[]) {
+		try {
+			return await visitsCollection.insertMany(visits);
+		} catch (e) {
+			console.error(`Unable to post list: ${e}`);
+			return { error: e };
+		}
+	}
+
 	static async deleteVisitsByDoctorId(doctorId: ObjectId) {
 		try {
 			return await visitsCollection.deleteMany({

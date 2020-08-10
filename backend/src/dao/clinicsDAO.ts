@@ -47,6 +47,15 @@ export class ClinicsDAO {
 		}
 	}
 
+	static async addMany(clinics: Clinic[]) {
+		try {
+			return await clinicsCollection.insertMany(clinics);
+		} catch (e) {
+			console.error(`ClinicsDAO: Unable to post clinic: ${e}`);
+			return { error: e };
+		}
+	}
+
 	static async getCities() {
 		try {
 			return await clinicsCollection.distinct('city');

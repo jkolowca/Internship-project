@@ -1,0 +1,25 @@
+[{
+  "_id": {
+    "$oid": "5f312769a29a0517d44a1181"
+  },
+  "startDate": {
+    "$date": "2020-08-19T10:54:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-28T10:54:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  },
+  "appointment": {
+    "name": "aa",
+    "surname": "bb",
+    "reason": "aabb",
+    "_id": {
+      "$oid": "5f30e627494a47353cc9adde"
+    }
+  }
+}]

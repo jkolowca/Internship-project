@@ -5,7 +5,7 @@ import doctors from '../src/api/doctors.route';
 import visits from '../src/api/visits.route';
 import clinics from '../src/api/clinics.route';
 import users from './api/users.route';
-
+import { router as mockup } from './mockup/mockup';
 export const app = express();
 app.use(cors());
 app.use(morgan('dev'));
@@ -16,6 +16,7 @@ app.use('/doctors', doctors);
 app.use('/visits', visits);
 app.use('/clinics', clinics);
 app.use('/users', users);
+app.use('/mockup', mockup);
 app.use('/status', express.static('build'));
 app.use('/', express.static('build'));
 app.use('*', (req, res) => res.status(404).json({ error: 'not found' }));

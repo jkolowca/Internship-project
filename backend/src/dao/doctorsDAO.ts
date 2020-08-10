@@ -79,6 +79,15 @@ export class DoctorsDAO {
 		}
 	}
 
+	static async addMany(doctors: Doctor[]) {
+		try {
+			return await doctorsCollection.insertMany(doctors);
+		} catch (e) {
+			console.error(`DoctorsDAO: Unable to post doctors: ${e}`);
+			return { error: e };
+		}
+	}
+
 	static async getSpecialties() {
 		try {
 			return await doctorsCollection.distinct('specialties');

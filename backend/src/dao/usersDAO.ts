@@ -65,4 +65,15 @@ export class UsersDAO {
 			};
 		}
 	}
+
+	static async addMany(users: User[]) {
+		try {
+			return await usersCollection.insertMany(users);
+		} catch (e) {
+			console.error(`Unable to post user: ${e}`);
+			return {
+				error: e,
+			};
+		}
+	}
 }
