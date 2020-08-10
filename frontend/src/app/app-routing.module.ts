@@ -10,6 +10,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { ClinicsTabComponent } from './administrator/clinics-tab/clinics-tab.component';
 import { DoctorTabComponent } from './administrator/doctors-tab/doctor-tab/doctor-tab.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
+import { AdministratorComponent } from './administrator/administrator.component';
 const routes: Routes = [
 	{
 		path: '',
@@ -21,26 +22,28 @@ const routes: Routes = [
 	},
 	{
 		path: 'admin',
-		redirectTo: 'admin/doctors',
-		pathMatch: 'full',
-	},
-	{
-		path: 'admin/doctors',
-		component: DoctorsTabComponent,
+		component: AdministratorComponent,
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['admin'] },
-	},
-	{
-		path: 'admin/clinics',
-		component: ClinicsTabComponent,
-		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['admin'] },
-	},
-	{
-		path: 'admin/doctors/:id',
-		component: DoctorTabComponent,
-		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['admin'] },
+		children: [
+			{
+				path: '',
+				pathMatch: 'full',
+				redirectTo: 'doctors',
+			},
+			{
+				path: 'doctors',
+				component: DoctorsTabComponent,
+			},
+			{
+				path: 'clinics',
+				component: ClinicsTabComponent,
+			},
+			{
+				path: 'doctors/:id',
+				component: DoctorTabComponent,
+			},
+		],
 	},
 	{
 		path: 'doctor',

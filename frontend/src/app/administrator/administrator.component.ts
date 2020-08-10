@@ -3,16 +3,13 @@ import { AuthService } from 'src/app/services';
 
 @Component({
 	selector: 'app-administrator-top-panel',
-	templateUrl: './administrator-top-panel.component.html',
-	styleUrls: ['./administrator-top-panel.component.scss'],
+	templateUrl: './administrator.component.html',
+	styleUrls: ['./administrator.component.scss'],
 })
-export class AdministratorTopPanelComponent {
-
+export class AdministratorComponent {
 	constructor(private authService: AuthService) {}
 
 	logout() {
 		this.authService.doLogout();
 	}
 }
-
-

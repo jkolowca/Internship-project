@@ -1,0 +1,9 @@
+<mat-toolbar color="primary">
+	<div class="buttons">
+		<p>Administrator</p>
+		<button mat-button routerLink="doctors">Doctors</button>
+		<button mat-button routerLink="clinics">Clinics</button>
+	</div>
+	<button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<router-outlet></router-outlet>

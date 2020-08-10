@@ -16,7 +16,6 @@ import { DoctorsListComponent } from './administrator/doctors-tab/doctors-list/d
 import { DoctorFormComponent } from './administrator/doctors-tab/doctor-form/doctor-form.component';
 import { ClinicFormComponent } from './administrator/clinics-tab/clinic-form/clinic-form.component';
 import { ClinicsListComponent } from './administrator/clinics-tab/clinics-list/clinics-list.component';
-import { AdministratorTopPanelComponent } from './administrator/administrator-top-panel/administrator-top-panel.component';
 
 import { DoctorComponent } from './doctor/doctor.component';
 
@@ -34,6 +33,7 @@ import { PanelAddComponent } from './schedule/panel-add/panel-add.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { LoginComponent } from './authentication/login/login.component';
 import { AuthenticationComponent } from './authentication/authentication.component';
+import { AdministratorComponent } from './administrator/administrator.component';
 
 @NgModule({
 	declarations: [
@@ -58,7 +58,7 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 		ClinicsListComponent,
 		DoctorsTabComponent,
 		ClinicsTabComponent,
-		AdministratorTopPanelComponent,
+		AdministratorComponent,
 	],
 	imports: [
 		AppRoutingModule,

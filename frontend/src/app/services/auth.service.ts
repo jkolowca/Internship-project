@@ -27,6 +27,12 @@ export class AuthService {
 		}
 	}
 
+	getMockData() {
+		return this.http
+			.post<{ status: string }>(`http://localhost:5000/mockup`, {})
+			.pipe(catchError(this.handleError));
+	}
+
 	getCurrentUserProfile() {
 		return this.getUserProfile(this.currentUser);
 	}
