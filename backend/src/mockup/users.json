@@ -1,0 +1,42 @@
+[
+	{
+		"_id": "5f30e601494a47353cc9addd",
+		"name": "Admin",
+		"surname": "Admin",
+		"password": "$2a$10$/LOUghbUDCl4JK124Nhrn.k.KpNI6GHiKXRQuuCZLgu/6T3B9WYWS",
+		"email": "admin@admin.pl",
+		"accountType": "admin"
+	},
+	{
+		"_id": "5f30e627494a47353cc9adde",
+		"name": "Patient",
+		"surname": "1",
+		"password": "$2a$10$s437wMZRrI1fHXGrI5Awleo7LOcZBbk8ZC7h9I0cNbFBRq3QThmqi",
+		"email": "patient1@patient.pl",
+		"accountType": "patient"
+	},
+	{
+		"_id": "5f30e641494a47353cc9addf",
+		"name": "Patient",
+		"surname": "2",
+		"password": "$2a$10$RoDu0gHY7VV40CIFpqywrOyQLmjL.DzcTcGyoMstTHE4vxSOOMrn.",
+		"email": "patient2@patient.pl",
+		"accountType": "patient"
+	},
+	{
+		"_id": "5f30e66a494a47353cc9ade0",
+		"name": "Doctor",
+		"surname": "1",
+		"password": "$2a$10$lyFIImIJO4bBPCSJ5Bjwn.wrpacIQSpR3p88jNeA9eoF0uNFj1/f.",
+		"email": "doctor1@doctor.pl",
+		"accountType": "doctor"
+	},
+	{
+		"_id": "5f30e680494a47353cc9ade1",
+		"name": "Doctor",
+		"surname": "2",
+		"password": "$2a$10$gkTHmJjFvpobaZ862X0XCuBeze4aUjF2348P7o3IXl1Jg2snFO/72",
+		"email": "doctor2@doctor.pl",
+		"accountType": "doctor"
+	}
+]

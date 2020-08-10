@@ -1,0 +1,22 @@
+[{
+  "_id": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "name": "Prima-Med",
+  "city": "Kraków",
+  "streetAddress": "Bosaków 11"
+},{
+  "_id": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "name": "Ugorek NZOZ",
+  "city": "Kraków",
+  "streetAddress": "Dywizjonu 303"
+},{
+  "_id": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "name": "LARMED",
+  "city": "Warszawa",
+  "streetAddress": "Ciemna 6"
+}]

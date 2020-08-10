@@ -1,0 +1,30 @@
+[
+	{
+		"_id": "5f2a522dac39d815cca2f2b4",
+		"name": "John",
+		"surname": "Doe",
+		"specialties": ["cytopathology", "hematology", "immunopathology"],
+		"clinics": ["5f2269223daaa419683d00de"]
+	},
+	{
+		"_id": "5f2bbd0e0c0a544bb89084ee",
+		"name": "Conor",
+		"surname": "Perkins",
+		"specialties": ["microbiology", "oncology"],
+		"clinics": ["5f2269753daaa419683d00e0"]
+	},
+	{
+		"_id": "5f2bbd070c0a544bb89084ec",
+		"name": "Martin",
+		"surname": "Weaver",
+		"specialties": ["pediatry"],
+		"clinics": ["5f2269483daaa419683d00df"]
+	},
+	{
+		"_id": "5f27c8376fa04e37b8288de9",
+		"name": "Glen",
+		"surname": "Allen",
+		"specialties": ["dermatology", "endocrinology"],
+		"clinics": ["5f2269483daaa419683d00df", "5f2269223daaa419683d00de"]
+	}
+]
