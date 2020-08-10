@@ -11,7 +11,7 @@ import { Appointment, User } from 'src/app/models/interfaces';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
-	patient: string;
+	patient: User;
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
 	idUser = this.route.snapshot.paramMap.get('idUser');
@@ -31,7 +31,9 @@ export class RegistrationFormComponent implements OnInit {
 			surname: new FormControl('', [Validators.required]),
 			reason: new FormControl(''),
 		});
-		this.patient = this.authService.currentUser;
+		this.authService
+			.getCurrentUserProfile()
+			.subscribe(user => (this.patient = user));
 	}
 
 	getErrorMessage(prop): string {
