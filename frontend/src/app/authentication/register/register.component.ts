@@ -21,7 +21,7 @@ export class RegisterComponent implements OnInit {
     this.signupForm = this.fb.group({
       name: new FormControl('', [Validators.required]),
       surname: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       
       })
@@ -36,5 +36,12 @@ export class RegisterComponent implements OnInit {
         duration: 3000,
         });
     });
-	}
+  }
+  
+  getErrorMessage(prop: string) {
+    if (this.signupForm.controls[prop].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.signupForm.controls[prop].hasError('email') ? 'Not a valid email' : 'Minimum password length is 8';
+  }
 }
