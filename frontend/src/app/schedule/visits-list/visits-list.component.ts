@@ -10,10 +10,14 @@ import { Visit, VisitCount } from '../../models/interfaces';
 })
 export class VisitsListComponent {
 	@Input() type: string;
-
 	visits: Visit[];
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];
+	query: any = {
+		visitsPerPage: 10,
+		page: 0,
+	};
+	visitsCount = 0;
 	patientId: string;
 
 	constructor(
@@ -23,10 +27,16 @@ export class VisitsListComponent {
 		this.patientId = this.route.snapshot.queryParamMap.get('idUser');
 	}
 
-	loadVisits(query: Object): void {
-		this.visitService.findVisits(query).subscribe(res => {
+	loadVisits(query?: any): void {
+		if (query) {
+			this.query = query;
+			this.query.page = 0;
+			this.query.visitsPerPage = 10;
+		}
+		this.visitService.findVisits(this.query).subscribe(res => {
 			this.visits = res.visits;
 			this.dailyVisitCount = res.dates;
+			this.visitsCount = res.visitsCount;
 		});
 	}
 

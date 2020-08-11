@@ -5,7 +5,7 @@
 		<mat-divider></mat-divider>
 		<br />
 		<app-panel-patient
-			*ngFor="let visit of getVisitsForGivenDay(i, this.visits)"
+			*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 			[visit]="visit"
 		></app-panel-patient>
 	</div>
@@ -19,12 +19,28 @@
 			<mat-divider></mat-divider>
 			<br />
 			<app-panel-admin
-				*ngFor="let visit of getVisitsForGivenDay(i, this.visits)"
+				*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 				[visit]="visit"
 			></app-panel-admin>
 		</div>
 	</mat-accordion>
 </ng-template>
-<div class="message" *ngIf="visits && !this.visits.length">
+<div class="message" *ngIf="visits && !visits.length">
 	No visits found
+</div>
+<div class="paginator" *ngIf="visits && visitsCount > query.visitsPerPage">
+	<button
+		mat-button
+		[disabled]="query.page === 0"
+		(click)="query.page = query.page - 1; loadVisits()"
+	>
+		Back
+	</button>
+	<button
+		mat-button
+		[disabled]="(query.page + 1) * query.visitsPerPage >= visitsCount"
+		(click)="query.page = query.page + 1; loadVisits()"
+	>
+		Next
+	</button>
 </div>

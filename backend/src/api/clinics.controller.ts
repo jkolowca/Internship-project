@@ -5,7 +5,6 @@ import { ObjectId } from 'mongodb';
 
 export class ClinicsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
-		const { query } = req.body;
 		const clinics = await ClinicsDAO.getAll();
 		res.json(clinics);
 	}

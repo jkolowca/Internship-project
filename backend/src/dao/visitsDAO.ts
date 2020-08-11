@@ -16,9 +16,14 @@ export class VisitsDAO {
 		}
 	}
 
-	static async find(beforeLookup?: {}, afterLookup?: {}) {
+	static async find(
+		beforeLookup?: {},
+		afterLookup?: {},
+		page = 0,
+		visitsPerPage = 10
+	) {
 		let cursor: AggregationCursor;
-		let visits, dates;
+		let visits, dates, visitsCount;
 		try {
 			cursor = visitsCollection.aggregate([
 				{
@@ -59,9 +64,11 @@ export class VisitsDAO {
 					},
 				},
 			]);
+			visitsCount = (await cursor.toArray()).length;
+			cursor.skip(page * visitsPerPage).limit(visitsPerPage);
 		} catch (e) {
 			console.error(`VisitsDAO: Unable to issue find command, ${e}`);
-			return { visits: [], dates: [] };
+			return { visits: [], dates: [], visitsCount: 0 };
 		}
 
 		try {
@@ -70,7 +77,7 @@ export class VisitsDAO {
 			console.error(
 				`VisitsDAO: Unable to convert cursor to array or problem counting documents, ${e}`
 			);
-			return { visits: [], dates: [] };
+			return { visits: [], dates: [], visitsCount };
 		}
 		try {
 			cursor
@@ -87,17 +94,17 @@ export class VisitsDAO {
 				});
 		} catch (e) {
 			console.error(`VisitsDAO: Unable to issue find command, ${e}`);
-			return { visits, dates: [] };
+			return { visits, dates: [], visitsCount };
 		}
 
 		try {
 			dates = await cursor.toArray();
-			return { visits, dates };
+			return { visits, dates, visitsCount };
 		} catch (e) {
 			console.error(
 				`VisitsDAO: Unable to convert cursor to array or problem counting documents, ${e}`
 			);
-			return { visits, dates: [] };
+			return { visits, dates: [], visitsCount };
 		}
 	}
 

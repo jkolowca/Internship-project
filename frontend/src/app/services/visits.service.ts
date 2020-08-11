@@ -20,23 +20,36 @@ export class VisitsService {
 
 	constructor(private http: HttpClient) {}
 
-	getAll(): Observable<{ visits: Visit[]; dates: VisitCount[] }> {
+	getAll(): Observable<{
+		visits: Visit[];
+		dates: VisitCount[];
+		visitsCount: number;
+	}> {
 		return this.http
-			.get<{ visits: Visit[]; dates: VisitCount[] }>(this.visitsUrl)
+			.get<{ visits: Visit[]; dates: VisitCount[]; visitsCount: number }>(
+				this.visitsUrl
+			)
 			.pipe(catchError(this.handleError));
 	}
 
 	findVisits(
 		query: Object
-	): Observable<{ visits: Visit[]; dates: VisitCount[] }> {
+	): Observable<{
+		visits: Visit[];
+		dates: VisitCount[];
+		visitsCount: number;
+	}> {
 		let params: HttpParams = new HttpParams();
 		for (let key in query) {
 			params = params.append(key.toString(), query[key]);
 		}
 		return this.http
-			.get<{ visits: Visit[]; dates: VisitCount[] }>(this.visitsUrl, {
-				params: params,
-			})
+			.get<{ visits: Visit[]; dates: VisitCount[]; visitsCount: number }>(
+				this.visitsUrl,
+				{
+					params: params,
+				}
+			)
 			.pipe(catchError(this.handleError));
 	}
 

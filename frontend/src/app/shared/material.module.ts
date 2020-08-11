@@ -18,9 +18,10 @@ import {
 	NgxMatNativeDateModule,
 } from '@angular-material-components/datetime-picker';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-
+import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
 	exports: [
+		MatPaginatorModule,
 		MatExpansionModule,
 		MatIconModule,
 		MatFormFieldModule,

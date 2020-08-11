@@ -38,11 +38,31 @@ export class VisitsCtrl {
 		if (req.query.speciality)
 			afterLookup['doctor.specialties'] = req.query.speciality;
 
-		const { visits, dates } = await VisitsDAO.find(
+		let page;
+		try {
+			page = req.query.page ? parseInt(req.query.page as string, 10) : 0;
+		} catch (e) {
+			console.error(`Got bad value for page:, ${e}`);
+			page = 0;
+		}
+
+		let visitsPerPage;
+		try {
+			visitsPerPage = req.query.visitsPerPage
+				? parseInt(req.query.visitsPerPage as string, 10)
+				: 10;
+		} catch (e) {
+			console.error(`Got bad value for visitsPerPage:, ${e}`);
+			visitsPerPage = 10;
+		}
+
+		const { visits, dates, visitsCount } = await VisitsDAO.find(
 			beforeLookup,
-			afterLookup
+			afterLookup,
+			page,
+			visitsPerPage
 		);
-		res.json({ visits, dates });
+		res.json({ visits, dates, visitsCount });
 	}
 
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
