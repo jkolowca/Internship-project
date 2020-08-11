@@ -14,14 +14,6 @@ export interface Doctor {
 	clinics: string[];
 }
 
-export interface Patient {
-	_id: string;
-	name: string;
-	surname: string;
-	email: string;
-	password: string;
-}
-
 export interface Appointment {
 	_id: string;
 	name: string;
@@ -50,7 +42,8 @@ export interface User {
 	surname: string;
 	email: string;
 	password: string;
-	accountType?: string;
+	accountType: string;
+	doctorId?: string;
 }
 
 export interface Query {

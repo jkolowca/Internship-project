@@ -5,5 +5,6 @@ export interface User {
 	surname: string;
 	email: string;
 	password: string;
-	accountType?: string;
+	accountType: string;
+	doctorId?: ObjectId;
 }

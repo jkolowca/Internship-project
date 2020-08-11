@@ -47,7 +47,7 @@ const routes: Routes = [
 		],
 	},
 	{
-		path: 'doctor',
+		path: 'doctor/:id',
 		component: DoctorComponent,
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['doctor'] },

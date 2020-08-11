@@ -38,6 +38,9 @@ export class Mockup {
 			);
 
 			let users = data.map((u: any) => {
+				if (u.hasOwnProperty('doctorId')) {
+					u.doctorId = new ObjectId(u.doctorId.$oid);
+				}
 				u._id = new ObjectId(u._id.$oid);
 				return u;
 			});

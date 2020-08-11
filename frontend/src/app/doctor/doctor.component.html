@@ -1,1 +1,14 @@
-<p>main works!</p>
+<mat-toolbar color="primary">
+	<div>
+		<span>
+			Dr
+			<span *ngIf="doctor">{{ doctor.name }} {{ doctor.surname }}</span>
+		</span>
+		<button mat-button>Schedule</button>
+	</div>
+	<button mat-button (click)="logout()">Logout</button>
+</mat-toolbar>
+<app-schedule
+	*ngIf="doctor && doctor.doctorId"
+	[doctorId]="doctor.doctorId"
+></app-schedule>

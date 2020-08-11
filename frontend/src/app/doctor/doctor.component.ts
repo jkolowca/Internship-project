@@ -1,12 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../models/interfaces';
+import { AuthService } from '../services';
 
 @Component({
 	selector: 'app-doctor',
 	templateUrl: './doctor.component.html',
-	styleUrls: ['./doctor.component.scss'],
 })
 export class DoctorComponent implements OnInit {
-	constructor() {}
+	doctor: User;
+	constructor(private authService: AuthService) {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		this.authService
+			.getCurrentUserProfile()
+			.subscribe(doctor => (this.doctor = doctor));
+	}
+	logout() {
+		this.authService.doLogout();
+	}
 }
