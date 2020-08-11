@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
 	selector: 'app-schedule',
 	templateUrl: './schedule.component.html',
+	styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent implements AfterViewInit {
 	@ViewChild('active') activeVisits: VisitsListComponent;

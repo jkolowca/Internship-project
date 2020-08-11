@@ -34,26 +34,25 @@
 		</div>
 		<br />
 		<button
-			(click)="delete()"
 			*ngIf="
-				this.router.url.includes('/registered-visits');
-				else templateName
+				this.router.url.includes('/registered-visits') &&
+				type === 'active'
 			"
 			mat-raised-button
 			type="button"
 			color="primary"
+			(click)="delete()"
 		>
 			Cancel visit
 		</button>
-		<ng-template #templateName>
-			<button
-				mat-raised-button
-				type="button"
-				color="primary"
-				[routerLink]="['../registration', visit._id]"
-			>
-				Make an appointment
-			</button>
-		</ng-template>
+		<button
+			*ngIf="this.router.url.includes('/search-visits')"
+			mat-raised-button
+			type="button"
+			color="primary"
+			[routerLink]="['../registration', visit._id]"
+		>
+			Make an appointment
+		</button>
 	</div>
 </mat-expansion-panel>

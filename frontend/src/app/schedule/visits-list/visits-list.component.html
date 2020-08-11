@@ -5,6 +5,7 @@
 		<mat-divider></mat-divider>
 		<br />
 		<app-panel-patient
+			(visitCanceled)="loadVisits()"
 			*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 			[visit]="visit"
 		></app-panel-patient>
@@ -19,6 +20,7 @@
 			<mat-divider></mat-divider>
 			<br />
 			<app-panel-admin
+				(visitDeleted)="loadVisits()"
 				*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 				[visit]="visit"
 			></app-panel-admin>

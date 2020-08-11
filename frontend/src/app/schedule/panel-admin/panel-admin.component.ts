@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Visit, Clinic } from '../../models/interfaces';
 import { DatePipe } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
@@ -11,6 +11,7 @@ import { DoctorsService, VisitsService } from 'src/app/services';
 })
 export class PanelAdminComponent implements OnInit {
 	@Input() visit: Visit;
+	@Output() visitDeleted = new EventEmitter();
 	availableClinics: Clinic[];
 	state = 'display';
 	form: FormGroup;
@@ -60,10 +61,11 @@ export class PanelAdminComponent implements OnInit {
 	}
 
 	cancel() {
-		this.state = 'display';
+    this.state = 'display';
 	}
 
 	delete() {
-		this.visitsService.deleteVisit(this.visit._id).subscribe();
+    this.visitsService.deleteVisit(this.visit._id).subscribe();
+    this.visitDeleted.emit();
 	}
 }

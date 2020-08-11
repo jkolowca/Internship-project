@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Visit } from 'src/app/models/interfaces';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VisitsService } from 'src/app/services';
@@ -10,23 +10,31 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 	styleUrls: ['./panel-patient.component.scss'],
 })
 export class PanelPatientComponent implements OnInit {
-
 	@Input() visit: Visit;
-	constructor(private route: ActivatedRoute,
+	@Output() visitCanceled = new EventEmitter();
+	type: string;
+	now = new Date();
+	constructor(
+		private route: ActivatedRoute,
 		public router: Router,
 		private visitsService: VisitsService,
-		private snackBar: MatSnackBar) {}
+		private snackBar: MatSnackBar
+	) {}
 
 	ngOnInit(): void {
+		this.type =
+			new Date().getTime() > new Date(this.visit.startDate).getTime()
+				? 'archived'
+				: 'active';
 	}
 
 	idUser = this.route.snapshot.paramMap.get('idUser');
 
 	delete(): void {
-			this.visitsService.deleteAppointment(this.visit._id).subscribe();
-			this.snackBar.open('Usunięto wizytę', 'Koniec', {
-				duration: 2000,
-			});
-			this.router.navigate(['../'], { relativeTo: this.route });
-		}
+		this.visitsService.deleteAppointment(this.visit._id).subscribe();
+		this.snackBar.open('Appointment canceled', 'Finish', {
+			duration: 2000,
+		});
+		this.visitCanceled.emit();
+	}
 }
