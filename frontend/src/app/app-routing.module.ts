@@ -53,7 +53,7 @@ const routes: Routes = [
 		data: { accountTypes: ['doctor'] },
 	},
 	{
-		path: 'patient/:idUser',
+		path: 'patient/:id',
 		component: PatientComponent,
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['patient'] },
@@ -76,6 +76,10 @@ const routes: Routes = [
 				component: ScheduleComponent,
 			},
 		],
+	},
+	{
+		path: '**',
+		redirectTo: '',
 	},
 ];
 

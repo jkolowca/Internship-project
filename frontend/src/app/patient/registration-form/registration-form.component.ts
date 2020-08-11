@@ -12,8 +12,8 @@ import { Appointment } from 'src/app/models/interfaces';
 })
 export class RegistrationFormComponent implements OnInit {
 	registrationForm: any;
-	id = this.route.snapshot.paramMap.get('id');
-	idUser = this.route.parent.snapshot.paramMap.get('idUser');
+	visitId = this.route.snapshot.paramMap.get('id');
+	userId = this.route.parent.snapshot.paramMap.get('id');
 
 	constructor(
 		private visitsService: VisitsService,
@@ -39,9 +39,9 @@ export class RegistrationFormComponent implements OnInit {
 
 	register(): void {
 		const appointment: Appointment = this.registrationForm.value;
-		appointment._id = this.idUser;
+		appointment._id = this.userId;
 
-		this.visitsService.register(this.id, appointment).subscribe(
+		this.visitsService.register(this.visitId, appointment).subscribe(
 			() => {
 				this.snackBar.open('A doctor visit was agreed', 'End', {
 					duration: 2000,

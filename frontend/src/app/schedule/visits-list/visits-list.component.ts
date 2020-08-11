@@ -18,14 +18,8 @@ export class VisitsListComponent {
 		page: 0,
 	};
 	visitsCount = 0;
-	patientId: string;
 
-	constructor(
-		private visitService: VisitsService,
-		private route: ActivatedRoute
-	) {
-		this.patientId = this.route.snapshot.queryParamMap.get('idUser');
-	}
+	constructor(private visitService: VisitsService) {}
 
 	loadVisits(query?: any): void {
 		if (query) {

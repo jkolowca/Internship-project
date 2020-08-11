@@ -28,8 +28,6 @@ export class PanelPatientComponent implements OnInit {
 				: 'active';
 	}
 
-	idUser = this.route.snapshot.paramMap.get('idUser');
-
 	delete(): void {
 		this.visitsService.deleteAppointment(this.visit._id).subscribe();
 		this.snackBar.open('Appointment canceled', 'Finish', {

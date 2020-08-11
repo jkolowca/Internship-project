@@ -25,7 +25,7 @@ export class ScheduleComponent implements AfterViewInit {
 				doctor: this.doctorId,
 			});
 		} else {
-			let patientId = this.route.parent.snapshot.paramMap.get('idUser');
+			let patientId = this.route.parent.snapshot.paramMap.get('id');
 			this.activeVisits.loadVisits({
 				type: 'active',
 				patient: patientId,
