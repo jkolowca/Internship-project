@@ -3,7 +3,7 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService, AuthService } from '../../services';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Appointment, User } from 'src/app/models/interfaces';
+import { Appointment } from 'src/app/models/interfaces';
 
 @Component({
 	selector: 'app-registration-form',
@@ -11,7 +11,6 @@ import { Appointment, User } from 'src/app/models/interfaces';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
-	patient: User;
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
 	idUser = this.route.snapshot.paramMap.get('idUser');
@@ -31,9 +30,6 @@ export class RegistrationFormComponent implements OnInit {
 			surname: new FormControl('', [Validators.required]),
 			reason: new FormControl(''),
 		});
-		this.authService
-			.getCurrentUserProfile()
-			.subscribe(user => (this.patient = user));
 	}
 
 	getErrorMessage(prop): string {
@@ -65,9 +61,5 @@ export class RegistrationFormComponent implements OnInit {
 				);
 			}
 		);
-	}
-
-	logout() {
-		this.authService.doLogout();
 	}
 }

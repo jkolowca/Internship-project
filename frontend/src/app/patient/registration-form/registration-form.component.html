@@ -1,34 +1,32 @@
-<mat-toolbar>
-	<div class="buttons-bar">
-		<p>Patient  <span *ngIf="patient">{{patient.name}} {{patient.surname}}</span></p>
-		<button mat-button routerLink="../../" >New visits</button>
-		<button mat-button routerLink="../../registered-visits">Your visits</button>
-	</div>
-	<button mat-button (click) = logout() >Logout</button>
-</mat-toolbar>
 <div class="main-container">
-  <mat-card>
-    <div class="form-container">
-      <form [formGroup]="registrationForm" >
-      <mat-form-field appearance="fill">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Surname</mat-label>
-        <input matInput formControlName="surname">
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="fill">
-        <mat-label>Reason</mat-label>
-        <textarea matInput formControlName = "reason"></textarea>
-      </mat-form-field>
-    </form>
-    </div>
-    <div class="buttons">
-      <button routerLink="../../" mat-button>Back</button>
-      <button [disabled]="!registrationForm.valid" (click)="register()" type="submit" mat-button>Submit</button>
-    </div>
-  </mat-card>
+	<div>
+		<mat-card>
+			<form [formGroup]="registrationForm">
+				<mat-form-field appearance="legacy">
+					<mat-label>Name</mat-label>
+					<input matInput formControlName="name" />
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Surname</mat-label>
+					<input matInput formControlName="surname" />
+				</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Reason</mat-label>
+					<textarea matInput formControlName="reason"></textarea>
+				</mat-form-field>
+				<br />
+				<div class="buttons">
+					<button routerLink="../../" mat-button>Cancel</button>
+					<button
+						[disabled]="!registrationForm.valid"
+						(click)="register()"
+						type="submit"
+						mat-button
+					>
+						Submit
+					</button>
+				</div>
+			</form>
+		</mat-card>
+	</div>
 </div>

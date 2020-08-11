@@ -1,43 +1,75 @@
-<mat-toolbar>
-  <p>Create new account</p>
+<mat-toolbar color="primary">
+	<span>Create new account</span>
 </mat-toolbar>
 <div class="main-container">
-  <mat-card>
-    <div class="form-container">
-      <form [formGroup]="signupForm" (ngSubmit)="registerUser()">
-        <mat-form-field appearance="fill">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name">
-          <mat-error *ngIf="this.signupForm.controls['name'].invalid">{{getErrorMessage('name')}}</mat-error>
-        </mat-form-field>
+	<div>
+		<mat-card>
+			<div class="form-container">
+				<form [formGroup]="signupForm" (ngSubmit)="registerUser()">
+					<mat-form-field appearance="legacy">
+						<mat-label>Name</mat-label>
+						<input matInput formControlName="name" />
+						<mat-error
+							*ngIf="this.signupForm.controls['name'].invalid"
+							>{{ getErrorMessage('name') }}</mat-error
+						>
+					</mat-form-field>
 
-        <mat-form-field appearance="fill">
-          <mat-label>Surname</mat-label>
-          <input matInput formControlName="surname">
-          <mat-error *ngIf="this.signupForm.controls['surname'].invalid">{{getErrorMessage('surname')}}</mat-error>
-
-        </mat-form-field>
-        <mat-form-field appearance="fill">
-          <mat-label>E-mail</mat-label>
-          <input matInput formControlName="email">
-          <mat-error *ngIf="this.signupForm.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
-          <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
-          <mat-error *ngIf="this.signupForm.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
-          <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-          </button>
-        </mat-form-field>
-        <br>
-        <div class="buttons">
-          <button routerLink="../" type="button" mat-button>Back to Sign in</button>
-          <button [disabled]="!signupForm.valid" type="submit" mat-button>Sign up</button>
-        </div>
-      </form>
-    </div>
-  </mat-card>
+					<mat-form-field appearance="legacy">
+						<mat-label>Surname</mat-label>
+						<input matInput formControlName="surname" />
+						<mat-error
+							*ngIf="this.signupForm.controls['surname'].invalid"
+							>{{ getErrorMessage('surname') }}</mat-error
+						>
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>E-mail</mat-label>
+						<input matInput formControlName="email" />
+						<mat-error
+							*ngIf="this.signupForm.controls['email'].invalid"
+							>{{ getErrorMessage('email') }}</mat-error
+						>
+					</mat-form-field>
+					<mat-form-field appearance="legacy">
+						<mat-label>Password</mat-label>
+						<input
+							matInput
+							formControlName="password"
+							[type]="hide ? 'password' : 'text'"
+						/>
+						<mat-error
+							*ngIf="this.signupForm.controls['password'].invalid"
+							>{{ getErrorMessage('password') }}</mat-error
+						>
+						<button
+							type="button"
+							mat-icon-button
+							matSuffix
+							(click)="hide = !hide"
+							[attr.aria-label]="'Hide password'"
+							[attr.aria-pressed]="hide"
+						>
+							<mat-icon>{{
+								hide ? 'visibility_off' : 'visibility'
+							}}</mat-icon>
+						</button>
+					</mat-form-field>
+					<br />
+					<div class="buttons">
+						<button routerLink="../" type="button" mat-button>
+							Back to Sign in
+						</button>
+						<button
+							[disabled]="!signupForm.valid"
+							type="submit"
+							mat-button
+						>
+							Sign up
+						</button>
+					</div>
+				</form>
+			</div>
+		</mat-card>
+	</div>
 </div>

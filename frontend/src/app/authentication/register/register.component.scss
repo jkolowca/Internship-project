@@ -1,34 +1,28 @@
-a {
-    color: white;
-}
 .main-container {
-    width: 800px;
-    margin: auto;
-
-}
-.form-container {
-    width: 700px;
-    padding: 10px;
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	max-width: 100%;
 }
 
-mat-form-field {
-    width: 100%;
-    margin: 10px;
+.main-container > div {
+	padding: 20px;
 }
 
-.mat-toolbar {
-    padding-left: 10px;
-    margin-bottom: 10px;
-  
-}
-button {
-	height: 100%;
-	font-size: 20px;
-}
-
-.buttons {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 0 10px;
+form {
+	width: 90%;
+	margin: 10px auto;
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	mat-form-field {
+		padding: 0px 16px;
+	}
+	.buttons {
+		display: flex;
+		justify-content: space-between;
+		button {
+			font-size: 17px;
+		}
+	}
 }

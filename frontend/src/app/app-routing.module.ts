@@ -4,17 +4,18 @@ import { DoctorsTabComponent } from './administrator/doctors-tab/doctors-tab.com
 import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
 import { RegistrationFormComponent } from './patient/registration-form/registration-form.component';
-import { RegisteredVisitsListComponent } from './patient/registered-visits-list/registered-visits-list.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
+import { LoginComponent } from './authentication/login/login.component';
 import { RegisterComponent } from './authentication/register/register.component';
 import { ClinicsTabComponent } from './administrator/clinics-tab/clinics-tab.component';
 import { DoctorTabComponent } from './administrator/doctors-tab/doctor-tab/doctor-tab.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
 import { AdministratorComponent } from './administrator/administrator.component';
+import { NewVisitsComponent } from './patient/new-visits/new-visits.component';
+import { ScheduleComponent } from './schedule/schedule.component';
 const routes: Routes = [
 	{
 		path: '',
-		component: AuthenticationComponent,
+		component: LoginComponent,
 	},
 	{
 		path: 'register',
@@ -56,18 +57,25 @@ const routes: Routes = [
 		component: PatientComponent,
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['patient'] },
-	},
-	{
-		path: 'patient/:idUser/registration/:id',
-		component: RegistrationFormComponent,
-		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['patient'] },
-	},
-	{
-		path: 'patient/:idUser/registered-visits',
-		component: RegisteredVisitsListComponent,
-		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['patient'] },
+		children: [
+			{
+				path: '',
+				pathMatch: 'full',
+				redirectTo: 'search-visits',
+			},
+			{
+				path: 'search-visits',
+				component: NewVisitsComponent,
+			},
+			{
+				path: 'registration/:id',
+				component: RegistrationFormComponent,
+			},
+			{
+				path: 'registered-visits',
+				component: ScheduleComponent,
+			},
+		],
 	},
 ];
 

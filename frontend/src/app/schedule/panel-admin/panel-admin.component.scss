@@ -56,7 +56,7 @@ form {
 }
 
 @import '~@angular/material/theming';
-@import '../../../styles.scss';
+@import '../../../theme.scss';
 // Extract the color configuration in case a theme has been passed.
 // This allows consumers to either pass a theme object or a color configuration.
 // Extract the palettes you need from the theme definition.

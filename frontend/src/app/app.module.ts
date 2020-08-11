@@ -22,7 +22,6 @@ import { DoctorComponent } from './doctor/doctor.component';
 import { PatientComponent } from './patient/patient.component';
 import { SearchBarComponent } from './patient/search-bar/search-bar.component';
 import { RegistrationFormComponent } from './patient/registration-form/registration-form.component';
-import { RegisteredVisitsListComponent } from './patient/registered-visits-list/registered-visits-list.component';
 
 import { ScheduleComponent } from './schedule/schedule.component';
 import { VisitsListComponent } from './schedule/visits-list/visits-list.component';
@@ -32,8 +31,8 @@ import { PanelAddComponent } from './schedule/panel-add/panel-add.component';
 
 import { RegisterComponent } from './authentication/register/register.component';
 import { LoginComponent } from './authentication/login/login.component';
-import { AuthenticationComponent } from './authentication/authentication.component';
 import { AdministratorComponent } from './administrator/administrator.component';
+import { NewVisitsComponent } from './patient/new-visits/new-visits.component';
 
 @NgModule({
 	declarations: [
@@ -48,10 +47,8 @@ import { AdministratorComponent } from './administrator/administrator.component'
 		DoctorTabComponent,
 		ScheduleComponent,
 		VisitsListComponent,
-		RegisteredVisitsListComponent,
 		RegisterComponent,
 		LoginComponent,
-		AuthenticationComponent,
 		PanelPatientComponent,
 		PanelAdminComponent,
 		PanelAddComponent,
@@ -59,6 +56,7 @@ import { AdministratorComponent } from './administrator/administrator.component'
 		DoctorsTabComponent,
 		ClinicsTabComponent,
 		AdministratorComponent,
+		NewVisitsComponent,
 	],
 	imports: [
 		AppRoutingModule,

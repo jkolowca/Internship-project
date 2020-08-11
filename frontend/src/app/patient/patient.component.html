@@ -1,17 +1,14 @@
 <mat-toolbar color="primary">
-	<div class="buttons">
-		<p>
+	<div>
+		<span>
 			Patient
 			<span *ngIf="patient"
 				>{{ patient.name }} {{ patient.surname }}</span
 			>
-		</p>
-		<button mat-button>New visits</button>
+		</span>
+		<button mat-button routerLink="search-visits">New visits</button>
 		<button mat-button routerLink="registered-visits">Your visits</button>
 	</div>
 	<button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
-<app-search-bar (formSubmitted)="loadVisits($event)"></app-search-bar>
-<div class="main-container">
-	<div><app-visits-list type="patient"></app-visits-list></div>
-</div>
+<router-outlet></router-outlet>

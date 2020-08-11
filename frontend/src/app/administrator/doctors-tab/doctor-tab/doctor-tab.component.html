@@ -1,8 +1,10 @@
 <mat-toolbar color="primary">
-	<button mat-button (click)="openTab('doctor')">
-		Dr {{ doctor.surname }} {{ doctor.name }}
-	</button>
-	<button mat-button (click)="openTab('schedule')">Schedule</button>
+	<div>
+		<button mat-button (click)="openTab('doctor')">
+			Dr {{ doctor.surname }} {{ doctor.name }}
+		</button>
+		<button mat-button (click)="openTab('schedule')">Schedule</button>
+	</div>
 </mat-toolbar>
 
 <div class="main-container" *ngIf="doctor._id">

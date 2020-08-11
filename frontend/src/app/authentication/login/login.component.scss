@@ -1,35 +1,28 @@
 .main-container {
-	width: 800px;
-	margin: 40px auto;
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	max-width: 100%;
 }
+
+.main-container > div {
+	padding: 20px;
+}
+
 form {
 	width: 90%;
-	margin: 20px auto !important;
-}
-
-.buttons {
+	margin: 10px auto;
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	margin: 10px 0;
-	* {
-		font-size: 16px;
-		padding: 0;
+	flex-flow: column;
+	align-items: stretch;
+	mat-form-field {
+		padding: 0px 16px;
 	}
-}
-
-mat-form-field {
-	width: 100%;
-}
-
-.mat-toolbar {
-	padding-left: 10px;
-}
-
-@import '../../../styles.scss';
-$foreground-palette: map-get($light-app-theme, foreground);
-
-a {
-	color: mat-color($foreground-palette, text);
-	text-decoration: none;
+	.buttons {
+		display: flex;
+		justify-content: space-between;
+		button {
+			font-size: 17px;
+		}
+	}
 }

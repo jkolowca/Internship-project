@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
 	selector: 'app-schedule',
@@ -25,7 +25,8 @@ export class ScheduleComponent implements AfterViewInit {
 				doctor: this.doctorId,
 			});
 		} else {
-			let patientId = this.route.snapshot.paramMap.get('idUser');
+			let patientId = this.route.parent.snapshot.paramMap.get('idUser');
+			console.log(patientId);
 			this.activeVisits.loadVisits({
 				type: 'active',
 				patient: patientId,

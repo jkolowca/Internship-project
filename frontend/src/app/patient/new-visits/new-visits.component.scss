@@ -1,0 +1,15 @@
+app-search-bar {
+	margin: 20px auto;
+}
+
+.main-container {
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	max-width: 100%;
+	margin: auto;
+}
+
+.main-container div {
+	padding: 20px;
+}
