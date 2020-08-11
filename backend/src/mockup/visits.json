@@ -1,25 +1,561 @@
 [{
   "_id": {
-    "$oid": "5f312769a29a0517d44a1181"
+    "$oid": "5f3242137d817b2b4080cb6f"
   },
   "startDate": {
-    "$date": "2020-08-19T10:54:00Z"
+    "$date": "2020-08-03T07:00:00Z"
   },
   "endDate": {
-    "$date": "2020-08-28T10:54:00Z"
+    "$date": "2020-08-03T07:20:00Z"
   },
   "clinic": {
     "$oid": "5f2269223daaa419683d00de"
   },
   "doctor": {
     "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242187d817b2b4080cb70"
+  },
+  "startDate": {
+    "$date": "2020-08-04T07:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-04T07:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f32421d7d817b2b4080cb71"
+  },
+  "startDate": {
+    "$date": "2020-08-05T07:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-05T07:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242327d817b2b4080cb72"
+  },
+  "startDate": {
+    "$date": "2020-08-05T07:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-05T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242387d817b2b4080cb73"
+  },
+  "startDate": {
+    "$date": "2020-08-04T07:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-04T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f32423d7d817b2b4080cb74"
+  },
+  "startDate": {
+    "$date": "2020-08-03T07:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-03T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242737d817b2b4080cb75"
+  },
+  "startDate": {
+    "$date": "2020-08-04T08:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-04T08:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f32427e7d817b2b4080cb76"
+  },
+  "startDate": {
+    "$date": "2020-08-04T08:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-04T08:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242a07d817b2b4080cb77"
+  },
+  "startDate": {
+    "$date": "2020-08-12T08:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-12T08:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242a67d817b2b4080cb78"
+  },
+  "startDate": {
+    "$date": "2020-08-12T08:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-12T08:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
   },
   "appointment": {
-    "name": "aa",
-    "surname": "bb",
-    "reason": "aabb",
+    "name": "Patient",
+    "surname": "2",
+    "reason": "",
+    "_id": {
+      "$oid": "5f30e641494a47353cc9addf"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "5f3242b37d817b2b4080cb79"
+  },
+  "startDate": {
+    "$date": "2020-08-12T10:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-12T10:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242b87d817b2b4080cb7a"
+  },
+  "startDate": {
+    "$date": "2020-08-12T10:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-12T10:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242d17d817b2b4080cb7b"
+  },
+  "startDate": {
+    "$date": "2020-08-19T10:20:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-19T10:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242da7d817b2b4080cb7c"
+  },
+  "startDate": {
+    "$date": "2020-08-19T10:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-19T10:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242e57d817b2b4080cb7d"
+  },
+  "startDate": {
+    "$date": "2020-08-19T08:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-19T08:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3242ef7d817b2b4080cb7e"
+  },
+  "startDate": {
+    "$date": "2020-08-19T08:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-19T08:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f27c8376fa04e37b8288de9"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243227d817b2b4080cb7f"
+  },
+  "startDate": {
+    "$date": "2020-08-13T07:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-13T07:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f2a522dac39d815cca2f2b4"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243287d817b2b4080cb80"
+  },
+  "startDate": {
+    "$date": "2020-08-14T07:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-14T07:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f2a522dac39d815cca2f2b4"
+  },
+  "appointment": {
+    "name": "Patient",
+    "surname": "1",
+    "reason": "Some reason",
     "_id": {
       "$oid": "5f30e627494a47353cc9adde"
     }
+  }
+},{
+  "_id": {
+    "$oid": "5f32432f7d817b2b4080cb81"
+  },
+  "startDate": {
+    "$date": "2020-08-14T07:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-14T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f2a522dac39d815cca2f2b4"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243327d817b2b4080cb82"
+  },
+  "startDate": {
+    "$date": "2020-08-13T07:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-13T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f2a522dac39d815cca2f2b4"
+  }
+},{
+  "_id": {
+    "$oid": "5f32433f7d817b2b4080cb83"
+  },
+  "startDate": {
+    "$date": "2020-08-10T07:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-10T07:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f2a522dac39d815cca2f2b4"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243707d817b2b4080cb84"
+  },
+  "startDate": {
+    "$date": "2020-08-10T07:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-10T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269223daaa419683d00de"
+  },
+  "doctor": {
+    "$oid": "5f2a522dac39d815cca2f2b4"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243997d817b2b4080cb85"
+  },
+  "startDate": {
+    "$date": "2020-08-26T13:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-26T13:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "doctor": {
+    "$oid": "5f2bbd0e0c0a544bb89084ee"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243a17d817b2b4080cb86"
+  },
+  "startDate": {
+    "$date": "2020-08-26T13:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-26T13:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "doctor": {
+    "$oid": "5f2bbd0e0c0a544bb89084ee"
+  },
+  "appointment": {
+    "name": "Patient",
+    "surname": "1",
+    "reason": "",
+    "_id": {
+      "$oid": "5f30e627494a47353cc9adde"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "5f3243ab7d817b2b4080cb87"
+  },
+  "startDate": {
+    "$date": "2020-08-07T13:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-07T13:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "doctor": {
+    "$oid": "5f2bbd0e0c0a544bb89084ee"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243b07d817b2b4080cb88"
+  },
+  "startDate": {
+    "$date": "2020-08-07T13:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-07T13:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "doctor": {
+    "$oid": "5f2bbd0e0c0a544bb89084ee"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243bd7d817b2b4080cb89"
+  },
+  "startDate": {
+    "$date": "2020-08-27T13:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-27T13:20:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "doctor": {
+    "$oid": "5f2bbd0e0c0a544bb89084ee"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243c27d817b2b4080cb8a"
+  },
+  "startDate": {
+    "$date": "2020-08-27T13:25:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-27T13:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269753daaa419683d00e0"
+  },
+  "doctor": {
+    "$oid": "5f2bbd0e0c0a544bb89084ee"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243e47d817b2b4080cb8b"
+  },
+  "startDate": {
+    "$date": "2020-08-17T07:00:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-17T07:15:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f2bbd070c0a544bb89084ec"
+  }
+},{
+  "_id": {
+    "$oid": "5f3243ec7d817b2b4080cb8c"
+  },
+  "startDate": {
+    "$date": "2020-08-17T07:20:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-17T07:25:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f2bbd070c0a544bb89084ec"
+  },
+  "appointment": {
+    "name": "Patient",
+    "surname": "2",
+    "reason": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet aliquet quam. Etiam congue accumsan nisl. Phasellus sed varius justo, et accumsan enim. In a eros et nisi sodales vulputate et id odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Proin interdum tellus sit amet scelerisque sollicitudin. Cras venenatis diam massa, quis varius lorem convallis dapibus. In hac habitasse platea dictumst. Cras purus est, placerat nec libero eget, vestibulum blandit diam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus elementum eleifend eros, semper tincidunt arcu lobortis ac. Sed gravida eros turpis, non maximus velit luctus eget.",
+    "_id": {
+      "$oid": "5f30e641494a47353cc9addf"
+    }
+  }
+},{
+  "_id": {
+    "$oid": "5f3243f67d817b2b4080cb8d"
+  },
+  "startDate": {
+    "$date": "2020-08-17T07:30:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-17T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f2bbd070c0a544bb89084ec"
+  }
+},{
+  "_id": {
+    "$oid": "5f3244017d817b2b4080cb8e"
+  },
+  "startDate": {
+    "$date": "2020-08-18T07:30:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-18T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f2bbd070c0a544bb89084ec"
+  }
+},{
+  "_id": {
+    "$oid": "5f3244057d817b2b4080cb8f"
+  },
+  "startDate": {
+    "$date": "2020-08-19T07:30:00Z"
+  },
+  "endDate": {
+    "$date": "2020-08-19T07:45:00Z"
+  },
+  "clinic": {
+    "$oid": "5f2269483daaa419683d00df"
+  },
+  "doctor": {
+    "$oid": "5f2bbd070c0a544bb89084ec"
   }
 }]

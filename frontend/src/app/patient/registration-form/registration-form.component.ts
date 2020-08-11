@@ -13,15 +13,14 @@ import { Appointment } from 'src/app/models/interfaces';
 export class RegistrationFormComponent implements OnInit {
 	registrationForm: any;
 	id = this.route.snapshot.paramMap.get('id');
-	idUser = this.route.snapshot.paramMap.get('idUser');
+	idUser = this.route.parent.snapshot.paramMap.get('idUser');
 
 	constructor(
 		private visitsService: VisitsService,
 		private route: ActivatedRoute,
 		private snackBar: MatSnackBar,
 		public fb: FormBuilder,
-		public router: Router,
-		private authService: AuthService
+		public router: Router
 	) {}
 
 	ngOnInit(): void {
