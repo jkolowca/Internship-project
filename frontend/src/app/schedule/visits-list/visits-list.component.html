@@ -1,32 +1,30 @@
-<div class="main-container">
-	<mat-accordion *ngIf="type === 'patient'; else default">
+<mat-accordion *ngIf="type === 'patient'; else default">
+	<div *ngFor="let day of dailyVisitCount; let i = index">
+		<br />
+		{{ day._id }}
+		<mat-divider></mat-divider>
+		<br />
+		<app-panel-patient
+			*ngFor="let visit of getVisitsForGivenDay(i, this.visits)"
+			[visit]="visit"
+		></app-panel-patient>
+	</div>
+</mat-accordion>
+
+<ng-template #default>
+	<mat-accordion>
 		<div *ngFor="let day of dailyVisitCount; let i = index">
 			<br />
 			{{ day._id }}
 			<mat-divider></mat-divider>
 			<br />
-			<app-panel-patient
+			<app-panel-admin
 				*ngFor="let visit of getVisitsForGivenDay(i, this.visits)"
 				[visit]="visit"
-			></app-panel-patient>
+			></app-panel-admin>
 		</div>
 	</mat-accordion>
-
-	<ng-template #default>
-		<mat-accordion>
-			<div *ngFor="let day of dailyVisitCount; let i = index">
-				<br />
-				{{ day._id }}
-				<mat-divider></mat-divider>
-				<br />
-				<app-panel-admin
-					*ngFor="let visit of getVisitsForGivenDay(i, this.visits)"
-					[visit]="visit"
-				></app-panel-admin>
-			</div>
-		</mat-accordion>
-	</ng-template>
-	<div class="message" *ngIf="visits && !this.visits.length">
-		No visits found
-	</div>
+</ng-template>
+<div class="message" *ngIf="visits && !this.visits.length">
+	No visits found
 </div>

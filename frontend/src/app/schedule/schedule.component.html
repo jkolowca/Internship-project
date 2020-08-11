@@ -1,11 +1,8 @@
 <mat-tab-group mat-align-tabs="start">
 	<mat-tab label="Active">
 		<div class="main-container">
-			<div>
-				<app-panel-add
-					*ngIf="doctorId"
-					(newVisit)="ngAfterViewInit()"
-				></app-panel-add>
+			<div *ngIf="doctorId">
+				<app-panel-add (newVisit)="ngAfterViewInit()"></app-panel-add>
 			</div>
 			<div>
 				<app-visits-list

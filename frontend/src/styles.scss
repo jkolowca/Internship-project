@@ -35,3 +35,14 @@ mat-toolbar {
 		padding-right: 15px;
 	}
 }
+
+.main-container {
+	padding: 20px 0;
+	display: flex;
+	flex-direction: column;
+	width: 700px;
+	max-width: 100%;
+	> div {
+		padding: 20px;
+	}
+}

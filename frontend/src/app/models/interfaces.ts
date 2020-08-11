@@ -14,7 +14,7 @@ export interface Doctor {
 	clinics: string[];
 }
 
-export interface Pacient {
+export interface Patient {
 	_id: string;
 	name: string;
 	surname: string;

@@ -6,7 +6,6 @@ import { Doctor } from 'src/app/models/interfaces';
 @Component({
 	selector: 'app-doctors-tab',
 	templateUrl: './doctors-tab.component.html',
-	styleUrls: ['./doctors-tab.component.scss'],
 })
 export class DoctorsTabComponent {
 	@ViewChild(DoctorsListComponent) doctorsList: DoctorsListComponent;
