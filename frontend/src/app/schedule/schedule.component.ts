@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, AfterViewInit } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
 	selector: 'app-schedule',

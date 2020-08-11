@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ClinicsListComponent } from './clinics-list/clinics-list.component';
 import { MatExpansionPanel } from '@angular/material/expansion';
 
