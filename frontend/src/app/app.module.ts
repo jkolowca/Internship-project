@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { MaterialModule } from './shared/material.module';
 
@@ -66,7 +66,7 @@ import { NewVisitsComponent } from './patient/new-visits/new-visits.component';
 		MaterialModule,
 		CommonModule,
 	],
-	providers: [],
+	providers: [DatePipe],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -19,8 +19,7 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.signinForm = this.fb.group({
-			password: new FormControl('', [
-				Validators.required]),
+			password: new FormControl('', [Validators.required]),
 			email: new FormControl('', [Validators.required, Validators.email]),
 		});
 	}
@@ -45,8 +44,10 @@ export class LoginComponent implements OnInit {
 
 	getErrorMessage(prop: string) {
 		if (this.signinForm.controls[prop].hasError('required')) {
-		  return 'You must enter a value';
+			return 'You must enter a value';
 		}
-		return this.signinForm.controls[prop].hasError('email') ? 'Not a valid email' : '';
-	  }
+		return this.signinForm.controls[prop].hasError('email')
+			? 'Not a valid email'
+			: '';
+	}
 }

@@ -4,7 +4,7 @@
 			Add new
 		</mat-panel-title>
 	</mat-expansion-panel-header>
-	<form [formGroup]="form" (ngSubmit)="save()">
+	<form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
 		<mat-form-field appearance="legacy">
 			<mat-label>Visit start</mat-label>
 			<input
@@ -13,19 +13,6 @@
 				formControlName="startDate"
 				autocomplete="off"
 			/>
-			<!-- <mat-datepicker-toggle
-        [ngxMatDatetimePicker]="picker"
-        matSuffix
-				[for]="picker"
-			></mat-datepicker-toggle>
-			<ngx-mat-datetime-picker
-				#picker
-				[disabled]="false"
-				[defaultTime]="[12, 0, 0]"
-				[showSpinners]="true"
-				[showSeconds]="false"
-				[stepMinute]="5"
-			></ngx-mat-datetime-picker> -->
 		</mat-form-field>
 		<mat-form-field appearance="legacy">
 			<mat-label>Visit end</mat-label>
@@ -35,19 +22,6 @@
 				formControlName="endDate"
 				autocomplete="off"
 			/>
-			<!-- <mat-datepicker-toggle
-				matSuffix
-				[for]="pickerStart"
-			></mat-datepicker-toggle>
-				[ngxMatDatetimePicker]="pickerStart"
-			<ngx-mat-datetime-picker
-				#pickerStart
-				[disabled]="false"
-				[defaultTime]="[12, 0, 0]"
-				[showSpinners]="true"
-				[showSeconds]="false"
-				[stepMinute]="5"
-			></ngx-mat-datetime-picker> -->
 		</mat-form-field>
 		<mat-form-field>
 			<mat-select formControlName="clinic">

@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { DoctorsService } from 'src/app/services/doctors.service';
 import { Clinic } from 'src/app/models/interfaces';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from 'src/app/services';
 import { ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-panel-add',
@@ -16,13 +17,11 @@ export class PanelAddComponent implements OnInit {
 	availableClinics: Clinic[];
 	state = 'display';
 
-	form = new FormGroup({
-		startDate: new FormControl(),
-		endDate: new FormControl(),
-		clinic: new FormControl(),
-	});
+	form: FormGroup;
 
 	constructor(
+		private datePipe: DatePipe,
+		private fb: FormBuilder,
 		private doctorsService: DoctorsService,
 		private visitsService: VisitsService,
 		private route: ActivatedRoute
@@ -30,12 +29,20 @@ export class PanelAddComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.doctorId = this.route.snapshot.paramMap.get('id');
-		this.form.controls.startDate.setValue('', [Validators.required]);
-		this.form.controls.endDate.setValue('', [Validators.required]);
 		this.doctorsService.getClinics(this.doctorId).subscribe(clinics => {
 			this.availableClinics = clinics;
 			const toSelect = this.availableClinics[0];
-			this.form.controls.clinic.setValue(toSelect);
+			this.form = this.fb.group({
+				startDate: [
+					this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
+					Validators.required,
+				],
+				endDate: [
+					this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
+					Validators.required,
+				],
+				clinic: [toSelect, Validators.required],
+			});
 		});
 	}
 

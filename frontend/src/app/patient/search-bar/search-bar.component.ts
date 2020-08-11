@@ -1,18 +1,6 @@
-import {
-	Component,
-	OnInit,
-	Output,
-	EventEmitter,
-	ViewChild,
-	AfterViewInit,
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ClinicsService, DoctorsService } from 'src/app/services';
-import {
-	FormBuilder,
-	FormControl,
-	Validators,
-	AbstractControl,
-} from '@angular/forms';
+import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({
 	selector: 'app-search-bar',
@@ -21,7 +9,6 @@ import {
 })
 export class SearchBarComponent implements OnInit {
 	@Output() formSubmitted = new EventEmitter<Object>();
-	//@ViewChild('form') form: AbstractControl;
 	searchForm: any;
 	constructor(
 		public fb: FormBuilder,
