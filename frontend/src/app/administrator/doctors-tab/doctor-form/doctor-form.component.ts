@@ -40,7 +40,6 @@ export class DoctorFormComponent implements OnInit {
 				doctor.specialties.forEach(() => this.addSpecialtie());
 				const { _id, ...values } = doctor;
 				this.doctor.setValue(values);
-				console.log(this.doctor.controls.values);
 			});
 			return;
 		}

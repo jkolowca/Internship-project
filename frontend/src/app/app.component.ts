@@ -19,7 +19,6 @@ export class AppComponent implements OnInit {
 			duration: 5000,
 		});
 		snackBar.onAction().subscribe(() => {
-			console.log(`mock!`);
 			this.authService.getMockData().subscribe();
 		});
 	}

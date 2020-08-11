@@ -37,10 +37,7 @@ export class DoctorsService {
 				{ name, surname, specialties, clinics },
 				this.httpOptions
 			)
-			.pipe(
-				tap(res => console.log(`Doctor addition status ${res.status}`)),
-				catchError(this.handleError)
-			);
+			.pipe(catchError(this.handleError));
 	}
 
 	updateDoctor(doctor: Doctor): Observable<any> {

@@ -43,12 +43,7 @@ export class ClinicsService {
 				{ name, city, streetAddress, apartment },
 				this.httpOptions
 			)
-			.pipe(
-				tap((newClinic: Clinic) =>
-					console.log(`added clinic id=${newClinic._id}`)
-				),
-				catchError(this.handleError)
-			);
+			.pipe(catchError(this.handleError));
 	}
 
 	deleteClinic(id: string): Observable<Clinic[]> {

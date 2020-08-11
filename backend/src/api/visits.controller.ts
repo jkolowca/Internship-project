@@ -5,7 +5,6 @@ import { Visit } from '../models';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
-		console.log(req.query);
 		let beforeLookup: { [k: string]: any } = {},
 			afterLookup: { [k: string]: any } = {};
 		if (req.query.type)
@@ -57,7 +56,6 @@ export class VisitsCtrl {
 			await VisitsDAO.add(visit);
 			res.json({ status: 'success' });
 		} catch (e) {
-			console.log(e);
 			res.status(500).json({ e });
 		}
 	}
@@ -78,7 +76,6 @@ export class VisitsCtrl {
 					new ObjectId(clinic._id)
 				);
 			}
-			console.log(req.params.id);
 			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
@@ -89,7 +86,7 @@ export class VisitsCtrl {
 		try {
 			let id = new ObjectId(req.params.id);
 			await VisitsDAO.delete(id);
-			res.json({status: 'success'});
+			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
 		}

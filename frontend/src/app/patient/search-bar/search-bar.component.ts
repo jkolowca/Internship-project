@@ -36,7 +36,6 @@ export class SearchBarComponent implements OnInit {
 	}
 
 	onSubmit() {
-		console.log(this.searchForm.value);
 		this.formSubmitted.emit(this.searchForm.value);
 	}
 }
