@@ -11,7 +11,7 @@ export class VisitsDAO {
 			visitsCollection = conn.db('registration').collection('visits');
 		} catch (e) {
 			console.error(
-				`Unable to establish a collection handle in VisitsDAO: ${e}`
+				`VisitsDAO: Unable to establish a collection handle: ${e}`
 			);
 		}
 	}
@@ -60,7 +60,7 @@ export class VisitsDAO {
 				},
 			]);
 		} catch (e) {
-			console.error(`Unable to issue find command, ${e}`);
+			console.error(`VisitsDAO: Unable to issue find command, ${e}`);
 			return { visits: [], dates: [] };
 		}
 
@@ -68,7 +68,7 @@ export class VisitsDAO {
 			visits = await cursor.toArray();
 		} catch (e) {
 			console.error(
-				`Unable to convert cursor to array or problem counting documents, ${e}`
+				`VisitsDAO: Unable to convert cursor to array or problem counting documents, ${e}`
 			);
 			return { visits: [], dates: [] };
 		}
@@ -86,7 +86,7 @@ export class VisitsDAO {
 					_id: 1,
 				});
 		} catch (e) {
-			console.error(`Unable to issue find command, ${e}`);
+			console.error(`VisitsDAO: Unable to issue find command, ${e}`);
 			return { visits, dates: [] };
 		}
 
@@ -95,7 +95,7 @@ export class VisitsDAO {
 			return { visits, dates };
 		} catch (e) {
 			console.error(
-				`Unable to convert cursor to array or problem counting documents, ${e}`
+				`VisitsDAO: Unable to convert cursor to array or problem counting documents, ${e}`
 			);
 			return { visits, dates: [] };
 		}
@@ -105,7 +105,7 @@ export class VisitsDAO {
 		try {
 			return await visitsCollection.insertOne(visit);
 		} catch (e) {
-			console.error(`Unable to post list: ${e}`);
+			console.error(`VisitsDAO: Unable to post visit: ${e}`);
 			return { error: e };
 		}
 	}
@@ -114,7 +114,7 @@ export class VisitsDAO {
 		try {
 			return await visitsCollection.insertMany(visits);
 		} catch (e) {
-			console.error(`Unable to post list: ${e}`);
+			console.error(`VisitsDAO: Unable to post visits: ${e}`);
 			return { error: e };
 		}
 	}
@@ -125,7 +125,16 @@ export class VisitsDAO {
 				doctor: doctorId,
 			});
 		} catch (e) {
-			console.error(`Unable to delete visit: ${e}`);
+			console.error(`VisitsDAO: Unable to delete visits: ${e}`);
+			return { error: e };
+		}
+	}
+
+	static async delete(_id: ObjectId) {
+		try {
+			return await visitsCollection.deleteOne({ _id });
+		} catch (e) {
+			console.error(`VisitsDAO: Unable to delete visit: ${e}`);
 			return { error: e };
 		}
 	}
@@ -141,7 +150,7 @@ export class VisitsDAO {
 			);
 			return { success: true };
 		} catch (e) {
-			console.error(`Error occurred while logging in user, ${e}`);
+			console.error(`VisitsDAO: Unable to update appointment: ${e}`);
 			return { error: e };
 		}
 	}
@@ -154,7 +163,7 @@ export class VisitsDAO {
 			);
 			return { success: true };
 		} catch (e) {
-			console.error(`Error occurred while delete appointment, ${e}`);
+			console.error(`VisitsDAO: Unable to delete appointment: ${e}`);
 			return { error: e };
 		}
 	}
@@ -173,7 +182,7 @@ export class VisitsDAO {
 
 			return updateResponse;
 		} catch (e) {
-			console.error(`Unable to update visit: ${e}`);
+			console.error(`VisitsDAO: Unable to update visit: ${e}`);
 			return { error: e };
 		}
 	}

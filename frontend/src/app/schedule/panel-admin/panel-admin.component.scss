@@ -4,15 +4,13 @@
 	max-width: 90%;
 	display: flex;
 	flex-flow: column;
-}
-
-.data {
-	display: flex;
-	justify-content: flex-start;
-}
-
-.data div {
-	width: 50%;
+	.data {
+		display: flex;
+		justify-content: flex-start;
+		div {
+			width: 50%;
+		}
+	}
 }
 
 mat-panel-title {
@@ -35,15 +33,11 @@ mat-panel-description {
 }
 
 mat-expansion-panel:not(.mat-expanded) {
-	margin: 2px 0;
+	margin: 3px 0;
 }
 
 .mat-expansion-panel-spacing {
 	margin: 16px 0 !important;
-}
-.vertical-space {
-	width: 40px;
-	max-width: 10%;
 }
 
 form {
@@ -53,17 +47,15 @@ form {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
+	> button {
+		margin-top: 10px;
+	}
 }
 
 @import '~@angular/material/theming';
 @import '../../../theme.scss';
-// Extract the color configuration in case a theme has been passed.
-// This allows consumers to either pass a theme object or a color configuration.
-// Extract the palettes you need from the theme definition.
-$primary: map-get($light-app-theme, primary);
+$accent: map-get($light-app-theme, accent);
 
-// Define any styles affected by the theme.
 .booked {
-	// Use mat-color to extract individual colors from a palette.
-	background-color: mat-color($primary, 100);
+	background-color: mat-color($accent);
 }

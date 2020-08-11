@@ -74,6 +74,13 @@ export class VisitsService {
 			.pipe(catchError(this.handleError));
 	}
 
+	deleteVisit(id: string): Observable<{ status: string }> {
+		const url = `${this.visitsUrl}/visit/${id}`;
+		return this.http
+			.delete<{ status: string }>(url, this.httpOptions)
+			.pipe(catchError(this.handleError));
+	}
+
 	handleError(error: HttpErrorResponse) {
 		let msg = '';
 		if (error.error instanceof ErrorEvent) {

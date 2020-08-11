@@ -85,6 +85,16 @@ export class VisitsCtrl {
 		}
 	}
 
+	static async apiDelete(req: Request, res: Response, next: NextFunction) {
+		try {
+			let id = new ObjectId(req.params.id);
+			await VisitsDAO.delete(id);
+			res.json({status: 'success'});
+		} catch (e) {
+			res.status(500).json({ e });
+		}
+	}
+
 	static async apiDeleteAppointment(
 		req: Request,
 		res: Response,

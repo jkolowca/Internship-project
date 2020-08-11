@@ -58,4 +58,12 @@ export class PanelAdminComponent implements OnInit {
 		this.visitsService.editVisit(this.visit).subscribe();
 		this.state = 'display';
 	}
+
+	cancel() {
+		this.state = 'display';
+	}
+
+	delete() {
+		this.visitsService.deleteVisit(this.visit._id).subscribe();
+	}
 }
