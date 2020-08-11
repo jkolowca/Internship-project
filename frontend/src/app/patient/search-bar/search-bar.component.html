@@ -1,47 +1,51 @@
 <mat-card>
 	<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-		<mat-form-field appearance="legacy">
-			<mat-label>City</mat-label>
-			<mat-select multiple formControlName="city">
-				<mat-option
-					*ngFor="let clinic of availableClinics"
-					value="{{ clinic }}"
-					>{{ clinic }}</mat-option
-				>
-			</mat-select>
-		</mat-form-field>
+		<div class="fields">
+			<div class="inner">
+				<mat-form-field appearance="legacy">
+					<mat-label>City</mat-label>
+					<mat-select multiple formControlName="city">
+						<mat-option
+							*ngFor="let clinic of availableClinics"
+							value="{{ clinic }}"
+							>{{ clinic }}</mat-option
+						>
+					</mat-select>
+				</mat-form-field>
 
-		<mat-form-field appearance="legacy">
-			<mat-label>Speciality</mat-label>
-			<mat-select formControlName="speciality">
-				<mat-option
-					*ngFor="let spec of availableSpec"
-					value="{{ spec }}"
-					>{{ spec }}</mat-option
-				>
-			</mat-select>
-		</mat-form-field>
-		<div>
-			<mat-form-field appearance="legacy">
-				<input
-					formControlName="startDate"
-					matInput
-					type="datetime-local"
-					placeholder="Start date"
-				/>
-			</mat-form-field>
+				<mat-form-field appearance="legacy">
+					<mat-label>Speciality</mat-label>
+					<mat-select formControlName="speciality">
+						<mat-option
+							*ngFor="let spec of availableSpec"
+							value="{{ spec }}"
+							>{{ spec }}</mat-option
+						>
+					</mat-select>
+				</mat-form-field>
+			</div>
+			<div class="inner">
+				<mat-form-field appearance="legacy">
+					<input
+						formControlName="startDate"
+						matInput
+						type="datetime-local"
+						placeholder="Start date"
+					/>
+				</mat-form-field>
 
-			<mat-form-field appearance="legacy">
-				<input
-					formControlName="endDate"
-					matInput
-					type="datetime-local"
-					placeholder="End date"
-				/>
-			</mat-form-field>
-			<button type="submit" mat-icon-button aria-label="Search">
-				<mat-icon>search</mat-icon>
-			</button>
+				<mat-form-field appearance="legacy">
+					<input
+						formControlName="endDate"
+						matInput
+						type="datetime-local"
+						placeholder="End date"
+					/>
+				</mat-form-field>
+			</div>
 		</div>
+		<button type="submit" mat-icon-button aria-label="Search">
+			<mat-icon>search</mat-icon>
+		</button>
 	</form>
 </mat-card>

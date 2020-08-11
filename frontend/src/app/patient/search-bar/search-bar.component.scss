@@ -1,10 +1,24 @@
-mat-form-field {
-	margin: 0px 10px;
-}
-
 form {
 	display: flex;
-	align-items: flex-end;
 	justify-content: center;
-	flex-wrap: wrap;
+	align-items: center;
+	.fields {
+		display: flex;
+		flex-grow: 1;
+		flex-wrap: wrap;
+		.inner {
+			display: flex;
+			flex-grow: 1;
+			align-items: center;
+			mat-form-field {
+				margin: 0px 10px;
+				flex-grow: 1;
+				max-width: 50%;
+			}
+		}
+	}
+}
+
+mat-card {
+	margin: 10px;
 }
