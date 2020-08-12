@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ErrorPanelComponent } from 'src/app/error-panel/error-panel.component';
 
 @Component({
 	selector: 'app-login',
@@ -12,11 +13,12 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class LoginComponent implements OnInit {
 	signinForm: any;
 	hide = true;
+	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
+
 	constructor(
 		public fb: FormBuilder,
 		public authService: AuthService,
-		public router: Router,
-		private snackBar: MatSnackBar,
+		public router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -27,24 +29,26 @@ export class LoginComponent implements OnInit {
 	}
 
 	loginUser() {
-		this.authService.signIn(this.signinForm.value).subscribe(_ => {
-			this.authService.getCurrentUserProfile().subscribe(user => {
-				switch (user.accountType) {
-					case 'patient':
-						this.router.navigate(['/patient/', user._id]);
-						break;
-					case 'admin':
-						this.router.navigate(['/admin']);
-						break;
-					case 'doctor':
-						this.router.navigate(['/doctor/', user.doctorId]);
-						break;
-				}
-			});
-		}, () => {
-			this.snackBar.open('Invalid username or password', 'End', {
-				duration:3000,
-			})});
+		this.authService.signIn(this.signinForm.value).subscribe(
+			_ => {
+				this.authService.getCurrentUserProfile().subscribe(user => {
+					switch (user.accountType) {
+						case 'patient':
+							this.router.navigate(['/patient/', user._id]);
+							break;
+						case 'admin':
+							this.router.navigate(['/admin']);
+							break;
+						case 'doctor':
+							this.router.navigate(['/doctor/', user.doctorId]);
+							break;
+					}
+				});
+			},
+			() => {
+				this.errorPanel.displayError('Invalid username or password');
+			}
+		);
 	}
 
 	getErrorMessage(prop: string) {

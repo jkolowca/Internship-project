@@ -33,6 +33,7 @@ import { RegisterComponent } from './authentication/register/register.component'
 import { LoginComponent } from './authentication/login/login.component';
 import { AdministratorComponent } from './administrator/administrator.component';
 import { NewVisitsComponent } from './patient/new-visits/new-visits.component';
+import { ErrorPanelComponent } from './error-panel/error-panel.component';
 
 @NgModule({
 	declarations: [
@@ -57,6 +58,7 @@ import { NewVisitsComponent } from './patient/new-visits/new-visits.component';
 		ClinicsTabComponent,
 		AdministratorComponent,
 		NewVisitsComponent,
+		ErrorPanelComponent,
 	],
 	imports: [
 		AppRoutingModule,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/interfaces';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, share } from 'rxjs/operators';
 import {
 	HttpClient,
 	HttpHeaders,
@@ -46,7 +46,7 @@ export class AuthService {
 	signIn(user: { email: string; password: string }) {
 		let request = this.http
 			.post<any>(`${this.endpoint}/signin`, user)
-			.pipe(catchError(this.handleError));
+			.pipe(share(), catchError(this.handleError));
 		request.subscribe(res => {
 			this.access = res.access;
 			this.currentUser = res._id;
