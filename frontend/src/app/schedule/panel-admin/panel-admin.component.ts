@@ -11,8 +11,8 @@ import { DoctorsService, VisitsService } from 'src/app/services';
 })
 export class PanelAdminComponent implements OnInit {
 	@Input() visit: Visit;
+	@Input() clinics: Clinic[];
 	@Output() visitDeleted = new EventEmitter();
-	availableClinics: Clinic[];
 	state = 'display';
 	form: FormGroup;
 
@@ -24,31 +24,23 @@ export class PanelAdminComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.doctorsService
-			.getClinics(this.visit.doctor._id)
-			.subscribe(clinics => {
-				this.availableClinics = clinics;
-				const toSelect = this.availableClinics.find(
-					c => c.name === this.visit.clinic.name
-				);
-				this.form = this.fb.group({
-					startDate: [
-						this.datePipe.transform(
-							this.visit.startDate,
-							'yyy-MM-ddThh:mm'
-						),
-						Validators.required,
-					],
-					endDate: [
-						this.datePipe.transform(
-							this.visit.endDate,
-							'yyy-MM-ddThh:mm'
-						),
-						Validators.required,
-					],
-					clinic: [toSelect, Validators.required],
-				});
-			});
+		const toSelect = this.clinics.find(
+			c => c.name === this.visit.clinic.name
+		);
+		this.form = this.fb.group({
+			startDate: [
+				this.datePipe.transform(
+					this.visit.startDate,
+					'yyy-MM-ddThh:mm'
+				),
+				Validators.required,
+			],
+			endDate: [
+				this.datePipe.transform(this.visit.endDate, 'yyy-MM-ddThh:mm'),
+				Validators.required,
+			],
+			clinic: [toSelect, Validators.required],
+		});
 	}
 
 	save() {
@@ -61,11 +53,11 @@ export class PanelAdminComponent implements OnInit {
 	}
 
 	cancel() {
-    this.state = 'display';
+		this.state = 'display';
 	}
 
 	delete() {
-    this.visitsService.deleteVisit(this.visit._id).subscribe();
-    this.visitDeleted.emit();
+		this.visitsService.deleteVisit(this.visit._id).subscribe();
+		this.visitDeleted.emit();
 	}
 }

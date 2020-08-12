@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { VisitsService } from '../../services';
-import { Visit, VisitCount } from '../../models/interfaces';
+import { Visit, VisitCount, Clinic } from '../../models/interfaces';
 
 @Component({
 	selector: 'app-visits-list',
@@ -10,6 +10,7 @@ import { Visit, VisitCount } from '../../models/interfaces';
 })
 export class VisitsListComponent {
 	@Input() type: string;
+	@Input() clinics: Clinic[];
 	visits: Visit[];
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];

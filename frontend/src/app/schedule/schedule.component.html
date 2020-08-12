@@ -2,11 +2,16 @@
 	<mat-tab label="Active">
 		<div class="main-container">
 			<div *ngIf="doctorId">
-				<app-panel-add (newVisit)="ngAfterViewInit()"></app-panel-add>
+				<app-panel-add
+					*ngIf="clinics"
+					[clinics]="clinics"
+					(newVisit)="ngAfterViewInit()"
+				></app-panel-add>
 			</div>
 			<div>
 				<app-visits-list
 					#active
+					[clinics]="clinics"
 					[type]="doctorId ? 'doctor' : 'patient'"
 				></app-visits-list>
 			</div>
@@ -17,6 +22,7 @@
 			<div>
 				<app-visits-list
 					#archived
+					[clinics]="clinics"
 					[type]="doctorId ? 'doctor' : 'patient'"
 				></app-visits-list>
 			</div>
