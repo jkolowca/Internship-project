@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
 	selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 	constructor(
 		public fb: FormBuilder,
 		public authService: AuthService,
-		public router: Router
+		public router: Router,
+		private snackBar: MatSnackBar,
 	) {}
 
 	ngOnInit(): void {
@@ -24,7 +26,7 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	async loginUser() {
+	loginUser() {
 		this.authService.signIn(this.signinForm.value).subscribe(_ => {
 			this.authService.getCurrentUserProfile().subscribe(user => {
 				switch (user.accountType) {
@@ -39,7 +41,11 @@ export class LoginComponent implements OnInit {
 						break;
 				}
 			});
-		});
+		}, () => {
+			this.snackBar.open('Invalid username or password', 'End', {
+				duration: 3000,
+			  });
+			});
 	}
 
 	getErrorMessage(prop: string) {
