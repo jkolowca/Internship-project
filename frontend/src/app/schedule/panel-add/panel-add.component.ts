@@ -13,8 +13,8 @@ import { DatePipe } from '@angular/common';
 })
 export class PanelAddComponent implements OnInit {
 	@Input() doctorId: string;
+	@Input() clinics: Clinic[];
 	@Output() newVisit = new EventEmitter();
-	availableClinics: Clinic[];
 	state = 'display';
 
 	form: FormGroup;
@@ -22,27 +22,22 @@ export class PanelAddComponent implements OnInit {
 	constructor(
 		private datePipe: DatePipe,
 		private fb: FormBuilder,
-		private doctorsService: DoctorsService,
 		private visitsService: VisitsService,
 		private route: ActivatedRoute
 	) {}
 
 	ngOnInit(): void {
 		this.doctorId = this.route.snapshot.paramMap.get('id');
-		this.doctorsService.getClinics(this.doctorId).subscribe(clinics => {
-			this.availableClinics = clinics;
-			const toSelect = this.availableClinics[0];
-			this.form = this.fb.group({
-				startDate: [
-					this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
-					Validators.required,
-				],
-				endDate: [
-					this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
-					Validators.required,
-				],
-				clinic: [toSelect, Validators.required],
-			});
+		this.form = this.fb.group({
+			startDate: [
+				this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
+				Validators.required,
+			],
+			endDate: [
+				this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
+				Validators.required,
+			],
+			clinic: [this.clinics[0], Validators.required],
 		});
 	}
 

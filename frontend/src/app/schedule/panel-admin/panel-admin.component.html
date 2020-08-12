@@ -78,7 +78,7 @@
 			<mat-form-field>
 				<mat-select formControlName="clinic">
 					<mat-option
-						*ngFor="let clinic of availableClinics"
+						*ngFor="let clinic of clinics"
 						[value]="clinic"
 						>{{ clinic.name }}</mat-option
 					>

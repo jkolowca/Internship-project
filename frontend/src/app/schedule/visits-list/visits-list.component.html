@@ -13,7 +13,7 @@
 </mat-accordion>
 
 <ng-template #default>
-	<mat-accordion>
+	<mat-accordion *ngIf="clinics">
 		<div *ngFor="let day of dailyVisitCount; let i = index">
 			<br />
 			{{ day._id }}
@@ -23,6 +23,7 @@
 				(visitDeleted)="loadVisits()"
 				*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 				[visit]="visit"
+				[clinics]="clinics"
 			></app-panel-admin>
 		</div>
 	</mat-accordion>

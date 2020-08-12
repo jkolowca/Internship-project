@@ -1,7 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Input,
+	Output,
+	EventEmitter,
+	ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Clinic } from 'src/app/models/interfaces';
 import { DoctorsService, ClinicsService } from 'src/app/services';
+import { ErrorPanelComponent } from 'src/app/error-panel/error-panel.component';
 
 @Component({
 	selector: 'app-doctor-form',
@@ -9,6 +17,7 @@ import { DoctorsService, ClinicsService } from 'src/app/services';
 	styleUrls: ['./doctor-form.component.scss'],
 })
 export class DoctorFormComponent implements OnInit {
+	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	@Input() doctorId: string;
 	@Output() doctorSaved = new EventEmitter();
 	doctor = this.fb.group({
@@ -35,12 +44,15 @@ export class DoctorFormComponent implements OnInit {
 
 	fillEditForm(): void {
 		if (this.doctorId) {
-			this.doctorsService.getById(this.doctorId).subscribe(doctor => {
-				doctor.clinics.forEach(() => this.addClinic());
-				doctor.specialties.forEach(() => this.addSpecialtie());
-				const { _id, ...values } = doctor;
-				this.doctor.setValue(values);
-			});
+			this.doctorsService.getById(this.doctorId).subscribe(
+				doctor => {
+					doctor.clinics.forEach(() => this.addClinic());
+					doctor.specialties.forEach(() => this.addSpecialtie());
+					const { _id, ...values } = doctor;
+					this.doctor.setValue(values);
+				},
+				e => this.errorPanel.displayError(e)
+			);
 			return;
 		}
 		this.addSpecialtie();
@@ -48,9 +60,10 @@ export class DoctorFormComponent implements OnInit {
 	}
 
 	getAvailableClinics(): void {
-		this.clinicsService
-			.getAllClinics()
-			.subscribe(l => (this.availableClinics = l));
+		this.clinicsService.getAllClinics().subscribe(
+			l => (this.availableClinics = l),
+			e => this.errorPanel.displayError(e)
+		);
 	}
 
 	addSpecialtie(): void {
@@ -86,19 +99,28 @@ export class DoctorFormComponent implements OnInit {
 					specialties,
 					clinics,
 				})
-				.subscribe();
+				.subscribe(
+					() => {},
+					e => this.errorPanel.displayError(e)
+				);
 
 			this.doctorSaved.emit();
 			return;
 		}
 		this.doctorsService
 			.addDoctor(name, surname, specialties, clinics)
-			.subscribe();
+			.subscribe(
+				() => {},
+				e => this.errorPanel.displayError(e)
+			);
 		this.doctorSaved.emit();
 	}
 
 	deleteDoctor(): void {
-		this.doctorsService.deleteDoctor(this.doctorId).subscribe();
+		this.doctorsService.deleteDoctor(this.doctorId).subscribe(
+			() => {},
+			e => this.errorPanel.displayError(e)
+		);
 	}
 
 	openSchedule() {
