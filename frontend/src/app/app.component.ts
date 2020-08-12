@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
 	) {}
 
 	ngOnInit() {
-		let snackBar = this.snackBar.open('', 'Fill database with mock data', {
+		let snackBar = this.snackBar.open('Add mockup data?', 'Add', {
 			duration: 5000,
 		});
 		snackBar.onAction().subscribe(() => {

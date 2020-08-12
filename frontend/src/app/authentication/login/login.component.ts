@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
 		});
 	}
 
-	async loginUser() {
+	loginUser() {
 		this.authService.signIn(this.signinForm.value).subscribe(_ => {
 			this.authService.getCurrentUserProfile().subscribe(user => {
 				switch (user.accountType) {
