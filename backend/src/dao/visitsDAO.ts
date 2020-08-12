@@ -26,9 +26,7 @@ export class VisitsDAO {
 		let visits, dates, visitsCount;
 		try {
 			cursor = visitsCollection.aggregate([
-				{
-					$match: beforeLookup,
-				},
+				{ $match: beforeLookup },
 				{
 					$lookup: {
 						from: 'doctors',
@@ -37,6 +35,7 @@ export class VisitsDAO {
 						as: 'doctor',
 					},
 				},
+				{ $unwind: { path: '$doctor' } },
 				{
 					$lookup: {
 						from: 'clinics',
@@ -45,66 +44,32 @@ export class VisitsDAO {
 						as: 'clinic',
 					},
 				},
-				{
-					$unwind: {
-						path: '$clinic',
-					},
-				},
-				{
-					$unwind: {
-						path: '$doctor',
-					},
-				},
-				{
-					$match: afterLookup,
-				},
-				{
-					$sort: {
-						startDate: 1,
-					},
-				},
+				{ $unwind: { path: '$clinic' } },
+				{ $match: afterLookup },
+				{ $sort: { startDate: 1 } },
 			]);
+
 			visitsCount = (await cursor.toArray()).length;
-			cursor.skip(page * visitsPerPage).limit(visitsPerPage);
-		} catch (e) {
-			console.error(`VisitsDAO: Unable to issue find command, ${e}`);
-			return { visits: [], dates: [], visitsCount: 0 };
-		}
 
-		try {
-			visits = await cursor.toArray();
-		} catch (e) {
-			console.error(
-				`VisitsDAO: Unable to convert cursor to array or problem counting documents, ${e}`
-			);
-			return { visits: [], dates: [], visitsCount };
-		}
-		try {
-			cursor
+			visits = await cursor
+				.skip(page * visitsPerPage)
+				.limit(visitsPerPage)
+				.toArray();
+
+			dates = await cursor
 				.group({
-					_id: {
-						$substr: ['$startDate', 0, 10],
-					},
-					count: {
-						$sum: 1,
-					},
+					_id: { $substr: ['$startDate', 0, 10] },
+					count: { $sum: 1 },
 				})
-				.sort({
-					_id: 1,
-				});
-		} catch (e) {
-			console.error(`VisitsDAO: Unable to issue find command, ${e}`);
-			return { visits, dates: [], visitsCount };
-		}
+				.sort({ _id: 1 })
+				.toArray();
 
-		try {
-			dates = await cursor.toArray();
 			return { visits, dates, visitsCount };
 		} catch (e) {
 			console.error(
-				`VisitsDAO: Unable to convert cursor to array or problem counting documents, ${e}`
+				`VisitsDAO: Error while collecting visits data: ${e}`
 			);
-			return { visits, dates: [], visitsCount };
+			return { visits: [], dates: [], visitsCount: [] };
 		}
 	}
 
