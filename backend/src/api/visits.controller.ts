@@ -7,54 +7,45 @@ export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
 		let beforeLookup: { [k: string]: any } = {},
 			afterLookup: { [k: string]: any } = {};
-		if (req.query.type)
-			beforeLookup['startDate'] =
-				req.query.type === 'active'
+		let query = req.query;
+
+		if (query.type)
+			beforeLookup.startDate =
+				query.type === 'active'
 					? { $gte: new Date() }
 					: { $lte: new Date() };
-		if (req.query.doctor)
-			beforeLookup['doctor'] = new ObjectId(req.query.doctor as string);
-		if (req.query.patient)
+		if (query.doctor)
+			beforeLookup.doctor = new ObjectId(query.doctor as string);
+		if (query.patient)
 			beforeLookup['appointment._id'] = new ObjectId(
-				req.query.patient as string
+				query.patient as string
 			);
-		if (req.query.startDate)
-			beforeLookup['startDate'] = {
-				$gte: new Date(req.query.startDate as string),
+		if (query.startDate)
+			beforeLookup.startDate = {
+				$gte: new Date(query.startDate as string),
 			};
-		if (req.query.endDate)
-			beforeLookup['endDate'] = {
-				$lte: new Date(req.query.endDate as string),
+		if (query.endDate)
+			beforeLookup.endDate = {
+				$lte: new Date(query.endDate as string),
 			};
-		if (req.query.appointment)
-			beforeLookup['appointment'] =
-				req.query.appointment === 'available'
+		if (query.appointment)
+			beforeLookup.appointment =
+				query.appointment === 'available'
 					? { $exists: false }
 					: { $exists: true };
-		if (req.query.city)
+
+		if (query.city)
 			afterLookup['clinic.city'] = {
-				$in: (req.query.city as string).split(','),
+				$in: (query.city as string).split(','),
 			};
-		if (req.query.speciality)
+		if (query.speciality)
 			afterLookup['doctor.specialties'] = req.query.speciality;
 
-		let page;
-		try {
-			page = req.query.page ? parseInt(req.query.page as string, 10) : 0;
-		} catch (e) {
-			console.error(`Got bad value for page:, ${e}`);
-			page = 0;
-		}
+		let page = req.query.page ? parseInt(req.query.page as string, 10) : 0;
 
-		let visitsPerPage;
-		try {
-			visitsPerPage = req.query.visitsPerPage
-				? parseInt(req.query.visitsPerPage as string, 10)
-				: 10;
-		} catch (e) {
-			console.error(`Got bad value for visitsPerPage:, ${e}`);
-			visitsPerPage = 10;
-		}
+		let visitsPerPage = req.query.visitsPerPage
+			? parseInt(req.query.visitsPerPage as string, 10)
+			: 10;
 
 		const { visits, dates, visitsCount } = await VisitsDAO.find(
 			beforeLookup,
