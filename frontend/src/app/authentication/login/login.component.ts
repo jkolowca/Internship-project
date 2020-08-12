@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { AuthService } from '../../services';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorPanelComponent } from 'src/app/error-panel/error-panel.component';
 
 @Component({
@@ -45,7 +44,7 @@ export class LoginComponent implements OnInit {
 					}
 				});
 			},
-			() => {
+			err => {
 				this.errorPanel.displayError('Invalid username or password');
 			}
 		);
