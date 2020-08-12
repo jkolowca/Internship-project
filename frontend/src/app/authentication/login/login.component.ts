@@ -11,9 +11,9 @@ import { ErrorPanelComponent } from 'src/app/error-panel/error-panel.component';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	signinForm: any;
 	hide = true;
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 
 	constructor(
 		public fb: FormBuilder,
@@ -43,7 +43,8 @@ export class LoginComponent implements OnInit {
 							this.router.navigate(['/doctor/', user.doctorId]);
 							break;
 					}
-				});
+				}),
+					this.errorPanel.displayError;
 			},
 			() => {
 				this.errorPanel.displayError('Invalid username or password');

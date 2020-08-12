@@ -1,6 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import {
+	Component,
+	OnInit,
+	Output,
+	EventEmitter,
+	ViewChild,
+} from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClinicsService } from '../../../services';
+import { ErrorPanelComponent } from 'src/app/error-panel/error-panel.component';
 
 @Component({
 	selector: 'app-clinic-form',
@@ -8,6 +15,7 @@ import { ClinicsService } from '../../../services';
 	styleUrls: ['./clinic-form.component.scss'],
 })
 export class ClinicFormComponent implements OnInit {
+	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	@Output() clinicAdded = new EventEmitter();
 
 	clinic = this.fb.group({
@@ -26,7 +34,10 @@ export class ClinicFormComponent implements OnInit {
 
 	addClinic(): void {
 		const { name, city, street, streetNo } = this.clinic.value;
-		this.clinicsService.addClinic(name, city, street, streetNo).subscribe();
+		this.clinicsService.addClinic(name, city, street, streetNo).subscribe(
+			() => {},
+			() => this.errorPanel.displayError('Failed to add clinic')
+		);
 		this.clinic.reset();
 		this.clinicAdded.emit();
 	}
