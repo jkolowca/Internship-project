@@ -45,10 +45,3 @@ export interface User {
 	accountType: string;
 	doctorId?: string;
 }
-
-export interface Query {
-	city: string[];
-	speciality: string;
-	startDate: string;
-	endDate: string;
-}
