@@ -31,7 +31,7 @@ export class RegisterComponent implements OnInit {
 		this.authService.signUp(this.signupForm.value).subscribe(() => {
 			this.signupForm.reset(), this.router.navigate(['']);
     },
-    () => {
+    err => {
       this.snackBar.open('Failed to register. Try again', 'End', {
         duration: 3000,
         });

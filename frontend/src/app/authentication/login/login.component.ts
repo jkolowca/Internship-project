@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 						break;
 				}
 			});
-		}, () => {
+		}, err => {
 			this.snackBar.open('Invalid username or password', 'End', {
 				duration:3000,
 			})});

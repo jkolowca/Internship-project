@@ -50,7 +50,7 @@ export class RegistrationFormComponent implements OnInit {
 					relativeTo: this.route,
 				});
 			},
-			() => {
+			err => {
 				this.snackBar.open(
 					'An appointment could not be made. Try again',
 					'End',
