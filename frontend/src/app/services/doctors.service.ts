@@ -4,18 +4,19 @@ import {
 	HttpHeaders,
 	HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, Subject, BehaviorSubject } from 'rxjs';
 import { Doctor, Clinic } from '../models/interfaces';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class DoctorsService {
 	private doctorsUrl = 'http://localhost:5000/doctors';
-	httpOptions = {
+	private httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 	};
+	currentDoctor = new BehaviorSubject<Doctor>(<Doctor>{});
 
 	constructor(private http: HttpClient) {}
 
@@ -24,6 +25,10 @@ export class DoctorsService {
 			.get<Doctor[]>(this.doctorsUrl, this.httpOptions)
 			.pipe(catchError(this.handleError));
 	}
+
+	setCurrentDoctor(doctor: Doctor) {
+		this.currentDoctor.next(doctor);
+  }
 
 	addDoctor(
 		name: string,

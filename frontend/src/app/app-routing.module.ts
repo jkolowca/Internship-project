@@ -12,6 +12,7 @@ import { PatientComponent } from './components/patient/patient.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
 import { ScheduleComponent } from './components/shared/schedule/schedule.component';
+import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 
 const routes: Routes = [
 	{
@@ -44,6 +45,20 @@ const routes: Routes = [
 			{
 				path: 'doctors/:id',
 				component: DoctorTabComponent,
+				children: [
+					{
+						path: '',
+						pathMatch: 'full',
+            redirectTo: 'edit',
+					},
+					{
+						path: 'edit',
+						component: EditTabComponent,
+					},
+					//{
+					//	path: 'schedule',
+					//},
+				],
 			},
 		],
 	},

@@ -26,7 +26,8 @@ import { ClinicsTabComponent } from './components/administrator/clinics-tab/clin
 import { AdministratorComponent } from './components/administrator/administrator.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { ErrorPanelComponent } from './components/shared/error-panel/error-panel.component';
-import { MaterialModule } from './material.module';
+import { MaterialModule } from './shared/material.module';
+import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 
 @NgModule({
 	declarations: [
@@ -52,6 +53,7 @@ import { MaterialModule } from './material.module';
 		AdministratorComponent,
 		NewVisitsComponent,
 		ErrorPanelComponent,
+		EditTabComponent,
 	],
 	imports: [
 		AppRoutingModule,
