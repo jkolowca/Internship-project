@@ -17,9 +17,6 @@ import { ScheduleComponent } from './components/shared/schedule/schedule.compone
 import { VisitsListComponent } from './components/shared/schedule/visits-list/visits-list.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { LoginComponent } from './components/authentication/login/login.component';
-import { PanelPatientComponent } from './components/shared/schedule/panel-patient/panel-patient.component';
-import { PanelAdminComponent } from './components/shared/schedule/panel-admin/panel-admin.component';
-import { PanelAddComponent } from './components/shared/schedule/panel-add/panel-add.component';
 import { ClinicsListComponent } from './components/administrator/clinics-tab/clinics-list/clinics-list.component';
 import { DoctorsTabComponent } from './components/administrator/doctors-tab/doctors-tab.component';
 import { ClinicsTabComponent } from './components/administrator/clinics-tab/clinics-tab.component';
@@ -29,6 +26,11 @@ import { ErrorPanelComponent } from './components/shared/error-panel/error-panel
 import { MaterialModule } from './shared/material.module';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 import { LogoutComponent } from './components/authentication/logout/logout.component';
+import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
+import { PatientVisitsListComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visits-list.component';
+import { PatientVisitPanelComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visit-panel/patient-visit-panel.component';
+import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-list/visit-display-panel/visit-display-panel.component';
+import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
 
 @NgModule({
 	declarations: [
@@ -45,9 +47,8 @@ import { LogoutComponent } from './components/authentication/logout/logout.compo
 		VisitsListComponent,
 		RegisterComponent,
 		LoginComponent,
-		PanelPatientComponent,
-		PanelAdminComponent,
-		PanelAddComponent,
+		VisitDisplayPanelComponent,
+		VisitAddPanelComponent,
 		ClinicsListComponent,
 		DoctorsTabComponent,
 		ClinicsTabComponent,
@@ -56,6 +57,9 @@ import { LogoutComponent } from './components/authentication/logout/logout.compo
 		ErrorPanelComponent,
 		EditTabComponent,
 		LogoutComponent,
+		PatientScheduleComponent,
+		PatientVisitsListComponent,
+		PatientVisitPanelComponent,
 	],
 	imports: [
 		AppRoutingModule,

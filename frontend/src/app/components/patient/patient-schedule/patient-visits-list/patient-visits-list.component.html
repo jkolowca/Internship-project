@@ -1,15 +1,14 @@
-<mat-accordion *ngIf="clinics">
+<mat-accordion>
 	<div *ngFor="let day of dailyVisitCount; let i = index">
 		<br />
 		{{ day._id }}
 		<mat-divider></mat-divider>
 		<br />
-		<app-visit-display-panel
-			(visitDeleted)="loadVisits()"
+		<app-panel-patient
+			(visitCanceled)="loadVisits()"
 			*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 			[visit]="visit"
-			[clinics]="clinics"
-		></app-visit-display-panel>
+		></app-panel-patient>
 	</div>
 </mat-accordion>
 

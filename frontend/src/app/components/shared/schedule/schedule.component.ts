@@ -41,16 +41,6 @@ export class ScheduleComponent implements AfterViewInit, OnInit {
 				type: 'archived',
 				doctor: this.doctorId,
 			});
-		} else {
-			let patientId = this.route.parent.snapshot.paramMap.get('id');
-			this.activeVisits.loadVisits({
-				type: 'active',
-				patient: patientId,
-			});
-			this.archivedVisits.loadVisits({
-				type: 'archived',
-				patient: patientId,
-			});
 		}
 	}
 }
