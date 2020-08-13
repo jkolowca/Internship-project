@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, Form, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorPanelComponent } from '../../shared/error-panel/error-panel.component';
 import { AuthService } from 'src/app/services';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services';
 })
 export class LoginComponent implements OnInit {
 	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
-	signinForm: any;
+	signinForm: FormGroup;
 	hide = true;
 
 	constructor(
@@ -54,9 +54,8 @@ export class LoginComponent implements OnInit {
 	getErrorMessage(prop: string) {
 		if (this.signinForm.controls[prop].hasError('required')) {
 			return 'You must enter a value';
+		} else if (this.signinForm.controls[prop].hasError('email')){
+			return 'Not a valid email';
 		}
-		return this.signinForm.controls[prop].hasError('email')
-			? 'Not a valid email'
-			: '';
 	}
 }

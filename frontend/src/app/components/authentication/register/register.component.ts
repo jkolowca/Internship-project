@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorPanelComponent } from '../../shared/error-panel/error-panel.component';
 import { AuthService } from 'src/app/services';
@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services';
 })
 export class RegisterComponent implements OnInit {
 	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
-	signupForm: any;
+	signupForm: FormGroup;
 	hide = true;
 
 	constructor(
@@ -47,9 +47,10 @@ export class RegisterComponent implements OnInit {
 	getErrorMessage(prop: string) {
 		if (this.signupForm.controls[prop].hasError('required')) {
 			return 'You must enter a value';
+		}else if (this.signupForm.controls[prop].hasError('email')){
+			return 'Not a valid email';
+		}else if (this.signupForm.controls[prop].hasError('minlength')){
+			return 'Minimum password length is 8';
 		}
-		return this.signupForm.controls[prop].hasError('email')
-			? 'Not a valid email'
-			: 'Minimum password length is 8';
 	}
 }
