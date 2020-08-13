@@ -27,6 +27,7 @@ import { AdministratorComponent } from './components/administrator/administrator
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { ErrorPanelComponent } from './components/shared/error-panel/error-panel.component';
 import { MaterialModule } from './material.module';
+import { LogoutComponent } from './components/authentication/logout/logout.component';
 
 @NgModule({
 	declarations: [
@@ -52,6 +53,7 @@ import { MaterialModule } from './material.module';
 		AdministratorComponent,
 		NewVisitsComponent,
 		ErrorPanelComponent,
+		LogoutComponent,
 	],
 	imports: [
 		AppRoutingModule,

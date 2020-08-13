@@ -4,6 +4,6 @@
 		<button mat-button routerLink="doctors">Doctors</button>
 		<button mat-button routerLink="clinics">Clinics</button>
 	</div>
-	<button class="logout" mat-button (click)="logout()">Logout</button>
+	<button class="logout" mat-button [routerLink]="['/logout']">Logout</button>
 </mat-toolbar>
 <router-outlet></router-outlet>

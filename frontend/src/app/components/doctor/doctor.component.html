@@ -6,7 +6,7 @@
 		</span>
 		<button mat-button>Schedule</button>
 	</div>
-	<button mat-button (click)="logout()">Logout</button>
+	<button mat-button [routerLink]="['/logout']">Logout</button>
 </mat-toolbar>
 <app-schedule
 	*ngIf="doctor && doctor.doctorId"
