@@ -1,17 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { DoctorsTabComponent } from './administrator/doctors-tab/doctors-tab.component';
-import { DoctorComponent } from './doctor/doctor.component';
-import { PatientComponent } from './patient/patient.component';
-import { RegistrationFormComponent } from './patient/registration-form/registration-form.component';
-import { LoginComponent } from './authentication/login/login.component';
-import { RegisterComponent } from './authentication/register/register.component';
-import { ClinicsTabComponent } from './administrator/clinics-tab/clinics-tab.component';
-import { DoctorTabComponent } from './administrator/doctors-tab/doctor-tab/doctor-tab.component';
 import { AuthenticationGuard } from './guard/authentication.guard';
-import { AdministratorComponent } from './administrator/administrator.component';
-import { NewVisitsComponent } from './patient/new-visits/new-visits.component';
-import { ScheduleComponent } from './schedule/schedule.component';
+import { LoginComponent } from './components/authentication/login/login.component';
+import { RegisterComponent } from './components/authentication/register/register.component';
+import { AdministratorComponent } from './components/administrator/administrator.component';
+import { DoctorsTabComponent } from './components/administrator/doctors-tab/doctors-tab.component';
+import { ClinicsTabComponent } from './components/administrator/clinics-tab/clinics-tab.component';
+import { DoctorTabComponent } from './components/administrator/doctors-tab/doctor-tab/doctor-tab.component';
+import { DoctorComponent } from './components/doctor/doctor.component';
+import { PatientComponent } from './components/patient/patient.component';
+import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
+import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
+import { ScheduleComponent } from './components/shared/schedule/schedule.component';
+
 const routes: Routes = [
 	{
 		path: '',

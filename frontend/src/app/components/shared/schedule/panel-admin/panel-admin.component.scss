@@ -1,0 +1,61 @@
+.content {
+	margin: 0px auto;
+	width: 500px;
+	max-width: 90%;
+	display: flex;
+	flex-flow: column;
+	.data {
+		display: flex;
+		justify-content: flex-start;
+		div {
+			width: 50%;
+		}
+	}
+}
+
+mat-panel-title {
+	flex-grow: 2;
+	align-items: center;
+}
+
+mat-panel-description {
+	flex-grow: 1;
+	justify-self: flex-end;
+	justify-content: flex-end;
+	align-items: center;
+	margin-right: 0px;
+	button {
+		margin-left: 20px;
+		.mat-icon {
+			font-size: 20px;
+		}
+	}
+}
+
+mat-expansion-panel:not(.mat-expanded) {
+	margin: 3px 0;
+}
+
+.mat-expansion-panel-spacing {
+	margin: 16px 0 !important;
+}
+
+form {
+	margin: 0px auto;
+	width: 400px;
+	max-width: 90%;
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	> button {
+		margin-top: 10px;
+	}
+}
+
+@import '~@angular/material/theming';
+@import '../../../../../theme.scss';
+$accent: map-get($light-app-theme, accent);
+
+.booked {
+	background-color: mat-color($accent);
+}

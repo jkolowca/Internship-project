@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@import '../../../../theme.scss';
+
+$warn: map-get($light-app-theme, warn);
+
+span {
+	color: mat-color($warn);
+	margin: 10px auto;
+	font-size: 17px;
+}
+
+div {
+	display: flex;
+	justify-content: center;
+}
