@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import {
-	HttpClient,
-	HttpParams,
-	HttpHeaders,
-	HttpErrorResponse,
-} from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Visit, VisitCount, Appointment } from '../models/interfaces';
-import { catchError } from 'rxjs/operators';
+
 
 @Injectable({
 	providedIn: 'root',
@@ -28,8 +23,7 @@ export class VisitsService {
 		return this.http
 			.get<{ visits: Visit[]; dates: VisitCount[]; visitsCount: number }>(
 				this.visitsUrl
-			)
-			.pipe(catchError(this.handleError));
+			);
 	}
 
 	findVisits(
@@ -49,8 +43,7 @@ export class VisitsService {
 				{
 					params: params,
 				}
-			)
-			.pipe(catchError(this.handleError));
+			);
 	}
 
 	addVisit(
@@ -65,42 +58,27 @@ export class VisitsService {
 				endDate,
 				clinic,
 				doctor,
-			})
-			.pipe(catchError(this.handleError));
+			});
 	}
 
 	editVisit(visit: Visit): Observable<any> {
 		return this.http
-			.patch(`${this.visitsUrl}/visit/${visit._id}`, visit)
-			.pipe(catchError(this.handleError));
+			.patch(`${this.visitsUrl}/visit/${visit._id}`, visit);
 	}
 
 	register(id: string, appointment: Appointment): Observable<any> {
 		return this.http
-			.patch(`${this.visitsUrl}/visit/${id}`, { appointment })
-			.pipe(catchError(this.handleError));
+			.patch(`${this.visitsUrl}/visit/${id}`, { appointment });
 	}
 
 	deleteAppointment(id: string): Observable<any> {
 		return this.http
-			.patch(`${this.visitsUrl}/visit/${id}/delete`, id)
-			.pipe(catchError(this.handleError));
+			.patch(`${this.visitsUrl}/visit/${id}/delete`, id);
 	}
 
 	deleteVisit(id: string): Observable<{ status: string }> {
 		const url = `${this.visitsUrl}/visit/${id}`;
 		return this.http
-			.delete<{ status: string }>(url, this.httpOptions)
-			.pipe(catchError(this.handleError));
-	}
-
-	handleError(error: HttpErrorResponse) {
-		let msg = '';
-		if (error.error instanceof ErrorEvent) {
-			msg = `Error: ${error.error.message}`;
-		} else {
-			msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-		}
-		return throwError(msg);
+			.delete<{ status: string }>(url, this.httpOptions);
 	}
 }

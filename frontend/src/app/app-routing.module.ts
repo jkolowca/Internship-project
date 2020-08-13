@@ -13,6 +13,7 @@ import { NewVisitsComponent } from './components/patient/new-visits/new-visits.c
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
 import { ScheduleComponent } from './components/shared/schedule/schedule.component';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
+import { LogoutComponent } from './components/authentication/logout/logout.component';
 
 const routes: Routes = [
 	{
@@ -22,6 +23,10 @@ const routes: Routes = [
 	{
 		path: 'register',
 		component: RegisterComponent,
+	},
+	{
+		path: 'logout',
+		component: LogoutComponent,
 	},
 	{
 		path: 'admin',
@@ -49,7 +54,7 @@ const routes: Routes = [
 					{
 						path: '',
 						pathMatch: 'full',
-            redirectTo: 'edit',
+						redirectTo: 'edit',
 					},
 					{
 						path: 'edit',

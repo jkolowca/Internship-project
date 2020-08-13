@@ -9,6 +9,6 @@
 		<button mat-button routerLink="search-visits">New visits</button>
 		<button mat-button routerLink="registered-visits">Your visits</button>
 	</div>
-	<button mat-button (click)="logout()">Logout</button>
+	<button mat-button [routerLink]="['/logout']">Logout</button>
 </mat-toolbar>
 <router-outlet></router-outlet>

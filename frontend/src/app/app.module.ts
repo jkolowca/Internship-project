@@ -28,6 +28,7 @@ import { NewVisitsComponent } from './components/patient/new-visits/new-visits.c
 import { ErrorPanelComponent } from './components/shared/error-panel/error-panel.component';
 import { MaterialModule } from './shared/material.module';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
+import { LogoutComponent } from './components/authentication/logout/logout.component';
 
 @NgModule({
 	declarations: [
@@ -54,6 +55,7 @@ import { EditTabComponent } from './components/administrator/doctors-tab/doctor-
 		NewVisitsComponent,
 		ErrorPanelComponent,
 		EditTabComponent,
+		LogoutComponent,
 	],
 	imports: [
 		AppRoutingModule,

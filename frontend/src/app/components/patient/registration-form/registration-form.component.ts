@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment } from 'src/app/models/interfaces';
@@ -11,7 +11,7 @@ import { VisitsService } from 'src/app/services/visits.service';
 	styleUrls: ['./registration-form.component.scss'],
 })
 export class RegistrationFormComponent implements OnInit {
-	registrationForm: any;
+	registrationForm: FormGroup;
 	visitId = this.route.snapshot.paramMap.get('id');
 	userId = this.route.parent.snapshot.paramMap.get('id');
 

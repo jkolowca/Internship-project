@@ -15,7 +15,4 @@ export class PatientComponent implements OnInit {
 			.getCurrentUserProfile()
 			.subscribe(patient => (this.patient = patient));
 	}
-	logout() {
-		this.authService.doLogout();
-	}
 }

@@ -18,7 +18,4 @@ export class DoctorComponent implements OnInit {
 			e => this.errorPanel.displayError(e)
 		);
 	}
-	logout() {
-		this.authService.doLogout();
-	}
 }

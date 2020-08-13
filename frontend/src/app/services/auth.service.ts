@@ -1,12 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/interfaces';
-import { Observable, throwError } from 'rxjs';
-import { catchError, share } from 'rxjs/operators';
-import {
-	HttpClient,
-	HttpHeaders,
-	HttpErrorResponse,
-} from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+ import { share } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -29,8 +25,7 @@ export class AuthService {
 
 	getMockData() {
 		return this.http
-			.post<{ status: string }>(`http://localhost:5000/mockup`, {})
-			.pipe(catchError(this.handleError));
+			.post<{ status: string }>(`http://localhost:5000/mockup`, {});
 	}
 
 	getCurrentUserProfile() {
@@ -39,14 +34,13 @@ export class AuthService {
 
 	signUp(user: User): Observable<any> {
 		return this.http
-			.post<{ status: string }>(`${this.endpoint}/register-user`, user)
-			.pipe(catchError(this.handleError));
+			.post<{ status: string }>(`${this.endpoint}/register-user`, user);
 	}
 
 	signIn(user: { email: string; password: string }) {
 		let request = this.http
 			.post<any>(`${this.endpoint}/signin`, user)
-			.pipe(share(), catchError(this.handleError));
+			.pipe(share());
 		request.subscribe(res => {
 			this.access = res.access;
 			this.currentUser = res._id;
@@ -58,8 +52,7 @@ export class AuthService {
 
 	getUserProfile(id: string): Observable<User> {
 		return this.http
-			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers })
-			.pipe(catchError(this.handleError));
+			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers });
 	}
 
 	doLogout() {
@@ -67,15 +60,5 @@ export class AuthService {
 		if (removeToken == null) {
 			this.router.navigate(['']);
 		}
-	}
-
-	handleError(error: HttpErrorResponse) {
-		let msg = '';
-		if (error.error instanceof ErrorEvent) {
-			msg = `Error: ${error.error.message}`;
-		} else {
-			msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-		}
-		return throwError(msg);
 	}
 }
