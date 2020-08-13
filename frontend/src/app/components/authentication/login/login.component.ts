@@ -22,14 +22,14 @@ export class LoginComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.signinForm = this.fb.group({
-			password: new FormControl('', [Validators.required]),
-			email: new FormControl('', [Validators.required, Validators.email]),
+			password: ['', [Validators.required]],
+			email: ['', [Validators.required, Validators.email]],
 		});
 	}
 
 	loginUser() {
 		this.authService.signIn(this.signinForm.value).subscribe(
-			_ => {
+			() => {
 				this.authService.getCurrentUserProfile().subscribe(user => {
 					switch (user.accountType) {
 						case 'patient':

@@ -10,7 +10,7 @@
 		</mat-panel-title>
 		<mat-panel-description>
 			<p>{{ visit.clinic.name }}</p>
-			<button
+			<button *ngIf="type === 'active'"
 				mat-icon-button
 				aria-label="Finish task button"
 				(click)="state = 'edit'"
