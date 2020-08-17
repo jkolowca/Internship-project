@@ -3,7 +3,6 @@ import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Visit, VisitCount, Appointment } from '../models/interfaces';
 
-
 @Injectable({
 	providedIn: 'root',
 })
@@ -20,30 +19,29 @@ export class VisitsService {
 		dates: VisitCount[];
 		visitsCount: number;
 	}> {
-		return this.http
-			.get<{ visits: Visit[]; dates: VisitCount[]; visitsCount: number }>(
-				this.visitsUrl
-			);
+		return this.http.get<{
+			visits: Visit[];
+			dates: VisitCount[];
+			visitsCount: number;
+		}>(this.visitsUrl);
 	}
 
 	findVisits(
 		query: Object
 	): Observable<{
 		visits: Visit[];
-		dates: VisitCount[];
 		visitsCount: number;
 	}> {
 		let params: HttpParams = new HttpParams();
 		for (let key in query) {
 			params = params.append(key.toString(), query[key]);
 		}
-		return this.http
-			.get<{ visits: Visit[]; dates: VisitCount[]; visitsCount: number }>(
-				this.visitsUrl,
-				{
-					params: params,
-				}
-			);
+		return this.http.get<{ visits: Visit[]; visitsCount: number }>(
+			this.visitsUrl,
+			{
+				params: params,
+			}
+		);
 	}
 
 	addVisit(
@@ -52,33 +50,30 @@ export class VisitsService {
 		clinic: string,
 		doctor: string
 	): Observable<any> {
-		return this.http
-			.post<{ status: string }>(`${this.visitsUrl}`, {
-				startDate,
-				endDate,
-				clinic,
-				doctor,
-			});
+		return this.http.post<{ status: string }>(`${this.visitsUrl}`, {
+			startDate,
+			endDate,
+			clinic,
+			doctor,
+		});
 	}
 
 	editVisit(visit: Visit): Observable<any> {
-		return this.http
-			.patch(`${this.visitsUrl}/visit/${visit._id}`, visit);
+		return this.http.patch(`${this.visitsUrl}/visit/${visit._id}`, visit);
 	}
 
 	register(id: string, appointment: Appointment): Observable<any> {
-		return this.http
-			.patch(`${this.visitsUrl}/visit/${id}`, { appointment });
+		return this.http.patch(`${this.visitsUrl}/visit/${id}`, {
+			appointment,
+		});
 	}
 
 	deleteAppointment(id: string): Observable<any> {
-		return this.http
-			.patch(`${this.visitsUrl}/visit/${id}/delete`, id);
+		return this.http.patch(`${this.visitsUrl}/visit/${id}/delete`, id);
 	}
 
 	deleteVisit(id: string): Observable<{ status: string }> {
 		const url = `${this.visitsUrl}/visit/${id}`;
-		return this.http
-			.delete<{ status: string }>(url, this.httpOptions);
+		return this.http.delete<{ status: string }>(url, this.httpOptions);
 	}
 }

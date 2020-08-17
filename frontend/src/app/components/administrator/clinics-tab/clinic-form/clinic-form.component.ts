@@ -20,9 +20,9 @@ export class ClinicFormComponent implements OnInit {
 
 	clinic = this.fb.group({
 		name: ['', [Validators.required]],
-		city: ['', [Validators.required, Validators.maxLength(30)]],
-		streetAddress: ['', [Validators.required, Validators.maxLength(30)]],
-		apartment: ['', [Validators.maxLength(10)]],
+		city: ['', [Validators.required]],
+		streetAddress: ['', [Validators.required]],
+		apartment: [''],
 	});
 
 	constructor(

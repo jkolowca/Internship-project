@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, NgTemplateOutlet } from '@angular/common';
 import { AppComponent } from './app.component';
 import { DoctorsListComponent } from './components/administrator/doctors-tab/doctors-list/doctors-list.component';
 import { DoctorComponent } from './components/doctor/doctor.component';
