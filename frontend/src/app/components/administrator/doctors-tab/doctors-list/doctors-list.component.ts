@@ -1,10 +1,4 @@
-import {
-	Component,
-	OnInit,
-	Output,
-	EventEmitter,
-	ViewChild,
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from 'src/app/services';
 

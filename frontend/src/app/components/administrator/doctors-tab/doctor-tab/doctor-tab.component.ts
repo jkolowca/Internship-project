@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DoctorsService } from 'src/app/services';
 import { Doctor } from 'src/app/models/interfaces';
-import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error-panel.component';
 
 @Component({
 	selector: 'app-doctor-tab',

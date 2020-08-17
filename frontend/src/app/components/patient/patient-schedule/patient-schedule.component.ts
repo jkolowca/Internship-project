@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { PatientVisitsListComponent } from './patient-visits-list/patient-visits-list.component';
 import { ActivatedRoute } from '@angular/router';
 

@@ -1,12 +1,5 @@
-import {
-	Component,
-	Input,
-	ViewChild,
-	AfterViewInit,
-	OnInit,
-} from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
-import { ActivatedRoute } from '@angular/router';
 import { Clinic, Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from 'src/app/services';
 

@@ -1,12 +1,5 @@
-import {
-	Component,
-	OnInit,
-	Output,
-	EventEmitter,
-	ViewChild,
-} from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error-panel.component';
 import { ClinicsService } from 'src/app/services';
 import { Address } from '../../../../models/interfaces';
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Doctor } from 'src/app/models/interfaces';
 import { AuthService, DoctorsService } from 'src/app/services';
-import { switchMap } from 'rxjs/operators';
+
 @Component({
 	selector: 'app-doctor',
 	templateUrl: './doctor.component.html',
