@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { VisitsListComponent } from '../../shared/schedule/visits-list/visits-list.component';
+import { PatientVisitsListComponent } from '../patient-schedule/patient-visits-list/patient-visits-list.component';
 
 @Component({
 	selector: 'app-new-visits',
@@ -7,7 +7,8 @@ import { VisitsListComponent } from '../../shared/schedule/visits-list/visits-li
 	styleUrls: ['./new-visits.component.scss'],
 })
 export class NewVisitsComponent {
-	@ViewChild(VisitsListComponent) visitList: VisitsListComponent;
+	@ViewChild(PatientVisitsListComponent)
+	visitList: PatientVisitsListComponent;
 
 	loadVisits(query: any) {
 		query.appointment = 'available';

@@ -4,11 +4,11 @@
 		{{ day._id }}
 		<mat-divider></mat-divider>
 		<br />
-		<app-panel-patient
+		<app-patient-visit-panel
 			(visitCanceled)="loadVisits()"
 			*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 			[visit]="visit"
-		></app-panel-patient>
+		></app-patient-visit-panel>
 	</div>
 </mat-accordion>
 
