@@ -12,13 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class ErrorPanelComponent {
 	constructor(private bottomSheet: MatBottomSheet) {}
 
-	displayError(errorMessage: string | HttpErrorResponse): void {
+	displayError(errorMessage: HttpErrorResponse): void {
 		let message: string;
-		if (typeof errorMessage === 'string') message = errorMessage;
-		else if (errorMessage.error instanceof ErrorEvent) {
+		if (errorMessage.error instanceof ErrorEvent) {
 			message = `Error: ${errorMessage.error.message}`;
 		} else {
-			message = `Error Code: ${errorMessage.status}\nMessage: ${errorMessage.message}`;
+			message = `Error Code: ${errorMessage.status} Message: ${errorMessage.message}`;
 		}
 		this.bottomSheet.open(BottomSheet, { data: message });
 	}
