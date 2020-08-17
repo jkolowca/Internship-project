@@ -22,13 +22,13 @@ export class RegisterComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.signupForm = this.fb.group({
-			name: new FormControl('', [Validators.required]),
-			surname: new FormControl('', [Validators.required]),
-			password: new FormControl('', [
+			name: ['', [Validators.required]],
+			surname: ['', [Validators.required]],
+			password: ['', [
 				Validators.required,
 				Validators.minLength(8),
-			]),
-			email: new FormControl('', [Validators.required, Validators.email]),
+			]],
+			email: ['', [Validators.required, Validators.email]],
 		});
 	}
 

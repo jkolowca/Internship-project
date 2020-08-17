@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { DoctorsService, VisitsService } from 'src/app/services';
+import { VisitsService } from 'src/app/services';
 import { Visit, Clinic } from 'src/app/models/interfaces';
 
 @Component({
@@ -15,11 +15,11 @@ export class VisitDisplayPanelComponent implements OnInit {
 	@Output() visitDeleted = new EventEmitter();
 	state = 'display';
 	form: FormGroup;
+	type: string;
 
 	constructor(
 		private fb: FormBuilder,
 		private datePipe: DatePipe,
-		private doctorsService: DoctorsService,
 		private visitsService: VisitsService
 	) {}
 
@@ -41,6 +41,11 @@ export class VisitDisplayPanelComponent implements OnInit {
 			],
 			clinic: [toSelect, Validators.required],
 		});
+
+		this.type =
+			new Date().getTime() > new Date(this.visit.startDate).getTime()
+				? 'archived'
+				: 'active';
 	}
 
 	save() {
