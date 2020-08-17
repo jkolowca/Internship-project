@@ -21,6 +21,10 @@ export class DoctorsListComponent implements OnInit {
 	doctorsList: Doctor[];
 
 	ngOnInit(): void {
+		this.loadDoctors();
+	}
+
+	loadDoctors() {
 		this.doctorsService.getAllDoctors().subscribe(
 			list => (this.doctorsList = list.sort(compare)),
 			e => this.errorPanel.displayError(e)

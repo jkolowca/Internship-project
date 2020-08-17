@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
 		private authService: AuthService
 	) {}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		let snackBar = this.snackBar.open('Add mockup data?', 'Add', {
 			duration: 5000,
 		});
