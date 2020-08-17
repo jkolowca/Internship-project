@@ -3,7 +3,6 @@ import { Clinic } from 'src/app/models/interfaces';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from 'src/app/services';
 import { ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 @Component({
 	selector: 'app-visit-add-panel',
@@ -19,7 +18,6 @@ export class VisitAddPanelComponent implements OnInit {
 	form: FormGroup;
 
 	constructor(
-		private datePipe: DatePipe,
 		private fb: FormBuilder,
 		private visitsService: VisitsService,
 		private route: ActivatedRoute
@@ -27,15 +25,10 @@ export class VisitAddPanelComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.doctorId = this.route.snapshot.paramMap.get('id');
+		const date = new Date().toISOString().slice(0, 16);
 		this.form = this.fb.group({
-			startDate: [
-				this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
-				Validators.required,
-			],
-			endDate: [
-				this.datePipe.transform(new Date(), 'yyy-MM-ddThh:mm'),
-				Validators.required,
-			],
+			startDate: [date, Validators.required],
+			endDate: [date, Validators.required],
 			clinic: [this.clinics[0], Validators.required],
 		});
 	}

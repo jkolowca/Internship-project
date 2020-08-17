@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { DatePipe } from '@angular/common';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from 'src/app/services';
 import { Visit, Clinic } from 'src/app/models/interfaces';
@@ -19,7 +18,6 @@ export class VisitDisplayPanelComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
-		private datePipe: DatePipe,
 		private visitsService: VisitsService
 	) {}
 
@@ -27,18 +25,10 @@ export class VisitDisplayPanelComponent implements OnInit {
 		const toSelect = this.clinics.find(
 			c => c.name === this.visit.clinic.name
 		);
+		const date = new Date().toISOString().slice(0, 16);
 		this.form = this.fb.group({
-			startDate: [
-				this.datePipe.transform(
-					this.visit.startDate,
-					'yyy-MM-ddThh:mm'
-				),
-				Validators.required,
-			],
-			endDate: [
-				this.datePipe.transform(this.visit.endDate, 'yyy-MM-ddThh:mm'),
-				Validators.required,
-			],
+			startDate: [date, Validators.required],
+			endDate: [date, Validators.required],
 			clinic: [toSelect, Validators.required],
 		});
 

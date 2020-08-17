@@ -3,7 +3,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
 import { DoctorsListComponent } from './components/administrator/doctors-tab/doctors-list/doctors-list.component';
 import { DoctorComponent } from './components/doctor/doctor.component';
@@ -71,7 +71,6 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 		CommonModule,
 	],
 	providers: [
-		DatePipe,
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 	],
 	bootstrap: [AppComponent],
