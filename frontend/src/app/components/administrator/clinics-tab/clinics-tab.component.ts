@@ -12,7 +12,7 @@ export class ClinicsTabComponent {
 	showForm = true;
 
 	onClinicAdded() {
-		this.clinicsList.ngOnInit();
+		this.clinicsList.loadClinics();
 		this.resetForm();
 	}
 
