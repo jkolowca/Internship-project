@@ -23,14 +23,24 @@ export class AuthenticationGuard implements CanActivate {
 				route.data.accountTypes &&
 				route.data.accountTypes.indexOf(user.accountType) === -1
 			) {
-				this.router.navigate(['/']);
+				switch (user.accountType) {
+					case 'patient':
+						this.router.navigate(['/patient/', user._id]);
+						break;
+					case 'admin':
+						this.router.navigate(['/admin']);
+						break;
+					case 'doctor':
+						this.router.navigate(['/doctor/', user.doctorId]);
+						break;
+				}
 				return false;
 			}
 
 			return true;
 		}
-
-		this.router.navigate(['/'], {
+		if (route.data.accountTypes.length === 0) return true;
+		this.router.navigate(['/login'], {
 			queryParams: { returnUrl: state.url },
 		});
 		return false;

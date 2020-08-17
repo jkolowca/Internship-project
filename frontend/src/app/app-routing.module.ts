@@ -18,12 +18,16 @@ import { ScheduleComponent } from './components/shared/schedule/schedule.compone
 
 const routes: Routes = [
 	{
-		path: '',
+		path: 'login',
 		component: LoginComponent,
+		canActivate: [AuthenticationGuard],
+		data: { accountTypes: [] },
 	},
 	{
 		path: 'register',
 		component: RegisterComponent,
+		canActivate: [AuthenticationGuard],
+		data: { accountTypes: [] },
 	},
 	{
 		path: 'logout',
@@ -102,7 +106,7 @@ const routes: Routes = [
 	},
 	{
 		path: '**',
-		redirectTo: '',
+		redirectTo: 'login',
 	},
 ];
 

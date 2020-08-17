@@ -60,8 +60,9 @@ export class AuthService {
 
 	doLogout() {
 		let removeToken = localStorage.removeItem('currentUser');
+		this.user = undefined;
 		if (removeToken == null) {
-			this.router.navigate(['']);
+			this.router.navigate(['/login']);
 		}
 	}
 }
