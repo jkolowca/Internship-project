@@ -16,12 +16,12 @@
 		</mat-expansion-panel-header>
 		<div class="content">
 			<p>
-				{{ clinic.streetAddress }}
-				<ng-container *ngIf="clinic.apartment"
-					>/{{ clinic.apartment }}</ng-container
+				{{ clinic.address.streetAddress }}
+				<ng-container *ngIf="clinic.address.apartment">
+					{{ clinic.address.apartment }}</ng-container
 				>
 			</p>
-			<p>{{ clinic.city }}</p>
+			<p>{{ clinic.address.city }}</p>
 		</div>
 	</mat-expansion-panel>
 </mat-accordion>

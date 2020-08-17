@@ -27,16 +27,14 @@ export class ClinicsService {
 
 	addClinic(
 		name: string,
-		city: string,
-		streetAddress: string,
-		apartment: string
+		address: object,
 	): Observable<any> {
 		return this.http
 			.post<Clinic>(
 				this.clinicsUrl,
-				{ name, city, streetAddress, apartment },
+				{ name, address },
 				this.httpOptions
-			);
+			); 
 	}
 
 	deleteClinic(id: string): Observable<Clinic[]> {
