@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { LoginComponent } from './components/authentication/login/login.component';
-import { RegisterComponent } from './components/authentication/register/register.component';
 import { AdministratorComponent } from './components/administrator/administrator.component';
 import { DoctorsTabComponent } from './components/administrator/doctors-tab/doctors-tab.component';
 import { ClinicsTabComponent } from './components/administrator/clinics-tab/clinics-tab.component';
@@ -12,26 +10,14 @@ import { PatientComponent } from './components/patient/patient.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
-import { LogoutComponent } from './components/authentication/logout/logout.component';
 import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
 import { ScheduleComponent } from './components/shared/schedule/schedule.component';
 
 const routes: Routes = [
 	{
-		path: 'login',
-		component: LoginComponent,
-		canActivate: [AuthenticationGuard],
-		data: { accountTypes: [] },
-	},
-	{
-		path: 'register',
-		component: RegisterComponent,
-		canActivate: [AuthenticationGuard],
-		data: { accountTypes: [] },
-	},
-	{
-		path: 'logout',
-		component: LogoutComponent,
+		path: '',
+		loadChildren:
+			'./authentication/authentication.module#AuthenticationModule',
 	},
 	{
 		path: 'admin',

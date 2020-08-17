@@ -15,8 +15,6 @@ import { ClinicFormComponent } from './components/administrator/clinics-tab/clin
 import { DoctorTabComponent } from './components/administrator/doctors-tab/doctor-tab/doctor-tab.component';
 import { ScheduleComponent } from './components/shared/schedule/schedule.component';
 import { VisitsListComponent } from './components/shared/schedule/visits-list/visits-list.component';
-import { RegisterComponent } from './components/authentication/register/register.component';
-import { LoginComponent } from './components/authentication/login/login.component';
 import { ClinicsListComponent } from './components/administrator/clinics-tab/clinics-list/clinics-list.component';
 import { DoctorsTabComponent } from './components/administrator/doctors-tab/doctors-tab.component';
 import { ClinicsTabComponent } from './components/administrator/clinics-tab/clinics-tab.component';
@@ -25,7 +23,6 @@ import { NewVisitsComponent } from './components/patient/new-visits/new-visits.c
 import { ErrorPanelComponent } from './components/shared/error-panel/error-panel.component';
 import { MaterialModule } from './shared/material.module';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
-import { LogoutComponent } from './components/authentication/logout/logout.component';
 import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
 import { PatientVisitsListComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visits-list.component';
 import { PatientVisitPanelComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visit-panel/patient-visit-panel.component';
@@ -33,6 +30,7 @@ import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-
 import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AuthService } from './services';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 export function init_app(authService: AuthService) {
 	return () => authService.loadCurrentUser();
@@ -51,8 +49,6 @@ export function init_app(authService: AuthService) {
 		DoctorTabComponent,
 		ScheduleComponent,
 		VisitsListComponent,
-		RegisterComponent,
-		LoginComponent,
 		VisitDisplayPanelComponent,
 		VisitAddPanelComponent,
 		ClinicsListComponent,
@@ -62,7 +58,6 @@ export function init_app(authService: AuthService) {
 		NewVisitsComponent,
 		ErrorPanelComponent,
 		EditTabComponent,
-		LogoutComponent,
 		PatientScheduleComponent,
 		PatientVisitsListComponent,
 		PatientVisitPanelComponent,
@@ -74,6 +69,7 @@ export function init_app(authService: AuthService) {
 		HttpClientModule,
 		MaterialModule,
 		CommonModule,
+		AuthenticationModule,
 	],
 	providers: [
 		AuthService,
