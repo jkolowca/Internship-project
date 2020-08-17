@@ -13,7 +13,7 @@ export class DoctorsTabComponent {
 	editedDoctor: Doctor;
 	showForm = true;
 	onDoctorAdded() {
-		this.doctorsList.ngOnInit();
+		this.doctorsList.loadDoctors();
 		this.resetForm();
 	}
 

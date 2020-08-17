@@ -47,13 +47,13 @@ export class VisitsCtrl {
 			? parseInt(req.query.visitsPerPage as string, 10)
 			: 10;
 
-		const { visits, dates, visitsCount } = await VisitsDAO.find(
+		const { visits, visitsCount } = await VisitsDAO.find(
 			beforeLookup,
 			afterLookup,
 			page,
 			visitsPerPage
 		);
-		res.json({ visits, dates, visitsCount });
+		res.json({ visits, visitsCount });
 	}
 
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {

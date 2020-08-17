@@ -11,7 +11,6 @@ export class VisitsListComponent {
 	@Input() clinics: Clinic[];
 	visits: Visit[];
 	registeredVisits: Visit[];
-	dailyVisitCount: VisitCount[];
 	query: any = {
 		visitsPerPage: 10,
 		page: 0,
@@ -28,16 +27,7 @@ export class VisitsListComponent {
 		}
 		this.visitService.findVisits(this.query).subscribe(res => {
 			this.visits = res.visits;
-			this.dailyVisitCount = res.dates;
 			this.visitsCount = res.visitsCount;
 		});
-	}
-
-	getVisitsForGivenDay(day: number, visits: Visit[]): Visit[] {
-		let offset = this.dailyVisitCount
-			.slice(0, day)
-			.map(i => i.count)
-			.reduce((a, b) => a + b, 0);
-		return visits.slice(offset, offset + this.dailyVisitCount[day].count);
 	}
 }

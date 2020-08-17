@@ -5,7 +5,7 @@
 				<app-visit-add-panel
 					*ngIf="clinics"
 					[clinics]="clinics"
-					(newVisit)="ngAfterViewInit()"
+					(newVisit)="loadVisits()"
 				></app-visit-add-panel>
 			</div>
 			<div>

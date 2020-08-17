@@ -25,7 +25,7 @@ export class DoctorsDAO {
 	static async getAll() {
 		let cursor: Cursor<Doctor>;
 		try {
-			cursor = doctorsCollection.find();
+			cursor = doctorsCollection.find().sort({ surname: 1, name: 1 });
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to issue find command: ${e}`);
 			return [];

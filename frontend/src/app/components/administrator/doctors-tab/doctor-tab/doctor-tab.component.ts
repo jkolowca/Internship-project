@@ -18,7 +18,7 @@ export class DoctorTabComponent implements OnInit {
 		private doctorsService: DoctorsService
 	) {}
 
-	ngOnInit() {
+	ngOnInit(): void {
 		let doctorId = this.route.snapshot.paramMap.get('id');
 		this.doctorsService.getById(doctorId).subscribe(
 			doctor => {

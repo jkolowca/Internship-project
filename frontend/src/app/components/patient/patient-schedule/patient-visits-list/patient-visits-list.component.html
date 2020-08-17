@@ -1,12 +1,19 @@
 <mat-accordion>
-	<div *ngFor="let day of dailyVisitCount; let i = index">
-		<br />
-		{{ day._id }}
-		<mat-divider></mat-divider>
-		<br />
+	<div *ngFor="let visit of visits; let i = index">
+		<ng-container
+			*ngIf="
+				i === 0 ||
+				visit.startDate.toString().slice(0, 10) !==
+					visits[i - 1].startDate.toString().slice(0, 10)
+			"
+		>
+			<br />
+			{{ visit.startDate.toString().slice(0, 10) }}
+			<mat-divider></mat-divider>
+			<br />
+		</ng-container>
 		<app-patient-visit-panel
 			(visitCanceled)="loadVisits()"
-			*ngFor="let visit of getVisitsForGivenDay(i, visits)"
 			[visit]="visit"
 		></app-patient-visit-panel>
 	</div>
