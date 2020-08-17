@@ -1,6 +1,11 @@
 export interface Clinic {
 	_id: string;
 	name: string;
+	address: Address;
+}
+
+export interface Address {
+	_id?: string;
 	city: string;
 	streetAddress: string;
 	apartment?: string;

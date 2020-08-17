@@ -8,6 +8,7 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error-panel.component';
 import { ClinicsService } from 'src/app/services';
+import { Address } from '../../../../models/interfaces';
 
 @Component({
 	selector: 'app-clinic-form',
@@ -33,12 +34,17 @@ export class ClinicFormComponent implements OnInit {
 	ngOnInit(): void {}
 
 	addClinic(): void {
-		const { name, city, street, streetNo } = this.clinic.value;
-		this.clinicsService.addClinic(name, city, street, streetNo).subscribe(
-			() => {},
-			() => this.errorPanel.displayError('Failed to add clinic')
-		);
-		this.clinic.reset();
-		this.clinicAdded.emit();
+	  const name = this.clinic.controls.name.value;
+	  const address: Address = {
+	    city: this.clinic.controls.city.value,
+	    streetAddress: this.clinic.controls.streetAddress.value,
+	    apartment: this.clinic.controls.apartment.value
+	  }
+	  this.clinicsService.addClinic(name, address).subscribe(
+	    () => {},
+	    err => this.errorPanel.displayError('Failed to add clinic')
+	  );
+	  this.clinic.reset();
+	  this.clinicAdded.emit();
 	}
 }

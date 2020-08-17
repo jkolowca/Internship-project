@@ -35,7 +35,7 @@ export class VisitsCtrl {
 					: { $exists: true };
 
 		if (query.city)
-			afterLookup['clinic.city'] = {
+			afterLookup['clinic.address.city'] = {
 				$in: (query.city as string).split(','),
 			};
 		if (query.speciality)

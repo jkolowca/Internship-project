@@ -24,10 +24,10 @@
 			<div class="clinic">
 				<p>{{ visit.clinic.name }}</p>
 				<p>
-					{{ visit.clinic.streetAddress }}
-					{{ visit.clinic.apartment }}
+					{{ visit.clinic.address.streetAddress }}
+					{{ visit.clinic.address.apartment }}
 				</p>
-				<p>{{ visit.clinic.city }}</p>
+				<p>{{ visit.clinic.address.city }}</p>
 			</div>
 			<div *ngIf="visit.appointment">
 				<p>
