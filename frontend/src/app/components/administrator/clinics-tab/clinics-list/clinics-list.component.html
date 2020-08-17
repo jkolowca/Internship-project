@@ -17,10 +17,11 @@
 		<div class="content">
 			<p>
 				{{ clinic.streetAddress }}
-				<ng-container *ngIf="clinic.apartment">/{{ clinic.apartment }}</ng-container>
+				<ng-container *ngIf="clinic.apartment"
+					>/{{ clinic.apartment }}</ng-container
+				>
 			</p>
 			<p>{{ clinic.city }}</p>
 		</div>
 	</mat-expansion-panel>
 </mat-accordion>
-<app-error-panel></app-error-panel>

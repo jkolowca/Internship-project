@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators, FormBuilder, FormGroup } from '@angular/forms';
+import {
+	FormControl,
+	Validators,
+	FormBuilder,
+	FormGroup,
+} from '@angular/forms';
 import { Router } from '@angular/router';
-import { ErrorPanelComponent } from '../../shared/error-panel/error-panel.component';
 import { AuthService } from 'src/app/services';
 
 @Component({
@@ -10,7 +14,6 @@ import { AuthService } from 'src/app/services';
 	styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	signupForm: FormGroup;
 	hide = true;
 
@@ -24,32 +27,23 @@ export class RegisterComponent implements OnInit {
 		this.signupForm = this.fb.group({
 			name: ['', [Validators.required]],
 			surname: ['', [Validators.required]],
-			password: ['', [
-				Validators.required,
-				Validators.minLength(8),
-			]],
+			password: ['', [Validators.required, Validators.minLength(8)]],
 			email: ['', [Validators.required, Validators.email]],
 		});
 	}
 
 	registerUser() {
-		this.authService.signUp(this.signupForm.value).subscribe(
-			() => {
-				this.signupForm.reset(), this.router.navigate(['']);
-			},
-			() =>
-				this.errorPanel.displayError(
-					'Failed to register. Please try again.'
-				)
-		);
+		this.authService.signUp(this.signupForm.value).subscribe(() => {
+			this.signupForm.reset(), this.router.navigate(['']);
+		});
 	}
 
 	getErrorMessage(prop: string) {
 		if (this.signupForm.controls[prop].hasError('required')) {
 			return 'You must enter a value';
-		}else if (this.signupForm.controls[prop].hasError('email')){
+		} else if (this.signupForm.controls[prop].hasError('email')) {
 			return 'Not a valid email';
-		}else if (this.signupForm.controls[prop].hasError('minlength')){
+		} else if (this.signupForm.controls[prop].hasError('minlength')) {
 			return 'Minimum password length is 8';
 		}
 	}

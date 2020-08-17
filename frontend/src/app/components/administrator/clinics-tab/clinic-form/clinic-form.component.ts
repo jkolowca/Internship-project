@@ -15,7 +15,6 @@ import { ClinicsService } from 'src/app/services';
 	styleUrls: ['./clinic-form.component.scss'],
 })
 export class ClinicFormComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	@Output() clinicAdded = new EventEmitter();
 
 	clinic = this.fb.group({
@@ -34,10 +33,7 @@ export class ClinicFormComponent implements OnInit {
 
 	addClinic(): void {
 		const { name, city, street, streetNo } = this.clinic.value;
-		this.clinicsService.addClinic(name, city, street, streetNo).subscribe(
-			() => {},
-			() => this.errorPanel.displayError('Failed to add clinic')
-		);
+		this.clinicsService.addClinic(name, city, street, streetNo).subscribe();
 		this.clinic.reset();
 		this.clinicAdded.emit();
 	}

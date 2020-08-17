@@ -1,15 +1,8 @@
-import {
-	Component,
-	OnInit,
-	Input,
-	Output,
-	EventEmitter,
-	ViewChild,
-} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Clinic } from 'src/app/models/interfaces';
 import { DoctorsService, ClinicsService } from 'src/app/services';
-import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error-panel.component';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-doctor-form',
@@ -17,7 +10,6 @@ import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error
 	styleUrls: ['./doctor-form.component.scss'],
 })
 export class DoctorFormComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	@Input() doctorId: string;
 	@Output() doctorSaved = new EventEmitter();
 	doctor = this.fb.group({
@@ -34,7 +26,8 @@ export class DoctorFormComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private doctorsService: DoctorsService,
-		private clinicsService: ClinicsService
+		private clinicsService: ClinicsService,
+		private router: Router
 	) {}
 
 	ngOnInit(): void {
@@ -44,15 +37,12 @@ export class DoctorFormComponent implements OnInit {
 
 	fillEditForm(): void {
 		if (this.doctorId) {
-			this.doctorsService.getById(this.doctorId).subscribe(
-				doctor => {
-					doctor.clinics.forEach(() => this.addClinic());
-					doctor.specialties.forEach(() => this.addSpecialtie());
-					const { _id, ...values } = doctor;
-					this.doctor.setValue(values);
-				},
-				e => this.errorPanel.displayError(e)
-			);
+			this.doctorsService.getById(this.doctorId).subscribe(doctor => {
+				doctor.clinics.forEach(() => this.addClinic());
+				doctor.specialties.forEach(() => this.addSpecialtie());
+				const { _id, ...values } = doctor;
+				this.doctor.setValue(values);
+			});
 			return;
 		}
 		this.addSpecialtie();
@@ -60,10 +50,9 @@ export class DoctorFormComponent implements OnInit {
 	}
 
 	getAvailableClinics(): void {
-		this.clinicsService.getAllClinics().subscribe(
-			l => (this.availableClinics = l),
-			e => this.errorPanel.displayError(e)
-		);
+		this.clinicsService
+			.getAllClinics()
+			.subscribe(l => (this.availableClinics = l));
 	}
 
 	addSpecialtie(): void {
@@ -99,28 +88,21 @@ export class DoctorFormComponent implements OnInit {
 					specialties,
 					clinics,
 				})
-				.subscribe(
-					() => {},
-					e => this.errorPanel.displayError(e)
-				);
+				.subscribe(() => {});
 
 			this.doctorSaved.emit();
 			return;
 		}
 		this.doctorsService
 			.addDoctor(name, surname, specialties, clinics)
-			.subscribe(
-				() => {},
-				e => this.errorPanel.displayError(e)
-			);
+			.subscribe(() => {});
 		this.doctorSaved.emit();
 	}
 
 	deleteDoctor(): void {
-		this.doctorsService.deleteDoctor(this.doctorId).subscribe(
-			() => {},
-			e => this.errorPanel.displayError(e)
-		);
+		this.doctorsService.deleteDoctor(this.doctorId).subscribe(() => {
+			this.router.navigateByUrl('/admin/doctors');
+		});
 	}
 
 	openSchedule() {

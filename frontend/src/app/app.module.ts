@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { CommonModule, DatePipe, NgTemplateOutlet } from '@angular/common';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { CommonModule, DatePipe } from '@angular/common';
 import { AppComponent } from './app.component';
 import { DoctorsListComponent } from './components/administrator/doctors-tab/doctors-list/doctors-list.component';
 import { DoctorComponent } from './components/doctor/doctor.component';
@@ -31,6 +31,7 @@ import { PatientVisitsListComponent } from './components/patient/patient-schedul
 import { PatientVisitPanelComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visit-panel/patient-visit-panel.component';
 import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-list/visit-display-panel/visit-display-panel.component';
 import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
+import { ErrorInterceptor } from './error.interceptor';
 
 @NgModule({
 	declarations: [
@@ -69,7 +70,10 @@ import { VisitAddPanelComponent } from './components/shared/schedule/visits-list
 		MaterialModule,
 		CommonModule,
 	],
-	providers: [DatePipe],
+	providers: [
+		DatePipe,
+		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+	],
 	bootstrap: [AppComponent],
 })
 export class AppModule {}

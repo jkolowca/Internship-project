@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import { User } from '../models/interfaces';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
- import { share } from 'rxjs/operators';
+import { share, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { ErrorService } from './error.service';
 
 @Injectable({
 	providedIn: 'root',
@@ -24,8 +25,10 @@ export class AuthService {
 	}
 
 	getMockData() {
-		return this.http
-			.post<{ status: string }>(`http://localhost:5000/mockup`, {});
+		return this.http.post<{ status: string }>(
+			`http://localhost:5000/mockup`,
+			{}
+		);
 	}
 
 	getCurrentUserProfile() {
@@ -33,8 +36,10 @@ export class AuthService {
 	}
 
 	signUp(user: User): Observable<any> {
-		return this.http
-			.post<{ status: string }>(`${this.endpoint}/register-user`, user);
+		return this.http.post<{ status: string }>(
+			`${this.endpoint}/register-user`,
+			user
+		);
 	}
 
 	signIn(user: { email: string; password: string }) {
@@ -51,8 +56,9 @@ export class AuthService {
 	}
 
 	getUserProfile(id: string): Observable<User> {
-		return this.http
-			.get<User>(`${this.endpoint}/${id}`, { headers: this.headers });
+		return this.http.get<User>(`${this.endpoint}/${id}`, {
+			headers: this.headers,
+		});
 	}
 
 	doLogout() {

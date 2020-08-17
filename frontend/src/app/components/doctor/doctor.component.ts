@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ErrorPanelComponent } from '../shared/error-panel/error-panel.component';
+import { Component, OnInit } from '@angular/core';
 import { User, Doctor } from 'src/app/models/interfaces';
 import { AuthService, DoctorsService } from 'src/app/services';
 import { switchMap } from 'rxjs/operators';
@@ -9,7 +8,6 @@ import { switchMap } from 'rxjs/operators';
 	styleUrls: ['./doctor.component.scss'],
 })
 export class DoctorComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	user: User;
 	doctor: Doctor;
 	constructor(
@@ -26,12 +24,9 @@ export class DoctorComponent implements OnInit {
 					return this.doctorsService.getById(user.doctorId);
 				})
 			)
-			.subscribe(
-				doctor => {
-					this.doctorsService.setCurrentDoctor(doctor);
-					this.doctor = doctor;
-				},
-				e => this.errorPanel.displayError(e)
-			);
+			.subscribe(doctor => {
+				this.doctorsService.setCurrentDoctor(doctor);
+				this.doctor = doctor;
+			});
 	}
 }

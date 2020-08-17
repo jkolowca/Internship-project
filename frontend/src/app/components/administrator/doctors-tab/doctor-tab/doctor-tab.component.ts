@@ -10,7 +10,6 @@ import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error
 	styleUrls: ['./doctor-tab.component.scss'],
 })
 export class DoctorTabComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	doctor: Doctor;
 
 	constructor(
@@ -20,12 +19,9 @@ export class DoctorTabComponent implements OnInit {
 
 	ngOnInit(): void {
 		let doctorId = this.route.snapshot.paramMap.get('id');
-		this.doctorsService.getById(doctorId).subscribe(
-			doctor => {
-				this.doctorsService.setCurrentDoctor(doctor);
-				this.doctor = doctor;
-			},
-			e => this.errorPanel.displayError(e)
-		);
+		this.doctorsService.getById(doctorId).subscribe(doctor => {
+			this.doctorsService.setCurrentDoctor(doctor);
+			this.doctor = doctor;
+		});
 	}
 }

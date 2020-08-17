@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl, Validators, FormBuilder, Form, FormGroup } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ErrorPanelComponent } from '../../shared/error-panel/error-panel.component';
 import { AuthService } from 'src/app/services';
 
 @Component({
@@ -10,7 +9,6 @@ import { AuthService } from 'src/app/services';
 	styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	signinForm: FormGroup;
 	hide = true;
 
@@ -28,33 +26,27 @@ export class LoginComponent implements OnInit {
 	}
 
 	loginUser() {
-		this.authService.signIn(this.signinForm.value).subscribe(
-			() => {
-				this.authService.getCurrentUserProfile().subscribe(user => {
-					switch (user.accountType) {
-						case 'patient':
-							this.router.navigate(['/patient/', user._id]);
-							break;
-						case 'admin':
-							this.router.navigate(['/admin']);
-							break;
-						case 'doctor':
-							this.router.navigate(['/doctor/', user.doctorId]);
-							break;
-					}
-				}),
-					this.errorPanel.displayError;
-			},
-			err => {
-				this.errorPanel.displayError('Invalid username or password');
-			}
-		);
+		this.authService.signIn(this.signinForm.value).subscribe(() => {
+			this.authService.getCurrentUserProfile().subscribe(user => {
+				switch (user.accountType) {
+					case 'patient':
+						this.router.navigate(['/patient/', user._id]);
+						break;
+					case 'admin':
+						this.router.navigate(['/admin']);
+						break;
+					case 'doctor':
+						this.router.navigate(['/doctor/', user.doctorId]);
+						break;
+				}
+			});
+		});
 	}
 
 	getErrorMessage(prop: string) {
 		if (this.signinForm.controls[prop].hasError('required')) {
 			return 'You must enter a value';
-		} else if (this.signinForm.controls[prop].hasError('email')){
+		} else if (this.signinForm.controls[prop].hasError('email')) {
 			return 'Not a valid email';
 		}
 	}

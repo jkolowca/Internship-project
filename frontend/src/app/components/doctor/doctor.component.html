@@ -4,9 +4,8 @@
 			Dr
 			<span *ngIf="doctor">{{ doctor.name }} {{ doctor.surname }}</span>
 		</span>
-		<span class='schedule'>Schedule</span>
+		<span class="schedule">Schedule</span>
 	</div>
 	<button mat-button [routerLink]="['/logout']">Logout</button>
 </mat-toolbar>
 <app-schedule *ngIf="doctor"></app-schedule>
-<app-error-panel></app-error-panel>

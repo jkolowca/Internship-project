@@ -9,7 +9,6 @@ import { Clinic } from 'src/app/models/interfaces';
 	styleUrls: ['./clinics-list.component.scss'],
 })
 export class ClinicsListComponent implements OnInit {
-	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
 	constructor(private clinicsService: ClinicsService) {}
 	clinicsList: Clinic[];
 
@@ -18,16 +17,14 @@ export class ClinicsListComponent implements OnInit {
 	}
 
 	loadClinics(): void {
-		this.clinicsService.getAllClinics().subscribe(
-			list => (this.clinicsList = list),
-			e => this.errorPanel.displayError(e)
-		);
+		this.clinicsService
+			.getAllClinics()
+			.subscribe(list => (this.clinicsList = list));
 	}
 
 	removeClinic(id: string): void {
-		this.clinicsService.deleteClinic(id).subscribe(
-			list => (this.clinicsList = list),
-			e => this.errorPanel.displayError(e)
-		);
+		this.clinicsService
+			.deleteClinic(id)
+			.subscribe(list => (this.clinicsList = list));
 	}
 }
