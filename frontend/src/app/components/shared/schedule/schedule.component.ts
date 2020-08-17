@@ -7,7 +7,7 @@ import {
 } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
 import { ActivatedRoute } from '@angular/router';
-import { Clinic } from 'src/app/models/interfaces';
+import { Clinic, Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from 'src/app/services';
 
 @Component({
@@ -15,31 +15,35 @@ import { DoctorsService } from 'src/app/services';
 	templateUrl: './schedule.component.html',
 	styleUrls: ['./schedule.component.scss'],
 })
-export class ScheduleComponent implements AfterViewInit, OnInit {
+export class ScheduleComponent implements OnInit {
 	@ViewChild('active') activeVisits: VisitsListComponent;
 	@ViewChild('archived') archivedVisits: VisitsListComponent;
-	@Input() doctorId: string;
+	doctor: Doctor;
 	clinics: Clinic[];
-	constructor(
-		private route: ActivatedRoute,
-		private doctorsService: DoctorsService
-	) {}
 
-	ngOnInit() {
-		if (this.doctorId)
-			this.doctorsService
-				.getClinics(this.doctorId)
-				.subscribe(c => (this.clinics = c));
+	ngOnInit(): void {
+		this.doctorsService.currentDoctor.subscribe(doctor => {
+			this.doctor = doctor;
+			if (doctor._id) {
+				this.doctorsService.getClinics(doctor._id).subscribe(c => {
+					this.clinics = c;
+					this.loadVisits();
+				});
+			}
+		});
 	}
-	ngAfterViewInit() {
-		if (this.doctorId) {
+
+	constructor(private doctorsService: DoctorsService) {}
+
+	loadVisits() {
+		if (this.doctor) {
 			this.activeVisits.loadVisits({
 				type: 'active',
-				doctor: this.doctorId,
+				doctor: this.doctor._id,
 			});
 			this.archivedVisits.loadVisits({
 				type: 'archived',
-				doctor: this.doctorId,
+				doctor: this.doctor._id,
 			});
 		}
 	}
