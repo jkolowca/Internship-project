@@ -1,38 +1,36 @@
 import { Injectable } from '@angular/core';
 import { User } from '../models/interfaces';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { share, catchError } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
+import { share } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { ErrorService } from './error.service';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
 	endpoint: string = 'http://localhost:5000/users';
-	headers = new HttpHeaders().set('Content-Type', 'application/json');
-	currentUser: string;
-	access: string;
+	user: User;
 
-	constructor(private http: HttpClient, public router: Router) {
-		let token = localStorage.getItem('currentUser');
-		if (token) {
-			let userData = JSON.parse(token);
-			this.currentUser = userData._id;
-			this.access = userData.access;
-		}
+	constructor(private http: HttpClient, public router: Router) {}
+
+	loadCurrentUser(): Promise<any> {
+		let currentUser = localStorage.getItem('currentUser');
+		const userData = JSON.parse(currentUser);
+		return new Promise((resolve, reject) => {
+			if (userData)
+				this.getUserProfile(userData._id).subscribe(user => {
+					this.user = user;
+					resolve(true);
+				});
+			else resolve(true);
+		});
 	}
 
 	getMockData() {
-		return this.http.post<{ status: string }>(
-			`http://localhost:5000/mockup`,
-			{}
+		return this.http.get<{ status: string }>(
+			`http://localhost:5000/mockup`
 		);
-	}
-
-	getCurrentUserProfile() {
-		return this.getUserProfile(this.currentUser);
 	}
 
 	signUp(user: User): Observable<any> {
@@ -47,18 +45,17 @@ export class AuthService {
 			.post<any>(`${this.endpoint}/signin`, user)
 			.pipe(share());
 		request.subscribe(res => {
-			this.access = res.access;
-			this.currentUser = res._id;
-			localStorage.setItem('currentUser', JSON.stringify(res));
+			localStorage.setItem(
+				'currentUser',
+				JSON.stringify({ token: res.token, _id: res.user._id })
+			);
+			this.user = res.user;
 		});
-
 		return request;
 	}
 
 	getUserProfile(id: string): Observable<User> {
-		return this.http.get<User>(`${this.endpoint}/${id}`, {
-			headers: this.headers,
-		});
+		return this.http.get<User>(`${this.endpoint}/${id}`);
 	}
 
 	doLogout() {

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -32,6 +32,11 @@ import { PatientVisitPanelComponent } from './components/patient/patient-schedul
 import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-list/visit-display-panel/visit-display-panel.component';
 import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { AuthService } from './services';
+
+export function init_app(authService: AuthService) {
+	return () => authService.loadCurrentUser();
+}
 
 @NgModule({
 	declarations: [
@@ -71,7 +76,14 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 		CommonModule,
 	],
 	providers: [
+		AuthService,
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+		{
+			provide: APP_INITIALIZER,
+			useFactory: init_app,
+			deps: [AuthService],
+			multi: true,
+		},
 	],
 	bootstrap: [AppComponent],
 })

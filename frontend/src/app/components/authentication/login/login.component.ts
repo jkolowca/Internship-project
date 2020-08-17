@@ -27,19 +27,18 @@ export class LoginComponent implements OnInit {
 
 	loginUser() {
 		this.authService.signIn(this.signinForm.value).subscribe(() => {
-			this.authService.getCurrentUserProfile().subscribe(user => {
-				switch (user.accountType) {
-					case 'patient':
-						this.router.navigate(['/patient/', user._id]);
-						break;
-					case 'admin':
-						this.router.navigate(['/admin']);
-						break;
-					case 'doctor':
-						this.router.navigate(['/doctor/', user.doctorId]);
-						break;
-				}
-			});
+			const user = this.authService.user;
+			switch (user.accountType) {
+				case 'patient':
+					this.router.navigate(['/patient/', user._id]);
+					break;
+				case 'admin':
+					this.router.navigate(['/admin']);
+					break;
+				case 'doctor':
+					this.router.navigate(['/doctor/', user.doctorId]);
+					break;
+			}
 		});
 	}
 

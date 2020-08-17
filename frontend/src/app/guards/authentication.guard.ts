@@ -17,11 +17,11 @@ export class AuthenticationGuard implements CanActivate {
 	) {}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-		const access = this.authenticationService.access;
-		if (access) {
+		const user = this.authenticationService.user;
+		if (user) {
 			if (
 				route.data.accountTypes &&
-				route.data.accountTypes.indexOf(access) === -1
+				route.data.accountTypes.indexOf(user.accountType) === -1
 			) {
 				this.router.navigate(['/']);
 				return false;

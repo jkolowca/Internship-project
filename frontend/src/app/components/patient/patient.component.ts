@@ -11,8 +11,6 @@ export class PatientComponent implements OnInit {
 	constructor(private authService: AuthService) {}
 
 	ngOnInit(): void {
-		this.authService
-			.getCurrentUserProfile()
-			.subscribe(patient => (this.patient = patient));
+		this.patient = this.authService.user;
 	}
 }

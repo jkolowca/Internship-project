@@ -73,4 +73,4 @@ export class Mockup {
 }
 
 export const router = Router();
-router.route('/').post(Mockup.apiAdd);
+router.route('/').get(Mockup.apiAdd);

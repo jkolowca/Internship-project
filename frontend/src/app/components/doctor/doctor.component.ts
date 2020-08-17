@@ -16,14 +16,8 @@ export class DoctorComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		this.authService
-			.getCurrentUserProfile()
-			.pipe(
-				switchMap(user => {
-					this.user = user;
-					return this.doctorsService.getById(user.doctorId);
-				})
-			)
+		this.doctorsService
+			.getById(this.authService.user.doctorId)
 			.subscribe(doctor => {
 				this.doctorsService.setCurrentDoctor(doctor);
 				this.doctor = doctor;

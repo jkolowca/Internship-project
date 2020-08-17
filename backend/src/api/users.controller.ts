@@ -57,11 +57,10 @@ export class UsersCtrl {
 							res.status(200).json({
 								token: jwtToken,
 								expiresIn: 3600,
-								_id: user._id,
-								access: user.accountType,
+								user: user,
 							});
 						})
-						.catch(err => {
+						.catch(() => {
 							return res.status(401).json({
 								message: 'Authentication failed',
 							});
