@@ -26,24 +26,8 @@ export class DoctorsListComponent implements OnInit {
 
 	loadDoctors() {
 		this.doctorsService.getAllDoctors().subscribe(
-			list => (this.doctorsList = list.sort(compare)),
+			list => (this.doctorsList = list),
 			e => this.errorPanel.displayError(e)
 		);
 	}
-}
-
-function compare(a: Doctor, b: Doctor): number {
-	if (a.surname < b.surname) {
-		return -1;
-	}
-	if (a.surname > b.surname) {
-		return 1;
-	}
-	if (a.name < b.name) {
-		return -1;
-	}
-	if (a.name > b.name) {
-		return 1;
-	}
-	return 0;
 }

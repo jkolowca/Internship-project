@@ -19,7 +19,7 @@ export class ClinicsListComponent implements OnInit {
 
 	loadClinics(): void {
 		this.clinicsService.getAllClinics().subscribe(
-			list => (this.clinicsList = list.sort(compare)),
+			list => (this.clinicsList = list),
 			e => this.errorPanel.displayError(e)
 		);
 	}
@@ -30,14 +30,4 @@ export class ClinicsListComponent implements OnInit {
 			e => this.errorPanel.displayError(e)
 		);
 	}
-}
-
-function compare(a: Clinic, b: Clinic): number {
-	if (a.name < b.name) {
-		return -1;
-	}
-	if (a.name > b.name) {
-		return 1;
-	}
-	return 0;
 }

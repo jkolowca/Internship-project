@@ -20,7 +20,7 @@ export class ClinicsDAO {
 	static async getAll() {
 		let cursor: Cursor<Clinic>;
 		try {
-			cursor = clinicsCollection.find();
+			cursor = clinicsCollection.find().sort({ name: 1 });
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to issue find command: ${e}`);
 			return [];
