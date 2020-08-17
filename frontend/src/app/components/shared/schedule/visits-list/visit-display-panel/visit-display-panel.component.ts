@@ -5,11 +5,11 @@ import { VisitsService } from 'src/app/services';
 import { Visit, Clinic } from 'src/app/models/interfaces';
 
 @Component({
-	selector: 'app-panel-admin',
-	templateUrl: './panel-admin.component.html',
-	styleUrls: ['./panel-admin.component.scss'],
+	selector: 'app-visit-display-panel',
+	templateUrl: './visit-display-panel.component.html',
+	styleUrls: ['./visit-display-panel.component.scss'],
 })
-export class PanelAdminComponent implements OnInit {
+export class VisitDisplayPanelComponent implements OnInit {
 	@Input() visit: Visit;
 	@Input() clinics: Clinic[];
 	@Output() visitDeleted = new EventEmitter();

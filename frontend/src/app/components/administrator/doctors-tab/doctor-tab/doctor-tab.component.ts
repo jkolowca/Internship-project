@@ -11,8 +11,7 @@ import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error
 })
 export class DoctorTabComponent implements OnInit {
 	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
-	doctor = <Doctor>{};
-	activeTab = 'doctor';
+	doctor: Doctor;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -22,12 +21,11 @@ export class DoctorTabComponent implements OnInit {
 	ngOnInit() {
 		let doctorId = this.route.snapshot.paramMap.get('id');
 		this.doctorsService.getById(doctorId).subscribe(
-			doctor => (this.doctor = doctor),
+			doctor => {
+				this.doctorsService.setCurrentDoctor(doctor);
+				this.doctor = doctor;
+			},
 			e => this.errorPanel.displayError(e)
 		);
-	}
-
-	openTab(tab: string) {
-		this.activeTab = tab;
 	}
 }

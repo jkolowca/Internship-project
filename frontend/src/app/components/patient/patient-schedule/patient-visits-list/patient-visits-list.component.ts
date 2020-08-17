@@ -1,14 +1,13 @@
-import { Component, Input } from '@angular/core';
-import { Clinic, Visit, VisitCount } from 'src/app/models/interfaces';
+import { Component } from '@angular/core';
+import { Visit, VisitCount } from 'src/app/models/interfaces';
 import { VisitsService } from 'src/app/services';
 
 @Component({
-	selector: 'app-visits-list',
-	templateUrl: './visits-list.component.html',
-	styleUrls: ['./visits-list.component.scss'],
+	selector: 'app-patient-visits-list',
+	templateUrl: './patient-visits-list.component.html',
+	styleUrls: ['./patient-visits-list.component.scss'],
 })
-export class VisitsListComponent {
-	@Input() clinics: Clinic[];
+export class PatientVisitsListComponent {
 	visits: Visit[];
 	registeredVisits: Visit[];
 	dailyVisitCount: VisitCount[];

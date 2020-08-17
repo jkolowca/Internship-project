@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
-	selector: 'app-panel-add',
-	templateUrl: './panel-add.component.html',
-	styleUrls: ['./panel-add.component.scss'],
+	selector: 'app-visit-add-panel',
+	templateUrl: './visit-add-panel.component.html',
+	styleUrls: ['./visit-add-panel.component.scss'],
 })
-export class PanelAddComponent implements OnInit {
+export class VisitAddPanelComponent implements OnInit {
 	@Input() doctorId: string;
 	@Input() clinics: Clinic[];
 	@Output() newVisit = new EventEmitter();

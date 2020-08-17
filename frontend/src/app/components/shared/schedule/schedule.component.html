@@ -1,29 +1,24 @@
 <mat-tab-group mat-align-tabs="start">
 	<mat-tab label="Active">
-		<div class="main-container">
-			<div *ngIf="doctorId">
-				<app-panel-add
+		<div class="main-container" *ngIf="doctor._id">
+			<div>
+				<app-visit-add-panel
 					*ngIf="clinics"
 					[clinics]="clinics"
 					(newVisit)="ngAfterViewInit()"
-				></app-panel-add>
+				></app-visit-add-panel>
 			</div>
 			<div>
-				<app-visits-list
-					#active
-					[clinics]="clinics"
-					[type]="doctorId ? 'doctor' : 'patient'"
-				></app-visits-list>
+				<app-visits-list #active [clinics]="clinics"></app-visits-list>
 			</div>
 		</div>
 	</mat-tab>
 	<mat-tab label="Archived">
-		<div class="main-container">
+		<div class="main-container" *ngIf="doctor._id">
 			<div>
 				<app-visits-list
 					#archived
 					[clinics]="clinics"
-					[type]="doctorId ? 'doctor' : 'patient'"
 				></app-visits-list>
 			</div>
 		</div>

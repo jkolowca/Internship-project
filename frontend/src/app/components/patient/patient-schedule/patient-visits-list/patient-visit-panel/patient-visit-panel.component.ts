@@ -5,11 +5,11 @@ import { VisitsService } from 'src/app/services';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
-	selector: 'app-panel-patient',
-	templateUrl: './panel-patient.component.html',
-	styleUrls: ['./panel-patient.component.scss'],
+	selector: 'app-patient-visit-panel',
+	templateUrl: './patient-visit-panel.component.html',
+	styleUrls: ['./patient-visit-panel.component.scss'],
 })
-export class PanelPatientComponent implements OnInit {
+export class PatientVisitPanelComponent implements OnInit {
 	@Input() visit: Visit;
 	@Output() visitCanceled = new EventEmitter();
 	type: string;

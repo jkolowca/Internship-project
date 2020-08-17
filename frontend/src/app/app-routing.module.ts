@@ -11,8 +11,10 @@ import { DoctorComponent } from './components/doctor/doctor.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
-import { ScheduleComponent } from './components/shared/schedule/schedule.component';
+import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 import { LogoutComponent } from './components/authentication/logout/logout.component';
+import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
+import { ScheduleComponent } from './components/shared/schedule/schedule.component';
 
 const routes: Routes = [
 	{
@@ -49,6 +51,21 @@ const routes: Routes = [
 			{
 				path: 'doctors/:id',
 				component: DoctorTabComponent,
+				children: [
+					{
+						path: '',
+						pathMatch: 'full',
+						redirectTo: 'edit',
+					},
+					{
+						path: 'edit',
+						component: EditTabComponent,
+					},
+					{
+						path: 'schedule',
+						component: ScheduleComponent,
+					},
+				],
 			},
 		],
 	},
@@ -79,7 +96,7 @@ const routes: Routes = [
 			},
 			{
 				path: 'registered-visits',
-				component: ScheduleComponent,
+				component: PatientScheduleComponent,
 			},
 		],
 	},

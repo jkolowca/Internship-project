@@ -1,20 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" *ngIf="doctor">
 	<div>
-		<button mat-button (click)="openTab('doctor')">
+		<button mat-button routerLink="edit">
 			Dr {{ doctor.surname }} {{ doctor.name }}
 		</button>
-		<button mat-button (click)="openTab('schedule')">Schedule</button>
+		<button mat-button routerLink="schedule">
+			Schedule
+		</button>
 	</div>
 </mat-toolbar>
 
-<div class="main-container" *ngIf="doctor._id">
-	<div *ngIf="activeTab === 'doctor'">
-		<mat-card>
-			<app-doctor-form [doctorId]="doctor._id"></app-doctor-form>
-		</mat-card>
-	</div>
-	<div *ngIf="activeTab === 'schedule'">
-		<app-schedule [doctorId]="doctor._id"></app-schedule>
-	</div>
-</div>
+<router-outlet></router-outlet>
 <app-error-panel></app-error-panel>
