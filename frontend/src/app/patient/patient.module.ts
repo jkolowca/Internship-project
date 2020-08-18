@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
 import { PatientComponent } from './components/patient/patient.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
@@ -10,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PatientRoutingModule } from './patient-routing.module';
 import { SearchBarComponent } from './components/patient/search-bar/search-bar.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
 	declarations: [
@@ -22,7 +22,7 @@ import { RegistrationFormComponent } from './components/patient/registration-for
 		RegistrationFormComponent,
 	],
 	imports: [
-		MaterialModule,
+		SharedModule,
 		CommonModule,
 		HttpClientModule,
 		PatientRoutingModule,

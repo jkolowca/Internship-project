@@ -10,7 +10,6 @@ import { ClinicsTabComponent } from './components/administrator/clinics-tab/clin
 import { AdministratorComponent } from './components/administrator/administrator.component';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 import { AdministratorRoutingModule } from './administrator-routing.module';
-import { MaterialModule } from '../material/material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 
@@ -30,7 +29,6 @@ import { SharedModule } from '../shared/shared.module';
 		CommonModule,
 		SharedModule,
 		AdministratorRoutingModule,
-		MaterialModule,
 		HttpClientModule,
 	],
 })

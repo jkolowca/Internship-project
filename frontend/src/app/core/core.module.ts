@@ -1,6 +1,5 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
 import { AdministratorModule } from '../administrator/administrator.module';
 import { DoctorModule } from '../doctor/doctor.module';
@@ -36,7 +35,6 @@ export function init_app(authService: AuthService) {
 	imports: [
 		CoreRoutingModule,
 		HttpClientModule,
-		MaterialModule,
 		CommonModule,
 		AdministratorModule,
 		DoctorModule,

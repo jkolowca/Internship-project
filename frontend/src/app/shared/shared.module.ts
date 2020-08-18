@@ -5,7 +5,7 @@ import { ScheduleComponent } from './components/shared/schedule/schedule.compone
 import { VisitsListComponent } from './components/shared/schedule/visits-list/visits-list.component';
 import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
 import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-list/visit-display-panel/visit-display-panel.component';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
 	declarations: [
@@ -16,6 +16,7 @@ import { MaterialModule } from '../material/material.module';
 	],
 	imports: [CommonModule, SharedRoutingModule, MaterialModule],
 	exports: [
+		MaterialModule,
 		ScheduleComponent,
 		VisitsListComponent,
 		VisitAddPanelComponent,
