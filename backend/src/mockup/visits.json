@@ -579,10 +579,10 @@
 			"$oid": "5f3244017d817b2b4080cb8e"
 		},
 		"startDate": {
-			"$date": "2020-08-18T07:30:00Z"
+			"$date": "2020-09-18T07:30:00Z"
 		},
 		"endDate": {
-			"$date": "2020-08-18T07:45:00Z"
+			"$date": "2020-09-18T07:45:00Z"
 		},
 		"clinic": {
 			"$oid": "5f2269483daaa419683d00df"
@@ -596,10 +596,10 @@
 			"$oid": "5f3244057d817b2b4080cb8f"
 		},
 		"startDate": {
-			"$date": "2020-08-19T07:30:00Z"
+			"$date": "2020-09-19T07:30:00Z"
 		},
 		"endDate": {
-			"$date": "2020-08-19T07:45:00Z"
+			"$date": "2020-09-19T07:45:00Z"
 		},
 		"clinic": {
 			"$oid": "5f2269483daaa419683d00df"
@@ -607,5 +607,310 @@
 		"doctor": {
 			"$oid": "5f2bbd070c0a544bb89084ec"
 		}
-	}
+	},
+	{
+		"_id": {
+		  "$oid": "5f3ba8655ccf4e27b42dcfee"
+		},
+		"startDate": {
+		  "$date": "2020-09-18T08:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-18T08:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269223daaa419683d00de"
+		},
+		"doctor": {
+		  "$oid": "5f27c8376fa04e37b8288de9"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8735ccf4e27b42dcfef"
+		},
+		"startDate": {
+		  "$date": "2020-09-19T08:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-19T08:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f27c8376fa04e37b8288de9"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8855ccf4e27b42dcff0"
+		},
+		"startDate": {
+		  "$date": "2020-09-02T11:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-02T11:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f27c8376fa04e37b8288de9"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba88d5ccf4e27b42dcff1"
+		},
+		"startDate": {
+		  "$date": "2020-09-03T11:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-03T11:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f27c8376fa04e37b8288de9"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8a45ccf4e27b42dcff2"
+		},
+		"startDate": {
+		  "$date": "2020-09-07T13:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-07T13:30:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269223daaa419683d00de"
+		},
+		"doctor": {
+		  "$oid": "5f27c8376fa04e37b8288de9"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8d05ccf4e27b42dcff3"
+		},
+		"startDate": {
+		  "$date": "2020-08-31T08:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-31T08:30:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd070c0a544bb89084ec"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8d75ccf4e27b42dcff4"
+		},
+		"startDate": {
+		  "$date": "2020-08-31T09:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-31T09:30:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd070c0a544bb89084ec"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8dd5ccf4e27b42dcff5"
+		},
+		"startDate": {
+		  "$date": "2020-08-31T10:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-31T10:30:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd070c0a544bb89084ec"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8e15ccf4e27b42dcff6"
+		},
+		"startDate": {
+		  "$date": "2020-08-31T11:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-31T11:30:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd070c0a544bb89084ec"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba8e75ccf4e27b42dcff7"
+		},
+		"startDate": {
+		  "$date": "2020-08-31T12:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-31T12:30:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269483daaa419683d00df"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd070c0a544bb89084ec"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba9115ccf4e27b42dcff8"
+		},
+		"startDate": {
+		  "$date": "2020-09-14T08:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-14T08:10:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269753daaa419683d00e0"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd0e0c0a544bb89084ee"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba9175ccf4e27b42dcff9"
+		},
+		"startDate": {
+		  "$date": "2020-09-14T11:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-14T11:10:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269753daaa419683d00e0"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd0e0c0a544bb89084ee"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba91d5ccf4e27b42dcffa"
+		},
+		"startDate": {
+		  "$date": "2020-09-15T12:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-14T12:10:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269753daaa419683d00e0"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd0e0c0a544bb89084ee"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba9265ccf4e27b42dcffb"
+		},
+		"startDate": {
+		  "$date": "2020-09-15T14:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-14T14:10:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269753daaa419683d00e0"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd0e0c0a544bb89084ee"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba9325ccf4e27b42dcffc"
+		},
+		"startDate": {
+		  "$date": "2020-09-16T15:10:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-09-16T14:10:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269753daaa419683d00e0"
+		},
+		"doctor": {
+		  "$oid": "5f2bbd0e0c0a544bb89084ee"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba96e5ccf4e27b42dcffd"
+		},
+		"startDate": {
+		  "$date": "2020-08-28T08:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-28T08:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269223daaa419683d00de"
+		},
+		"doctor": {
+		  "$oid": "5f2a522dac39d815cca2f2b4"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba9755ccf4e27b42dcffe"
+		},
+		"startDate": {
+		  "$date": "2020-08-29T08:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-29T08:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269223daaa419683d00de"
+		},
+		"doctor": {
+		  "$oid": "5f2a522dac39d815cca2f2b4"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba97a5ccf4e27b42dcfff"
+		},
+		"startDate": {
+		  "$date": "2020-08-29T09:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-29T09:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269223daaa419683d00de"
+		},
+		"doctor": {
+		  "$oid": "5f2a522dac39d815cca2f2b4"
+		}
+	  },{
+		"_id": {
+		  "$oid": "5f3ba97e5ccf4e27b42dd000"
+		},
+		"startDate": {
+		  "$date": "2020-08-29T10:05:00Z"
+		},
+		"endDate": {
+		  "$date": "2020-08-29T10:25:00Z"
+		},
+		"clinic": {
+		  "$oid": "5f2269223daaa419683d00de"
+		},
+		"doctor": {
+		  "$oid": "5f2a522dac39d815cca2f2b4"
+		}
+	  }
 ]
