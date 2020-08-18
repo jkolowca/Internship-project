@@ -1,4 +1,9 @@
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import {
+	Component,
+	AfterViewInit,
+	QueryList,
+	ViewChildren,
+} from '@angular/core';
 import { PatientVisitsListComponent } from './patient-visits-list/patient-visits-list.component';
 import { ActivatedRoute } from '@angular/router';
 
@@ -8,19 +13,14 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./patient-schedule.component.scss'],
 })
 export class PatientScheduleComponent implements AfterViewInit {
-	@ViewChild('active') activeVisits: PatientVisitsListComponent;
-	@ViewChild('archived') archivedVisits: PatientVisitsListComponent;
+	@ViewChildren(PatientVisitsListComponent) visitsList: QueryList<
+		PatientVisitsListComponent
+	>;
+	patientId = this.route.parent.snapshot.paramMap.get('id');
+
 	constructor(private route: ActivatedRoute) {}
 
 	ngAfterViewInit() {
-		let patientId = this.route.parent.snapshot.paramMap.get('id');
-		this.activeVisits.loadVisits({
-			type: 'active',
-			patient: patientId,
-		});
-		this.archivedVisits.loadVisits({
-			type: 'archived',
-			patient: patientId,
-		});
+		this.visitsList.forEach(list => list.loadVisits());
 	}
 }

@@ -1,6 +1,8 @@
 <app-search-bar (formSubmitted)="loadVisits($event)"></app-search-bar>
 <div class="main-container">
 	<div>
-		<app-patient-visits-list type="patient"></app-patient-visits-list>
+		<app-patient-visits-list
+			[query]="{ appointment: 'available', type: 'active' }"
+		></app-patient-visits-list>
 	</div>
 </div>

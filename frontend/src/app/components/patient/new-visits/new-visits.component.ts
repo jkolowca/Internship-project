@@ -11,8 +11,6 @@ export class NewVisitsComponent {
 	visitList: PatientVisitsListComponent;
 
 	loadVisits(query: any) {
-		query.appointment = 'available';
-		query.type = 'active';
 		this.visitList.loadVisits(query);
 	}
 }
