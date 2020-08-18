@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Clinic, Visit, VisitCount } from 'src/app/models/interfaces';
+import { Component, Input, OnInit } from '@angular/core';
+import { Clinic, Visit } from 'src/app/models/interfaces';
 import { VisitsService } from 'src/app/services';
 
 @Component({
@@ -7,10 +7,12 @@ import { VisitsService } from 'src/app/services';
 	templateUrl: './visits-list.component.html',
 	styleUrls: ['./visits-list.component.scss'],
 })
-export class VisitsListComponent {
+export class VisitsListComponent implements OnInit {
 	@Input() clinics: Clinic[];
+	@Input() doctor: string;
+	@Input() type: string;
+
 	visits: Visit[];
-	registeredVisits: Visit[];
 	query: any = {
 		visitsPerPage: 10,
 		page: 0,
@@ -19,12 +21,12 @@ export class VisitsListComponent {
 
 	constructor(private visitService: VisitsService) {}
 
-	loadVisits(query?: any): void {
-		if (query) {
-			this.query = query;
-			this.query.page = 0;
-			this.query.visitsPerPage = 10;
-		}
+	ngOnInit(): void {
+		this.query.doctor = this.doctor;
+		this.query.type = this.type;
+	}
+
+	loadVisits(): void {
 		this.visitService.findVisits(this.query).subscribe(res => {
 			this.visits = res.visits;
 			this.visitsCount = res.visitsCount;

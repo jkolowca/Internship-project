@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
 import { Clinic, Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from 'src/app/services';
@@ -9,8 +9,9 @@ import { DoctorsService } from 'src/app/services';
 	styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent implements OnInit {
-	@ViewChild('active') activeVisits: VisitsListComponent;
-	@ViewChild('archived') archivedVisits: VisitsListComponent;
+	@ViewChildren(VisitsListComponent) visitsList: QueryList<
+		VisitsListComponent
+	>;
 	doctor: Doctor;
 	clinics: Clinic[];
 
@@ -30,14 +31,7 @@ export class ScheduleComponent implements OnInit {
 
 	loadVisits() {
 		if (this.doctor) {
-			this.activeVisits.loadVisits({
-				type: 'active',
-				doctor: this.doctor._id,
-			});
-			this.archivedVisits.loadVisits({
-				type: 'archived',
-				doctor: this.doctor._id,
-			});
+			this.visitsList.forEach(list => list.loadVisits());
 		}
 	}
 }
