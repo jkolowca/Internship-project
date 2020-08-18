@@ -12,15 +12,11 @@ import { ActivatedRoute } from '@angular/router';
 	templateUrl: './patient-schedule.component.html',
 	styleUrls: ['./patient-schedule.component.scss'],
 })
-export class PatientScheduleComponent implements AfterViewInit {
+export class PatientScheduleComponent {
 	@ViewChildren(PatientVisitsListComponent) visitsList: QueryList<
 		PatientVisitsListComponent
 	>;
 	patientId = this.route.parent.snapshot.paramMap.get('id');
 
 	constructor(private route: ActivatedRoute) {}
-
-	ngAfterViewInit() {
-		this.visitsList.forEach(list => list.loadVisits());
-	}
 }

@@ -17,8 +17,8 @@ export class VisitsListComponent implements OnInit {
 	constructor(private visitService: VisitsService) {}
 
 	ngOnInit(): void {
-		this.query.visitsPerPage = 10;
-		this.query.page = 0;
+		this.query = { ...this.query, visitsPerPage: 10, page: 0 };
+		this.loadVisits();
 	}
 
 	loadVisits(): void {

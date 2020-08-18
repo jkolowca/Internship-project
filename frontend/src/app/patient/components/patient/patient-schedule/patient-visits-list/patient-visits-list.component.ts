@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 import { Visit } from 'src/app/models/interfaces';
 import { VisitsService } from 'src/app/services';
 
@@ -9,14 +9,15 @@ import { VisitsService } from 'src/app/services';
 })
 export class PatientVisitsListComponent implements OnInit {
 	@Input() query: any;
+
 	visits: Visit[];
 	visitsCount = 0;
 
 	constructor(private visitService: VisitsService) {}
 
 	ngOnInit(): void {
-		this.query.visitsPerPage = 10;
-		this.query.page = 0;
+		this.query = { ...this.query, visitsPerPage: 10, page: 0 };
+		this.loadVisits();
 	}
 
 	loadVisits(query?: any): void {
