@@ -5,24 +5,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { PatientComponent } from './components/patient/patient.component';
-import { SearchBarComponent } from './components/patient/search-bar/search-bar.component';
-import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
-import { ScheduleComponent } from './components/shared/schedule/schedule.component';
-import { VisitsListComponent } from './components/shared/schedule/visits-list/visits-list.component';
-import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
-import { ErrorPanelComponent } from './components/shared/error-panel/error-panel.component';
-import { MaterialModule } from './shared/material.module';
-import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
-import { PatientVisitsListComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visits-list.component';
-import { PatientVisitPanelComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visit-panel/patient-visit-panel.component';
-import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-list/visit-display-panel/visit-display-panel.component';
-import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AuthService } from './services';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AdministratorModule } from './administrator/administrator.module';
 import { DoctorModule } from './doctor/doctor.module';
+import { MaterialModule} from './material/material.module';
+import { SharedModule } from './shared/shared.module';
+import { PatientModule } from './patient/patient.module';
 
 export function init_app(authService: AuthService) {
 	return () => authService.loadCurrentUser();
@@ -31,18 +21,7 @@ export function init_app(authService: AuthService) {
 @NgModule({
 	declarations: [
 		AppComponent,
-		PatientComponent,
-		SearchBarComponent,
-		RegistrationFormComponent,
-		ScheduleComponent,
-		VisitsListComponent,
-		VisitDisplayPanelComponent,
-		VisitAddPanelComponent,
-		NewVisitsComponent,
-		ErrorPanelComponent,
-		PatientScheduleComponent,
-		PatientVisitsListComponent,
-		PatientVisitPanelComponent,
+
 	],
 	imports: [
 		AppRoutingModule,
@@ -54,6 +33,8 @@ export function init_app(authService: AuthService) {
 		AuthenticationModule,
 		AdministratorModule,
 		DoctorModule,
+		SharedModule,
+		PatientModule
 	],
 	providers: [
 		AuthService,
