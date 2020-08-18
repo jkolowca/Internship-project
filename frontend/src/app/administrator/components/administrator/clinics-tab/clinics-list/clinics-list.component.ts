@@ -1,5 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ErrorPanelComponent } from 'src/app/components/shared/error-panel/error-panel.component';
+import { Component, OnInit } from '@angular/core';
 import { ClinicsService } from 'src/app/services';
 import { Clinic } from 'src/app/models/interfaces';
 

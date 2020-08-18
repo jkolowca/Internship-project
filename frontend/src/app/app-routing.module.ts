@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { PatientComponent } from './components/patient/patient.component';
-import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
-import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
-import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
 
 const routes: Routes = [
 	{
@@ -26,29 +22,10 @@ const routes: Routes = [
 		data: { accountTypes: ['doctor'] },
 	},
 	{
-		path: 'patient/:id',
-		component: PatientComponent,
+		path: 'patient',
+		loadChildren: './patient/patient.module#PatientModule',
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['patient'] },
-		children: [
-			{
-				path: '',
-				pathMatch: 'full',
-				redirectTo: 'search-visits',
-			},
-			{
-				path: 'search-visits',
-				component: NewVisitsComponent,
-			},
-			{
-				path: 'registration/:id',
-				component: RegistrationFormComponent,
-			},
-			{
-				path: 'registered-visits',
-				component: PatientScheduleComponent,
-			},
-		],
 	},
 	{
 		path: '**',

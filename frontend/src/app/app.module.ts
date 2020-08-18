@@ -10,7 +10,7 @@ import { AuthService } from './services';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AdministratorModule } from './administrator/administrator.module';
 import { DoctorModule } from './doctor/doctor.module';
-import { MaterialModule} from './material/material.module';
+import { MaterialModule } from './material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { PatientModule } from './patient/patient.module';
 
@@ -19,10 +19,7 @@ export function init_app(authService: AuthService) {
 }
 
 @NgModule({
-	declarations: [
-		AppComponent,
-
-	],
+	declarations: [AppComponent],
 	imports: [
 		AppRoutingModule,
 		BrowserModule,
@@ -34,7 +31,7 @@ export function init_app(authService: AuthService) {
 		AdministratorModule,
 		DoctorModule,
 		SharedModule,
-		PatientModule
+		PatientModule,
 	],
 	providers: [
 		AuthService,

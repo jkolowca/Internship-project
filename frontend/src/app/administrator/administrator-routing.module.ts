@@ -5,7 +5,7 @@ import { DoctorsTabComponent } from './components/administrator/doctors-tab/doct
 import { ClinicsTabComponent } from './components/administrator/clinics-tab/clinics-tab.component';
 import { DoctorTabComponent } from './components/administrator/doctors-tab/doctor-tab/doctor-tab.component';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
-import { ScheduleComponent } from '../components/shared/schedule/schedule.component';
+import { ScheduleComponent } from '../shared/components/shared/schedule/schedule.component';
 
 const routes: Routes = [
 	{
