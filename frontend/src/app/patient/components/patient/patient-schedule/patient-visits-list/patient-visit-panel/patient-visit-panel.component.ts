@@ -3,7 +3,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { VisitsService } from 'src/app/shared/services/visits.service';
-import { Visit } from '../../../../../../../../../common/interfaces';
+import { VisitAggregate } from '../../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-patient-visit-panel',
@@ -11,7 +11,7 @@ import { Visit } from '../../../../../../../../../common/interfaces';
 	styleUrls: ['./patient-visit-panel.component.scss'],
 })
 export class PatientVisitPanelComponent implements OnInit {
-	@Input() visit: Visit;
+	@Input() visit: VisitAggregate;
 	@Output() visitCanceled = new EventEmitter();
 	type: string;
 	now = new Date();

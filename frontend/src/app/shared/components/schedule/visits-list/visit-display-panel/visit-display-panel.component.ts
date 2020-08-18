@@ -1,7 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from 'src/app/shared/services/visits.service';
-import { Visit, Clinic } from '../../../../../../../../common/interfaces';
+import {
+	Clinic,
+	VisitAggregate,
+} from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-visit-display-panel',
@@ -9,7 +12,7 @@ import { Visit, Clinic } from '../../../../../../../../common/interfaces';
 	styleUrls: ['./visit-display-panel.component.scss'],
 })
 export class VisitDisplayPanelComponent implements OnInit {
-	@Input() visit: Visit;
+	@Input() visit: VisitAggregate;
 	@Input() clinics: Clinic[];
 	@Output() visitDeleted = new EventEmitter();
 	state = 'display';

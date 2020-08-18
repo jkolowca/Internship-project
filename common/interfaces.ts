@@ -39,8 +39,17 @@ export interface Visit extends VisitData {
 export interface VisitData {
 	startDate: Date;
 	endDate: Date;
-	clinic: Clinic | string;
-	doctor: Doctor | string;
+	clinic: string;
+	doctor: string;
+	appointment?: Appointment;
+}
+
+export interface VisitAggregate {
+	_id: string;
+	startDate: Date;
+	endDate: Date;
+	clinic: Clinic;
+	doctor: Doctor;
 	appointment?: Appointment;
 }
 

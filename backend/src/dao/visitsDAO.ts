@@ -1,5 +1,5 @@
 import { Collection, MongoClient, ObjectId, AggregationCursor } from 'mongodb';
-import { Appointment, Visit } from '../../../common/interfaces';
+import { Appointment, Visit, VisitAggregate } from '../../../common/interfaces';
 let visitsCollection: Collection<Visit>;
 
 export class VisitsDAO {
@@ -22,7 +22,7 @@ export class VisitsDAO {
 		page = 0,
 		visitsPerPage = 10
 	) {
-		let cursor: AggregationCursor;
+		let cursor: AggregationCursor<VisitAggregate>;
 		let visits, visitsCount;
 		try {
 			cursor = visitsCollection.aggregate([

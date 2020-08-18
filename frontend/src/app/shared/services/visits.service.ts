@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Visit, Appointment } from '../../../../../common/interfaces';
+import {
+	Visit,
+	Appointment,
+	VisitAggregate,
+} from '../../../../../common/interfaces';
 
 @Injectable()
 export class VisitsService {
@@ -13,11 +17,11 @@ export class VisitsService {
 	constructor(private http: HttpClient) {}
 
 	getAll(): Observable<{
-		visits: Visit[];
+		visits: VisitAggregate[];
 		visitsCount: number;
 	}> {
 		return this.http.get<{
-			visits: Visit[];
+			visits: VisitAggregate[];
 			visitsCount: number;
 		}>(this.visitsUrl);
 	}
@@ -54,7 +58,7 @@ export class VisitsService {
 		});
 	}
 
-	editVisit(visit: Visit): Observable<any> {
+	editVisit(visit: VisitAggregate): Observable<any> {
 		return this.http.patch(`${this.visitsUrl}/visit/${visit._id}`, visit);
 	}
 
