@@ -6,26 +6,23 @@ import { ScheduleComponent } from './components/shared/schedule/schedule.compone
 import { VisitsListComponent } from './components/shared/schedule/visits-list/visits-list.component';
 import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
 import { VisitDisplayPanelComponent } from './components/shared/schedule/visits-list/visit-display-panel/visit-display-panel.component';
-
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
-  declarations: [
-    ErrorPanelComponent,
-    ScheduleComponent,
-    VisitsListComponent,
-    VisitAddPanelComponent,
-    VisitDisplayPanelComponent
-  ],
-  imports: [
-    CommonModule,
-    SharedRoutingModule
-  ],
-  exports: [
-    ErrorPanelComponent,
-    ScheduleComponent,
-    VisitsListComponent,
-    VisitAddPanelComponent,
-    VisitDisplayPanelComponent
-  ]
+	declarations: [
+		ErrorPanelComponent,
+		ScheduleComponent,
+		VisitsListComponent,
+		VisitAddPanelComponent,
+		VisitDisplayPanelComponent,
+	],
+	imports: [CommonModule, SharedRoutingModule, MaterialModule],
+	exports: [
+		ErrorPanelComponent,
+		ScheduleComponent,
+		VisitsListComponent,
+		VisitAddPanelComponent,
+		VisitDisplayPanelComponent,
+	],
 })
-export class SharedModule { }
+export class SharedModule {}
