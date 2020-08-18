@@ -2,7 +2,6 @@ import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MaterialModule } from '../material/material.module';
 import { CommonModule } from '@angular/common';
-import { AuthenticationModule } from '../authentication/authentication.module';
 import { AdministratorModule } from '../administrator/administrator.module';
 import { DoctorModule } from '../doctor/doctor.module';
 import { SharedModule } from '../shared/shared.module';
@@ -19,19 +18,26 @@ import {
 	VisitsService,
 } from './services';
 import { AuthenticationGuard } from './guards/authentication.guard';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LogoutComponent } from './components/logout/logout.component';
 
 export function init_app(authService: AuthService) {
 	return () => authService.loadCurrentUser();
 }
 
 @NgModule({
-	declarations: [ErrorPanelComponent],
+	declarations: [
+		ErrorPanelComponent,
+		LoginComponent,
+		RegisterComponent,
+		LogoutComponent,
+	],
 	imports: [
 		CoreRoutingModule,
 		HttpClientModule,
 		MaterialModule,
 		CommonModule,
-		AuthenticationModule,
 		AdministratorModule,
 		DoctorModule,
 		SharedModule,
