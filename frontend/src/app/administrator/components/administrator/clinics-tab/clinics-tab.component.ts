@@ -19,7 +19,7 @@ export class ClinicsTabComponent {
 	resetForm() {
 		this.panel.close();
 		this.showForm = false;
-		setTimeout(_ => {
+		setTimeout(() => {
 			this.showForm = true;
 		}, 100);
 	}

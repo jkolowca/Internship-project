@@ -40,7 +40,7 @@ export class VisitAddPanelComponent implements OnInit {
 
 		this.visitsService
 			.addVisit(startDate, endDate, clinic, this.doctorId)
-			.subscribe(_ => this.newVisit.emit());
+			.subscribe(() => this.newVisit.emit());
 		this.state = 'display';
 	}
 }

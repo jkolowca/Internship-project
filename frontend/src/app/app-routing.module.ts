@@ -1,17 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { AdministratorComponent } from './components/administrator/administrator.component';
-import { DoctorsTabComponent } from './components/administrator/doctors-tab/doctors-tab.component';
-import { ClinicsTabComponent } from './components/administrator/clinics-tab/clinics-tab.component';
-import { DoctorTabComponent } from './components/administrator/doctors-tab/doctor-tab/doctor-tab.component';
 import { DoctorComponent } from './components/doctor/doctor.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
-import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
-import { ScheduleComponent } from './components/shared/schedule/schedule.component';
 
 const routes: Routes = [
 	{
@@ -21,43 +15,10 @@ const routes: Routes = [
 	},
 	{
 		path: 'admin',
-		component: AdministratorComponent,
+		loadChildren:
+			'./administrator/administrator.module#AdministratorModule',
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['admin'] },
-		children: [
-			{
-				path: '',
-				pathMatch: 'full',
-				redirectTo: 'doctors',
-			},
-			{
-				path: 'doctors',
-				component: DoctorsTabComponent,
-			},
-			{
-				path: 'clinics',
-				component: ClinicsTabComponent,
-			},
-			{
-				path: 'doctors/:id',
-				component: DoctorTabComponent,
-				children: [
-					{
-						path: '',
-						pathMatch: 'full',
-						redirectTo: 'edit',
-					},
-					{
-						path: 'edit',
-						component: EditTabComponent,
-					},
-					{
-						path: 'schedule',
-						component: ScheduleComponent,
-					},
-				],
-			},
-		],
 	},
 	{
 		path: 'doctor/:id',
