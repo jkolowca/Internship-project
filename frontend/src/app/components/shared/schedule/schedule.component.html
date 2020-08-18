@@ -9,7 +9,11 @@
 				></app-visit-add-panel>
 			</div>
 			<div>
-				<app-visits-list #active [clinics]="clinics"></app-visits-list>
+				<app-visits-list
+					type="active"
+					[doctor]="doctor._id"
+					[clinics]="clinics"
+				></app-visits-list>
 			</div>
 		</div>
 	</mat-tab>
@@ -17,7 +21,8 @@
 		<div class="main-container" *ngIf="doctor._id">
 			<div>
 				<app-visits-list
-					#archived
+					type="archived"
+					[doctor]="doctor._id"
 					[clinics]="clinics"
 				></app-visits-list>
 			</div>
