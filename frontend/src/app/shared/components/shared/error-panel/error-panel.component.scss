@@ -1,5 +1,5 @@
 @import '~@angular/material/theming';
-@import '../../../../theme.scss';
+@import '../../../../../theme.scss';
 
 $warn: map-get($light-app-theme, warn);
 
@@ -13,3 +13,5 @@ div {
 	display: flex;
 	justify-content: center;
 }
+
+
