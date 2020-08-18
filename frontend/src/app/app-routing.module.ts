@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthenticationGuard } from './guards/authentication.guard';
-import { DoctorComponent } from './components/doctor/doctor.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { NewVisitsComponent } from './components/patient/new-visits/new-visits.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
@@ -21,8 +20,8 @@ const routes: Routes = [
 		data: { accountTypes: ['admin'] },
 	},
 	{
-		path: 'doctor/:id',
-		component: DoctorComponent,
+		path: 'doctor',
+		loadChildren: './doctor/doctor.module#DoctorModule',
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['doctor'] },
 	},

@@ -5,7 +5,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { AppComponent } from './app.component';
-import { DoctorComponent } from './components/doctor/doctor.component';
 import { PatientComponent } from './components/patient/patient.component';
 import { SearchBarComponent } from './components/patient/search-bar/search-bar.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
@@ -23,6 +22,7 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { AuthService } from './services';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { AdministratorModule } from './administrator/administrator.module';
+import { DoctorModule } from './doctor/doctor.module';
 
 export function init_app(authService: AuthService) {
 	return () => authService.loadCurrentUser();
@@ -31,7 +31,6 @@ export function init_app(authService: AuthService) {
 @NgModule({
 	declarations: [
 		AppComponent,
-		DoctorComponent,
 		PatientComponent,
 		SearchBarComponent,
 		RegistrationFormComponent,
@@ -54,6 +53,7 @@ export function init_app(authService: AuthService) {
 		CommonModule,
 		AuthenticationModule,
 		AdministratorModule,
+		DoctorModule,
 	],
 	providers: [
 		AuthService,
