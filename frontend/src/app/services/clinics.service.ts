@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Clinic } from '../models/interfaces';
+import { Clinic } from '../../../../common/interfaces';
+
 
 
 @Injectable({

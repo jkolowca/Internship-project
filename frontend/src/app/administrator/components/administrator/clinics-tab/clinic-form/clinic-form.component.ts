@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClinicsService } from 'src/app/services';
-import { Address } from 'src/app/models/interfaces';
+import { Address } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-clinic-form',

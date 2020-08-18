@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ClinicsDAO } from '../dao/clinicsDAO';
-import { Clinic } from '../models';
+import { Clinic } from '../../../common/interfaces';
 import { ObjectId } from 'mongodb';
 
 export class ClinicsCtrl {

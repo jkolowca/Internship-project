@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Doctor, Clinic } from '../models/interfaces';
+import { Doctor, Clinic } from '../../../../common/interfaces';
+
 
 @Injectable({
 	providedIn: 'root',

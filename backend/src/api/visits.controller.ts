@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { VisitsDAO } from '../dao/visitsDAO';
 import { ObjectId } from 'mongodb';
-import { Visit } from '../models';
+import { Visit } from '../../../common/interfaces';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {

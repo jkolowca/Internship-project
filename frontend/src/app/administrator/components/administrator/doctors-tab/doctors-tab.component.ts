@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { DoctorsListComponent } from './doctors-list/doctors-list.component';
 import { MatExpansionPanel } from '@angular/material/expansion';
-import { Doctor } from 'src/app/models/interfaces';
+import { Doctor } from '../../../../../../../common/interfaces';
+
 
 @Component({
 	selector: 'app-doctors-tab',

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { UsersDAO } from '../dao/usersDAO';
 import { ObjectId } from 'mongodb';
-import { User } from '../models';
+import { User } from '../../../common/interfaces';
 import * as bcrypt from 'bcryptjs';
 import * as jbw from 'jsonwebtoken';
 

@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { Visit } from 'src/app/models/interfaces';
+
 import { Router } from '@angular/router';
 import { VisitsService } from 'src/app/services';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Visit } from '../../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-patient-visit-panel',

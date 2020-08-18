@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Clinic, Visit } from 'src/app/models/interfaces';
+import {  Visit } from '../../../../../../../../common/interfaces';
+import { Clinic } from '../../../../../../../../common/interfaces';
 import { VisitsService } from 'src/app/services';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
-import { Visit } from 'src/app/models/interfaces';
+import { Visit } from '../../../../../../../../common/interfaces';
 import { VisitsService } from 'src/app/services';
 
 @Component({

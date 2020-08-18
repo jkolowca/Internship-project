@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Doctor } from 'src/app/models/interfaces';
+
 import { DoctorsService } from 'src/app/services';
+import { Doctor } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-doctors-list',

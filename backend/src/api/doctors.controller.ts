@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { DoctorsDAO } from '../dao/doctorsDAO';
 import { VisitsDAO } from '../dao/visitsDAO';
 import { ObjectId, UpdateWriteOpResult } from 'mongodb';
-import { Doctor } from '../models';
+import { Doctor } from '../../../common/interfaces';
 
 export class DoctorsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
