@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { DoctorsService } from 'src/app/core/services';
 import { Doctor } from 'src/app/models/interfaces';
+import { DoctorsService } from 'src/app/shared/services/doctors.service';
 
 @Component({
 	selector: 'app-doctor-tab',

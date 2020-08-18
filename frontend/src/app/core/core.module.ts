@@ -9,17 +9,13 @@ import { CoreRoutingModule } from './core-routing.module';
 import { RouterModule } from '@angular/router';
 import { ErrorPanelComponent } from './components/error-panel/error-panel.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-import {
-	ErrorService,
-	AuthService,
-	ClinicsService,
-	DoctorsService,
-	VisitsService,
-} from './services';
+
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { AuthService } from './services/auth.service';
+import { ErrorService } from './services/error.service';
 
 export function init_app(authService: AuthService) {
 	return () => authService.loadCurrentUser();
@@ -44,9 +40,6 @@ export function init_app(authService: AuthService) {
 	providers: [
 		ErrorService,
 		AuthService,
-		ClinicsService,
-		DoctorsService,
-		VisitsService,
 		AuthenticationGuard,
 		{ provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 		{

@@ -8,16 +8,19 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
-import { ErrorService } from '../services';
+import { ErrorService } from '../services/error.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-	constructor(private errorService: ErrorService) {}
+	constructor(private errorService: ErrorService) {
+		console.log(`interceptor`);
+	}
 
 	intercept(
 		request: HttpRequest<unknown>,
 		next: HttpHandler
 	): Observable<HttpEvent<unknown>> {
+		console.log(`intercept`);
 		return next.handle(request).pipe(
 			retry(1),
 			catchError((error: HttpErrorResponse) => {

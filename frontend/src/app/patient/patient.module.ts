@@ -5,7 +5,6 @@ import { NewVisitsComponent } from './components/patient/new-visits/new-visits.c
 import { PatientScheduleComponent } from './components/patient/patient-schedule/patient-schedule.component';
 import { PatientVisitsListComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visits-list.component';
 import { PatientVisitPanelComponent } from './components/patient/patient-schedule/patient-visits-list/patient-visit-panel/patient-visit-panel.component';
-import { HttpClientModule } from '@angular/common/http';
 import { PatientRoutingModule } from './patient-routing.module';
 import { SearchBarComponent } from './components/patient/search-bar/search-bar.component';
 import { RegistrationFormComponent } from './components/patient/registration-form/registration-form.component';
@@ -21,11 +20,6 @@ import { SharedModule } from '../shared/shared.module';
 		SearchBarComponent,
 		RegistrationFormComponent,
 	],
-	imports: [
-		SharedModule,
-		CommonModule,
-		HttpClientModule,
-		PatientRoutingModule,
-	],
+	imports: [SharedModule, CommonModule, PatientRoutingModule],
 })
 export class PatientModule {}

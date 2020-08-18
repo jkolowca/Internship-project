@@ -23,8 +23,6 @@ export class ErrorPanelComponent {
 	}
 }
 
-
-
 @Component({
 	selector: 'app-bottom-sheet',
 	templateUrl: './error-panel.component.html',

@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ErrorPanelComponent } from './core/components/error-panel/error-panel.component';
-import { AuthService, ErrorService } from './core/services';
+import { AuthService } from './core/services/auth.service';
+import { ErrorService } from './core/services/error.service';
 
 @Component({
 	selector: 'app-root',

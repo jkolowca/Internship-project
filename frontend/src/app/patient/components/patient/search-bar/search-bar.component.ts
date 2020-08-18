@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ClinicsService, DoctorsService } from 'src/app/core/services';
 import { FormBuilder, FormControl } from '@angular/forms';
+import { ClinicsService } from 'src/app/shared/services/clinics.service';
+import { DoctorsService } from 'src/app/shared/services/doctors.service';
 
 @Component({
 	selector: 'app-search-bar',

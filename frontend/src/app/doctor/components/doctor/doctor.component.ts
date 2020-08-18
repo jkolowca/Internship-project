@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User, Doctor } from 'src/app/models/interfaces';
-import { AuthService, DoctorsService } from 'src/app/core/services';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { DoctorsService } from 'src/app/shared/services/doctors.service';
 
 @Component({
 	selector: 'app-doctor',

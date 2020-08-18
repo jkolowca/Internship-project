@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Appointment } from 'src/app/models/interfaces';
-import { VisitsService } from 'src/app/core/services';
+import { VisitsService } from 'src/app/shared/services/visits.service';
 
 @Component({
 	selector: 'app-registration-form',

@@ -53,7 +53,7 @@ form {
 }
 
 @import '~@angular/material/theming';
-@import '../../../../../../../theme.scss';
+@import '../../../../../../theme.scss';
 
 .booked {
 	background-color: mat-color($mat-red, 50, 200);

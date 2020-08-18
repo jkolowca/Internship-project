@@ -10,7 +10,6 @@ import { ClinicsTabComponent } from './components/administrator/clinics-tab/clin
 import { AdministratorComponent } from './components/administrator/administrator.component';
 import { EditTabComponent } from './components/administrator/doctors-tab/doctor-tab/edit-tab/edit-tab.component';
 import { AdministratorRoutingModule } from './administrator-routing.module';
-import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
@@ -25,11 +24,6 @@ import { SharedModule } from '../shared/shared.module';
 		AdministratorComponent,
 		EditTabComponent,
 	],
-	imports: [
-		CommonModule,
-		SharedModule,
-		AdministratorRoutingModule,
-		HttpClientModule,
-	],
+	imports: [CommonModule, SharedModule, AdministratorRoutingModule],
 })
 export class AdministratorModule {}
