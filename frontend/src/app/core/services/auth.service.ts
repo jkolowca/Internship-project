@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { share } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { User } from 'src/app/models/interfaces';
+import { User } from '../../../../../common/interfaces';
 
 @Injectable()
 export class AuthService {

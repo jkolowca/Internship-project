@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
-import { Clinic } from 'src/app/models/interfaces';
-import { Router } from '@angular/router';
 import { DoctorsService } from 'src/app/shared/services/doctors.service';
 import { ClinicsService } from 'src/app/shared/services/clinics.service';
+
+import { Router } from '@angular/router';
+import { Clinic } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-doctor-form',

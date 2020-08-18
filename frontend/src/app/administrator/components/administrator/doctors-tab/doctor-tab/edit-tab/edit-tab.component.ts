@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from 'src/app/shared/services/doctors.service';
+
+import { Doctor } from '../../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-edit-tab',

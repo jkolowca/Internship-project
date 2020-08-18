@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { VisitsDAO } from '../dao/visitsDAO';
 import { ObjectId } from 'mongodb';
-import { Visit } from '../models';
+import { Visit } from '../../../common/interfaces';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
@@ -61,8 +61,6 @@ export class VisitsCtrl {
 			const visit: Visit = req.body;
 			visit.startDate = new Date(visit.startDate);
 			visit.endDate = new Date(visit.endDate);
-			visit.clinic = new ObjectId(visit.clinic);
-			visit.doctor = new ObjectId(visit.doctor);
 
 			await VisitsDAO.add(visit);
 			res.json({ status: 'success' });
@@ -74,7 +72,7 @@ export class VisitsCtrl {
 	static async apiUpdate(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { appointment, startDate, endDate, clinic } = req.body;
-			const id = new ObjectId(req.params.id);
+			const id = req.params.id;
 
 			if (!startDate && appointment) {
 				appointment._id = new ObjectId(appointment._id);
@@ -84,7 +82,7 @@ export class VisitsCtrl {
 					id,
 					new Date(startDate),
 					new Date(endDate),
-					new ObjectId(clinic._id)
+					clinic._id
 				);
 			}
 			res.json({ status: 'success' });
@@ -95,7 +93,7 @@ export class VisitsCtrl {
 
 	static async apiDelete(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = new ObjectId(req.params.id);
+			let id = req.params.id;
 			await VisitsDAO.delete(id);
 			res.json({ status: 'success' });
 		} catch (e) {
@@ -109,7 +107,7 @@ export class VisitsCtrl {
 		next: NextFunction
 	) {
 		try {
-			const id = new ObjectId(req.params.id);
+			const id = req.params.id;
 			await VisitsDAO.deleteAppointment(id);
 			res.json({ status: 'success' });
 		} catch (e) {

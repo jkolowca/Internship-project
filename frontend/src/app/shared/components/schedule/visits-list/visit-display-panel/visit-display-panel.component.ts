@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Visit, Clinic } from 'src/app/models/interfaces';
 import { VisitsService } from 'src/app/shared/services/visits.service';
+import { Visit, Clinic } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-visit-display-panel',

@@ -1,11 +1,5 @@
-import {
-	Collection,
-	MongoClient,
-	Cursor,
-	ObjectId,
-	AggregationCursor,
-} from 'mongodb';
-import { Doctor, Clinic } from '../models';
+import { Collection, MongoClient, Cursor, AggregationCursor } from 'mongodb';
+import { Doctor, Clinic, DoctorData } from '../../../common/interfaces';
 let doctorsCollection: Collection<Doctor>;
 
 export class DoctorsDAO {
@@ -43,7 +37,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getById(_id: ObjectId) {
+	static async getById(_id: string) {
 		try {
 			return await doctorsCollection.findOne({ _id });
 		} catch (e) {
@@ -52,7 +46,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async update(_id: ObjectId, doctor: Doctor) {
+	static async update(_id: string, doctor: DoctorData) {
 		try {
 			return await doctorsCollection.updateOne({ _id }, { $set: doctor });
 		} catch (e) {
@@ -61,7 +55,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async delete(_id: ObjectId) {
+	static async delete(_id: string) {
 		try {
 			return await doctorsCollection.deleteOne({ _id });
 		} catch (e) {
@@ -97,8 +91,8 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getClinics(_id: ObjectId) {
-		let cursor: AggregationCursor<{ _id: ObjectId; clinics: Clinic[] }>;
+	static async getClinics(_id: string) {
+		let cursor: AggregationCursor<{ _id: string; clinics: Clinic[] }>;
 		try {
 			cursor = doctorsCollection.aggregate([
 				{

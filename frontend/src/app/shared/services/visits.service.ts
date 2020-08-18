@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Visit, VisitCount, Appointment } from '../../models/interfaces';
+import { Visit, Appointment } from '../../../../../common/interfaces';
 
 @Injectable()
 export class VisitsService {
@@ -14,12 +14,10 @@ export class VisitsService {
 
 	getAll(): Observable<{
 		visits: Visit[];
-		dates: VisitCount[];
 		visitsCount: number;
 	}> {
 		return this.http.get<{
 			visits: Visit[];
-			dates: VisitCount[];
 			visitsCount: number;
 		}>(this.visitsUrl);
 	}

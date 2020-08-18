@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { UsersDAO } from '../dao/usersDAO';
 import { ObjectId } from 'mongodb';
-import { User } from '../models';
+import { User } from '../../../common/interfaces';
 import * as bcrypt from 'bcryptjs';
 import * as jbw from 'jsonwebtoken';
 
@@ -13,7 +13,7 @@ export class UsersCtrl {
 
 	static async apiGetById(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = new ObjectId(req.params.id);
+			let id = req.params.id;
 			let user = await UsersDAO.getById(id);
 			if (!user) {
 				res.status(404).json({ error: 'Not found' });

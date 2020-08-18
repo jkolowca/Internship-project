@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
-import { Clinic, Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from '../../services/doctors.service';
+import { Clinic, Doctor } from '../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-schedule',
