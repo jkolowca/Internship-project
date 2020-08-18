@@ -10,8 +10,7 @@
 			</div>
 			<div>
 				<app-visits-list
-					type="active"
-					[doctor]="doctor._id"
+					[query]="{ doctor: doctor._id, type: 'active' }"
 					[clinics]="clinics"
 				></app-visits-list>
 			</div>
@@ -21,8 +20,7 @@
 		<div class="main-container" *ngIf="doctor._id">
 			<div>
 				<app-visits-list
-					type="archived"
-					[doctor]="doctor._id"
+					[query]="{ doctor: doctor._id, type: 'archived' }"
 					[clinics]="clinics"
 				></app-visits-list>
 			</div>

@@ -9,21 +9,16 @@ import { VisitsService } from 'src/app/services';
 })
 export class VisitsListComponent implements OnInit {
 	@Input() clinics: Clinic[];
-	@Input() doctor: string;
-	@Input() type: string;
+	@Input() query: any;
 
 	visits: Visit[];
-	query: any = {
-		visitsPerPage: 10,
-		page: 0,
-	};
 	visitsCount = 0;
 
 	constructor(private visitService: VisitsService) {}
 
 	ngOnInit(): void {
-		this.query.doctor = this.doctor;
-		this.query.type = this.type;
+		this.query.visitsPerPage = 10;
+		this.query.page = 0;
 	}
 
 	loadVisits(): void {
