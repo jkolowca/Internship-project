@@ -1,5 +1,5 @@
 import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
-import { Clinic } from '../models';
+import { Clinic } from '../../../common/interfaces';
 
 let clinicsCollection: Collection<Clinic>;
 
@@ -65,7 +65,7 @@ export class ClinicsDAO {
 		}
 	}
 
-	static async delete(_id: ObjectId) {
+	static async delete(_id: string) {
 		try {
 			return await clinicsCollection.deleteOne({ _id });
 		} catch (e) {

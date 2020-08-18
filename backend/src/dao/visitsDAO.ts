@@ -1,5 +1,5 @@
 import { Collection, MongoClient, ObjectId, AggregationCursor } from 'mongodb';
-import { Appointment, Visit } from '../models';
+import { Appointment, Visit } from '../../../common/interfaces';
 let visitsCollection: Collection<Visit>;
 
 export class VisitsDAO {
@@ -83,7 +83,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async deleteVisitsByDoctorId(doctorId: ObjectId) {
+	static async deleteVisitsByDoctorId(doctorId: string) {
 		try {
 			return await visitsCollection.deleteMany({
 				doctor: doctorId,
@@ -94,7 +94,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async delete(_id: ObjectId) {
+	static async delete(_id: string) {
 		try {
 			return await visitsCollection.deleteOne({ _id });
 		} catch (e) {
@@ -103,10 +103,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async updateAppointment(
-		visitId: ObjectId,
-		appointment: Appointment
-	) {
+	static async updateAppointment(visitId: string, appointment: Appointment) {
 		try {
 			await visitsCollection.updateOne(
 				{ _id: visitId },
@@ -119,7 +116,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async deleteAppointment(visitId: ObjectId) {
+	static async deleteAppointment(visitId: string) {
 		try {
 			await visitsCollection.updateOne(
 				{ _id: visitId },
@@ -133,10 +130,10 @@ export class VisitsDAO {
 	}
 
 	static async updateVisit(
-		_id: ObjectId,
+		_id: string,
 		startDate: Date,
 		endDate: Date,
-		clinic: ObjectId
+		clinic: string
 	) {
 		try {
 			const updateResponse = await visitsCollection.updateOne(

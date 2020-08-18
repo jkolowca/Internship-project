@@ -1,48 +1,28 @@
-
-
-export interface Clinic {
+export interface Clinic extends ClinicData {
 	_id: string;
+}
+
+export interface ClinicData {
 	name: string;
 	address: Address;
 }
 
-// export interface ClinicAdd {
-// 	_id?: ObjectId;
-// 	name: string;
-// 	address: Address;
-// }
-
-
 export interface Address {
-	_id?: string;
 	city: string;
 	streetAddress: string;
 	apartment?: string;
 }
 
-// export interface AddressAdd {
-// 	_id?: ObjectId;
-// 	city: string;
-// 	street: string;
-// 	apartment?: string;
-// }
-export interface Doctor {
+export interface Doctor extends DoctorData {
 	_id: string;
+}
+
+export interface DoctorData {
 	name: string;
 	surname: string;
 	specialties: string[];
 	clinics: string[];
 }
-
-
-// export interface DoctorAdd {
-// 	_id?: ObjectId;
-// 	name: string;
-// 	surname: string;
-// 	specialties: string[];
-// 	clinics: ObjectId[];
-// }
-
 
 export interface Appointment {
 	_id: string;
@@ -52,54 +32,23 @@ export interface Appointment {
 	reason?: string;
 }
 
-
-
-// export interface AppointmentAdd {
-// 	_id?: ObjectId;
-// 	name: string;
-// 	surname: string;
-// 	email: string;
-// 	reason?: string;
-// }
-
-
-
-export interface Visit {
+export interface Visit extends VisitData {
 	_id: string;
+}
+
+export interface VisitData {
 	startDate: Date;
 	endDate: Date;
-	clinic: Clinic;
-	doctor: Doctor;
+	clinic: Clinic | string;
+	doctor: Doctor | string;
 	appointment?: Appointment;
 }
 
-// export interface VisitAdd {
-// 	_id?: ObjectId;
-// 	startDate: Date;
-// 	endDate: Date;
-// 	clinic: ObjectId;
-// 	doctor: ObjectId;
-// 	appointment?: Appointment;
-// }
-
-
-export interface VisitCount {
+export interface User extends UserData {
 	_id: string;
-	count: number;
 }
 
-
-// export interface UserAdd {
-// 	_id?: ObjectId;
-// 	name: string;
-// 	surname: string;
-// 	email: string;
-// 	password: string;
-// 	accountType: string;
-// 	doctorId?: ObjectId;
-// }
-export interface User {
-	_id: string;
+export interface UserData {
 	name: string;
 	surname: string;
 	email: string;
@@ -107,4 +56,3 @@ export interface User {
 	accountType: string;
 	doctorId?: string;
 }
-

@@ -13,7 +13,7 @@ export class UsersCtrl {
 
 	static async apiGetById(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = new ObjectId(req.params.id);
+			let id = req.params.id;
 			let user = await UsersDAO.getById(id);
 			if (!user) {
 				res.status(404).json({ error: 'Not found' });

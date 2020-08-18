@@ -1,5 +1,5 @@
-import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
-import { User } from '../models';
+import { Collection, MongoClient, Cursor } from 'mongodb';
+import { User, UserData } from '../../../common/interfaces';
 let usersCollection: Collection<User>;
 
 export class UsersDAO {
@@ -37,7 +37,7 @@ export class UsersDAO {
 		}
 	}
 
-	static async getById(_id: ObjectId) {
+	static async getById(_id: string) {
 		try {
 			return await usersCollection.findOne({ _id });
 		} catch (e) {

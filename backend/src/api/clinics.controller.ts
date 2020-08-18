@@ -1,7 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { ClinicsDAO } from '../dao/clinicsDAO';
 import { Clinic } from '../../../common/interfaces';
-import { ObjectId } from 'mongodb';
 
 export class ClinicsCtrl {
 	static async apiGetAll(req: Request, res: Response, next: NextFunction) {
@@ -34,7 +33,7 @@ export class ClinicsCtrl {
 
 	static async apiDelete(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = new ObjectId(req.params.id);
+			let id = req.params.id;
 			await ClinicsDAO.delete(id);
 			const clinics = await ClinicsDAO.getAll();
 			res.json(clinics);
