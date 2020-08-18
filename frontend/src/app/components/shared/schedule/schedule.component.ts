@@ -21,7 +21,6 @@ export class ScheduleComponent implements OnInit {
 			if (doctor._id) {
 				this.doctorsService.getClinics(doctor._id).subscribe(c => {
 					this.clinics = c;
-					this.loadVisits();
 				});
 			}
 		});
@@ -30,8 +29,6 @@ export class ScheduleComponent implements OnInit {
 	constructor(private doctorsService: DoctorsService) {}
 
 	loadVisits() {
-		if (this.doctor) {
-			this.visitsList.forEach(list => list.loadVisits());
-		}
+		this.visitsList.forEach(list => list.loadVisits());
 	}
 }

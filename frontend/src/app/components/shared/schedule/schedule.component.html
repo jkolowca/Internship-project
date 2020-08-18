@@ -1,29 +1,31 @@
 <mat-tab-group mat-align-tabs="start">
 	<mat-tab label="Active">
-		<div class="main-container" *ngIf="doctor._id">
-			<div>
-				<app-visit-add-panel
-					*ngIf="clinics"
-					[clinics]="clinics"
-					(newVisit)="loadVisits()"
-				></app-visit-add-panel>
-			</div>
-			<div>
-				<app-visits-list
-					[query]="{ doctor: doctor._id, type: 'active' }"
-					[clinics]="clinics"
-				></app-visits-list>
-			</div>
-		</div>
+		<ng-template matTabContent>
+			<div class="main-container" *ngIf="doctor._id">
+				<div>
+					<app-visit-add-panel
+						*ngIf="clinics"
+						[clinics]="clinics"
+						(newVisit)="loadVisits()"
+					></app-visit-add-panel>
+				</div>
+				<div>
+					<app-visits-list
+						[query]="{ doctor: doctor._id, type: 'active' }"
+						[clinics]="clinics"
+					></app-visits-list>
+				</div></div
+		></ng-template>
 	</mat-tab>
 	<mat-tab label="Archived">
-		<div class="main-container" *ngIf="doctor._id">
-			<div>
-				<app-visits-list
-					[query]="{ doctor: doctor._id, type: 'archived' }"
-					[clinics]="clinics"
-				></app-visits-list>
-			</div>
-		</div>
+		<ng-template matTabContent>
+			<div class="main-container" *ngIf="doctor._id">
+				<div>
+					<app-visits-list
+						[query]="{ doctor: doctor._id, type: 'archived' }"
+						[clinics]="clinics"
+					></app-visits-list>
+				</div></div
+		></ng-template>
 	</mat-tab>
 </mat-tab-group>

@@ -19,6 +19,7 @@ export class VisitsListComponent implements OnInit {
 	ngOnInit(): void {
 		this.query.visitsPerPage = 10;
 		this.query.page = 0;
+		this.loadVisits();
 	}
 
 	loadVisits(): void {
