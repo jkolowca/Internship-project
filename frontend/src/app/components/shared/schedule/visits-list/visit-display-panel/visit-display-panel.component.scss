@@ -54,8 +54,8 @@ form {
 
 @import '~@angular/material/theming';
 @import '../../../../../../theme.scss';
-$accent: map-get($light-app-theme, accent);
+
 
 .booked {
-	background-color: mat-color($accent);
+	background-color: mat-color($mat-red, 50, 200);
 }
