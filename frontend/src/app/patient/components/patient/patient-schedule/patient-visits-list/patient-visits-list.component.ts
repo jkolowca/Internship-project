@@ -1,6 +1,6 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Visit } from 'src/app/models/interfaces';
-import { VisitsService } from 'src/app/services';
+import { VisitsService } from 'src/app/core/services';
 
 @Component({
 	selector: 'app-patient-visits-list',

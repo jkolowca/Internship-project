@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { User } from '../models/interfaces';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { share } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/interfaces';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class AuthService {
 	endpoint: string = 'http://localhost:5000/users';
 	user: User;

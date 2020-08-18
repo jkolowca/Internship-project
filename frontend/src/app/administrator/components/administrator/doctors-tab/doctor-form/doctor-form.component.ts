@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators, FormArray } from '@angular/forms';
 import { Clinic } from 'src/app/models/interfaces';
-import { DoctorsService, ClinicsService } from 'src/app/services';
+import { DoctorsService, ClinicsService } from 'src/app/core/services';
 import { Router } from '@angular/router';
 
 @Component({

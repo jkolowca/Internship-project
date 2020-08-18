@@ -6,24 +6,24 @@ const routes: Routes = [
 	{
 		path: '',
 		loadChildren:
-			'./authentication/authentication.module#AuthenticationModule',
+			'../authentication/authentication.module#AuthenticationModule',
 	},
 	{
 		path: 'admin',
 		loadChildren:
-			'./administrator/administrator.module#AdministratorModule',
+			'../administrator/administrator.module#AdministratorModule',
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['admin'] },
 	},
 	{
 		path: 'doctor',
-		loadChildren: './doctor/doctor.module#DoctorModule',
+		loadChildren: '../doctor/doctor.module#DoctorModule',
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['doctor'] },
 	},
 	{
 		path: 'patient',
-		loadChildren: './patient/patient.module#PatientModule',
+		loadChildren: '../patient/patient.module#PatientModule',
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['patient'] },
 	},
@@ -37,4 +37,4 @@ const routes: Routes = [
 	imports: [RouterModule.forRoot(routes)],
 	exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class CoreRoutingModule {}

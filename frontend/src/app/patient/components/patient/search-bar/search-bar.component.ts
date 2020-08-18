@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { ClinicsService, DoctorsService } from 'src/app/services';
+import { ClinicsService, DoctorsService } from 'src/app/core/services';
 import { FormBuilder, FormControl } from '@angular/forms';
 
 @Component({

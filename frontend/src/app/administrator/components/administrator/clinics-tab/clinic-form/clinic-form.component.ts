@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ClinicsService } from 'src/app/services';
+import { ClinicsService } from 'src/app/core/services';
 import { Address } from 'src/app/models/interfaces';
 
 @Component({

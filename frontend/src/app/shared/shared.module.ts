@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SharedRoutingModule } from './shared-routing.module';
-import { ErrorPanelComponent } from './components/shared/error-panel/error-panel.component';
 import { ScheduleComponent } from './components/shared/schedule/schedule.component';
 import { VisitsListComponent } from './components/shared/schedule/visits-list/visits-list.component';
 import { VisitAddPanelComponent } from './components/shared/schedule/visits-list/visit-add-panel/visit-add-panel.component';
@@ -10,7 +9,6 @@ import { MaterialModule } from '../material/material.module';
 
 @NgModule({
 	declarations: [
-		ErrorPanelComponent,
 		ScheduleComponent,
 		VisitsListComponent,
 		VisitAddPanelComponent,
@@ -18,7 +16,6 @@ import { MaterialModule } from '../material/material.module';
 	],
 	imports: [CommonModule, SharedRoutingModule, MaterialModule],
 	exports: [
-		ErrorPanelComponent,
 		ScheduleComponent,
 		VisitsListComponent,
 		VisitAddPanelComponent,

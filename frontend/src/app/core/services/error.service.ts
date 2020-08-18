@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 
-@Injectable({
-	providedIn: 'root',
-})
+@Injectable()
 export class ErrorService {
 	error: Subject<any> = new Subject<any>();
 
