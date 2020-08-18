@@ -6,6 +6,7 @@
 					<app-visit-add-panel
 						*ngIf="clinics"
 						[clinics]="clinics"
+						[doctorId]="doctor._id"
 						(newVisit)="loadVisits()"
 					></app-visit-add-panel>
 				</div>

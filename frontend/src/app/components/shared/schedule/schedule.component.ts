@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { VisitsListComponent } from './visits-list/visits-list.component';
 import { Clinic, Doctor } from 'src/app/models/interfaces';
 import { DoctorsService } from 'src/app/services';
@@ -9,9 +9,7 @@ import { DoctorsService } from 'src/app/services';
 	styleUrls: ['./schedule.component.scss'],
 })
 export class ScheduleComponent implements OnInit {
-	@ViewChildren(VisitsListComponent) visitsList: QueryList<
-		VisitsListComponent
-	>;
+	@ViewChild(VisitsListComponent) visitsList: VisitsListComponent;
 	doctor: Doctor;
 	clinics: Clinic[];
 
@@ -29,6 +27,6 @@ export class ScheduleComponent implements OnInit {
 	constructor(private doctorsService: DoctorsService) {}
 
 	loadVisits() {
-		this.visitsList.forEach(list => list.loadVisits());
+		this.visitsList.loadVisits();
 	}
 }

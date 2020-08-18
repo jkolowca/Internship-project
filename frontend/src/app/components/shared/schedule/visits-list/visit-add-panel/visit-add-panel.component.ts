@@ -19,12 +19,10 @@ export class VisitAddPanelComponent implements OnInit {
 
 	constructor(
 		private fb: FormBuilder,
-		private visitsService: VisitsService,
-		private route: ActivatedRoute
+		private visitsService: VisitsService
 	) {}
 
 	ngOnInit(): void {
-		this.doctorId = this.route.snapshot.paramMap.get('id');
 		const date = new Date().toISOString().slice(0, 16);
 		this.form = this.fb.group({
 			startDate: [date, Validators.required],
@@ -38,6 +36,7 @@ export class VisitAddPanelComponent implements OnInit {
 		const endDate = new Date(this.form.controls.endDate.value);
 		const clinic = this.form.controls.clinic.value._id;
 
+		console.log(this.doctorId);
 		this.visitsService
 			.addVisit(startDate, endDate, clinic, this.doctorId)
 			.subscribe(() => this.newVisit.emit());

@@ -1,10 +1,4 @@
-import {
-	Component,
-	AfterViewInit,
-	QueryList,
-	ViewChildren,
-} from '@angular/core';
-import { PatientVisitsListComponent } from './patient-visits-list/patient-visits-list.component';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -13,9 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 	styleUrls: ['./patient-schedule.component.scss'],
 })
 export class PatientScheduleComponent {
-	@ViewChildren(PatientVisitsListComponent) visitsList: QueryList<
-		PatientVisitsListComponent
-	>;
 	patientId = this.route.parent.snapshot.paramMap.get('id');
 
 	constructor(private route: ActivatedRoute) {}
