@@ -97,22 +97,22 @@ export class DoctorsDAO {
 			cursor = doctorsCollection.aggregate([
 				{
 					$match: {
-						_id,
-					},
+						_id
+					}
 				},
 				{
 					$lookup: {
 						from: 'clinics',
 						localField: 'clinics',
 						foreignField: '_id',
-						as: 'clinics',
-					},
+						as: 'clinics'
+					}
 				},
 				{
 					$project: {
-						clinics: 1,
-					},
-				},
+						clinics: 1
+					}
+				}
 			]);
 		} catch (e) {
 			console.error(

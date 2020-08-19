@@ -11,7 +11,7 @@ MongoClient.connect('mongodb://localhost:27017', {
 	connectTimeoutMS: 2500,
 	poolSize: 50,
 	useNewUrlParser: true,
-	useUnifiedTopology: true,
+	useUnifiedTopology: true
 })
 	.catch(err => {
 		console.error(err.stack);

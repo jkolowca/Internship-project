@@ -13,26 +13,26 @@ const routes: Routes = [
 			{
 				path: '',
 				pathMatch: 'full',
-				redirectTo: 'search-visits',
+				redirectTo: 'search-visits'
 			},
 			{
 				path: 'search-visits',
-				component: NewVisitsComponent,
+				component: NewVisitsComponent
 			},
 			{
 				path: 'registration/:id',
-				component: RegistrationFormComponent,
+				component: RegistrationFormComponent
 			},
 			{
 				path: 'registered-visits',
-				component: PatientScheduleComponent,
-			},
-		],
-	},
+				component: PatientScheduleComponent
+			}
+		]
+	}
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule],
+	exports: [RouterModule]
 })
 export class PatientRoutingModule {}

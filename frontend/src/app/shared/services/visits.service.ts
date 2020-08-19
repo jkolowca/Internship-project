@@ -1,13 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Visit, Appointment, VisitAggregate, VisitData } from '../../../../../common/interfaces';
+import {
+	Visit,
+	Appointment,
+	VisitAggregate,
+	VisitData
+} from '../../../../../common/interfaces';
 
 @Injectable()
 export class VisitsService {
 	private visitsUrl = 'http://localhost:5000/visits';
 	httpOptions = {
-		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
 
 	constructor(private http: HttpClient) {}
@@ -23,7 +28,7 @@ export class VisitsService {
 		return this.http.get<{ visits: Visit[]; visitsCount: number }>(
 			this.visitsUrl,
 			{
-				params: params,
+				params: params
 			}
 		);
 	}
@@ -38,7 +43,7 @@ export class VisitsService {
 
 	register(id: string, appointment: Appointment): Observable<any> {
 		return this.http.patch(`${this.visitsUrl}/visit/${id}`, {
-			appointment,
+			appointment
 		});
 	}
 

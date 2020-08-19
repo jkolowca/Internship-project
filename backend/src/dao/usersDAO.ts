@@ -61,7 +61,7 @@ export class UsersDAO {
 		} catch (e) {
 			console.error(`Unable to post user: ${e}`);
 			return {
-				error: e,
+				error: e
 			};
 		}
 	}
@@ -72,7 +72,7 @@ export class UsersDAO {
 		} catch (e) {
 			console.error(`Unable to post user: ${e}`);
 			return {
-				error: e,
+				error: e
 			};
 		}
 	}

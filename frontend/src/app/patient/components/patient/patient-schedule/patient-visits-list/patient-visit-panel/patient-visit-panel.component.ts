@@ -8,7 +8,7 @@ import { VisitAggregate } from '../../../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-patient-visit-panel',
 	templateUrl: './patient-visit-panel.component.html',
-	styleUrls: ['./patient-visit-panel.component.scss'],
+	styleUrls: ['./patient-visit-panel.component.scss']
 })
 export class PatientVisitPanelComponent implements OnInit {
 	@Input() visit: VisitAggregate;
@@ -31,7 +31,7 @@ export class PatientVisitPanelComponent implements OnInit {
 	delete(): void {
 		this.visitsService.deleteAppointment(this.visit._id).subscribe();
 		this.snackBar.open('Appointment canceled', 'Finish', {
-			duration: 2000,
+			duration: 2000
 		});
 		this.visitCanceled.emit();
 	}

@@ -5,7 +5,7 @@ import { ClinicsService } from 'src/app/shared/services/clinics.service';
 @Component({
 	selector: 'app-clinic-form',
 	templateUrl: './clinic-form.component.html',
-	styleUrls: ['./clinic-form.component.scss'],
+	styleUrls: ['./clinic-form.component.scss']
 })
 export class ClinicFormComponent {
 	@Output() clinicAdded = new EventEmitter();
@@ -15,15 +15,14 @@ export class ClinicFormComponent {
 		address: this.fb.group({
 			city: ['', [Validators.required]],
 			streetAddress: ['', [Validators.required]],
-			apartment: [''],
-		}),
+			apartment: ['']
+		})
 	});
 
 	constructor(
 		private fb: FormBuilder,
 		private clinicsService: ClinicsService
 	) {}
-
 
 	addClinic(): void {
 		this.clinicsService.addClinic(this.clinic.value).subscribe();

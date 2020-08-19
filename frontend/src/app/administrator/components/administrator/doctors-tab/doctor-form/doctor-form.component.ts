@@ -8,7 +8,7 @@ import { Clinic } from '../../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-doctor-form',
 	templateUrl: './doctor-form.component.html',
-	styleUrls: ['./doctor-form.component.scss'],
+	styleUrls: ['./doctor-form.component.scss']
 })
 export class DoctorFormComponent implements OnInit {
 	@Input() doctorId: string;
@@ -17,7 +17,7 @@ export class DoctorFormComponent implements OnInit {
 		name: ['', [Validators.required]],
 		surname: ['', [Validators.required]],
 		specialties: this.fb.array([]),
-		clinics: this.fb.array([]),
+		clinics: this.fb.array([])
 	});
 
 	specialties = this.doctor.get('specialties') as FormArray;

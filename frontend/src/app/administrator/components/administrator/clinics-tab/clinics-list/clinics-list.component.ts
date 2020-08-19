@@ -5,7 +5,7 @@ import { Clinic } from '../../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-clinics-list',
 	templateUrl: './clinics-list.component.html',
-	styleUrls: ['./clinics-list.component.scss'],
+	styleUrls: ['./clinics-list.component.scss']
 })
 export class ClinicsListComponent implements OnInit {
 	constructor(private clinicsService: ClinicsService) {}

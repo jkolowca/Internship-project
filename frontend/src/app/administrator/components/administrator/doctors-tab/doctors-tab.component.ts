@@ -3,10 +3,9 @@ import { DoctorsListComponent } from './doctors-list/doctors-list.component';
 import { MatExpansionPanel } from '@angular/material/expansion';
 import { Doctor } from '../../../../../../../common/interfaces';
 
-
 @Component({
 	selector: 'app-doctors-tab',
-	templateUrl: './doctors-tab.component.html',
+	templateUrl: './doctors-tab.component.html'
 })
 export class DoctorsTabComponent {
 	@ViewChild(DoctorsListComponent) doctorsList: DoctorsListComponent;

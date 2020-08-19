@@ -15,15 +15,15 @@ const routes: Routes = [
 			{
 				path: '',
 				pathMatch: 'full',
-				redirectTo: 'doctors',
+				redirectTo: 'doctors'
 			},
 			{
 				path: 'doctors',
-				component: DoctorsTabComponent,
+				component: DoctorsTabComponent
 			},
 			{
 				path: 'clinics',
-				component: ClinicsTabComponent,
+				component: ClinicsTabComponent
 			},
 			{
 				path: 'doctors/:id',
@@ -32,24 +32,24 @@ const routes: Routes = [
 					{
 						path: '',
 						pathMatch: 'full',
-						redirectTo: 'edit',
+						redirectTo: 'edit'
 					},
 					{
 						path: 'edit',
-						component: EditTabComponent,
+						component: EditTabComponent
 					},
 					{
 						path: 'schedule',
-						component: ScheduleComponent,
-					},
-				],
-			},
-		],
-	},
+						component: ScheduleComponent
+					}
+				]
+			}
+		]
+	}
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule],
+	exports: [RouterModule]
 })
 export class AdministratorRoutingModule {}

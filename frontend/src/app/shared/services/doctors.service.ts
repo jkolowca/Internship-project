@@ -7,7 +7,7 @@ import { Doctor, Clinic, DoctorData } from '../../../../../common/interfaces';
 export class DoctorsService {
 	private doctorsUrl = 'http://localhost:5000/doctors';
 	private httpOptions = {
-		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
 	currentDoctor = new BehaviorSubject<Doctor>(<Doctor>{});
 

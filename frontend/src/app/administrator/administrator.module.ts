@@ -22,8 +22,8 @@ import { SharedModule } from '../shared/shared.module';
 		DoctorsTabComponent,
 		ClinicsTabComponent,
 		AdministratorComponent,
-		EditTabComponent,
+		EditTabComponent
 	],
-	imports: [CommonModule, SharedModule, AdministratorRoutingModule],
+	imports: [CommonModule, SharedModule, AdministratorRoutingModule]
 })
 export class AdministratorModule {}

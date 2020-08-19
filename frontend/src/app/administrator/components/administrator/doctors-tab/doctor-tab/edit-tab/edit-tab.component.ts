@@ -4,7 +4,7 @@ import { Doctor } from '../../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-edit-tab',
-	templateUrl: './edit-tab.component.html',
+	templateUrl: './edit-tab.component.html'
 })
 export class EditTabComponent implements OnInit {
 	constructor(private doctorsService: DoctorsService) {}

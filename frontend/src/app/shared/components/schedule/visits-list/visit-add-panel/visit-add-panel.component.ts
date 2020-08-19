@@ -6,7 +6,7 @@ import { Clinic, VisitData } from '../../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-visit-add-panel',
 	templateUrl: './visit-add-panel.component.html',
-	styleUrls: ['./visit-add-panel.component.scss'],
+	styleUrls: ['./visit-add-panel.component.scss']
 })
 export class VisitAddPanelComponent implements OnInit {
 	@Input() doctorId: string;
@@ -26,7 +26,7 @@ export class VisitAddPanelComponent implements OnInit {
 		this.form = this.fb.group({
 			startDate: [date, Validators.required],
 			endDate: [date, Validators.required],
-			clinic: [this.clinics[0], Validators.required],
+			clinic: [this.clinics[0], Validators.required]
 		});
 	}
 
@@ -35,7 +35,7 @@ export class VisitAddPanelComponent implements OnInit {
 			startDate: new Date(this.form.controls.startDate.value),
 			endDate: new Date(this.form.controls.endDate.value),
 			clinic: this.form.controls.clinic.value._id,
-			doctor: this.doctorId,
+			doctor: this.doctorId
 		};
 
 		this.visitsService

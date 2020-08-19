@@ -4,7 +4,7 @@ import { User } from '../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-patient',
-	templateUrl: './patient.component.html',
+	templateUrl: './patient.component.html'
 })
 export class PatientComponent implements OnInit {
 	patient: User;

@@ -5,7 +5,7 @@ import { Visit } from '../../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-patient-visits-list',
 	templateUrl: './patient-visits-list.component.html',
-	styleUrls: ['./patient-visits-list.component.scss'],
+	styleUrls: ['./patient-visits-list.component.scss']
 })
 export class PatientVisitsListComponent implements OnInit {
 	@Input() query: any;

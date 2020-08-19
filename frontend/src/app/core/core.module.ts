@@ -25,7 +25,7 @@ export function init_app(authService: AuthService) {
 		ErrorPanelComponent,
 		LoginComponent,
 		RegisterComponent,
-		LogoutComponent,
+		LogoutComponent
 	],
 	imports: [
 		CoreRoutingModule,
@@ -34,7 +34,7 @@ export function init_app(authService: AuthService) {
 		AdministratorModule,
 		DoctorModule,
 		SharedModule,
-		PatientModule,
+		PatientModule
 	],
 	providers: [
 		ErrorService,
@@ -45,9 +45,9 @@ export function init_app(authService: AuthService) {
 			provide: APP_INITIALIZER,
 			useFactory: init_app,
 			deps: [AuthService],
-			multi: true,
-		},
+			multi: true
+		}
 	],
-	exports: [RouterModule, ErrorPanelComponent],
+	exports: [RouterModule, ErrorPanelComponent]
 })
 export class CoreModule {}

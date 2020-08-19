@@ -5,12 +5,12 @@ import { DoctorComponent } from './components/doctor/doctor.component';
 const routes: Routes = [
 	{
 		path: ':id',
-		component: DoctorComponent,
-	},
+		component: DoctorComponent
+	}
 ];
 
 @NgModule({
 	imports: [RouterModule.forChild(routes)],
-	exports: [RouterModule],
+	exports: [RouterModule]
 })
 export class DoctorRoutingModule {}

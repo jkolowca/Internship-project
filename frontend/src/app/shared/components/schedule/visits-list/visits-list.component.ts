@@ -5,7 +5,7 @@ import { Clinic, Visit } from '../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-visits-list',
 	templateUrl: './visits-list.component.html',
-	styleUrls: ['./visits-list.component.scss'],
+	styleUrls: ['./visits-list.component.scss']
 })
 export class VisitsListComponent implements OnInit {
 	@Input() clinics: Clinic[];

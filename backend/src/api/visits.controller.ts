@@ -22,11 +22,11 @@ export class VisitsCtrl {
 			);
 		if (query.startDate)
 			beforeLookup.startDate = {
-				$gte: new Date(query.startDate as string),
+				$gte: new Date(query.startDate as string)
 			};
 		if (query.endDate)
 			beforeLookup.endDate = {
-				$lte: new Date(query.endDate as string),
+				$lte: new Date(query.endDate as string)
 			};
 		if (query.appointment)
 			beforeLookup.appointment =
@@ -36,7 +36,7 @@ export class VisitsCtrl {
 
 		if (query.city)
 			afterLookup['clinic.address.city'] = {
-				$in: (query.city as string).split(','),
+				$in: (query.city as string).split(',')
 			};
 		if (query.speciality)
 			afterLookup['doctor.specialties'] = req.query.speciality;

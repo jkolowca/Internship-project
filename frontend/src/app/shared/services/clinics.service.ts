@@ -7,7 +7,7 @@ import { Clinic, ClinicData } from '../../../../../common/interfaces';
 export class ClinicsService {
 	private clinicsUrl = 'http://localhost:5000/clinics';
 	httpOptions = {
-		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+		headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 	};
 
 	constructor(private http: HttpClient) {}

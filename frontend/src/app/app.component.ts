@@ -6,7 +6,7 @@ import { ErrorService } from './core/services/error.service';
 
 @Component({
 	selector: 'app-root',
-	templateUrl: './app.component.html',
+	templateUrl: './app.component.html'
 })
 export class AppComponent implements OnInit, AfterViewInit {
 	title = 'registration';
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, AfterViewInit {
 
 	ngOnInit(): void {
 		let snackBar = this.snackBar.open('Add mockup data?', 'Add', {
-			duration: 5000,
+			duration: 5000
 		});
 		snackBar.onAction().subscribe(() => {
 			this.authService.getMockData().subscribe();

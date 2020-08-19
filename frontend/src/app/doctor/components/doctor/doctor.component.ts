@@ -6,7 +6,7 @@ import { User, Doctor } from '../../../../../../common/interfaces';
 @Component({
 	selector: 'app-doctor',
 	templateUrl: './doctor.component.html',
-	styleUrls: ['./doctor.component.scss'],
+	styleUrls: ['./doctor.component.scss']
 })
 export class DoctorComponent implements OnInit {
 	user: User;

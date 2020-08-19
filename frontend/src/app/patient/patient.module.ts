@@ -18,8 +18,8 @@ import { SharedModule } from '../shared/shared.module';
 		PatientVisitsListComponent,
 		PatientVisitPanelComponent,
 		SearchBarComponent,
-		RegistrationFormComponent,
+		RegistrationFormComponent
 	],
-	imports: [SharedModule, CommonModule, PatientRoutingModule],
+	imports: [SharedModule, CommonModule, PatientRoutingModule]
 })
 export class PatientModule {}

@@ -9,14 +9,14 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
 	selector: 'app-registration-form',
 	templateUrl: './registration-form.component.html',
-	styleUrls: ['./registration-form.component.scss'],
+	styleUrls: ['./registration-form.component.scss']
 })
 export class RegistrationFormComponent implements OnInit {
 	registrationForm: FormGroup;
 	visitId = this.route.snapshot.paramMap.get('id');
 	userId = this.route.parent.snapshot.paramMap.get('id');
-	surname : string;
-	name: string; 
+	surname: string;
+	name: string;
 	constructor(
 		private visitsService: VisitsService,
 		private route: ActivatedRoute,
@@ -28,10 +28,10 @@ export class RegistrationFormComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.registrationForm = this.fb.group({
-			reason: '',
+			reason: ''
 		});
 		this.authService.getUserProfile(this.userId).subscribe(l => {
-		  this.name = l.name, this.surname = l.surname
+			(this.name = l.name), (this.surname = l.surname);
 		});
 	}
 
@@ -43,10 +43,10 @@ export class RegistrationFormComponent implements OnInit {
 		this.visitsService.register(this.visitId, appointment).subscribe(
 			() => {
 				this.snackBar.open('A doctor visit was agreed', 'End', {
-					duration: 2000,
+					duration: 2000
 				});
 				this.router.navigate(['../../registered-visits'], {
-					relativeTo: this.route,
+					relativeTo: this.route
 				});
 			},
 			err => {
@@ -54,7 +54,7 @@ export class RegistrationFormComponent implements OnInit {
 					'An appointment could not be made. Try again',
 					'End',
 					{
-						duration: 3000,
+						duration: 3000
 					}
 				);
 			}

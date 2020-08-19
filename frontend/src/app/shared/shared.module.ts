@@ -15,7 +15,7 @@ import { VisitsService } from './services/visits.service';
 		ScheduleComponent,
 		VisitsListComponent,
 		VisitAddPanelComponent,
-		VisitDisplayPanelComponent,
+		VisitDisplayPanelComponent
 	],
 	imports: [CommonModule, SharedRoutingModule, MaterialModule],
 	exports: [
@@ -23,8 +23,8 @@ import { VisitsService } from './services/visits.service';
 		ScheduleComponent,
 		VisitsListComponent,
 		VisitAddPanelComponent,
-		VisitDisplayPanelComponent,
+		VisitDisplayPanelComponent
 	],
-	providers: [ClinicsService, DoctorsService, VisitsService],
+	providers: [ClinicsService, DoctorsService, VisitsService]
 })
 export class SharedModule {}

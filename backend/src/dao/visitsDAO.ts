@@ -32,8 +32,8 @@ export class VisitsDAO {
 						from: 'doctors',
 						localField: 'doctor',
 						foreignField: '_id',
-						as: 'doctor',
-					},
+						as: 'doctor'
+					}
 				},
 				{ $unwind: { path: '$doctor' } },
 				{
@@ -41,12 +41,12 @@ export class VisitsDAO {
 						from: 'clinics',
 						localField: 'clinic',
 						foreignField: '_id',
-						as: 'clinic',
-					},
+						as: 'clinic'
+					}
 				},
 				{ $unwind: { path: '$clinic' } },
 				{ $match: afterLookup },
-				{ $sort: { startDate: 1 } },
+				{ $sort: { startDate: 1 } }
 			]);
 
 			visitsCount = (await cursor.toArray()).length;
@@ -86,7 +86,7 @@ export class VisitsDAO {
 	static async deleteVisitsByDoctorId(doctorId: string) {
 		try {
 			return await visitsCollection.deleteMany({
-				doctor: doctorId,
+				doctor: doctorId
 			});
 		} catch (e) {
 			console.error(`VisitsDAO: Unable to delete visits: ${e}`);

@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
 	selector: 'app-register',
 	templateUrl: './register.component.html',
-	styleUrls: ['./register.component.scss'],
+	styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 	signupForm: FormGroup;
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
 			name: ['', [Validators.required]],
 			surname: ['', [Validators.required]],
 			password: ['', [Validators.required, Validators.minLength(8)]],
-			email: ['', [Validators.required, Validators.email]],
+			email: ['', [Validators.required, Validators.email]]
 		});
 	}
 

@@ -7,7 +7,7 @@ $light-app-warn: mat-palette($mat-pink, 800, 900, 700);
 $light-no-bg-app-theme: mat-light-theme(
 	$light-app-primary,
 	$light-app-accent,
-	$light-app-warn,
+	$light-app-warn
 );
 
 $custom-background-color: map_get($mat-gray, 50);
@@ -15,13 +15,13 @@ $background: map-get($light-no-bg-app-theme, background);
 $background: map_merge(
 	$background,
 	(
-		background: $custom-background-color,
+		background: $custom-background-color
 	)
 );
 $light-app-theme: map_merge(
 	$light-no-bg-app-theme,
 	(
-		background: $background,
+		background: $background
 	)
 );
 

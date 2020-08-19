@@ -10,7 +10,8 @@
 		</mat-panel-title>
 		<mat-panel-description>
 			<p>{{ visit.clinic.name }}</p>
-			<button *ngIf="type === 'active'"
+			<button
+				*ngIf="type === 'active'"
 				mat-icon-button
 				aria-label="Finish task button"
 				(click)="state = 'edit'"
@@ -31,8 +32,7 @@
 			</div>
 			<div *ngIf="visit.appointment">
 				<p>
-					{{ visit.appointment.name }}
-					{{ visit.appointment.surname }}
+					{{ visit.appointment.name }} {{ visit.appointment.surname }}
 				</p>
 				<p>{{ visit.appointment.reason }}</p>
 			</div>
@@ -92,16 +92,16 @@
 			<button
 				mat-raised-button
 				type="button"
-        color="primary"
-        (click)="cancel()"
+				color="primary"
+				(click)="cancel()"
 			>
 				Cancel
 			</button>
 			<button
 				mat-raised-button
 				type="button"
-        color="primary"
-        (click)="delete()"
+				color="primary"
+				(click)="delete()"
 			>
 				Delete
 			</button>

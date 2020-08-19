@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/core/services/auth.service';
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
-	styleUrls: ['./login.component.scss'],
+	styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 	signinForm: FormGroup;
@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 	ngOnInit(): void {
 		this.signinForm = this.fb.group({
 			password: ['', [Validators.required]],
-			email: ['', [Validators.required, Validators.email]],
+			email: ['', [Validators.required, Validators.email]]
 		});
 	}
 

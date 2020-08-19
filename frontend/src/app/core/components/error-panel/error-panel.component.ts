@@ -1,10 +1,13 @@
 import { Component, Inject } from '@angular/core';
-import { MatBottomSheet, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
+import {
+	MatBottomSheet,
+	MAT_BOTTOM_SHEET_DATA
+} from '@angular/material/bottom-sheet';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
 	selector: 'app-error-panel',
-	template: ``,
+	template: ``
 })
 export class ErrorPanelComponent {
 	constructor(private bottomSheet: MatBottomSheet) {}
@@ -23,7 +26,7 @@ export class ErrorPanelComponent {
 @Component({
 	selector: 'app-bottom-sheet',
 	templateUrl: './error-panel.component.html',
-	styleUrls: ['./error-panel.component.scss'],
+	styleUrls: ['./error-panel.component.scss']
 })
 export class BottomSheet {
 	constructor(@Inject(MAT_BOTTOM_SHEET_DATA) public data: string) {}

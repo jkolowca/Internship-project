@@ -4,7 +4,7 @@ import { MatExpansionPanel } from '@angular/material/expansion';
 
 @Component({
 	selector: 'app-clinics-tab',
-	templateUrl: './clinics-tab.component.html',
+	templateUrl: './clinics-tab.component.html'
 })
 export class ClinicsTabComponent {
 	@ViewChild(ClinicsListComponent) clinicsList: ClinicsListComponent;

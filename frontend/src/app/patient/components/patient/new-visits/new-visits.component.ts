@@ -4,7 +4,7 @@ import { PatientVisitsListComponent } from '../patient-schedule/patient-visits-l
 @Component({
 	selector: 'app-new-visits',
 	templateUrl: './new-visits.component.html',
-	styleUrls: ['./new-visits.component.scss'],
+	styleUrls: ['./new-visits.component.scss']
 })
 export class NewVisitsComponent {
 	@ViewChild(PatientVisitsListComponent)

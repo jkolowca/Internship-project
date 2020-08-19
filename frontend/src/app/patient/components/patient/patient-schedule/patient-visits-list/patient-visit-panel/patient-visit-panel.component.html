@@ -15,10 +15,7 @@
 	<div class="content">
 		<div class="data">
 			<div class="doctor">
-				<p>
-					Dr {{ visit.doctor.surname }}
-					{{ visit.doctor.name }}
-				</p>
+				<p>Dr {{ visit.doctor.surname }} {{ visit.doctor.name }}</p>
 				<p *ngFor="let speciality of visit.doctor.specialties">
 					{{ speciality }}
 				</p>

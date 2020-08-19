@@ -6,7 +6,7 @@ import { Clinic, Doctor } from '../../../../../../common/interfaces';
 @Component({
 	selector: 'app-schedule',
 	templateUrl: './schedule.component.html',
-	styleUrls: ['./schedule.component.scss'],
+	styleUrls: ['./schedule.component.scss']
 })
 export class ScheduleComponent implements OnInit {
 	@ViewChild(VisitsListComponent) visitsList: VisitsListComponent;

@@ -9,23 +9,23 @@ const routes: Routes = [
 	{
 		path: '',
 		redirectTo: 'login',
-		pathMatch: 'full',
+		pathMatch: 'full'
 	},
 	{
 		path: 'login',
 		component: LoginComponent,
 		canActivate: [AuthenticationGuard],
-		data: { accountTypes: [] },
+		data: { accountTypes: [] }
 	},
 	{
 		path: 'register',
 		component: RegisterComponent,
 		canActivate: [AuthenticationGuard],
-		data: { accountTypes: [] },
+		data: { accountTypes: [] }
 	},
 	{
 		path: 'logout',
-		component: LogoutComponent,
+		component: LogoutComponent
 	},
 	{
 		path: 'admin',
@@ -34,30 +34,30 @@ const routes: Routes = [
 				m => m.AdministratorModule
 			),
 		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['admin'] },
+		data: { accountTypes: ['admin'] }
 	},
 	{
 		path: 'doctor',
 		loadChildren: () =>
 			import('../doctor/doctor.module').then(m => m.DoctorModule),
 		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['doctor'] },
+		data: { accountTypes: ['doctor'] }
 	},
 	{
 		path: 'patient',
 		loadChildren: () =>
 			import('../patient/patient.module').then(m => m.PatientModule),
 		canActivate: [AuthenticationGuard],
-		data: { accountTypes: ['patient'] },
+		data: { accountTypes: ['patient'] }
 	},
 	{
 		path: '**',
-		redirectTo: 'login',
-	},
+		redirectTo: 'login'
+	}
 ];
 
 @NgModule({
 	imports: [RouterModule.forRoot(routes)],
-	exports: [RouterModule],
+	exports: [RouterModule]
 })
 export class CoreRoutingModule {}

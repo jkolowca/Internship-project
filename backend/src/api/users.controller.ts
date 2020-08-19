@@ -32,7 +32,7 @@ export class UsersCtrl {
 				.then(user => {
 					if (!user) {
 						return res.status(401).json({
-							message: 'Not found',
+							message: 'Not found'
 						});
 					}
 					return bcrypt
@@ -40,28 +40,28 @@ export class UsersCtrl {
 						.then(response => {
 							if (!response) {
 								return res.status(401).json({
-									message: 'Authentication failed',
+									message: 'Authentication failed'
 								});
 							}
 							let jwtToken = jbw.sign(
 								{
 									email: user.email,
-									userId: user._id,
+									userId: user._id
 								},
 								'longer-secret-is-better',
 								{
-									expiresIn: '1h',
+									expiresIn: '1h'
 								}
 							);
 							res.status(200).json({
 								token: jwtToken,
 								expiresIn: 3600,
-								user: user,
+								user: user
 							});
 						})
 						.catch(() => {
 							return res.status(401).json({
-								message: 'Authentication failed',
+								message: 'Authentication failed'
 							});
 						});
 				})

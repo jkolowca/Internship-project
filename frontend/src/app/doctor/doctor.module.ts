@@ -6,6 +6,6 @@ import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
 	declarations: [DoctorComponent],
-	imports: [CommonModule, SharedModule, DoctorRoutingModule],
+	imports: [CommonModule, SharedModule, DoctorRoutingModule]
 })
 export class DoctorModule {}

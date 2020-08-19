@@ -6,7 +6,7 @@ import { Doctor } from '../../../../../../../../common/interfaces';
 @Component({
 	selector: 'app-doctor-tab',
 	templateUrl: './doctor-tab.component.html',
-	styleUrls: ['./doctor-tab.component.scss'],
+	styleUrls: ['./doctor-tab.component.scss']
 })
 export class DoctorTabComponent implements OnInit, OnDestroy {
 	doctor: Doctor;
