@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Clinic } from '../../../../../common/interfaces';
+import { Clinic, ClinicData } from '../../../../../common/interfaces';
 
 @Injectable()
 export class ClinicsService {
@@ -23,10 +23,10 @@ export class ClinicsService {
 		);
 	}
 
-	addClinic(name: string, address: object): Observable<any> {
+	addClinic(clinic: ClinicData): Observable<any> {
 		return this.http.post<Clinic>(
 			this.clinicsUrl,
-			{ name, address },
+			clinic,
 			this.httpOptions
 		);
 	}

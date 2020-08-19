@@ -13,9 +13,11 @@ export class ClinicFormComponent implements OnInit {
 
 	clinic = this.fb.group({
 		name: ['', [Validators.required]],
-		city: ['', [Validators.required]],
-		streetAddress: ['', [Validators.required]],
-		apartment: [''],
+		address: this.fb.group({
+			city: ['', [Validators.required]],
+			streetAddress: ['', [Validators.required]],
+			apartment: [''],
+		}),
 	});
 
 	constructor(
@@ -26,13 +28,7 @@ export class ClinicFormComponent implements OnInit {
 	ngOnInit(): void {}
 
 	addClinic(): void {
-		const name = this.clinic.controls.name.value;
-		const address: Address = {
-			city: this.clinic.controls.city.value,
-			streetAddress: this.clinic.controls.streetAddress.value,
-			apartment: this.clinic.controls.apartment.value,
-		};
-		this.clinicsService.addClinic(name, address).subscribe();
+		this.clinicsService.addClinic(this.clinic.value).subscribe();
 		this.clinic.reset();
 		this.clinicAdded.emit();
 	}

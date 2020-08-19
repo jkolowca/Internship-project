@@ -5,6 +5,7 @@ import {
 	Visit,
 	Appointment,
 	VisitAggregate,
+	VisitData,
 } from '../../../../../common/interfaces';
 
 @Injectable()
@@ -44,18 +45,8 @@ export class VisitsService {
 		);
 	}
 
-	addVisit(
-		startDate: Date,
-		endDate: Date,
-		clinic: string,
-		doctor: string
-	): Observable<any> {
-		return this.http.post<{ status: string }>(`${this.visitsUrl}`, {
-			startDate,
-			endDate,
-			clinic,
-			doctor,
-		});
+	addVisit(visit: VisitData): Observable<any> {
+		return this.http.post<{ status: string }>(`${this.visitsUrl}`, visit);
 	}
 
 	editVisit(visit: VisitAggregate): Observable<any> {

@@ -2,7 +2,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from 'src/app/shared/services/visits.service';
-import { Clinic } from '../../../../../../../../common/interfaces';
+import { Clinic, VisitData } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-visit-add-panel',
@@ -32,13 +32,12 @@ export class VisitAddPanelComponent implements OnInit {
 	}
 
 	save() {
-		const startDate = new Date(this.form.controls.startDate.value);
-		const endDate = new Date(this.form.controls.endDate.value);
-		const clinic = this.form.controls.clinic.value._id;
+		const visit: VisitData = { ...this.form.value, doctor: this.doctorId };
+		visit.startDate = new Date(visit.startDate);
+		visit.endDate = new Date(visit.endDate);
 
-		console.log(this.doctorId);
 		this.visitsService
-			.addVisit(startDate, endDate, clinic, this.doctorId)
+			.addVisit(visit)
 			.subscribe(() => this.newVisit.emit());
 		this.state = 'display';
 	}
