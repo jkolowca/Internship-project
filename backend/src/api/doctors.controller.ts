@@ -10,40 +10,6 @@ export class DoctorsCtrl {
 		res.json(doctors);
 	}
 
-	static async apiGetById(req: Request, res: Response, next: NextFunction) {
-		try {
-			let id = req.params.id;
-			let doctor = await DoctorsDAO.getById(id);
-			if (!doctor) {
-				res.status(404).json({ error: 'Not found' });
-				return;
-			}
-
-			res.json(doctor);
-		} catch (e) {
-			console.log(`api, ${e}`);
-			res.status(500).json({ error: e });
-		}
-	}
-
-	static async apiGetClinics(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
-		try {
-			let id = req.params.id;
-			let clinics = await DoctorsDAO.getClinics(id);
-			if (!clinics) {
-				res.status(404).json({ error: 'Not found' });
-				return;
-			}
-			res.json(clinics);
-		} catch (e) {
-			console.log(`api, ${e}`);
-			res.status(500).json({ error: e });
-		}
-	}
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
 			const doctor: Doctor = req.body;
@@ -77,15 +43,50 @@ export class DoctorsCtrl {
 		}
 	}
 
+	static async apiGetById(req: Request, res: Response, next: NextFunction) {
+		try {
+			let id = req.params.id;
+			let doctor = await DoctorsDAO.getById(id);
+			if (!doctor) {
+				res.status(404).json({ error: 'Not found' });
+				return;
+			}
+
+			res.json(doctor);
+		} catch (e) {
+			console.log(`api, ${e}`);
+			res.status(500).json({ error: e });
+		}
+	}
+
 	static async apiDelete(req: Request, res: Response, next: NextFunction) {
 		try {
 			let id = req.params.id;
 			await VisitsDAO.deleteVisitsByDoctorId(id);
 			await DoctorsDAO.delete(id);
-			const doctors = await DoctorsDAO.getAll();
-			res.json(doctors);
+
+			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
+		}
+	}
+
+	static async apiGetClinics(
+		req: Request,
+		res: Response,
+		next: NextFunction
+	) {
+		try {
+			let id = req.params.id;
+			let clinics = await DoctorsDAO.getClinics(id);
+			if (!clinics) {
+				res.status(404).json({ error: 'Not found' });
+				return;
+			}
+			res.json(clinics);
+		} catch (e) {
+			console.log(`api, ${e}`);
+			res.status(500).json({ error: e });
 		}
 	}
 

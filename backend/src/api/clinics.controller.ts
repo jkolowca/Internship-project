@@ -11,12 +11,9 @@ export class ClinicsCtrl {
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
 			const clinic: Clinic = req.body;
-
 			await ClinicsDAO.add(clinic);
 
-			const clinics = await ClinicsDAO.getAll();
-
-			res.json({ status: 'success', clinics });
+			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
 		}

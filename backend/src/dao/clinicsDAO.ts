@@ -58,7 +58,9 @@ export class ClinicsDAO {
 
 	static async getCities() {
 		try {
-			return await clinicsCollection.distinct('address.city');
+			return (await clinicsCollection.distinct(
+				'address.city'
+			)) as string[];
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to get distinct values: ${e}`);
 			return { error: e };

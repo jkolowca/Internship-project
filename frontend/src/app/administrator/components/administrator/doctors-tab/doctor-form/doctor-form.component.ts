@@ -88,7 +88,7 @@ export class DoctorFormComponent implements OnInit {
 			this.doctorSaved.emit();
 			return;
 		}
-		this.doctorsService.addDoctor(doctor).subscribe(() => {});
+		this.doctorsService.addDoctor(doctor).subscribe();
 		this.doctorSaved.emit();
 	}
 

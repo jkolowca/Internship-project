@@ -17,26 +17,14 @@ export class VisitsService {
 
 	constructor(private http: HttpClient) {}
 
-	getAll(): Observable<{
-		visits: VisitAggregate[];
-		visitsCount: number;
-	}> {
-		return this.http.get<{
-			visits: VisitAggregate[];
-			visitsCount: number;
-		}>(this.visitsUrl);
-	}
-
 	findVisits(
 		query: Object
-	): Observable<{
-		visits: Visit[];
-		visitsCount: number;
-	}> {
+	): Observable<{ visits: Visit[]; visitsCount: number }> {
 		let params: HttpParams = new HttpParams();
 		for (let key in query) {
 			params = params.append(key.toString(), query[key]);
 		}
+
 		return this.http.get<{ visits: Visit[]; visitsCount: number }>(
 			this.visitsUrl,
 			{

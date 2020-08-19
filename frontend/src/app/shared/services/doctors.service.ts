@@ -12,16 +12,15 @@ export class DoctorsService {
 	currentDoctor = new BehaviorSubject<Doctor>(<Doctor>{});
 
 	constructor(private http: HttpClient) {}
+	setCurrentDoctor(doctor: Doctor) {
+		this.currentDoctor.next(doctor);
+	}
 
 	getAllDoctors(): Observable<Doctor[]> {
 		return this.http.get<Doctor[]>(this.doctorsUrl, this.httpOptions);
 	}
 
-	setCurrentDoctor(doctor: Doctor) {
-		this.currentDoctor.next(doctor);
-	}
-
-	addDoctor(doctor: DoctorData): Observable<any> {
+	addDoctor(doctor: DoctorData): Observable<{ status: string }> {
 		return this.http.post<{ status: string }>(
 			this.doctorsUrl,
 			doctor,
@@ -29,7 +28,7 @@ export class DoctorsService {
 		);
 	}
 
-	updateDoctor(doctor: Doctor): Observable<any> {
+	updateDoctor(doctor: Doctor): Observable<{ status: string }> {
 		return this.http.put<{ status: string }>(
 			this.doctorsUrl,
 			doctor,
@@ -44,9 +43,9 @@ export class DoctorsService {
 		);
 	}
 
-	deleteDoctor(id: string): Observable<Doctor[]> {
+	deleteDoctor(id: string): Observable<{ status: string }> {
 		const url = `${this.doctorsUrl}/doctor/${id}`;
-		return this.http.delete<Doctor[]>(url, this.httpOptions);
+		return this.http.delete<{ status: string }>(url, this.httpOptions);
 	}
 
 	getClinics(id: string): Observable<Clinic[]> {

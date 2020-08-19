@@ -5,7 +5,7 @@ import { Clinic, ClinicData } from '../../../../../common/interfaces';
 
 @Injectable()
 export class ClinicsService {
-	private clinicsUrl = 'http://localhost:5000/clinics/';
+	private clinicsUrl = 'http://localhost:5000/clinics';
 	httpOptions = {
 		headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 	};
@@ -16,17 +16,17 @@ export class ClinicsService {
 		return this.http.get<Clinic[]>(this.clinicsUrl, this.httpOptions);
 	}
 
-	getCities(): Observable<string[]> {
-		return this.http.get<string[]>(
-			`${this.clinicsUrl}cities`,
+	addClinic(clinic: ClinicData): Observable<{ status: string }> {
+		return this.http.post<{ status: string }>(
+			this.clinicsUrl,
+			clinic,
 			this.httpOptions
 		);
 	}
 
-	addClinic(clinic: ClinicData): Observable<any> {
-		return this.http.post<Clinic>(
-			this.clinicsUrl,
-			clinic,
+	getCities(): Observable<string[]> {
+		return this.http.get<string[]>(
+			`${this.clinicsUrl}/cities`,
 			this.httpOptions
 		);
 	}
