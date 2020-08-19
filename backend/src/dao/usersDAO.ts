@@ -1,5 +1,5 @@
 import { Collection, MongoClient, Cursor } from 'mongodb';
-import { User, UserData } from '../../../common/interfaces';
+import { User } from '../../../common/interfaces';
 let usersCollection: Collection<User>;
 
 export class UsersDAO {

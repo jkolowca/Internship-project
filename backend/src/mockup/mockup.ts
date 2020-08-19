@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 import { NextFunction, Request, Response } from 'express';
 import { Router } from 'express';
 import fs from 'fs';
