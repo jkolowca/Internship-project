@@ -1,8 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import {
-	MatBottomSheet,
-	MAT_BOTTOM_SHEET_DATA,
-} from '@angular/material/bottom-sheet';
+import { MatBottomSheet, MAT_BOTTOM_SHEET_DATA } from '@angular/material/bottom-sheet';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

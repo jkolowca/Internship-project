@@ -1,12 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {
-	Visit,
-	Appointment,
-	VisitAggregate,
-	VisitData,
-} from '../../../../../common/interfaces';
+import { Visit, Appointment, VisitAggregate, VisitData } from '../../../../../common/interfaces';
 
 @Injectable()
 export class VisitsService {

@@ -1,14 +1,13 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ClinicsService } from 'src/app/shared/services/clinics.service';
-import { Address } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-clinic-form',
 	templateUrl: './clinic-form.component.html',
 	styleUrls: ['./clinic-form.component.scss'],
 })
-export class ClinicFormComponent implements OnInit {
+export class ClinicFormComponent {
 	@Output() clinicAdded = new EventEmitter();
 
 	clinic = this.fb.group({
@@ -25,7 +24,6 @@ export class ClinicFormComponent implements OnInit {
 		private clinicsService: ClinicsService
 	) {}
 
-	ngOnInit(): void {}
 
 	addClinic(): void {
 		this.clinicsService.addClinic(this.clinic.value).subscribe();
