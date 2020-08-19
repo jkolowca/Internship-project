@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { DoctorsService } from 'src/app/shared/services/doctors.service';
-
 import { Doctor } from '../../../../../../../../common/interfaces';
 
 @Component({
