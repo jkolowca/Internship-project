@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { Doctor, Clinic } from '../../../../../common/interfaces';
+import { Doctor, Clinic, DoctorData } from '../../../../../common/interfaces';
 
 @Injectable()
 export class DoctorsService {
@@ -21,21 +21,16 @@ export class DoctorsService {
 		this.currentDoctor.next(doctor);
 	}
 
-	addDoctor(
-		name: string,
-		surname: string,
-		specialties: string[],
-		clinics: string[]
-	): Observable<any> {
+	addDoctor(doctor: DoctorData): Observable<any> {
 		return this.http.post<{ status: string }>(
 			this.doctorsUrl,
-			{ name, surname, specialties, clinics },
+			doctor,
 			this.httpOptions
 		);
 	}
 
 	updateDoctor(doctor: Doctor): Observable<any> {
-		return this.http.put<Doctor[]>(
+		return this.http.put<{ status: string }>(
 			this.doctorsUrl,
 			doctor,
 			this.httpOptions

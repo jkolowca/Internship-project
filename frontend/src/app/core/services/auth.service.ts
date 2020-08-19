@@ -3,14 +3,14 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { share } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { User } from '../../../../../common/interfaces';
+import { User, UserData } from '../../../../../common/interfaces';
 
 @Injectable()
 export class AuthService {
-	endpoint: string = 'http://localhost:5000/users';
+	private endpoint: string = 'http://localhost:5000/users';
 	user: User;
 
-	constructor(private http: HttpClient, public router: Router) {}
+	constructor(private http: HttpClient, private router: Router) {}
 
 	loadCurrentUser(): Promise<any> {
 		let currentUser = localStorage.getItem('currentUser');
@@ -37,7 +37,7 @@ export class AuthService {
 		);
 	}
 
-	signUp(user: User): Observable<any> {
+	signUp(user: UserData): Observable<any> {
 		return this.http.post<{ status: string }>(
 			`${this.endpoint}/register-user`,
 			user

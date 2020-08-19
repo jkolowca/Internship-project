@@ -71,9 +71,7 @@ export class DoctorsCtrl {
 				throw new Error('unable to update doctor');
 			}
 
-			const doctors = await DoctorsDAO.getAll();
-
-			res.json(doctors);
+			res.json({ status: 'success' });
 		} catch (e) {
 			res.status(500).json({ e });
 		}

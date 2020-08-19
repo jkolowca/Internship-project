@@ -42,8 +42,8 @@ export class DoctorFormComponent implements OnInit {
 			this.doctorsService.getById(this.doctorId).subscribe(doctor => {
 				doctor.clinics.forEach(() => this.addClinic());
 				doctor.specialties.forEach(() => this.addSpecialtie());
-				const { _id, ...values } = doctor;
-				this.doctor.setValue(values);
+				const { _id, ...data } = doctor;
+				this.doctor.setValue(data);
 			});
 			return;
 		}
@@ -80,24 +80,15 @@ export class DoctorFormComponent implements OnInit {
 	}
 
 	save(): void {
-		const { name, surname, specialties, clinics } = this.doctor.value;
+		const doctor = this.doctor.value;
 		if (this.doctorId) {
 			this.doctorsService
-				.updateDoctor({
-					_id: this.doctorId,
-					name,
-					surname,
-					specialties,
-					clinics,
-				})
+				.updateDoctor({ _id: this.doctorId, ...doctor })
 				.subscribe(() => {});
-
 			this.doctorSaved.emit();
 			return;
 		}
-		this.doctorsService
-			.addDoctor(name, surname, specialties, clinics)
-			.subscribe(() => {});
+		this.doctorsService.addDoctor(doctor).subscribe(() => {});
 		this.doctorSaved.emit();
 	}
 
