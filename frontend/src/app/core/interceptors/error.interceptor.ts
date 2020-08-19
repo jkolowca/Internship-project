@@ -12,15 +12,12 @@ import { ErrorService } from '../services/error.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-	constructor(private errorService: ErrorService) {
-		console.log(`interceptor`);
-	}
+	constructor(private errorService: ErrorService) {}
 
 	intercept(
 		request: HttpRequest<unknown>,
 		next: HttpHandler
 	): Observable<HttpEvent<unknown>> {
-		console.log(`intercept`);
 		return next.handle(request).pipe(
 			retry(1),
 			catchError((error: HttpErrorResponse) => {

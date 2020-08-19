@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DoctorsService } from 'src/app/shared/services/doctors.service';
 import { Doctor } from '../../../../../../../../common/interfaces';
@@ -8,7 +8,7 @@ import { Doctor } from '../../../../../../../../common/interfaces';
 	templateUrl: './doctor-tab.component.html',
 	styleUrls: ['./doctor-tab.component.scss'],
 })
-export class DoctorTabComponent implements OnInit {
+export class DoctorTabComponent implements OnInit, OnDestroy {
 	doctor: Doctor;
 
 	constructor(
@@ -22,5 +22,9 @@ export class DoctorTabComponent implements OnInit {
 			this.doctorsService.setCurrentDoctor(doctor);
 			this.doctor = doctor;
 		});
+	}
+
+	ngOnDestroy(): void {
+		this.doctorsService.setCurrentDoctor(<Doctor>{});
 	}
 }
