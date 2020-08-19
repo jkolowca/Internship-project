@@ -17,11 +17,17 @@ export class AuthService {
 		const userData = JSON.parse(currentUser);
 		return new Promise((resolve, reject) => {
 			if (userData)
-				this.getUserProfile(userData._id).subscribe(user => {
-					this.user = user;
-					resolve(true);
-				});
-			else resolve(true);
+				this.getUserProfile(userData._id).subscribe(
+					user => {
+						this.user = user;
+						resolve(true);
+					},
+					() => {
+						localStorage.removeItem('currentUser');
+						resolve(false);
+					}
+				);
+			else resolve(false);
 		});
 	}
 
