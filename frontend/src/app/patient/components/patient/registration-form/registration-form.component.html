@@ -3,14 +3,6 @@
 		<mat-card>
 			<form [formGroup]="registrationForm">
 				<mat-form-field appearance="legacy">
-					<mat-label>Name</mat-label>
-					<input matInput formControlName="name" />
-				</mat-form-field>
-				<mat-form-field appearance="legacy">
-					<mat-label>Surname</mat-label>
-					<input matInput formControlName="surname" />
-				</mat-form-field>
-				<mat-form-field appearance="legacy">
 					<mat-label>Reason</mat-label>
 					<textarea matInput formControlName="reason"></textarea>
 				</mat-form-field>
@@ -18,7 +10,6 @@
 				<div class="buttons">
 					<button routerLink="../../" mat-button>Cancel</button>
 					<button
-						[disabled]="!registrationForm.valid"
 						(click)="register()"
 						type="submit"
 						mat-button
