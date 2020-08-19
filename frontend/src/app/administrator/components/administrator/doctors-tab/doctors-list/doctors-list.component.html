@@ -1,22 +1,12 @@
 <mat-accordion>
 	<mat-expansion-panel hideToggle *ngFor="let doctor of doctorsList">
 		<mat-expansion-panel-header>
-			<mat-panel-title>
-				Dr {{ doctor.surname }} {{ doctor.name }}
-			</mat-panel-title>
+			<mat-panel-title> Dr {{ doctor.surname }} {{ doctor.name }} </mat-panel-title>
 			<mat-panel-description>
-				<button
-					mat-icon-button
-					aria-label="Edit doctor"
-					routerLink="/admin/doctors/{{ doctor._id }}/schedule"
-				>
+				<button mat-icon-button aria-label="Edit doctor" routerLink="/admin/doctors/{{ doctor._id }}/schedule">
 					<mat-icon>event_note</mat-icon>
 				</button>
-				<button
-					mat-icon-button
-					aria-label="Edit doctor"
-					routerLink="/admin/doctors/{{ doctor._id }}/edit"
-				>
+				<button mat-icon-button aria-label="Edit doctor" routerLink="/admin/doctors/{{ doctor._id }}/edit">
 					<mat-icon>edit</mat-icon>
 				</button>
 			</mat-panel-description>

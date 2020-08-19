@@ -1,10 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { VisitsService } from 'src/app/shared/services/visits.service';
-import {
-	Clinic,
-	VisitAggregate
-} from '../../../../../../../../common/interfaces';
+import { Clinic, VisitAggregate } from '../../../../../../../../common/interfaces';
 
 @Component({
 	selector: 'app-visit-display-panel',
@@ -19,15 +16,10 @@ export class VisitDisplayPanelComponent implements OnInit {
 	form: FormGroup;
 	type: string;
 
-	constructor(
-		private fb: FormBuilder,
-		private visitsService: VisitsService
-	) {}
+	constructor(private fb: FormBuilder, private visitsService: VisitsService) {}
 
 	ngOnInit(): void {
-		const toSelect = this.clinics.find(
-			c => c.name === this.visit.clinic.name
-		);
+		const toSelect = this.clinics.find(c => c.name === this.visit.clinic.name);
 		const date = new Date().toISOString().slice(0, 16);
 		this.form = this.fb.group({
 			startDate: [date, Validators.required],
@@ -35,10 +27,7 @@ export class VisitDisplayPanelComponent implements OnInit {
 			clinic: [toSelect, Validators.required]
 		});
 
-		this.type =
-			new Date().getTime() > new Date(this.visit.startDate).getTime()
-				? 'archived'
-				: 'active';
+		this.type = new Date().getTime() > new Date(this.visit.startDate).getTime() ? 'archived' : 'active';
 	}
 
 	save() {

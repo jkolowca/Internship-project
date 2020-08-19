@@ -10,18 +10,11 @@ export class VisitsDAO {
 		try {
 			visitsCollection = conn.db('registration').collection('visits');
 		} catch (e) {
-			console.error(
-				`VisitsDAO: Unable to establish a collection handle: ${e}`
-			);
+			console.error(`VisitsDAO: Unable to establish a collection handle: ${e}`);
 		}
 	}
 
-	static async find(
-		beforeLookup?: {},
-		afterLookup?: {},
-		page = 0,
-		visitsPerPage = 10
-	) {
+	static async find(beforeLookup?: {}, afterLookup?: {}, page = 0, visitsPerPage = 10) {
 		let cursor: AggregationCursor<VisitAggregate>;
 		let visits, visitsCount;
 		try {
@@ -58,9 +51,7 @@ export class VisitsDAO {
 
 			return { visits, visitsCount };
 		} catch (e) {
-			console.error(
-				`VisitsDAO: Error while collecting visits data: ${e}`
-			);
+			console.error(`VisitsDAO: Error while collecting visits data: ${e}`);
 			return { visits: [], visitsCount: 0 };
 		}
 	}
@@ -105,10 +96,7 @@ export class VisitsDAO {
 
 	static async updateAppointment(visitId: string, appointment: Appointment) {
 		try {
-			await visitsCollection.updateOne(
-				{ _id: visitId },
-				{ $set: { appointment } }
-			);
+			await visitsCollection.updateOne({ _id: visitId }, { $set: { appointment } });
 			return { success: true };
 		} catch (e) {
 			console.error(`VisitsDAO: Unable to update appointment: ${e}`);
@@ -118,10 +106,7 @@ export class VisitsDAO {
 
 	static async deleteAppointment(visitId: string) {
 		try {
-			await visitsCollection.updateOne(
-				{ _id: visitId },
-				{ $unset: { appointment: '' } }
-			);
+			await visitsCollection.updateOne({ _id: visitId }, { $unset: { appointment: '' } });
 			return { success: true };
 		} catch (e) {
 			console.error(`VisitsDAO: Unable to delete appointment: ${e}`);
@@ -129,17 +114,9 @@ export class VisitsDAO {
 		}
 	}
 
-	static async updateVisit(
-		_id: string,
-		startDate: Date,
-		endDate: Date,
-		clinic: string
-	) {
+	static async updateVisit(_id: string, startDate: Date, endDate: Date, clinic: string) {
 		try {
-			const updateResponse = await visitsCollection.updateOne(
-				{ _id },
-				{ $set: { startDate, endDate, clinic } }
-			);
+			const updateResponse = await visitsCollection.updateOne({ _id }, { $set: { startDate, endDate, clinic } });
 
 			return updateResponse;
 		} catch (e) {

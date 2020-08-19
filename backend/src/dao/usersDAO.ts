@@ -10,9 +10,7 @@ export class UsersDAO {
 		try {
 			usersCollection = conn.db('registration').collection('users');
 		} catch (e) {
-			console.error(
-				`Unable to establish a collection handle in usersDAO: ${e}`
-			);
+			console.error(`Unable to establish a collection handle in usersDAO: ${e}`);
 		}
 	}
 
@@ -30,9 +28,7 @@ export class UsersDAO {
 
 			return users;
 		} catch (e) {
-			console.error(
-				`Unable to convert cursor to array or problem counting documents, ${e}`
-			);
+			console.error(`Unable to convert cursor to array or problem counting documents, ${e}`);
 			return [];
 		}
 	}

@@ -2,9 +2,7 @@
 	<div *ngFor="let visit of visits; let i = index">
 		<ng-container
 			*ngIf="
-				i === 0 ||
-				visit.startDate.toString().slice(0, 10) !==
-					visits[i - 1].startDate.toString().slice(0, 10)
+				i === 0 || visit.startDate.toString().slice(0, 10) !== visits[i - 1].startDate.toString().slice(0, 10)
 			"
 		>
 			<br />
@@ -12,10 +10,7 @@
 			<mat-divider></mat-divider>
 			<br />
 		</ng-container>
-		<app-patient-visit-panel
-			(visitCanceled)="loadVisits()"
-			[visit]="visit"
-		></app-patient-visit-panel>
+		<app-patient-visit-panel (visitCanceled)="loadVisits()" [visit]="visit"></app-patient-visit-panel>
 	</div>
 </mat-accordion>
 
@@ -24,11 +19,7 @@
 </div>
 
 <div class="paginator" *ngIf="visits && visitsCount > query.visitsPerPage">
-	<button
-		mat-button
-		[disabled]="query.page === 0"
-		(click)="query.page = query.page - 1; loadVisits()"
-	>
+	<button mat-button [disabled]="query.page === 0" (click)="query.page = query.page - 1; loadVisits()">
 		Back
 	</button>
 	<button

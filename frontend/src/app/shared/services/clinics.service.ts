@@ -17,18 +17,11 @@ export class ClinicsService {
 	}
 
 	addClinic(clinic: ClinicData): Observable<{ status: string }> {
-		return this.http.post<{ status: string }>(
-			this.clinicsUrl,
-			clinic,
-			this.httpOptions
-		);
+		return this.http.post<{ status: string }>(this.clinicsUrl, clinic, this.httpOptions);
 	}
 
 	getCities(): Observable<string[]> {
-		return this.http.get<string[]>(
-			`${this.clinicsUrl}/cities`,
-			this.httpOptions
-		);
+		return this.http.get<string[]>(`${this.clinicsUrl}/cities`, this.httpOptions);
 	}
 
 	deleteClinic(id: string): Observable<Clinic[]> {

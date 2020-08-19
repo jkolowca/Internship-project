@@ -16,14 +16,10 @@ export class ClinicsListComponent implements OnInit {
 	}
 
 	loadClinics(): void {
-		this.clinicsService
-			.getAllClinics()
-			.subscribe(list => (this.clinicsList = list));
+		this.clinicsService.getAllClinics().subscribe(list => (this.clinicsList = list));
 	}
 
 	removeClinic(id: string): void {
-		this.clinicsService
-			.deleteClinic(id)
-			.subscribe(list => (this.clinicsList = list));
+		this.clinicsService.deleteClinic(id).subscribe(list => (this.clinicsList = list));
 	}
 }

@@ -11,17 +11,12 @@ import { User, Doctor } from '../../../../../../common/interfaces';
 export class DoctorComponent implements OnInit {
 	user: User;
 	doctor: Doctor;
-	constructor(
-		private authService: AuthService,
-		private doctorsService: DoctorsService
-	) {}
+	constructor(private authService: AuthService, private doctorsService: DoctorsService) {}
 
 	ngOnInit(): void {
-		this.doctorsService
-			.getById(this.authService.user.doctorId)
-			.subscribe(doctor => {
-				this.doctorsService.setCurrentDoctor(doctor);
-				this.doctor = doctor;
-			});
+		this.doctorsService.getById(this.authService.user.doctorId).subscribe(doctor => {
+			this.doctorsService.setCurrentDoctor(doctor);
+			this.doctor = doctor;
+		});
 	}
 }

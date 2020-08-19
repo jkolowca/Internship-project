@@ -19,10 +19,7 @@ export class ClinicFormComponent {
 		})
 	});
 
-	constructor(
-		private fb: FormBuilder,
-		private clinicsService: ClinicsService
-	) {}
+	constructor(private fb: FormBuilder, private clinicsService: ClinicsService) {}
 
 	addClinic(): void {
 		this.clinicsService.addClinic(this.clinic.value).subscribe();

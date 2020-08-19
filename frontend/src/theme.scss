@@ -4,11 +4,7 @@
 $light-app-primary: mat-palette($mat-teal, 600, 300, 800);
 $light-app-accent: mat-palette($mat-teal, 100, 50, 200);
 $light-app-warn: mat-palette($mat-pink, 800, 900, 700);
-$light-no-bg-app-theme: mat-light-theme(
-	$light-app-primary,
-	$light-app-accent,
-	$light-app-warn
-);
+$light-no-bg-app-theme: mat-light-theme($light-app-primary, $light-app-accent, $light-app-warn);
 
 $custom-background-color: map_get($mat-gray, 50);
 $background: map-get($light-no-bg-app-theme, background);

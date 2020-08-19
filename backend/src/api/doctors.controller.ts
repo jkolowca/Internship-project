@@ -71,11 +71,7 @@ export class DoctorsCtrl {
 		}
 	}
 
-	static async apiGetClinics(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
+	static async apiGetClinics(req: Request, res: Response, next: NextFunction) {
 		try {
 			let id = req.params.id;
 			let clinics = await DoctorsDAO.getClinics(id);
@@ -90,11 +86,7 @@ export class DoctorsCtrl {
 		}
 	}
 
-	static async getSpecialties(
-		req: Request,
-		res: Response,
-		next: NextFunction
-	) {
+	static async getSpecialties(req: Request, res: Response, next: NextFunction) {
 		try {
 			const specialties = await DoctorsDAO.getSpecialties();
 			res.json(specialties);

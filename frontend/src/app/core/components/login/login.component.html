@@ -8,22 +8,16 @@
 				<mat-form-field appearance="legacy">
 					<mat-label>E-mail</mat-label>
 					<input matInput formControlName="email" />
-					<mat-error
-						*ngIf="this.signinForm.controls['email'].invalid"
-						>{{ getErrorMessage('email') }}</mat-error
-					>
+					<mat-error *ngIf="this.signinForm.controls['email'].invalid">{{
+						getErrorMessage('email')
+					}}</mat-error>
 				</mat-form-field>
 				<mat-form-field appearance="legacy">
 					<mat-label>Password</mat-label>
-					<input
-						matInput
-						formControlName="password"
-						[type]="hide ? 'password' : 'text'"
-					/>
-					<mat-error
-						*ngIf="this.signinForm.controls['password'].invalid"
-						>{{ getErrorMessage('password') }}</mat-error
-					>
+					<input matInput formControlName="password" [type]="hide ? 'password' : 'text'" />
+					<mat-error *ngIf="this.signinForm.controls['password'].invalid">{{
+						getErrorMessage('password')
+					}}</mat-error>
 					<button
 						type="button"
 						mat-icon-button
@@ -32,9 +26,7 @@
 						[attr.aria-label]="'Hide password'"
 						[attr.aria-pressed]="hide"
 					>
-						<mat-icon>{{
-							hide ? 'visibility_off' : 'visibility'
-						}}</mat-icon>
+						<mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
 					</button>
 				</mat-form-field>
 				<br />
@@ -42,11 +34,7 @@
 					<button mat-button type="button" routerLink="/register">
 						Register
 					</button>
-					<button
-						mat-button
-						[disabled]="!signinForm.valid"
-						type="submit"
-					>
+					<button mat-button [disabled]="!signinForm.valid" type="submit">
 						Sign in
 					</button>
 				</div>

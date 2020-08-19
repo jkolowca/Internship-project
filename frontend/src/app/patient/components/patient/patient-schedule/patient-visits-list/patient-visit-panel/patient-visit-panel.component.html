@@ -1,10 +1,7 @@
 <mat-expansion-panel hideToggle>
 	<mat-expansion-panel-header>
 		<mat-panel-title>
-			<p>
-				{{ visit.startDate | date: 'H:mm' }} -
-				{{ visit.endDate | date: 'H:mm' }}
-			</p>
+			<p>{{ visit.startDate | date: 'H:mm' }} - {{ visit.endDate | date: 'H:mm' }}</p>
 			<div class="vertical-space"></div>
 			<p>Dr {{ visit.doctor.surname }} {{ visit.doctor.name }}</p>
 		</mat-panel-title>
@@ -22,19 +19,13 @@
 			</div>
 			<div class="clinic">
 				<p>{{ visit.clinic.name }}</p>
-				<p>
-					{{ visit.clinic.address.streetAddress }}
-					{{ visit.clinic.address.apartment }}
-				</p>
+				<p>{{ visit.clinic.address.streetAddress }} {{ visit.clinic.address.apartment }}</p>
 				<p>{{ visit.clinic.address.city }}</p>
 			</div>
 		</div>
 		<br />
 		<button
-			*ngIf="
-				this.router.url.includes('/registered-visits') &&
-				type === 'active'
-			"
+			*ngIf="this.router.url.includes('/registered-visits') && type === 'active'"
 			mat-raised-button
 			type="button"
 			color="primary"

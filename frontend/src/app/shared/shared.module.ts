@@ -11,12 +11,7 @@ import { DoctorsService } from './services/doctors.service';
 import { VisitsService } from './services/visits.service';
 
 @NgModule({
-	declarations: [
-		ScheduleComponent,
-		VisitsListComponent,
-		VisitAddPanelComponent,
-		VisitDisplayPanelComponent
-	],
+	declarations: [ScheduleComponent, VisitsListComponent, VisitAddPanelComponent, VisitDisplayPanelComponent],
 	imports: [CommonModule, SharedRoutingModule, MaterialModule],
 	exports: [
 		MaterialModule,

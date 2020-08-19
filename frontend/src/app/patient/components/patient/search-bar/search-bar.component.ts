@@ -28,12 +28,8 @@ export class SearchBarComponent implements OnInit {
 	availableSpec: string[];
 
 	ngOnInit(): void {
-		this.doctorsService
-			.getSpecialties()
-			.subscribe(l => (this.availableSpec = l));
-		this.clinicsService
-			.getCities()
-			.subscribe(l => (this.availableClinics = l));
+		this.doctorsService.getSpecialties().subscribe(l => (this.availableSpec = l));
+		this.clinicsService.getCities().subscribe(l => (this.availableClinics = l));
 	}
 
 	onSubmit() {

@@ -21,12 +21,7 @@ export function init_app(authService: AuthService) {
 }
 
 @NgModule({
-	declarations: [
-		ErrorPanelComponent,
-		LoginComponent,
-		RegisterComponent,
-		LogoutComponent
-	],
+	declarations: [ErrorPanelComponent, LoginComponent, RegisterComponent, LogoutComponent],
 	imports: [
 		CoreRoutingModule,
 		HttpClientModule,

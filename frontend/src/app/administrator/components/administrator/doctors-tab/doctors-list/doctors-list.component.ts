@@ -17,8 +17,6 @@ export class DoctorsListComponent implements OnInit {
 	}
 
 	loadDoctors() {
-		this.doctorsService
-			.getAllDoctors()
-			.subscribe(list => (this.doctorsList = list));
+		this.doctorsService.getAllDoctors().subscribe(list => (this.doctorsList = list));
 	}
 }

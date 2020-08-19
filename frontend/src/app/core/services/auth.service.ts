@@ -32,27 +32,17 @@ export class AuthService {
 	}
 
 	getMockData() {
-		return this.http.get<{ status: string }>(
-			`http://localhost:5000/mockup`
-		);
+		return this.http.get<{ status: string }>(`http://localhost:5000/mockup`);
 	}
 
 	signUp(user: UserData): Observable<any> {
-		return this.http.post<{ status: string }>(
-			`${this.endpoint}/register-user`,
-			user
-		);
+		return this.http.post<{ status: string }>(`${this.endpoint}/register-user`, user);
 	}
 
 	signIn(user: { email: string; password: string }) {
-		let request = this.http
-			.post<any>(`${this.endpoint}/signin`, user)
-			.pipe(share());
+		let request = this.http.post<any>(`${this.endpoint}/signin`, user).pipe(share());
 		request.subscribe(res => {
-			localStorage.setItem(
-				'currentUser',
-				JSON.stringify({ token: res.token, _id: res.user._id })
-			);
+			localStorage.setItem('currentUser', JSON.stringify({ token: res.token, _id: res.user._id }));
 			this.user = res.user;
 		});
 		return request;

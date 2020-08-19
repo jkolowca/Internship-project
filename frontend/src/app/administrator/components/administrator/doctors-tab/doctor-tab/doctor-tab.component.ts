@@ -11,10 +11,7 @@ import { Doctor } from '../../../../../../../../common/interfaces';
 export class DoctorTabComponent implements OnInit, OnDestroy {
 	doctor: Doctor;
 
-	constructor(
-		private route: ActivatedRoute,
-		private doctorsService: DoctorsService
-	) {}
+	constructor(private route: ActivatedRoute, private doctorsService: DoctorsService) {}
 
 	ngOnInit(): void {
 		let doctorId = this.route.snapshot.paramMap.get('id');

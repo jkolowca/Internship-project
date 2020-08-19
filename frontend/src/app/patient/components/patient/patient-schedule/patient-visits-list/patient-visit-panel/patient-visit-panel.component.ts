@@ -15,17 +15,10 @@ export class PatientVisitPanelComponent implements OnInit {
 	@Output() visitCanceled = new EventEmitter();
 	type: string;
 	now = new Date();
-	constructor(
-		public router: Router,
-		private visitsService: VisitsService,
-		private snackBar: MatSnackBar
-	) {}
+	constructor(public router: Router, private visitsService: VisitsService, private snackBar: MatSnackBar) {}
 
 	ngOnInit(): void {
-		this.type =
-			new Date().getTime() > new Date(this.visit.startDate).getTime()
-				? 'archived'
-				: 'active';
+		this.type = new Date().getTime() > new Date(this.visit.startDate).getTime() ? 'archived' : 'active';
 	}
 
 	delete(): void {

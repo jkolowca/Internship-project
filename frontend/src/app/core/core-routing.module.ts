@@ -29,24 +29,19 @@ const routes: Routes = [
 	},
 	{
 		path: 'admin',
-		loadChildren: () =>
-			import('../administrator/administrator.module').then(
-				m => m.AdministratorModule
-			),
+		loadChildren: () => import('../administrator/administrator.module').then(m => m.AdministratorModule),
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['admin'] }
 	},
 	{
 		path: 'doctor',
-		loadChildren: () =>
-			import('../doctor/doctor.module').then(m => m.DoctorModule),
+		loadChildren: () => import('../doctor/doctor.module').then(m => m.DoctorModule),
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['doctor'] }
 	},
 	{
 		path: 'patient',
-		loadChildren: () =>
-			import('../patient/patient.module').then(m => m.PatientModule),
+		loadChildren: () => import('../patient/patient.module').then(m => m.PatientModule),
 		canActivate: [AuthenticationGuard],
 		data: { accountTypes: ['patient'] }
 	},

@@ -1,26 +1,15 @@
 import { Injectable } from '@angular/core';
-import {
-	CanActivate,
-	ActivatedRouteSnapshot,
-	RouterStateSnapshot,
-	Router
-} from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthenticationGuard implements CanActivate {
-	constructor(
-		private router: Router,
-		private authenticationService: AuthService
-	) {}
+	constructor(private router: Router, private authenticationService: AuthService) {}
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
 		const user = this.authenticationService.user;
 		if (user) {
-			if (
-				route.data.accountTypes &&
-				route.data.accountTypes.indexOf(user.accountType) === -1
-			) {
+			if (route.data.accountTypes && route.data.accountTypes.indexOf(user.accountType) === -1) {
 				switch (user.accountType) {
 					case 'patient':
 						this.router.navigate(['/patient/', user._id]);

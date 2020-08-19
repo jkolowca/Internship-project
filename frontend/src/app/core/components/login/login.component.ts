@@ -12,11 +12,7 @@ export class LoginComponent implements OnInit {
 	signinForm: FormGroup;
 	hide = true;
 
-	constructor(
-		public fb: FormBuilder,
-		public authService: AuthService,
-		public router: Router
-	) {}
+	constructor(public fb: FormBuilder, public authService: AuthService, public router: Router) {}
 
 	ngOnInit(): void {
 		this.signinForm = this.fb.group({

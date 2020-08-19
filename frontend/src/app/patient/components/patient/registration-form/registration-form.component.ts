@@ -50,13 +50,9 @@ export class RegistrationFormComponent implements OnInit {
 				});
 			},
 			err => {
-				this.snackBar.open(
-					'An appointment could not be made. Try again',
-					'End',
-					{
-						duration: 3000
-					}
-				);
+				this.snackBar.open('An appointment could not be made. Try again', 'End', {
+					duration: 3000
+				});
 			}
 		);
 	}

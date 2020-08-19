@@ -4,10 +4,7 @@
 			<mat-expansion-panel-header>
 				<mat-panel-title>Add new Clinic</mat-panel-title>
 			</mat-expansion-panel-header>
-			<app-clinic-form
-				*ngIf="showForm"
-				(clinicAdded)="onClinicAdded()"
-			></app-clinic-form>
+			<app-clinic-form *ngIf="showForm" (clinicAdded)="onClinicAdded()"></app-clinic-form>
 		</mat-expansion-panel>
 	</div>
 	<div>

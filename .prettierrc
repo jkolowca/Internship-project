@@ -1,6 +1,7 @@
 {
 	"trailingComma": "none",
 	"bracketSpacing": true,
+	"printWidth": 120,
 	"jsxBracketSameLine": true,
 	"semi": true,
 	"endOfLine": "lf",

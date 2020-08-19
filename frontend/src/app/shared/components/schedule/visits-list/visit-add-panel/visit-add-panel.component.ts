@@ -16,10 +16,7 @@ export class VisitAddPanelComponent implements OnInit {
 
 	form: FormGroup;
 
-	constructor(
-		private fb: FormBuilder,
-		private visitsService: VisitsService
-	) {}
+	constructor(private fb: FormBuilder, private visitsService: VisitsService) {}
 
 	ngOnInit(): void {
 		const date = new Date().toISOString().slice(0, 16);
@@ -38,9 +35,7 @@ export class VisitAddPanelComponent implements OnInit {
 			doctor: this.doctorId
 		};
 
-		this.visitsService
-			.addVisit(visit)
-			.subscribe(() => this.newVisit.emit());
+		this.visitsService.addVisit(visit).subscribe(() => this.newVisit.emit());
 		this.state = 'display';
 	}
 }

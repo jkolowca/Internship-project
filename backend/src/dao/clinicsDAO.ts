@@ -11,9 +11,7 @@ export class ClinicsDAO {
 		try {
 			clinicsCollection = conn.db('registration').collection('clinics');
 		} catch (e) {
-			console.error(
-				`ClinicsDAO: Unable to establish a collection handle: ${e}`
-			);
+			console.error(`ClinicsDAO: Unable to establish a collection handle: ${e}`);
 		}
 	}
 
@@ -31,9 +29,7 @@ export class ClinicsDAO {
 
 			return clinics;
 		} catch (e) {
-			console.error(
-				`ClinicsDAO: Unable to convert cursor to array or problem counting documents: ${e}`
-			);
+			console.error(`ClinicsDAO: Unable to convert cursor to array or problem counting documents: ${e}`);
 			return [];
 		}
 	}
@@ -58,9 +54,7 @@ export class ClinicsDAO {
 
 	static async getCities() {
 		try {
-			return (await clinicsCollection.distinct(
-				'address.city'
-			)) as string[];
+			return (await clinicsCollection.distinct('address.city')) as string[];
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to get distinct values: ${e}`);
 			return { error: e };

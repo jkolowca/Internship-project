@@ -10,9 +10,7 @@ export class DoctorsDAO {
 		try {
 			doctorsCollection = conn.db('registration').collection('doctors');
 		} catch (e) {
-			console.error(
-				`DoctorsDAO: Unable to establish a collection handle: ${e}`
-			);
+			console.error(`DoctorsDAO: Unable to establish a collection handle: ${e}`);
 		}
 	}
 
@@ -30,9 +28,7 @@ export class DoctorsDAO {
 
 			return doctors;
 		} catch (e) {
-			console.error(
-				`DoctorsDAO: Unable to convert cursor to array or problem counting documents: ${e}`
-			);
+			console.error(`DoctorsDAO: Unable to convert cursor to array or problem counting documents: ${e}`);
 			return [];
 		}
 	}
@@ -115,9 +111,7 @@ export class DoctorsDAO {
 				}
 			]);
 		} catch (e) {
-			console.error(
-				`DoctorsDAO: Unable to issue aggregate command: ${e}`
-			);
+			console.error(`DoctorsDAO: Unable to issue aggregate command: ${e}`);
 			return [];
 		}
 
@@ -126,9 +120,7 @@ export class DoctorsDAO {
 			if (!result) return [];
 			return result.clinics;
 		} catch (e) {
-			console.error(
-				`DoctorsDAO: Unable to convert cursor to array or problem counting documents: ${e}`
-			);
+			console.error(`DoctorsDAO: Unable to convert cursor to array or problem counting documents: ${e}`);
 			return [];
 		}
 	}

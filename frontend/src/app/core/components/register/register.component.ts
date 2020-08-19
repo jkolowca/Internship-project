@@ -12,11 +12,7 @@ export class RegisterComponent implements OnInit {
 	signupForm: FormGroup;
 	hide = true;
 
-	constructor(
-		public fb: FormBuilder,
-		public authService: AuthService,
-		public router: Router
-	) {}
+	constructor(public fb: FormBuilder, public authService: AuthService, public router: Router) {}
 
 	ngOnInit(): void {
 		this.signupForm = this.fb.group({

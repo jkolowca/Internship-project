@@ -11,11 +11,7 @@ import { ErrorService } from './core/services/error.service';
 export class AppComponent implements OnInit, AfterViewInit {
 	title = 'registration';
 	@ViewChild(ErrorPanelComponent) errorPanel: ErrorPanelComponent;
-	constructor(
-		private snackBar: MatSnackBar,
-		private authService: AuthService,
-		private errorService: ErrorService
-	) {}
+	constructor(private snackBar: MatSnackBar, private authService: AuthService, private errorService: ErrorService) {}
 
 	ngOnInit(): void {
 		let snackBar = this.snackBar.open('Add mockup data?', 'Add', {

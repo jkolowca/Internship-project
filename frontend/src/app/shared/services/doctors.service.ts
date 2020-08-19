@@ -21,26 +21,15 @@ export class DoctorsService {
 	}
 
 	addDoctor(doctor: DoctorData): Observable<{ status: string }> {
-		return this.http.post<{ status: string }>(
-			this.doctorsUrl,
-			doctor,
-			this.httpOptions
-		);
+		return this.http.post<{ status: string }>(this.doctorsUrl, doctor, this.httpOptions);
 	}
 
 	updateDoctor(doctor: Doctor): Observable<{ status: string }> {
-		return this.http.put<{ status: string }>(
-			this.doctorsUrl,
-			doctor,
-			this.httpOptions
-		);
+		return this.http.put<{ status: string }>(this.doctorsUrl, doctor, this.httpOptions);
 	}
 
 	getById(id: string): Observable<Doctor> {
-		return this.http.get<Doctor>(
-			`${this.doctorsUrl}/doctor/${id}`,
-			this.httpOptions
-		);
+		return this.http.get<Doctor>(`${this.doctorsUrl}/doctor/${id}`, this.httpOptions);
 	}
 
 	deleteDoctor(id: string): Observable<{ status: string }> {
@@ -49,16 +38,10 @@ export class DoctorsService {
 	}
 
 	getClinics(id: string): Observable<Clinic[]> {
-		return this.http.get<Clinic[]>(
-			`${this.doctorsUrl}/doctor/${id}/clinics`,
-			this.httpOptions
-		);
+		return this.http.get<Clinic[]>(`${this.doctorsUrl}/doctor/${id}/clinics`, this.httpOptions);
 	}
 
 	getSpecialties(): Observable<string[]> {
-		return this.http.get<string[]>(
-			`${this.doctorsUrl}/specialties`,
-			this.httpOptions
-		);
+		return this.http.get<string[]>(`${this.doctorsUrl}/specialties`, this.httpOptions);
 	}
 }

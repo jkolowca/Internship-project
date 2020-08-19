@@ -5,12 +5,7 @@
 	</mat-form-field>
 	<mat-form-field appearance="legacy">
 		<mat-label>Surname</mat-label>
-		<input
-			matInput
-			type="text"
-			formControlName="surname"
-			autocomplete="off"
-		/>
+		<input matInput type="text" formControlName="surname" autocomplete="off" />
 	</mat-form-field>
 	<div class="break"></div>
 	<div class="control">
@@ -22,11 +17,7 @@
 	<br />
 	<div class="control" *ngFor="let _ of specialties.controls; index as i">
 		<mat-form-field appearance="legacy">
-			<input
-				matInput
-				type="text"
-				[formControl]="specialties.controls[i]"
-			/>
+			<input matInput type="text" [formControl]="specialties.controls[i]" />
 		</mat-form-field>
 		<button mat-icon-button type="button" (click)="removeSpecialtie(i)">
 			<mat-icon>remove</mat-icon>
@@ -44,11 +35,7 @@
 	<div class="control" *ngFor="let _ of clinics.controls; index as i">
 		<mat-form-field appearance="legacy">
 			<mat-select [formControl]="clinics.controls[i]">
-				<mat-option
-					*ngFor="let clinic of availableClinics"
-					[value]="clinic._id"
-					>{{ clinic.name }}</mat-option
-				>
+				<mat-option *ngFor="let clinic of availableClinics" [value]="clinic._id">{{ clinic.name }}</mat-option>
 			</mat-select>
 		</mat-form-field>
 		<button mat-icon-button type="button" (click)="removeClinic(i)">
@@ -69,12 +56,7 @@
 	</button>
 
 	<br />
-	<button
-		mat-raised-button
-		type="submit"
-		color="primary"
-		[disabled]="!doctor.valid"
-	>
+	<button mat-raised-button type="submit" color="primary" [disabled]="!doctor.valid">
 		Save
 	</button>
 </form>

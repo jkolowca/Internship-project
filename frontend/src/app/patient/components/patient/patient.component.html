@@ -2,9 +2,7 @@
 	<div>
 		<span>
 			Patient
-			<span *ngIf="patient"
-				>{{ patient.name }} {{ patient.surname }}</span
-			>
+			<span *ngIf="patient">{{ patient.name }} {{ patient.surname }}</span>
 		</span>
 		<button mat-button routerLink="search-visits">New visits</button>
 		<button mat-button routerLink="registered-visits">Your visits</button>

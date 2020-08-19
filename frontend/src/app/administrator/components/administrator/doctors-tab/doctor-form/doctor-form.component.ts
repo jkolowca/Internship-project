@@ -51,9 +51,7 @@ export class DoctorFormComponent implements OnInit {
 	}
 
 	getAvailableClinics(): void {
-		this.clinicsService
-			.getAllClinics()
-			.subscribe(l => (this.availableClinics = l));
+		this.clinicsService.getAllClinics().subscribe(l => (this.availableClinics = l));
 	}
 
 	addSpecialtie(): void {
@@ -81,9 +79,7 @@ export class DoctorFormComponent implements OnInit {
 	save(): void {
 		const doctor = this.doctor.value;
 		if (this.doctorId) {
-			this.doctorsService
-				.updateDoctor({ _id: this.doctorId, ...doctor })
-				.subscribe();
+			this.doctorsService.updateDoctor({ _id: this.doctorId, ...doctor }).subscribe();
 			this.doctorSaved.emit();
 			return;
 		}
