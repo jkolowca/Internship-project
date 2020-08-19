@@ -83,7 +83,7 @@ export class DoctorFormComponent implements OnInit {
 		if (this.doctorId) {
 			this.doctorsService
 				.updateDoctor({ _id: this.doctorId, ...doctor })
-				.subscribe(() => {});
+				.subscribe();
 			this.doctorSaved.emit();
 			return;
 		}
