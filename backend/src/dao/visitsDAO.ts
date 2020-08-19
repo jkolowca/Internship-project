@@ -1,4 +1,4 @@
-import { Collection, MongoClient, ObjectId, AggregationCursor } from 'mongodb';
+import { Collection, MongoClient, AggregationCursor } from 'mongodb';
 import { Appointment, Visit, VisitAggregate } from '../../../common/interfaces';
 let visitsCollection: Collection<Visit>;
 

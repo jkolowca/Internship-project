@@ -1,4 +1,4 @@
-import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
+import { Collection, MongoClient, Cursor } from 'mongodb';
 import { Clinic } from '../../../common/interfaces';
 
 let clinicsCollection: Collection<Clinic>;

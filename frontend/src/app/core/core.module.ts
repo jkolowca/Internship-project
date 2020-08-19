@@ -9,7 +9,6 @@ import { CoreRoutingModule } from './core-routing.module';
 import { RouterModule } from '@angular/router';
 import { ErrorPanelComponent } from './components/error-panel/error-panel.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
-
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';

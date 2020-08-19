@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { DoctorsDAO } from '../dao/doctorsDAO';
 import { VisitsDAO } from '../dao/visitsDAO';
-import { ObjectId, UpdateWriteOpResult } from 'mongodb';
+import { UpdateWriteOpResult } from 'mongodb';
 import { Doctor } from '../../../common/interfaces';
 
 export class DoctorsCtrl {
