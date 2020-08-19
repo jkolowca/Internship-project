@@ -28,7 +28,6 @@ export interface Appointment {
 	_id: string;
 	name: string;
 	surname: string;
-	email: string;
 	reason?: string;
 }
 
