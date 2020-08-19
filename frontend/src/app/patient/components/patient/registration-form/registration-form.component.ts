@@ -30,8 +30,9 @@ export class RegistrationFormComponent implements OnInit {
 		this.registrationForm = this.fb.group({
 			reason: '',
 		});
-		this.authService.getUserProfile(this.userId).subscribe( l => {this.name = l.name, this.surname = l.surname}
-			);
+		this.authService.getUserProfile(this.userId).subscribe(l => {
+		  this.name = l.name, this.surname = l.surname
+		});
 	}
 
 	register(): void {
