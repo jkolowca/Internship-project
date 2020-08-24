@@ -1,3 +1,5 @@
+import { ObjectId } from 'mongodb';
+
 export interface Clinic extends ClinicData {
 	_id: string;
 }
@@ -63,4 +65,51 @@ export interface UserData {
 	password: string;
 	accountType: string;
 	doctorId?: string;
+}
+
+export interface DoctorDB {
+	_id?: ObjectId;
+	name: string;
+	surname: string;
+	specialties: string[];
+	clinics: ObjectId[];
+}
+
+export interface UserDB {
+	_id?: ObjectId;
+	name: string;
+	surname: string;
+	email: string;
+	password: string;
+	accountType: string;
+	doctorId?: ObjectId;
+}
+
+export interface VisitDB {
+	_id?: ObjectId;
+	startDate: Date;
+	endDate: Date;
+	clinic: ObjectId;
+	doctor: ObjectId;
+	appointment?: AppointmentDB;
+}
+
+export interface ClinicDB {
+	_id?: ObjectId;
+	name: string;
+	address: AddressDB;
+}
+export interface AppointmentDB {
+	_id: ObjectId;
+	name: string;
+	surname: string;
+	email: string;
+	reason?: string;
+}
+
+export interface AddressDB {
+	_id?: ObjectId;
+	city: string;
+	street: string;
+	apartment: string;
 }

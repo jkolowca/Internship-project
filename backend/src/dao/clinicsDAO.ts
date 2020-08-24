@@ -1,7 +1,7 @@
-import { Collection, MongoClient, Cursor } from 'mongodb';
-import { Clinic } from '../../../common/interfaces';
+import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
+import { ClinicDB } from '../../../common/interfaces';
 
-let clinicsCollection: Collection<Clinic>;
+let clinicsCollection: Collection<ClinicDB>;
 
 export class ClinicsDAO {
 	static async injectDB(conn: MongoClient) {
@@ -16,7 +16,7 @@ export class ClinicsDAO {
 	}
 
 	static async getAll() {
-		let cursor: Cursor<Clinic>;
+		let cursor: Cursor<ClinicDB>;
 		try {
 			cursor = clinicsCollection.find().sort({ name: 1 });
 		} catch (e) {
@@ -34,7 +34,7 @@ export class ClinicsDAO {
 		}
 	}
 
-	static async add(clinic: Clinic) {
+	static async add(clinic: ClinicDB) {
 		try {
 			return await clinicsCollection.insertOne(clinic);
 		} catch (e) {
@@ -43,7 +43,7 @@ export class ClinicsDAO {
 		}
 	}
 
-	static async addMany(clinics: Clinic[]) {
+	static async addMany(clinics: ClinicDB[]) {
 		try {
 			return await clinicsCollection.insertMany(clinics);
 		} catch (e) {
@@ -54,14 +54,14 @@ export class ClinicsDAO {
 
 	static async getCities() {
 		try {
-			return (await clinicsCollection.distinct('address.city')) as string[];
+			return await clinicsCollection.distinct('address.city');
 		} catch (e) {
 			console.error(`ClinicsDAO: Unable to get distinct values: ${e}`);
 			return { error: e };
 		}
 	}
 
-	static async delete(_id: string) {
+	static async delete(_id: ObjectId) {
 		try {
 			return await clinicsCollection.deleteOne({ _id });
 		} catch (e) {

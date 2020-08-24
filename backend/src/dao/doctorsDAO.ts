@@ -1,6 +1,6 @@
-import { Collection, MongoClient, Cursor, AggregationCursor } from 'mongodb';
-import { Doctor, Clinic, DoctorData } from '../../../common/interfaces';
-let doctorsCollection: Collection<Doctor>;
+import { Collection, MongoClient, Cursor, AggregationCursor, ObjectId } from 'mongodb';
+import { DoctorDB, ClinicDB, DoctorData } from '../../../common/interfaces';
+let doctorsCollection: Collection<DoctorDB>;
 
 export class DoctorsDAO {
 	static async injectDB(conn: MongoClient) {
@@ -15,7 +15,7 @@ export class DoctorsDAO {
 	}
 
 	static async getAll() {
-		let cursor: Cursor<Doctor>;
+		let cursor: Cursor<DoctorDB>;
 		try {
 			cursor = doctorsCollection.find().sort({ surname: 1, name: 1 });
 		} catch (e) {
@@ -33,7 +33,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getById(_id: string) {
+	static async getById(_id: ObjectId) {
 		try {
 			return await doctorsCollection.findOne({ _id });
 		} catch (e) {
@@ -42,7 +42,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async update(_id: string, doctor: DoctorData) {
+	static async update(_id: ObjectId, doctor: DoctorDB) {
 		try {
 			return await doctorsCollection.updateOne({ _id }, { $set: doctor });
 		} catch (e) {
@@ -51,7 +51,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async delete(_id: string) {
+	static async delete(_id: ObjectId) {
 		try {
 			return await doctorsCollection.deleteOne({ _id });
 		} catch (e) {
@@ -60,7 +60,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async add(doctor: Doctor) {
+	static async add(doctor: DoctorDB) {
 		try {
 			return await doctorsCollection.insertOne(doctor);
 		} catch (e) {
@@ -69,7 +69,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async addMany(doctors: Doctor[]) {
+	static async addMany(doctors: DoctorDB[]) {
 		try {
 			return await doctorsCollection.insertMany(doctors);
 		} catch (e) {
@@ -87,8 +87,8 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async getClinics(_id: string) {
-		let cursor: AggregationCursor<{ _id: string; clinics: Clinic[] }>;
+	static async getClinics(_id: ObjectId) {
+		let cursor: AggregationCursor<{ _id: ObjectId; clinics: ClinicDB[] }>;
 		try {
 			cursor = doctorsCollection.aggregate([
 				{

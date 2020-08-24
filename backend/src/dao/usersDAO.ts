@@ -1,6 +1,6 @@
-import { Collection, MongoClient, Cursor } from 'mongodb';
-import { User } from '../../../common/interfaces';
-let usersCollection: Collection<User>;
+import { Collection, MongoClient, Cursor, ObjectId } from 'mongodb';
+import { UserDB } from '../../../common/interfaces';
+let usersCollection: Collection<UserDB>;
 
 export class UsersDAO {
 	static async injectDB(conn: MongoClient) {
@@ -15,7 +15,7 @@ export class UsersDAO {
 	}
 
 	static async getAll() {
-		let cursor: Cursor<User>;
+		let cursor: Cursor<UserDB>;
 		try {
 			cursor = usersCollection.find();
 		} catch (e) {
@@ -33,7 +33,7 @@ export class UsersDAO {
 		}
 	}
 
-	static async getById(_id: string) {
+	static async getById(_id: ObjectId) {
 		try {
 			return await usersCollection.findOne({ _id });
 		} catch (e) {
@@ -51,7 +51,7 @@ export class UsersDAO {
 		}
 	}
 
-	static async add(user: User) {
+	static async add(user: UserDB) {
 		try {
 			return await usersCollection.insertOne(user);
 		} catch (e) {
@@ -62,7 +62,7 @@ export class UsersDAO {
 		}
 	}
 
-	static async addMany(users: User[]) {
+	static async addMany(users: UserDB[]) {
 		try {
 			return await usersCollection.insertMany(users);
 		} catch (e) {

@@ -1,7 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { VisitsDAO } from '../dao/visitsDAO';
 import { ObjectId } from 'mongodb';
-import { Visit } from '../../../common/interfaces';
+import { VisitDB } from '../../../common/interfaces';
 
 export class VisitsCtrl {
 	static async apiFind(req: Request, res: Response, next: NextFunction) {
@@ -39,9 +39,11 @@ export class VisitsCtrl {
 
 	static async apiAdd(req: Request, res: Response, next: NextFunction) {
 		try {
-			const visit: Visit = req.body;
+			const visit: VisitDB = req.body;
 			visit.startDate = new Date(visit.startDate);
 			visit.endDate = new Date(visit.endDate);
+			visit.clinic = new ObjectId(visit.clinic);
+			visit.doctor = new ObjectId(visit.doctor);
 
 			await VisitsDAO.add(visit);
 			res.json({ status: 'success' });
@@ -53,13 +55,13 @@ export class VisitsCtrl {
 	static async apiUpdate(req: Request, res: Response, next: NextFunction) {
 		try {
 			const { appointment, startDate, endDate, clinic } = req.body;
-			const id = req.params.id;
+			const id = new ObjectId(req.params.id);
 
 			if (!startDate && appointment) {
 				appointment._id = new ObjectId(appointment._id);
 				await VisitsDAO.updateAppointment(id, appointment);
 			} else {
-				await VisitsDAO.updateVisit(id, new Date(startDate), new Date(endDate), clinic._id);
+				await VisitsDAO.updateVisit(id, new Date(startDate), new Date(endDate), new ObjectId(clinic._id));
 			}
 			res.json({ status: 'success' });
 		} catch (e) {
@@ -69,7 +71,7 @@ export class VisitsCtrl {
 
 	static async apiDelete(req: Request, res: Response, next: NextFunction) {
 		try {
-			let id = req.params.id;
+			let id = new ObjectId(req.params.id);
 			await VisitsDAO.delete(id);
 			res.json({ status: 'success' });
 		} catch (e) {
@@ -79,7 +81,7 @@ export class VisitsCtrl {
 
 	static async apiDeleteAppointment(req: Request, res: Response, next: NextFunction) {
 		try {
-			const id = req.params.id;
+			const id = new ObjectId(req.params.id);
 			await VisitsDAO.deleteAppointment(id);
 			res.json({ status: 'success' });
 		} catch (e) {

@@ -1,6 +1,6 @@
-import { Collection, MongoClient, AggregationCursor } from 'mongodb';
-import { Appointment, Visit, VisitAggregate } from '../../../common/interfaces';
-let visitsCollection: Collection<Visit>;
+import { Collection, MongoClient, AggregationCursor, ObjectId } from 'mongodb';
+import { AppointmentDB, VisitDB, VisitAggregate } from '../../../common/interfaces';
+let visitsCollection: Collection<VisitDB>;
 
 export class VisitsDAO {
 	static async injectDB(conn: MongoClient) {
@@ -15,7 +15,7 @@ export class VisitsDAO {
 	}
 
 	static async find(beforeLookup?: {}, afterLookup?: {}, page = 0, visitsPerPage = 10) {
-		let cursor: AggregationCursor<VisitAggregate>;
+		let cursor: AggregationCursor;
 		let visits, visitsCount;
 		try {
 			cursor = visitsCollection.aggregate([
@@ -56,7 +56,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async add(visit: Visit) {
+	static async add(visit: VisitDB) {
 		try {
 			return await visitsCollection.insertOne(visit);
 		} catch (e) {
@@ -65,7 +65,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async addMany(visits: Visit[]) {
+	static async addMany(visits: VisitDB[]) {
 		try {
 			return await visitsCollection.insertMany(visits);
 		} catch (e) {
@@ -74,7 +74,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async deleteVisitsByDoctorId(doctorId: string) {
+	static async deleteVisitsByDoctorId(doctorId: ObjectId) {
 		try {
 			return await visitsCollection.deleteMany({
 				doctor: doctorId
@@ -85,7 +85,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async delete(_id: string) {
+	static async delete(_id: ObjectId) {
 		try {
 			return await visitsCollection.deleteOne({ _id });
 		} catch (e) {
@@ -94,7 +94,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async updateAppointment(visitId: string, appointment: Appointment) {
+	static async updateAppointment(visitId: ObjectId, appointment: AppointmentDB) {
 		try {
 			await visitsCollection.updateOne({ _id: visitId }, { $set: { appointment } });
 			return { success: true };
@@ -104,7 +104,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async deleteAppointment(visitId: string) {
+	static async deleteAppointment(visitId: ObjectId) {
 		try {
 			await visitsCollection.updateOne({ _id: visitId }, { $unset: { appointment: '' } });
 			return { success: true };
@@ -114,7 +114,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async updateVisit(_id: string, startDate: Date, endDate: Date, clinic: string) {
+	static async updateVisit(_id: ObjectId, startDate: Date, endDate: Date, clinic: ObjectId) {
 		try {
 			const updateResponse = await visitsCollection.updateOne({ _id }, { $set: { startDate, endDate, clinic } });
 
