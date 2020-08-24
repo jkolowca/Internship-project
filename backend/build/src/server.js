@@ -1,0 +1,27 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.app = void 0;
+var express_1 = __importDefault(require("express"));
+var cors_1 = __importDefault(require("cors"));
+var morgan_1 = __importDefault(require("morgan"));
+var doctors_route_1 = __importDefault(require("../src/api/doctors.route"));
+var visits_route_1 = __importDefault(require("../src/api/visits.route"));
+var clinics_route_1 = __importDefault(require("../src/api/clinics.route"));
+var users_route_1 = __importDefault(require("./api/users.route"));
+var mockup_1 = require("./mockup/mockup");
+exports.app = express_1.default();
+exports.app.use(cors_1.default());
+exports.app.use(morgan_1.default('dev'));
+exports.app.use(express_1.default.json());
+exports.app.use(express_1.default.urlencoded({ extended: true }));
+exports.app.use('/doctors', doctors_route_1.default);
+exports.app.use('/visits', visits_route_1.default);
+exports.app.use('/clinics', clinics_route_1.default);
+exports.app.use('/users', users_route_1.default);
+exports.app.use('/mockup', mockup_1.router);
+exports.app.use('/status', express_1.default.static('build'));
+exports.app.use('/', express_1.default.static('build'));
+exports.app.use('*', function (req, res) { return res.status(404).json({ error: 'not found' }); });
