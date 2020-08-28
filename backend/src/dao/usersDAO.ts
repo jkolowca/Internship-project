@@ -14,6 +14,14 @@ export class UsersDAO {
 		}
 	}
 
+	static async drop() {
+		try {
+			usersCollection.drop();
+		} catch (e) {
+			console.error(`UsersDAO: drop ${e}`);
+		}
+	}
+
 	static async getAll() {
 		let cursor: Cursor<UserDB>;
 		try {

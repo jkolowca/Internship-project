@@ -1,11 +1,12 @@
 import { NextFunction, Request, Response } from 'express';
-import { ObjectId } from 'mongodb';
 import { Router } from 'express';
+import * as bcrypt from 'bcryptjs';
 import fs from 'fs';
 import { DoctorsDAO } from '../dao/doctorsDAO';
 import { ClinicsDAO } from '../dao/clinicsDAO';
 import { UsersDAO } from '../dao/usersDAO';
 import { VisitsDAO } from '../dao/visitsDAO';
+import { UserDB } from '../../../common/interfaces';
 var json2mongo = require('json2mongo');
 
 export class Mockup {
@@ -13,24 +14,24 @@ export class Mockup {
 		try {
 			let data = JSON.parse(fs.readFileSync('./src/mockup/doctors.json').toString());
 			json2mongo(data);
+			DoctorsDAO.drop();
 			DoctorsDAO.addMany(data);
 
 			data = JSON.parse(fs.readFileSync('./src/mockup/clinics.json').toString());
 			json2mongo(data);
+			ClinicsDAO.drop();
 			ClinicsDAO.addMany(data);
 
 			data = JSON.parse(fs.readFileSync('./src/mockup/users.json').toString());
 			json2mongo(data);
-			UsersDAO.addMany(data);
+			const users: UserDB[] = data;
+			users.forEach(async user => (user.password = await bcrypt.hash(user.password, 10)));
+			UsersDAO.drop();
+			UsersDAO.addMany(users);
 
 			data = JSON.parse(fs.readFileSync('./src/mockup/visits.json').toString());
 			json2mongo(data);
-			// let visits = data.map((v: any) => {
-			// 	v.startDate = new Date(v.startDate.$date);
-			// 	v.endDate = new Date(v.endDate.$date);
-			// 	return v;
-			// });
-
+			VisitsDAO.drop();
 			VisitsDAO.addMany(data);
 
 			res.json({ status: 'success' });

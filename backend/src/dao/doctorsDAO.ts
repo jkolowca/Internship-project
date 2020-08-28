@@ -1,5 +1,5 @@
-import { Collection, MongoClient, Cursor, AggregationCursor, ObjectId } from 'mongodb';
-import { DoctorDB, ClinicDB, DoctorData } from '../../../common/interfaces';
+import { Collection, MongoClient, Cursor, AggregationCursor, ObjectId, Db } from 'mongodb';
+import { DoctorDB, ClinicDB } from '../../../common/interfaces';
 let doctorsCollection: Collection<DoctorDB>;
 
 export class DoctorsDAO {
@@ -9,6 +9,14 @@ export class DoctorsDAO {
 		}
 		try {
 			doctorsCollection = conn.db('registration').collection('doctors');
+		} catch (e) {
+			console.error(`DoctorsDAO: Unable to establish a collection handle: ${e}`);
+		}
+	}
+
+	static async drop() {
+		try {
+			doctorsCollection.drop();
 		} catch (e) {
 			console.error(`DoctorsDAO: Unable to establish a collection handle: ${e}`);
 		}

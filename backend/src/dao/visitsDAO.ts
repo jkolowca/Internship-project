@@ -1,5 +1,5 @@
 import { Collection, MongoClient, AggregationCursor, ObjectId } from 'mongodb';
-import { AppointmentDB, VisitDB, VisitAggregate } from '../../../common/interfaces';
+import { AppointmentDB, VisitDB } from '../../../common/interfaces';
 let visitsCollection: Collection<VisitDB>;
 
 export class VisitsDAO {
@@ -11,6 +11,14 @@ export class VisitsDAO {
 			visitsCollection = conn.db('registration').collection('visits');
 		} catch (e) {
 			console.error(`VisitsDAO: Unable to establish a collection handle: ${e}`);
+		}
+	}
+
+	static async drop() {
+		try {
+			visitsCollection.drop();
+		} catch (e) {
+			console.error(`VisitsDAO: drop: ${e}`);
 		}
 	}
 

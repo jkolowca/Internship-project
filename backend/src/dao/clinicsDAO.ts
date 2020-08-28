@@ -15,6 +15,14 @@ export class ClinicsDAO {
 		}
 	}
 
+	static async drop() {
+		try {
+			clinicsCollection.drop();
+		} catch (e) {
+			console.error(`ClinicsDAO: drop ${e}`);
+		}
+	}
+
 	static async getAll() {
 		let cursor: Cursor<ClinicDB>;
 		try {
