@@ -1,12 +1,11 @@
 import { ObjectId } from 'mongodb';
 
-export interface Clinic extends ClinicData {
+interface IdInterface {
 	_id: string;
 }
 
-export interface ClinicData {
-	name: string;
-	address: Address;
+interface ObjectIdInterface {
+	_id?: ObjectId;
 }
 
 export interface Address {
@@ -15,101 +14,74 @@ export interface Address {
 	apartment?: string;
 }
 
-export interface Doctor extends DoctorData {
-	_id: string;
+export interface ClinicData {
+	name: string;
+	address: Address;
 }
+
+export interface Clinic extends ClinicData, IdInterface {}
+export interface ClinicDB extends ClinicData, ObjectIdInterface {}
 
 export interface DoctorData {
 	name: string;
 	surname: string;
 	specialties: string[];
+}
+
+export interface Doctor extends DoctorData, IdInterface {
 	clinics: string[];
 }
 
-export interface Appointment {
-	_id: string;
+export interface DoctorDB extends DoctorData, ObjectIdInterface {
+	clinics: ObjectId[];
+}
+
+export interface AppointmentData {
 	name: string;
 	surname: string;
 	reason?: string;
 }
 
-export interface Visit extends VisitData {
-	_id: string;
-}
+export interface Appointment extends AppointmentData, IdInterface {}
+export interface AppointmentDB extends AppointmentData, ObjectIdInterface {}
 
 export interface VisitData {
 	startDate: Date;
 	endDate: Date;
-	clinic: string;
-	doctor: string;
 	appointment?: Appointment;
 }
 
-export interface VisitAggregate {
-	_id: string;
+export interface VisitAggregate extends IdInterface {
 	startDate: Date;
 	endDate: Date;
+	appointment?: Appointment;
 	clinic: Clinic;
 	doctor: Doctor;
-	appointment?: Appointment;
 }
 
-export interface User extends UserData {
-	_id: string;
+export interface Visit extends VisitData, IdInterface {
+	clinic: string;
+	doctor: string;
 }
-
-export interface UserData {
-	name: string;
-	surname: string;
-	email: string;
-	password: string;
-	accountType: string;
-	doctorId?: string;
-}
-
-export interface DoctorDB {
-	_id?: ObjectId;
-	name: string;
-	surname: string;
-	specialties: string[];
-	clinics: ObjectId[];
-}
-
-export interface UserDB {
-	_id?: ObjectId;
-	name: string;
-	surname: string;
-	email: string;
-	password: string;
-	accountType: string;
-	doctorId?: ObjectId;
-}
-
-export interface VisitDB {
-	_id?: ObjectId;
-	startDate: Date;
-	endDate: Date;
+export interface VisitDB extends VisitData, ObjectIdInterface {
 	clinic: ObjectId;
 	doctor: ObjectId;
-	appointment?: AppointmentDB;
 }
 
-export interface ClinicDB {
-	_id?: ObjectId;
-	name: string;
-	address: AddressDB;
-}
-export interface AppointmentDB {
-	_id: ObjectId;
+export interface UserInfo {
 	name: string;
 	surname: string;
 	email: string;
-	reason?: string;
+	accountType: string;
 }
 
-export interface AddressDB {
-	_id?: ObjectId;
-	city: string;
-	street: string;
-	apartment: string;
+export interface UserData extends UserInfo {
+	password: string;
+}
+
+export interface User extends UserData, IdInterface {
+	doctorId?: string;
+}
+export interface UserDB extends ObjectIdInterface, UserData {
+	doctorId?: ObjectId;
 }
