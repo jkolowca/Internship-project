@@ -41,9 +41,9 @@ export class UsersDAO {
 		}
 	}
 
-	static async getById(_id: ObjectId) {
+	static async getById(_id: ObjectId, projection: Object) {
 		try {
-			return await usersCollection.findOne({ _id });
+			return await usersCollection.findOne({ _id }, { projection });
 		} catch (e) {
 			console.error(`Something went wrong in usersDAO getById: ${e}`);
 			return undefined;

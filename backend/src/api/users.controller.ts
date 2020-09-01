@@ -14,7 +14,8 @@ export class UsersCtrl {
 	static async apiGetById(req: Request, res: Response, next: NextFunction) {
 		try {
 			let id = new ObjectId(req.params.id);
-			let user = await UsersDAO.getById(id);
+			let projection = { password: 0 };
+			let user = await UsersDAO.getById(id, projection);
 			if (!user) {
 				res.status(404).json({ error: 'Not found' });
 				return;
