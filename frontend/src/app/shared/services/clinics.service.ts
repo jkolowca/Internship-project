@@ -16,7 +16,7 @@ export class ClinicsService {
 		return this.http.get<Clinic[]>(this.clinicsUrl, this.httpOptions);
 	}
 
-	addClinic(clinic: ClinicData): Observable<{ status: string }> {
+	addClinic(clinic: ClinicData<string>): Observable<{ status: string }> {
 		return this.http.post<{ status: string }>(this.clinicsUrl, clinic, this.httpOptions);
 	}
 

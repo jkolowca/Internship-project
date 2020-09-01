@@ -39,7 +39,7 @@ export interface Appointment extends AppointmentData<string> {}
 export interface AppointmentDB extends AppointmentData<ObjectId> {}
 
 export interface VisitData<T extends Id> {
-	_id: T;
+	_id?: T;
 	startDate: Date;
 	endDate: Date;
 	appointment?: Appointment;
