@@ -28,7 +28,7 @@ export class VisitAddPanelComponent implements OnInit {
 	}
 
 	save() {
-		const visit: VisitData = {
+		const visit: VisitData<string> = {
 			startDate: new Date(this.form.controls.startDate.value),
 			endDate: new Date(this.form.controls.endDate.value),
 			clinic: this.form.controls.clinic.value._id,

@@ -50,7 +50,7 @@ export class DoctorsDAO {
 		}
 	}
 
-	static async update(_id: ObjectId, doctor: DoctorDB) {
+	static async update(_id: ObjectId, doctor: Object) {
 		try {
 			return await doctorsCollection.updateOne({ _id }, { $set: doctor });
 		} catch (e) {

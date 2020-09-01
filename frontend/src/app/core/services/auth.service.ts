@@ -35,7 +35,7 @@ export class AuthService {
 		return this.http.get<{ status: string }>(`http://localhost:5000/mockup`);
 	}
 
-	signUp(user: UserData): Observable<any> {
+	signUp(user: UserData<string>): Observable<any> {
 		return this.http.post<{ status: string }>(`${this.endpoint}/register-user`, user);
 	}
 

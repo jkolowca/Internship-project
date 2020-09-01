@@ -20,7 +20,7 @@ export class DoctorsService {
 		return this.http.get<Doctor[]>(this.doctorsUrl, this.httpOptions);
 	}
 
-	addDoctor(doctor: DoctorData): Observable<{ status: string }> {
+	addDoctor(doctor: DoctorData<string>): Observable<{ status: string }> {
 		return this.http.post<{ status: string }>(this.doctorsUrl, doctor, this.httpOptions);
 	}
 
