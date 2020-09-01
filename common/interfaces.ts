@@ -63,25 +63,24 @@ export interface Visit extends VisitData, IdInterface {
 	clinic: string;
 	doctor: string;
 }
+
 export interface VisitDB extends VisitData, ObjectIdInterface {
 	clinic: ObjectId;
 	doctor: ObjectId;
 }
 
-export interface UserInfo {
+export interface UserData {
 	name: string;
 	surname: string;
 	email: string;
 	accountType: string;
-}
-
-export interface UserData extends UserInfo {
 	password: string;
 }
 
 export interface User extends UserData, IdInterface {
 	doctorId?: string;
 }
+
 export interface UserDB extends ObjectIdInterface, UserData {
 	doctorId?: ObjectId;
 }
