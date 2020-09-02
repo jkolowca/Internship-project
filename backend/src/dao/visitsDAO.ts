@@ -1,5 +1,5 @@
 import { Collection, MongoClient, AggregationCursor, ObjectId } from 'mongodb';
-import { AppointmentDB, VisitDB, Appointment } from '../../../common/interfaces';
+import { Appointment, VisitDB } from '../../../common/interfaces';
 let visitsCollection: Collection<VisitDB>;
 
 export class VisitsDAO {
