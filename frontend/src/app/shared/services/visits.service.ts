@@ -23,7 +23,7 @@ export class VisitsService {
 		});
 	}
 
-	addVisit(visit: VisitData): Observable<any> {
+	addVisit(visit: VisitData<string>): Observable<any> {
 		return this.http.post<{ status: string }>(`${this.visitsUrl}`, visit);
 	}
 

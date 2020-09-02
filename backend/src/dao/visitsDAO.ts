@@ -1,5 +1,5 @@
 import { Collection, MongoClient, AggregationCursor, ObjectId } from 'mongodb';
-import { AppointmentDB, VisitDB } from '../../../common/interfaces';
+import { AppointmentDB, VisitDB, Appointment } from '../../../common/interfaces';
 let visitsCollection: Collection<VisitDB>;
 
 export class VisitsDAO {
@@ -102,7 +102,7 @@ export class VisitsDAO {
 		}
 	}
 
-	static async updateAppointment(visitId: ObjectId, appointment: AppointmentDB) {
+	static async updateAppointment(visitId: ObjectId, appointment: Appointment) {
 		try {
 			await visitsCollection.updateOne({ _id: visitId }, { $set: { appointment } });
 			return { success: true };
